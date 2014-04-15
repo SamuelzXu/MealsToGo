@@ -1,0 +1,45 @@
+{
+  "name": "pocketask-beta-dev",
+  "description": "This is frontend part of the webapp",
+  "version": "0.1.0",
+  "author": "Pocketask, Inc.",
+  "contributors": [
+    {
+      "name": "Joshua P. Cheng",
+      "email": "josh@pocketask.com"
+    },
+    {
+      "name": "Bo Liu",
+      "email": "bo@pocketask.com"
+    },
+    {
+      "name": "Dong Zhang",
+      "email": "dong@pocketask.com"
+    },
+    {
+      "name": "Charles Chen",
+      "email": "charles@pocketask.com"
+    }
+  ],
+  "private": true,
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/s39lu/YearBeastMode.git"
+  },
+  "dependencies": {
+    "express": "^4.0.0",
+    "body-parser": "^1.0.1",
+    "compression": "^1.0.1",
+    "cookie-parser": "^1.0.1",
+    "morgan": "^1.0.0",
+    "express-session": "^1.0.2"
+  }
+}

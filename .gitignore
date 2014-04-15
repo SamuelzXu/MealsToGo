@@ -1,0 +1,18 @@
+# Ignore all the node modules
+node_modules/
+
+# Ignore all the mongodb installation files
+mongodb/
+
+# Ignore any debug notes from npm
+npm-debug.log
+
+# Ignore vim temporary files
+.*.swp
+*~
+
+# Ignore newrelic log file
+newrelic_agent.log
+
+# Ignore Mac OS file
+.DS_Store
