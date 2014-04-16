@@ -222,3 +222,16 @@ body,html {
     border-width: 0;
     margin-left: 20px;
 }
+
+#facebook-icon{
+    color: #3b5998;
+}
+#twitter-icon{
+    color: #00aced;
+}
+#google-plus-icon{
+    color: #d34836;
+}
+#linkedin{
+    color: #007bb6;
+}
