@@ -17,7 +17,7 @@ app.use(helmet.xframe());
 app.use(helmet.hsts());
 app.use(helmet.iexss());
 app.use(helmet.contentTypeOptions());
-app.use(helmet.cacheControl());
+// app.use(helmet.cacheControl());
 
 app.use('/js', express.static(__dirname + '/public/js'));
 app.use('/css', express.static(__dirname + '/public/css'));
