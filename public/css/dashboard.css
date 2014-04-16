@@ -1,0 +1,208 @@
+body {
+/*    background-color: #FDFFDB;*/
+    background-color: #edf6d6;
+}
+.navbar{
+    border-radius: 0;
+    background-color: #ffffff;
+    border: none;
+    vertical-align: middle;
+}
+.nav-brand{
+    display: inline-block;
+}
+.brand-img {
+    height: 50px;
+}
+#brand-img {
+    height: 50px;
+}
+#brand-text {
+    margin-bottom: -5px;
+    font-size: 280%;
+    font-family: Impact,  fantasy;
+    color: #33aaee;
+}
+.nav-btn{
+    display: inline-block;
+    border: none;
+    background-color: #ffffff;
+    height: auto;
+    width: auto;
+    font-family: Impact, fantasy; 
+    font-size: 200%;
+    color: #33aaee;
+    vertical-align: sub;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+.button-area{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    height: auto !important;
+}
+.card{
+    overflow: auto;
+    height: 222.5px;
+    width: 100%;
+    background-color: #ffffff;
+    text-align: center;
+    border: 1px solid #d8d8d8;
+    border-bottom-width: 2px;
+    box-shadow: 3px 3px 3px gray;
+    margin-bottom: 5px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+          border-radius: 3px;
+/*  -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+          box-shadow: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+          box-sizing: border-box;
+*/
+}
+.card-heading{
+    font-family: Impact;
+    font-size: 20px;
+    font-weight: 300;
+    color: #777;    
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+.card-heading-simple{
+    font-family: Impact;    
+    font-size: 25px;
+    font-weight: 300;
+    color: #777;    
+    margin-top: 0;
+    margin-bottom: -5px;
+}
+.card-long{
+    height: 450px;
+    width: 100%;
+    background-color: #ffffff;
+    text-align: center;
+    border: 1px solid #d8d8d8;
+    border-bottom-width: 2px; 
+/*    border-color: #aaaaaa; */
+/*    border-radius: 3px;*/
+    box-shadow: 3px 3px 3px gray;
+    margin-bottom: 5px;
+
+/*    padding-top: 20px;
+    margin: 10px 0 20px 0;
+    background-color: #ffffff;
+    border: 1px solid #d8d8d8;
+    border-top-width: 0;
+    border-bottom-width: 2px;
+*/  -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+        border-radius: 3px;
+/*    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+          box-shadow: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+          box-sizing: border-box;
+*/
+}
+#history-card{
+    overflow: auto;
+}
+
+.card-text {
+/*    margin-bottom: -5px;*/
+/*    font-size: 200%;*/
+    font-family: Impact;
+    color: #777;
+}
+.card-lg-text{
+    font-size: 400%;
+    font-family: Impact;
+    color: #073956;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#time{
+    display: inline-block;
+    font-size: 40px;
+    font-family: Impact, fantasy;
+    text-align: center;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 9px;
+    color: #33aaee;        
+}
+#time_backup{
+    display: inline-block;
+    font-size: 300%;
+    text-align: center;
+    margin-top: 25px;
+}
+.card-lg-text-normal{
+    font-size: 400%;
+    font-family: Impact;
+    color: #073956;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+.button1{
+    width: 100%;
+    height: 450px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 1px;
+    border-color: #eeeeee;
+    margin-left: auto;
+    margin-right: auto;
+}
+#btn-description{
+    font-family: Impact, fantasy; 
+    font-size: 400%; 
+    color: #073956;
+}
+#right{
+    margin-left: 30px;
+}
+.button2{
+    width: 100px;
+    height: 60px;
+}
+#driver-button{
+    background-image: url('../img/driver.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+#user-profile{
+    background-color: #ffffff;
+    text-align: center;
+    /*border-bottom: 1px solid #d8d8d8;*/
+    font-size: 20px;  
+}
+#user-profile-function{
+    height: 222.5px;
+    background-color: #ffffff;
+    text-align: center;
+    font-family: Impact;
+    font-size: 20px;    
+}
+
+.announcement{
+    margin-bottom: -5px;
+    font-size: 300%;
+    font-family: Impact;
+    color: #555;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+/*#balance{
+    color: red;
+}*/

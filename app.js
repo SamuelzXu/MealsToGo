@@ -13,9 +13,14 @@ app.set('port', process.env.PORT || 3000);
 app.use(logger('dev'));
 app.use(compress());
 
+app.use('/js', express.static(__dirname + '/public/js'));
+app.use('/css', express.static(__dirname + '/public/css'));
+app.use('/img', express.static(__dirname + '/public/img'));
+app.use('/partial', express.static(__dirname + '/public/partial'));
+
 // Route Setup
 app.get('/', function(req, res){
-    res.json('Hello World!');
+    res.sendfile(__dirname + '/public/');
 });
 
 http.createServer(app).listen(app.get('port'), function(){

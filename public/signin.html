@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pocketask, delivery at a click</title>
+    <meta name="author" content="Pocketask Inc.">
+    <meta name="description" content="Pocketask is now in Waterloo & Kitchener region. With Pocketask, restaurants can secure a delivery driver in 10 minutes or less. Pocketask streamlines the food delivery process; restaurant owners can request a driver, and pre-screened drivers can accept the call.">
+    <meta name="keywords" content="pocketask, delivery, food, restaurants" />
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="True">
+    
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    
+    <!-- Load custom CSS styles -->
+    <link href="css/signin.css" rel="stylesheet">
+    <link href="css/jquery.keypad.css" rel="stylesheet">
+</head>
+<body>
+    <div id="cot">
+        <img id="logo-big" src="img/logo-big.png">          
+        <p id="signin-title">Sign In</p>
+        <div id="signup-form">
+            <div id="message-box" class="result-box">
+                <p>Display error messages here if any.</p>
+            </div>
+            <form method="post" name="form">
+                <input class="input-control" id="name" name="name" 
+                 placeholder="Username" type="text"/>
+                <input class="input-control" id="password" name="password" 
+                 placeholder="Password" type="password"/>
+                <div id="inlineKeypad"></div>
+                <input id="signin-button" type="button" 
+                 onclick="signin()" value="Sign in" />
+            </form> 
+        </div> 
+    </div>
+
+    <div id="footer">
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+            <p>All rights reserved by &#169; Pocketask, Inc.</p>
+        </div>
+        <div class="col-md-3">
+            <p>Our <a href="/privacypolicy" target="_blank">privacy policy</a> and <a href="/termofuse" target="_blank">term of use</a></p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <!-- Load JS plugins -->
+    <script src="js/jquery-1.10.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/jquery.plugin.js"></script>
+    <script src="js/jquery.keypad.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+
+    <!-- Load custom JS files -->
+    <script src="js/signin.js"></script>
+    <script>  
+    function handleKeyPress(evt) {
+        var nbr, chr;
+        if (window.Event) nbr = evt.which;
+            else nbr = event.keyCode;
+            if(nbr==13){  
+                signin();
+            }
+        return true;  
+    }
+    document.onkeydown= handleKeyPress;
+    </script>
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-47690619-1', 'pocketask.com');
+    ga('send', 'pageview');
+    </script>
+</body>
+</html>

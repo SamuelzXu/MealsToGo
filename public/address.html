@@ -1,0 +1,34 @@
+<html>
+<head>
+<script type="text/javascript">
+function validate_address(field,alerttxt)
+{
+with (field)
+{
+re = RegExp(/[(\~)(\!)(\@)(\#)(\$)(\%)(\^)(\&)(\*)(\()(\))(\-)(\_)(\+)(\=)(\[)(\])(\{)(\})(\|)(\\)(\;)(\:)(\')(\")(\,)(\.)(\/)(\<)(\>)(\?)]+/);
+if (value==null||value==""||re.test(value)||/.*[\u4e00-\u9fa5]+.*$/.test(value)) 
+  {alert(alerttxt);return false}
+else {return true}
+}
+}
+
+function validate_form(thisform)
+{
+with (thisform)
+{
+if (validate_address(address,"Not a valid address!")==false)
+  {address.focus();return false}
+}
+}
+</script>
+</head>
+
+<body>
+<form action="submitpage.htm" onsubmit="return validate_form(this);" method="post">
+Address: <input type="text" name="address" size="30">
+<input type="submit" value="Submit"> 
+</form>
+</body>
+
+</html>
+

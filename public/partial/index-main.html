@@ -1,0 +1,130 @@
+<div style="background-color: #eeeeee;">
+    <div class="pad1" style="height: 70px;">
+        <div class="col-md-6 hidden-xs">
+            <div id="time"> 
+                <p id="time-text">our current approximate time is : 10'00''</p>
+            </div>
+        </div>
+        <div class="col-md-3" id="sign-up-box">
+            <button id="sign-up" class="pull-right">
+                <p>Want sign up with us?</p>
+                <p>Click here!</p>
+            </button>
+        </div>
+        <div class="col-md-3" id="sign-in-box">
+            <button id="sign-in" onclick="window.location='/signin';" class="pull-right">
+                sign in
+                <img id="sign-in-icon" src="img/login.png">
+            </button>
+        </div>
+    </div>
+
+    <div class="pad1" style="height: 400px; border-bottom: solid; border-color: #cccccc; border-width: 2px;">
+        <div class="col-md-4"> aaa </div>
+        <div class="col-md-8 hidden-xs" id="map-canvas"></div>
+    </div>
+
+    <div class="pad2">
+        <div class="puzzle-pad">
+            <div class="col-md-6 puzzle">
+                <img class="puzzle-pic" src="img/1.jpg"/>
+            </div>
+            <div class="col-md-6 puzzle-xs visible-xs">
+                <p class="puzzle-text-xs">some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.</p>
+                <button class="btn sign-up-btn-xs">Sign up</button>
+            </div>
+            <div class="col-md-6 puzzle hidden-xs">
+                <p class="puzzle-text">some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.</p>
+                <button class="btn sign-up-btn">Sign up</button>
+            </div>
+        </div>
+        <div class="puzzle-pad">
+            <div class="col-md-6 puzzle hidden-xs">
+                <p class="puzzle-text">some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.</p>
+                <button class="btn sign-up-btn">Sign up</button>
+            </div>
+            <div class="col-md-6 puzzle">
+                <img class="puzzle-pic" src="img/2.jpg" />
+            </div>
+            <div class="col-md-6 puzzle-xs visible-xs">
+                <p class="puzzle-text-xs">some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.</p>
+                <button class="btn sign-up-btn-xs">Sign up</button>
+            </div>
+        </div>
+        <div class="puzzle-pad">
+            <div class="col-md-6 puzzle">
+                <img class="puzzle-pic" src="img/3.jpg">
+            </div>
+            <div class="col-md-6 puzzle-xs visible-xs">
+                <p class="puzzle-text-xs">some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.</p>
+                <button class="btn sign-up-btn-xs">Sign up</button>
+            </div>
+            <div class="col-md-6 puzzle hidden-xs">
+                <p class="puzzle-text">some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.some text here.</p>
+                <button class="btn sign-up-btn">Sign up</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize"></script>
+<script>
+    function initialize() {
+    var mapOptions = {
+        zoom: 14,
+        center: new google.maps.LatLng(43.4689,-80.5400)
+    }
+    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    setMarkers(map, restaurants);
+}   
+            
+var restaurants = [
+    ['shawermaPlus', 43.474946, -80.524212, 1],
+    ['chinaLegend', 43.472473, -80.537670, 2],
+    ['yesBuffet', 43.502025, -80.533804, 3],
+    ['tastyHomeKitchen', 43.464410, -80.520421, 4],
+    ['johnnyFresco', 43.477745, -80.519415, 5],
+    ['noonMoment', 43.475147, -80.524566, 6],
+    ['meetPoint', 43.472824, -80.536042, 7],
+    ['almadinaJustNPita', 43.472913, -80.536303, 8]
+];
+            
+function setMarkers(map, locations) {
+  var image = {
+    url: 'images/beachflag.png',
+    // This marker is 20 pixels wide by 32 pixels tall.
+    size: new google.maps.Size(20, 32),
+    // The origin for this image is 0,0.
+    origin: new google.maps.Point(0,0),
+    // The anchor for this image is the base of the flagpole at 0,32.
+    anchor: new google.maps.Point(0, 32)
+  };
+
+
+  // Shapes define the clickable region of the icon.
+  // The type defines an HTML &lt;area&gt; element 'poly' which
+  // traces out a polygon as a series of X,Y points. The final
+  // coordinate closes the poly by connecting to the first
+  // coordinate.
+
+  var shape = {
+      coord: [1, 1, 1, 20, 18, 20, 18 , 1],
+      type: 'poly'
+  };
+  for (var i = 0; i < locations.length; i++) {
+    var restaurant = locations[i];
+    var myLatLng = new google.maps.LatLng(restaurant[1], restaurant[2]);
+    var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        icon: image,
+        shape: shape,
+        title: restaurant[0],
+        zIndex: restaurant[3]
+    });
+  }
+
+} 
+google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
