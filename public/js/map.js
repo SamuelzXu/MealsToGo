@@ -25,11 +25,11 @@ var locations = [
 
 function setMarkers(map, locations) {
 	var marker = {
-        url: 'img/pin.png',
+        url: 'img/kraken-uzyqfr/pin.png',
         size: new google.maps.Size(38, 35)
 	};
 	var pickmarker = {
-		url: 'img/pin2.png',
+		url: 'img/kraken-uzyqfr/pin2.png',
 		size: new google.maps.Size(38, 35)
 	};
     var shape = {
