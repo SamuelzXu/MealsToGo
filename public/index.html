@@ -225,7 +225,6 @@
         .script("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
         .script("//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js")
         .script("js/trunk.js")
-        .script("js/jquery.plugin.js")
         .script("js/map.js").wait(function(){
             function loadScript() {
                 var script = document.createElement('script');
@@ -236,17 +235,15 @@
             window.onload = loadScript;
         });
     </script>
-<!--     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script async src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script> -->
-    <!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script> -->
-    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0rc3/angular-route.min.js"></script> -->
-<!--     <script async src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
-
-    <script async src="js/trunk.js"></script>
-
-    <script async src="js/jquery.plugin.js"></script> -->
-    <!-- // <script src="js/index.js"></script> -->
-<!--     <script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-47690619-1', 'pocketask.com');
+        ga('send', 'pageview');
+    </script>
+    <!-- <script>
     $('.bottom-panel').on('shown.bs.collapse', function () {
         document.getElementById("restaurants").scrollTop += 130;
     });
@@ -264,25 +261,5 @@
     }
     window.onload = get_total();
     </script> -->
-<!--     <script src="js/map.js"></script>
- -->    <!-- <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false"></script> -->
-<!--     <script>
-        function loadScript() {
-            var script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false&' +
-            'callback=initialize';
-            document.body.appendChild(script);
-        }
-        window.onload = loadScript;
-    </script> -->
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-47690619-1', 'pocketask.com');
-        ga('send', 'pageview');
-    </script>
 </body>
 </html>
