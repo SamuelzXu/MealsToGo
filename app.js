@@ -3,15 +3,21 @@ var http       = require('http');
 var logger     = require('morgan');
 var bodyparser = require('body-parser');
 var compress   = require('compression');
+var helmet     = require('helmet');
 var app        = express();
-
-// var helmet = require('helmet');
-// var route = require('./route');
 
 // Express Configuration
 app.set('port', process.env.PORT || 3000);
+app.enable('trust proxy');
 app.use(logger('dev'));
 app.use(compress());
+
+// app.use(helmet.csp());
+app.use(helmet.xframe());
+app.use(helmet.hsts());
+app.use(helmet.iexss());
+app.use(helmet.contentTypeOptions());
+app.use(helmet.cacheControl());
 
 app.use('/js', express.static(__dirname + '/public/js'));
 app.use('/css', express.static(__dirname + '/public/css'));
