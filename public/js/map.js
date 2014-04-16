@@ -20,9 +20,9 @@ var locations = [
 	['johnnyFresco', 43.477745, -80.519415, 1],
 	['noonMoment', 43.475147, -80.524566, 2],
 	['meetPoint', 43.472379, -80.536006, 3],
-	['tastyHomeKitchen', 43.476109, -80.525872, 4]	
+	['tastyHomeKitchen', 43.476109, -80.525872, 4]
 ];
-			
+
 function setMarkers(map, locations) {
 	var marker = {
 	    url: 'img/pin.png',
@@ -39,7 +39,7 @@ function setMarkers(map, locations) {
   	for (var i = 0; i < picks.length; i++) {
 	    var restaurant = picks[i];
 	    var myLatLng = new google.maps.LatLng(restaurant[1], restaurant[2]);
-	    
+
 	    var image = new google.maps.Marker({
 	        position: myLatLng,
 	        map: map,
@@ -50,11 +50,11 @@ function setMarkers(map, locations) {
 	        animation: google.maps.Animation.DROP
 	    });
   	};
-  	
+
   	for (var i = 0; i < locations.length; i++) {
 	    var restaurant = locations[i];
 	    var myLatLng = new google.maps.LatLng(restaurant[1], restaurant[2]);
-	    
+
 	    var image = new google.maps.Marker({
 	        position: myLatLng,
 	        map: map,
