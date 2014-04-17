@@ -60,7 +60,7 @@
         </div>
 
         <div class="pad1" style="height: 400px; border-bottom: solid; border-color: #cccccc; border-width: 2px;">
-            <div class="col-md-4" id="restbox">
+<!--             <div class="col-md-4" id="restbox">
 
                 <div class="panel-group" id="restaurants">
                     <div id="restaurants-head">OUR PICKS</div>
@@ -154,8 +154,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-8 hidden-sm hidden-xs" id="map-canvas"></div>
+            </div> -->
+<!--             <div class="col-md-12 hidden-sm hidden-xs" id="map-canvas"></div> -->
+            <div class="col-md-12" id="map-canvas"></div>
         </div>
 
         <div class="pad2">
@@ -243,7 +244,7 @@
             function loadScript() {
                 var script = document.createElement('script');
                 script.type = 'text/javascript';
-                script.src = 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false&' + 'callback=initialize';
+                script.src = 'https://maps.googleapis.com/maps/api/js?sensor=false&' + 'callback=initialize';
                 document.body.appendChild(script);
             }
             window.onload = loadScript;
