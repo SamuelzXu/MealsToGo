@@ -19,9 +19,10 @@ app.use(helmet.iexss());
 app.use(helmet.contentTypeOptions());
 // app.use(helmet.cacheControl());
 
-app.use('/js', express.static(__dirname + '/public/js'));
-app.use('/css', express.static(__dirname + '/public/css'));
-app.use('/img', express.static(__dirname + '/public/img'));
+var oneDay = 86400000;
+app.use('/js', express.static(__dirname + '/public/js', {maxAge: oneDay}));
+app.use('/css', express.static(__dirname + '/public/css', {maxAge: oneDay}));
+app.use('/img', express.static(__dirname + '/public/img', {maxAge: oneDay}));
 app.use('/partial', express.static(__dirname + '/public/partial'));
 
 // Route Setup
