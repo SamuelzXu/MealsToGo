@@ -20,21 +20,6 @@
     <link rel="stylesheet" media="all" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css"> -->
-    <script type="text/javascript">
-        function includeCSSfile(href) {
-            var head_node = document.getElementsByTagName('head')[0];
-            var link_tag = document.createElement('link');
-            link_tag.setAttribute('rel', 'stylesheet');
-            link_tag.setAttribute('type', 'text/css');
-            link_tag.setAttribute('href', href);
-            head_node.appendChild(link_tag);
-        }
-        includeCSSfile('css/reset.css');
-        includeCSSfile('css/trunk.css');
-        includeCSSfile('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
-        includeCSSfile('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
-        includeCSSfile('css/index.css');
-    </script>
 </head>
 
 <body>
@@ -232,7 +217,21 @@
             </div>
         </div>
     </div>
-
+    <script>
+        function includeCSSfile(href) {
+            var head_node = document.getElementsByTagName('head')[0];
+            var link_tag = document.createElement('link');
+            link_tag.setAttribute('rel', 'stylesheet');
+            link_tag.setAttribute('type', 'text/css');
+            link_tag.setAttribute('href', href);
+            head_node.appendChild(link_tag);
+        }
+        includeCSSfile('css/reset.css');
+        includeCSSfile('css/trunk.css');
+        includeCSSfile('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
+        includeCSSfile('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
+        includeCSSfile('css/index.css');
+    </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/labjs/2.0.3/LAB.min.js"></script>
     <script>
         $LAB
