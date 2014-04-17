@@ -14,12 +14,6 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-<!-- 	<link rel="stylesheet" media="all" href="css/reset.css">
-    <link rel="stylesheet" media="all" href="css/trunk.css">
-    <link rel="stylesheet" media="all" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/index.css"> -->
 </head>
 
 <body>
@@ -41,122 +35,37 @@
         </ul>
     </nav>
 
-    <div class="content slide" style="background-color: #37bc9b;">
-        <div class="pad3">
+    <div class="content slide">
+        <div class="header-section">
             <div class="col-md-12">
                 <div id="time">
-                    <p id="total" style="color: #da4453; padding-top: 0;"> 560</p>
-                    <p style="color: #da4453; text-align: center; padding-top: -10px;">deliveries completed to date</p>
+                    <p id="total">560</p>
+                    <p id="delivery-text">deliveries completed to date</p>
                     <p id="time-text">Secure a delivery driver in 10 minutes or less.</p>
                 </div>
             </div>
-        </div>
-
-        <div class="pad3" style="text-align: center;">
-            <div class="btn-area">
+            <div class="btn-area" style="text-align: center">
                 <button class="btn" id="signin" onclick="window.location='/signin';">SIGN IN</button>
-                <!-- <button class="btn btn-default" id="signup">Sign up</button> -->
+                <button class="btn" id="joinus" style="border-color: #336633; color: #336633;">JOIN US</button>
             </div>
         </div>
 
-        <div class="pad1" style="height: 400px; border-bottom: solid; border-color: #cccccc; border-width: 2px;">
-<!--             <div class="col-md-4" id="restbox">
+        <div class="res-section">
+            <div>
+                <p id="res-text">We Are Trusted By ...</p>
+            </div>
+            <img src="img/kraken-uzyqfr/shawermaplus.png" width="150px" class="rest-logo">
+            <img src="img/kraken-uzyqfr/yes-buffet.jpg" class="rest-logo">
+            <img src="img/kraken-uzyqfr/williams.jpg" class="rest-logo">
+            <img src="img/kraken-uzyqfr/wingsup.jpg" class="rest-logo">
+            <img src="img/kraken-uzyqfr/chinalegend.jpg" class="rest-logo">
+            <img src="img/kraken-uzyqfr/justnpita.png" class="rest-logo">
+        </div>
 
-                <div class="panel-group" id="restaurants">
-                    <div id="restaurants-head">OUR PICKS</div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#shawermaplus" data-parent="#restaurants">
-                            <h5 class="panel-title">
-                                Shawerma Plus
-                            </h5>
-                        </div>
-                        <div id="shawermaplus" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <img src="img/kraken-uzyqfr/shawermaplus.png" class="rest-logo">
-                                <p>Phone: (519) 954-1777</p>
-                                <p>Address: 220 King Street North, Waterloo, ON</p>
-                                <p>Website: <a href="http://www.shawermaplus.com" target="_blank">www.shawermaplus.com</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#yesbuffet" data-parent="#restaurants">
-                            <h5 class="panel-title">
-                                Ye's Buffet
-                            </h5>
-                        </div>
-                        <div id="yesbuffet" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <img src="img/kraken-uzyqfr/yes-buffet.jpg" class="rest-logo">
-                                <p>Phone: (519) 888-6066</p>
-                                <p>Address: 583 King St N, Waterloo, ON</p>
-                                <p>Website: <a href="http://www.yessushi.com" target="_blank">www.yessushi.com</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#williams" data-parent="#restaurants">
-                            <h5 class="panel-title">
-                                Williams Fresh Cafe
-                            </h5>
-                        </div>
-                        <div id="williams" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <img src="img/kraken-uzyqfr/williams.jpg" class="rest-logo">
-                                <p>Phone: (519) 725-4432</p>
-                                <p>Address: 33 University Avenue East, Waterloo, ON</p>
-                                <p>Website: <a href="http://williamsfreshcafe.com" target="_blank">www.williamsfreshcafe.com</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#wingsup" data-parent="#restaurants">
-                            <h5 class="panel-title">
-                                Wing's Up
-                            </h5>
-                        </div>
-                        <div id="wingsup" class="panel-collapse collapse bottom-panel">
-                            <div class="panel-body">
-                                <img src="img/kraken-uzyqfr/wingsup.jpg" class="rest-logo">
-                                <p>Phone: (519) 725-5252</p>
-                                <p>Address: 65 University Avenue East, Waterloo, ON</p>
-                                <p>Website: <a href="http://www.wingsup.com/" target="_blank">www.wingsup.com</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default bottom-panel">
-                        <div class="panel-heading" data-toggle="collapse" href="#chinalegend" data-parent="#restaurants">
-                            <h5 class="panel-title">
-                                China Legend
-                            </h5>
-                        </div>
-                        <div id="chinalegend" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <img src="img/kraken-uzyqfr/chinalegend.jpg" class="rest-logo">
-                                <p>Phone: (519) 342-0232</p>
-                                <p>Address: 160 University Avenue West, Waterloo, ON</p>
-                                <p>Website: <a href="http://www.chinalegend.ca" target="_blank">www.chinalegend.ca</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default bottom-panel">
-                        <div class="panel-heading" data-toggle="collapse" href="#tastyhomekitchen" data-parent="#restaurants">
-                            <h5 class="panel-title">
-                                Just N Pita
-                            </h5>
-                        </div>
-                        <div id="tastyhomekitchen" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <img src="img/kraken-uzyqfr/justnpita.png" class="rest-logo">
-                                <p>Phone: (519) 888-9697</p>
-                                <p>Address: 150 University Avenue West, Waterloo ON</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-<!--             <div class="col-md-12 hidden-sm hidden-xs" id="map-canvas"></div> -->
-            <div class="col-md-12" id="map-canvas"></div>
+        <div class="res-section" style="background-color: #66ccff;">
+            <div>
+                <div class="col-md-12" id="map-canvas"></div>
+            </div>
         </div>
 
         <div class="pad2">

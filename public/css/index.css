@@ -4,70 +4,57 @@ body,html {
     height: 100%;
     min-height: 1000px;
 }
-
-#header{
+/*#header{
     margin-top: -15px;
-}
-
+}*/
 .brand-img {
     height: 55px;
     margin-left: 10px;
 }
-
 #brand-lg{
     margin-top: -7px;
 }
-
-#cot{
-    text-align: center;
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-}
-
-.pad1{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-bottom: 50px;
-    padding-top: 10px;
-    background-color: #ffffff;
-    margin-bottom: -2px;
-}
-
-.pad2{
-    padding-right: 30px;
-    padding-left: 30px;
-    padding-top: 30px;
-    background-color: #ffffff;
-}
-
-.pad3{
-    padding-left: 30px;
-    padding-right: 30px;
+.header-section{
+    height: 655px;
     background-color: #37bc9b;
-    margin-top: 0;
-    margin-bottom: -10px;
+    margin-top: -5px;"
 }
-
-/*#e6e9ed*/
+.res-section{
+    height: 410px;
+    text-align: center;
+    background-color: #33cc66;
+    margin-top: -10px;
+}
+#res-text{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 300%;
+    text-align: center;
+    color: #333333;
+}
 #total{
-    margin-top: 50px;
+    margin-top: 0px;
     font-size: 600%;
     text-align: center;
+    color: #da4453;
 }
 #time{
     font: impact;
     font-size: 200%;
     color: #ffffff;
 }
+#delivery-text{
+    color: #da4453;
+    text-align: center;
+    /*padding-top: -30px;*/
+}
 #time-text{
     text-align: center;
-    padding-top: 60px;
+    padding-top: 30px;
 }
-
 .btn-area{
     margin-top: -10px;
-    padding-bottom: 70px;
+    /*padding-bottom: 50px;*/
 }
 .btn{
     margin-top: 40px;
@@ -79,21 +66,45 @@ body,html {
     font-size: 150%;
     color: #660099;
 }
-
 .btn:hover,
 .btn:focus {
     color: #660099;
     text-decoration: none;
 }
-
+/*#cot{
+    text-align: center;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+}*/
+.pad1{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-top: 10px;
+    background-color: #ffffff;
+    margin-bottom: -2px;
+}
+.pad2{
+    margin-top: 0px;
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-top: 30px;
+    background-color: #ffffff;
+}
+.pad3{
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #33cc66;
+    margin-top: -30px;
+    margin-bottom: -10px;
+}
 #restbox{
     height: 400px;
 }
-
 #justnpita{
     margin-bottom: 30px;
 }
-
 #restaurants{
     height: 400px;
     border-style: solid;
@@ -106,33 +117,30 @@ body,html {
     max-height: 400px;
     overflow: auto;
 }
-
 #restaurants-head{
     font: Impact;
     font-size: 150%;
     color: #33aaee;
     text-align: center;
 }
-
 .rest-logo{
     height: 100px;
     border-style: solid;
     border-width: 1px;
     border-color: #dddddd;
-    box-shadow: 2px 2px 2px gray;
-    max-width: 240px;
+    background-color: #ffffff;
+/*    box-shadow: 2px 2px 2px gray;*/
+/*    max-width: 240px;*/
 }
-
 #map-canvas {
-    height: 400px;
+    height: 410px;
 /*    border-style: solid;
     border-width: 1px;
     border-radius: 3px;
     border-color: #aaaaaa;
-*/    margin-top: auto;
+*/  margin-top: auto;
     margin-left: auto;
 }
-
 .puzzle-pad{
     height: auto;
     min-height: 300px;
@@ -141,49 +149,41 @@ body,html {
     border-width: 1px;
     border-color: #eeeeee;
 }
-
 .puzzle{
     height: 300px;
     text-align: center;
     padding-bottom: 5px;
 }
-
 .puzzle-xs{
     height: auto;
     min-height: 100px;
 }
-
 .puzzle-pic{
     height: 298px;
 }
-
 .puzzle-text{
     font-size: 120%;
     margin-top: 15%;
     margin-bottom: 40%;
 }
-
 .puzzle-text-xs{
     height: auto;
     font-size: 120%;
     margin-top: 10px;
     text-align: center;
 }
-
 .sign-up-btn{
     position: relative;
     margin-left: 45%;
     margin-right: 45%;
     margin-top: -450px;
 }
-
 .sign-up-btn-xs{
     position: relative;
     margin-left: 45%;
     margin-right: 45%;
     margin-top: 0;
 }
-
 #footer{
     text-align: center;
     background-color: #eeeeee;
@@ -191,30 +191,25 @@ body,html {
     height: auto;
     padding-top: 10px;
 }
-
 .footer-text{
     margin-top: 15px;
 }
-
 .footer-social{
     margin-top: 5px;
 }
 .fb-like{
     margin-bottom: 5px;
 }
-
 .social-icon{
     height: 48px;
     width: 48px;
 }
-
 #fb{
     background-image: url('../img/facebook.png');
     background-size: 110%;
     border-radius: 5px;
     border-width: 0;
 }
-
 #tw{
     background-image: url('../img/twitter.png');
     background-size: 110%;
@@ -222,7 +217,6 @@ body,html {
     border-width: 0;
     margin-left: 20px;
 }
-
 #facebook-icon{
     color: #3b5998;
 }
