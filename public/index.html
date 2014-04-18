@@ -38,8 +38,12 @@
     <div class="content slide">
         <div class="header-section">
             <div class="col-md-12">
+
                 <div id="time">
-                    <p id="total">560</p>
+                <div style="width: 250px; margin-left: auto; margin-right: auto; padding-top: 50px">
+                    <div class="clock"></div>
+                </div>
+                    <!-- <p id="total">560</p> -->
                     <p id="delivery-text">deliveries completed to date</p>
                     <p id="time-text">Secure a delivery driver in 10 minutes or less.</p>
                 </div>
@@ -51,9 +55,9 @@
         </div>
 
         <div class="res-section">
-            <div>
+<!--             <div>
                 <p id="res-text">Our Pick</p>
-            </div>
+            </div> -->
             <img src="img/kraken-uzyqfr/shawermaplus.png" width="150px" class="rest-logo">
             <img src="img/kraken-uzyqfr/yes-buffet.jpg" class="rest-logo">
             <img src="img/kraken-uzyqfr/williams.jpg" class="rest-logo">
@@ -141,6 +145,7 @@
         includeCSSfile('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
         includeCSSfile('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
         includeCSSfile('css/index.css');
+        includeCSSfile('css/flipclock.css');
     </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/labjs/2.0.3/LAB.min.js"></script>
     <script>
@@ -149,6 +154,18 @@
         .script("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
         .script("//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js")
         .script("js/trunk.js")
+        .script("js/flipclock.min.js").wait(function(){
+            var clock = $('.clock').FlipClock(100, {
+                clockFace: 'Counter',
+                autoStart: false
+                });
+            // setTimeout(function() {
+            //     setInterval(function() {
+            //         clock.increment();
+            //     }, 1000);
+            // });
+            clock.setValue(600);
+        })
         .script("js/map.js").wait(function(){
             function loadScript() {
                 var script = document.createElement('script');
