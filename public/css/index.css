@@ -55,6 +55,7 @@ body,html {
 }
 .btn-area{
     margin-top: -10px;
+    text-align: center;
     /*padding-bottom: 50px;*/
 }
 .btn{
