@@ -1,9 +1,9 @@
 function initialize() {
 	var mapOptions = {
-		zoom: 13,
+		zoom: 12,
 		center: new google.maps.LatLng(43.485435, -80.540270),
 		scrollwheel: false,
-		draggable: false
+		// draggable: false
 	};
 	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	setMarkers(map, locations);
@@ -22,7 +22,10 @@ var locations = [
 	['johnnyFresco', 43.477745, -80.519415, 1],
 	['noonMoment', 43.475147, -80.524566, 2],
 	['meetPoint', 43.472379, -80.536006, 3],
-	['tastyHomeKitchen', 43.476109, -80.525872, 4]
+	['tastyHomeKitchen', 43.476109, -80.525872, 4],
+	['starWok', 43.470526, -80.515013],
+	['oYummySushi', 43.446898, -80.570696],
+	['alanRestaurant', 43.446407, -80.523575]
 ];
 
 function setMarkers(map, locations) {
