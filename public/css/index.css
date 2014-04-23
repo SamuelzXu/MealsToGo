@@ -128,11 +128,8 @@ body,html {
 .rest-logo{
     height: 100px;
 /*    padding-bottom: 50px;*/
-/*    border-style: solid;
-    border-width: 1px;
-    border-color: #dddddd;
-    background-color: #ffffff;*/
-/*    box-shadow: 2px 2px 2px gray;*/
+    border: 1px solid #dddddd;
+    box-shadow: 2px 2px 2px gray;
 /*    max-width: 240px;*/
 }
 #map-canvas {
