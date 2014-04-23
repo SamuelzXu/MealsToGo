@@ -235,56 +235,51 @@ body,html {
 .tabbable{
     padding-top: 50px;
 }
-.tab-content {
-/*border:1px solid #ddd;*/
-    border: none;
-    text-align: left;
-}
 .staff-pick-des{
     padding-bottom: 100px;
-    padding-top: 10px;
     /*border: 1px solid #eee;*/
 }
 .pick{
     border: 1px solid #eee;
-    height: 200px;
-
+    border-bottom: none;
+    height: 250px;
+    text-align: left;
+    padding-top: 15px;
 }
 
 .tab-content {
-padding:10px;
-border:1px solid #ddd;
-border-bottom:0px;
+    border:1px solid #ddd;
+    border-bottom:0px;
 }
 .nav-tabs {
-border-bottom: 0px;
-border-top: 1px solid #ddd;
+    border-bottom: 0px;
+    border-top: 1px solid #ddd;
 }
 .nav-tabs > li {
-margin-bottom:0;
-margin-top:-1px;
+    margin-bottom:0;
+    margin-top:-1px;
 }
 
 .nav-tabs > li > a {
-padding-top: 8px;
-padding-bottom: 8px;
-line-height: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    line-height: 20px;
 
-border: 1px solid transparent;
--moz-border-radius:0px;
--webkit-border-radius:0px;
-border-radius:0px;
--moz-border-radius-bottomright: 5px;
--webkit-border-bottom-right-radius: 5px;
-border-bottom-right-radius: 5px;
--moz-border-radius-bottomleft: 5px;
--webkit-border-bottom-left-radius: 5px;
-border-bottom-left-radius: 5px;
+    border: 1px solid transparent;
+    -moz-border-radius:0px;
+    -webkit-border-radius:0px;
+    border-radius:0px;
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
-color: #555555;
-cursor: default;
-background-color: #ffffff;
-border: 1px solid #ddd !important;
-border-top-color: transparent !important;
+    color: #555555;
+    cursor: default;
+    background-color: #ffffff;
+    border: 1px solid #ddd !important;
+    border-top-color: transparent !important;
 }
