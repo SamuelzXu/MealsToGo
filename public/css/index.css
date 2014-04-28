@@ -255,13 +255,13 @@ body,html {
     border-bottom:0px;
 }
 .nav-tabs {
-    border-bottom: 0px;
+    border-bottom: 0;
     border-top: 1px solid #ddd;
     margin-bottom: 20px;
 }
 .nav-tabs > li {
     margin-bottom:0;
-    margin-top: 0;
+    margin-top: 3px;
 }
 
 .nav-tabs > li > a {
@@ -285,6 +285,7 @@ body,html {
     cursor: default;
     background-color: #ffffff;
     /*border: 1px solid #ddd !important;*/
+    margin-bottom: -3px !important;
     border: none !important;
     border-radius: none !important;
     border-top-color: transparent !important;
