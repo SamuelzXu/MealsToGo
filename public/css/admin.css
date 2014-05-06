@@ -197,3 +197,10 @@ header{
 #history-cardd{
     margin-bottom: 90px;
 }
+
+.assign-button{
+    border: none;
+    background-color: #ccc;
+    height: 100%;
+    width: 100%;
+}

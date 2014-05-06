@@ -25,9 +25,22 @@ app.use('/img', express.static(__dirname + '/public/img'));
 app.use('/partial', express.static(__dirname + '/public/partial'));
 
 // Route Setup
-app.get('/', function(req, res){
-    res.sendfile(__dirname + '/public/');
+app.get('/', function(req, res) {
+    res.sendfile(__dirname + '/public/index.html');
 });
+app.get('/aboutus', function(req, res) {
+	res.sendfile(__dirname + '/public/aboutus.html');
+});
+app.get('/ourclients', function(req, res) {
+	res.sendfile(__dirname + '/public/ourclients.html');
+});
+app.get('/pubsignup', function(req, res) {
+	res.sendfile(__dirname + '/public/signuppub.html');
+});
+app.get('/signin', function(req, res) {
+	res.sendfile(__dirname + '/public/signin.html');
+});
+
 
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('App is listening on port ' + app.get('port'));

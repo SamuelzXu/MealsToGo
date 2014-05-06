@@ -14,11 +14,6 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     
-    <link rel="stylesheet" type="text/css" media="all" href="css/reset.css">
-    <link rel="stylesheet" type="text/css" media="all" href="css/trunk.css">
-    <link rel="stylesheet" type="text/css" media="all" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    
-    <link href="css/index.css" rel="stylesheet">
     <link href="css/ourclients.css" rel="stylesheet">
 </head>
 
@@ -33,11 +28,11 @@
 
     <nav class="slide nav" style="margin-right : 12px;">
         <ul>
-            <li><a href="/">HOME</a></li>
-            <li><a href="/aboutus">ABOUT US</a></li>
-            <li><a href="/ourclients">OUR CLIENTS</a></li>
-            <li><a href="" title="Sign Up">SIGN UP</a></li>
-            <li><a href="/signin">SIGN IN</a></li>
+            <li><a href="/"><i class="fa fa-home">&nbsp;</i>HOME</a></li>
+            <li><a href="/aboutus"><i class="fa fa-info-circle">&nbsp;</i>ABOUT US</a></li>
+            <li><a href="/pubsignup" target="_blank"><i class="fa fa-pencil-square">&nbsp;</i>JOIN US</a></li>
+            <li><a href="/ourclients"><i class="fa fa-users">&nbsp;</i>OUR CLIENTS</a></li>
+            <li><a href="/signin" target="_blank"><i class="fa fa-sign-in">&nbsp;</i>SIGN IN</a></li>
         </ul>
     </nav>
 
@@ -178,16 +173,29 @@
             <div class="col-md-3 footer-text"></div>
         </div>
     </div>
-    
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <!-- // <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script> -->
-    <!-- // <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0rc3/angular-route.min.js"></script> -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
-
-    <script src="js/trunk.js"></script>
-
-    <script src="js/jquery.plugin.js"></script>
-    <!-- // <script src="js/index.js"></script> -->
+    <script>
+        function includeCSSfile(href) {
+            var head_node = document.getElementsByTagName('head')[0];
+            var link_tag = document.createElement('link');
+            link_tag.setAttribute('rel', 'stylesheet');
+            link_tag.setAttribute('type', 'text/css');
+            link_tag.setAttribute('href', href);
+            head_node.appendChild(link_tag);
+        }
+        includeCSSfile('css/reset.css');
+        includeCSSfile('css/trunk.css');
+        includeCSSfile('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
+        includeCSSfile('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
+        includeCSSfile('css/index.css');
+        includeCSSfile('css/ourclients.css');
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/labjs/2.0.3/LAB.min.js"></script>
+    <script>
+        $LAB
+        .script("//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js").wait()
+        .script("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
+        .script("//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js")
+        .script("js/trunk.js")
+    </script>
 </body>
 </html>

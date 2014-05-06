@@ -3,24 +3,19 @@
 <head>
     <title>Pocketask | About Us</title>
     <meta name="author" content="Pocketask Inc.">
-    <meta name="description" content="Delivery At A Click">
-
+    <meta name="description" content="Pocketask is now in Waterloo & Kitchener region. With Pocketask, restaurants can secure a delivery driver in 10 minutes or less. Pocketask streamlines the food delivery process; restaurant owners can request a driver, and pre-screened drivers can accept the call.">
+    <meta name="keywords" content="pocketask, delivery, food, restaurant, catering, local, waterloo, kitchener, takeout, online" >
+    
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="HandheldFriendly" content="True">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-    <!-- Bootstrap core CSS -->
-	<link rel="stylesheet" type="text/css" media="all" href="css/reset.css">
-    <link rel="stylesheet" type="text/css" media="all" href="css/trunk.css">
-    <link rel="stylesheet" type="text/css" media="all" href="css/style.css">
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+</head>
     
     <!-- Custom styles for this template -->
-	<link href="css/aboutus.css" rel="stylesheet">
-</head>
 
 <body>
 	<div>	
@@ -28,39 +23,61 @@
 			<ul id="navToggle" class="burger slide">
 				<li></li><li></li><li></li>
 			</ul>
-			<h1 class="hidden-xs"><img id="brand-img" src="img/logo-big.png"></h1>
-			<h1 class="visible-xs"><img class="brand-img" src="img/logo-small.png"></h1>
+			<h1 class="hidden-xs"><img class="brand-img" src="img/logo-big.png"></h1>
+			<h1 class="visible-xs"><img id="brand-img" src="img/logo-small.png"></h1>
 		</header>
 
-		<nav class="slide nav" style="max-width: 239px;">
+		<nav class="slide nav" style="margin-right: 12px;">
 			<ul>
-				<li style="margin-top: -3px;"><a href="/" title="Home Page">HOME</a></li>
-			</ul>
+	            <li><a href="/"><i class="fa fa-home">&nbsp;</i>HOME</a></li>
+	            <li><a href="/aboutus"><i class="fa fa-info-circle">&nbsp;</i>ABOUT US</a></li>
+	            <li><a href="/pubsignup" target="_blank"><i class="fa fa-pencil-square">&nbsp;</i>JOIN US</a></li>
+	            <li><a href="/ourclients"><i class="fa fa-users">&nbsp;</i>OUR CLIENTS</a></li>
+	            <li><a href="/signin" target="_blank"><i class="fa fa-sign-in">&nbsp;</i>SIGN IN</a></li>
+	        </ul>
 		</nav>
 		
-		<div class="content slide" style="height: 500px;">    
-			<div id='box' class="pad3" style="display: block; background-color: white; padding:20px; min-height: 300px; margin-top: 10px;">
-				<div class='img'>
-					<img src="img/jacky.png"/>
+		<div class="content slide">
+			<div class="uspad">
+				<div class="col-md-12" style="padding-bottom: 30px;">
+					<h1 id="word">Always trying, always thinking, always bettering</h1>
 				</div>
-				<h4 id='word'>About Us.</h4>
-				<p id='word'>Always trying, always thinking, always bettering. Simple as it may sound, Pocketask Inc. blends technology seamlessly into the traditional 
-				food delivery industry. We make sure that our drivers are professional and presentable at all times. We value each and every restaurant’s business.
-				We will try to make it easier, faster, and more efficient for every restaurant to find a delivery driver.</p>
+				<div class="col-md-5">
+					<img class="img" src="img/us.jpg">
+				</div>
+				<div class="col-md-6" style="height: 300px;">
+					<div class="contents">
+						<p>Simple as it may sound, Pocketask Inc. blends technology seamlessly into the traditional food delivery industry. We make sure that our drivers are professional and presentable at all times. We value each and every restaurant’s business. We will try to make it easier, faster, and more efficient for every restaurant to find a delivery driver.</p>
+					</div>
+				</div>
+				<div class="md-col-1"></div>
 			</div>
 		</div>
 	</div>
-
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0rc3/angular-route.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
-
-    <script src="js/trunk.js"></script>
-
-    <script src="js/jquery.plugin.js"></script>
-    <script src="js/index.js"></script>
+	<script>
+	    function includeCSSfile(href) {
+	        var head_node = document.getElementsByTagName('head')[0];
+	        var link_tag = document.createElement('link');
+	        link_tag.setAttribute('rel', 'stylesheet');
+	        link_tag.setAttribute('type', 'text/css');
+	        link_tag.setAttribute('href', href);
+	        head_node.appendChild(link_tag);
+	    }
+	    includeCSSfile('css/reset.css');
+	    includeCSSfile('css/trunk.css');
+	    includeCSSfile('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
+	    includeCSSfile('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
+	    includeCSSfile('css/index.css');
+	    includeCSSfile('css/aboutus.css');
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/labjs/2.0.3/LAB.min.js"></script>
+    <script>
+        $LAB
+        .script("//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js").wait()
+        .script("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
+        .script("//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js")
+        .script("js/trunk.js")
+	</script>
 
 </body>
 </html>

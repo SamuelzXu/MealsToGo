@@ -1,6 +1,15 @@
 body {
 /*    background-color: #FDFFDB;*/
-    background-color: #edf6d6;
+    background-color: #eeeeee;
+    overflow-x: hidden;
+    margin-top: -20px;
+}
+header{
+    margin-top: 0;
+}
+.content{
+    margin-top: 0;
+    padding-top: 10px;
 }
 .navbar{
     border-radius: 0;
@@ -14,8 +23,8 @@ body {
 .brand-img {
     height: 50px;
 }
-#brand-img {
-    height: 50px;
+#brand-lg{
+    margin-top: -13px;
 }
 #brand-text {
     margin-bottom: -5px;
@@ -36,11 +45,29 @@ body {
     margin-top: 20px;
     margin-right: 10px;
 }
+.wrapper{
+    /*padding-top: 20px;*/
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    background-color: #eeeeee;
+    min-height: 500px;
+    height: 100%;
+}
+#cot{
+    margin-top: 20px;
+    background-color: #eeeeee;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    padding-bottom: 154px;
+}
 .button-area{
     margin-left: auto;
     margin-right: auto;
     text-align: center;
     height: auto !important;
+    padding-bottom: 5px;
 }
 .card{
     overflow: auto;
@@ -135,8 +162,18 @@ body {
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 9px;
+    padding-bottom: 19px;
     color: #33aaee;        
+}
+#time-xs{
+    display: inline-block;
+    font-size: 40px;
+    font-family: Impact, fantasy;
+    text-align: center;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    color: #33aaee;  
 }
 #time_backup{
     display: inline-block;
@@ -196,13 +233,45 @@ body {
 
 .announcement{
     margin-bottom: -5px;
-    font-size: 300%;
+    font-size: 250%;
     font-family: Impact;
     color: #555;
     margin-left: 5px;
     margin-right: 5px;
 }
+.modal-dialog{
+    width: 60%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+}
+.modal-content{
+    text-align: center;
+}
 
-/*#balance{
-    color: red;
-}*/
+#result{
+    margin-left: 5px;
+    margin-right: 5px;
+    font-family: Impact; 
+    font-size: 140%;
+    color: #777;
+}
+.card-form-title{
+    font-family: Impact, fantasy; 
+    font-size: 180%; 
+    color: #073956;
+}
+.result-box{
+    display: none; 
+    width: 250px; 
+    border-style: solid; 
+    border-width: 1px; 
+    border-color: red; 
+    border-radius: 5px; 
+    background-color: #FFD6D6; 
+    text-align: center; 
+    margin-bottom: 10px; 
+    margin-left: auto; 
+    margin-right: auto;
+}
