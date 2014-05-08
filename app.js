@@ -25,6 +25,7 @@ app.use('/img', express.static(__dirname + '/public/img'));
 app.use('/partial', express.static(__dirname + '/public/partial'));
 
 // Route Setup
+// public pages
 app.get('/', function(req, res) {
     res.sendfile(__dirname + '/public/index.html');
 });
@@ -40,7 +41,54 @@ app.get('/pubsignup', function(req, res) {
 app.get('/signin', function(req, res) {
 	res.sendfile(__dirname + '/public/signin.html');
 });
+app.get('/privacypolicy', function(req, res) {
+	res.sendfile(__dirname + '/public/privacypolicy.html');
+});
+app.get('/termofuse', function(req, res) {
+	res.sendfile(__dirname + '/public/termofuse.html');
+});
 
+// admin only pages
+app.get('/admin/dashboard', function(req, res) {
+	res.sendfile(__dirname + '/public/admin.html');
+});
+app.get('/admin/all_profile', function(req, res) {
+	res.sendfile(__dirname + '/public/admin.html');
+});
+app.get('/admin/admin_history', function(req, res) {
+	res.sendfile(__dirname + '/public/admin.html');
+});
+// app.get('/admin/change_status', function(req, res) {
+// 	res.sendfile(__dirname + '/public/admin.html');
+// });
+app.get('/admin/changepassword', function(req, res) {
+	res.sendfile(__dirname + '/public/admin.html');
+});
+app.get('/admin/assigndriver', function(req, res) {
+	res.sendfile(__dirname + '/public/admin.html');
+});
+app.get('/admindriver', function(req, res) {
+	res.sendfile(__dirname + '/public/admindriver.html');
+});
+app.get('/signup', function(req, res) {
+	res.sendfile(__dirname + '/public/signup.html');
+});
+
+// restaurant only pages
+app.get('/restaurant/dashboard', function(req, res) {
+	res.sendfile(__dirname + '/public/dashboard.html');
+});
+app.get('/restaurant/history', function(req, res) {
+	res.sendfile(__dirname + '/public/dashboard.html');
+});
+app.get('/restaurant/changepassword', function(req, res) {
+	res.sendfile(__dirname + '/public/dashboard.html');
+});
+app.get('/restaurant/mobilemanager', function(req, res) {
+	res.sendfile(__dirname + '/public/dashboard.html');
+});
+
+// driver only pages
 
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('App is listening on port ' + app.get('port'));

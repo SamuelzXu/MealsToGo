@@ -2,18 +2,28 @@
 <html lang="en" ng-app="dashboardApp">
 
 <head>
-    <title>Pocketask Dashboard</title>
+    <title>Pocketask | Dashboard</title>
     <meta name="author" content="Pocketask Inc.">
-    <meta name="description" content="Delivery At A Click">
+    <meta name="description" content="Pocketask is now in Waterloo & Kitchener region. 
+        With Pocketask, restaurants can secure a delivery driver in 10 minutes or less. 
+        Pocketask streamlines the food delivery process; 
+        restaurant owners can request a driver, and pre-screened drivers can accept the call.">
+    <meta name="keywords" content="pocketask, delivery, food, restaurant, catering, local, 
+        waterloo, kitchener, takeout, online" >
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
+    <meta name="viewport" 
+        content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="HandheldFriendly" content="True">   
+    <meta name="HandheldFriendly" content="True">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">  
 
-    <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.css" rel="stylesheet">
+    <!-- Style Sheets -->
+    <link rel="stylesheet" type="text/css" media="all" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../css/trunk.css">
+    <link rel="stylesheet" type="text/css" media="all" 
+        href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
     <!-- Add custom CSS here -->
     <link href="../css/dashboard.css" rel="stylesheet">
@@ -22,32 +32,31 @@
 </head>
 
 <body onload="startTime()">
-    <nav class="navbar" role="navigation">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="">
-                <a class="navbar-brand" id="brand-text">
-                    <img class="brand-img visible-sm visible-xs" src="../img/logo-small.png" />
-                    <img class="brand-img hidden-sm hidden-xs" src="../img/logo-big.png" />
-                </a>
-            </div>
-            <div id="time"></div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <ul class="nav pull-right">
-                <a class="nav-btn" href="/restaurant/dashboard">Home</a>
-                <a class="nav-btn" href="/restaurant/history">History</a>
-                <a class="nav-btn" onclick="logout()">Logout</a>
-            </ul>
-        </div>
+    <header class="slide">
+        <ul id="navToggle" class="burger slide">
+            <li></li><li></li><li></li>
+        </ul>
+        <h1 class="hidden-xs">
+            <img class="brand-img" id="brand-lg" src="../img/logo-big.png">
+            <div name="time" id="time"></div>
+        </h1>
+        <h1 class="visible-xs">
+            <img class="brand-img" src="../img/logo-small.png">
+        </h1>
+    </header>
+    <div class="hidden-md hidden-lg hidden-xl" style="height: 70px;"></div>
+    <nav class="slide nav" style="margin-right: 12px;">
+        <ul>
+            <li><a href="/restaurant/dashboard">HOME</a></li>
+            <li><a href="/restaurant/history">HISTORY</a></li>
+            <li><a href="/restaurant/mobilemanager">MANAGE MOBILE NUMBERS</a></li>
+            <li><a href="" onclick="logout()">LOG OUT</a></li>
+        </ul>
     </nav>
 
-    <div class="wrapper">
-        <div>
-            <div ng-view></div>
-        </div>
+    <div class="content slide">
+        <div ng-view></div>
     </div>
-
     <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -58,8 +67,8 @@
     </script>
 
     <!-- Include all the js dependencies -->
-    <script src="../js/jquery-1.10.1.js"></script>
-    <script src="../js/bootstrap.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
     <script src="../js/angular.js"></script>
     <script src="../js/angular-route.js"></script>
@@ -67,8 +76,63 @@
 
     <script src="../js/jquery.plugin.js"></script>
     <script src="../js/jquery.keypad.js"></script>
+    <script src="../js/parsley.min.js"></script>
 
-    <script src="../js/jquery.cookie.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js">
+    </script>
     <script src="../js/dashboard-fun.js"></script>
+
+    <script src="../js/trunk.js"></script>
+
+    <div class="modal fade bs-example-modal-sm" tabindex="0" role="dialog" 
+        aria-labelledby="mySmallModalLabel" aria-hidden="true" id="confirm-modal" 
+        data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Are you sure?</p>   
+                    <p id="timeLeft">The request will be proceed in: 10 seconds</p> 
+                    <button type="button" class="btn btn-default" data-dismiss="modal" 
+                        id="abort" onclick="abort()">Abort now</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" 
+                        onclick="proceed()">Yes, proceed</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var cancel = false;
+        var countdownNum = 10;
+        $('#confirm-modal').on('show.bs.modal', function() {
+            incTimer();
+            document.getElementById('timeLeft').innerHTML = 
+                'The request will be proceed in: 10 seconds';
+            function incTimer() {
+                cancel = false;
+                setTimeout(function() {
+                    if(countdownNum !== 0 && cancel === false) {
+                        countdownNum--;
+                        document.getElementById('timeLeft').innerHTML = 
+                            'The request will be proceed in: ' + countdownNum + ' seconds';
+                        incTimer();
+                    } else if(countdownNum === 0 && cancel === false) {
+                        cancel = false;
+                        countdownNum = 10;
+                        $('#confirm-modal').modal('hide');
+                        requestDriver();
+                    }
+                },1000);
+            }
+        });
+        function abort() {
+            cancel = true;
+            countdownNum = 10;
+        }
+        function proceed() {
+            cancel = true;
+            countdownNum = 10;
+            requestDriver();
+        }
+        </script>
 </body>
 </html>

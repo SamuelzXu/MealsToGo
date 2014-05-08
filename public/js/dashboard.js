@@ -10,6 +10,9 @@ dashboardApp.config(['$routeProvider', '$locationProvider', function($routeProvi
 		}).
 		when('/restaurant/changepassword', {
 			templateUrl: '/partial/change_pw.html'
+		}).
+		when('/restaurant/mobilemanager', {
+			templateUrl: '/partial/mobilemanager.html'
 		});
 	$locationProvider.html5Mode(true);
 }]);

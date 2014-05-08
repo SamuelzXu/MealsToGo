@@ -16,6 +16,9 @@ adminApp.config(['$routeProvider', '$locationProvider', function($routeProvider,
 		}).
 		when('/admin/changepassword', {
 			templateUrl: '/partial/admin-changepassword.html'
+		}).
+		when('/admin/assigndriver', {
+			templateUrl: '/partial/admin-assigndriver.html'
 		});
 	$locationProvider.html5Mode(true);
 }]);

@@ -35,12 +35,16 @@
                     <tr>
                         <td style="font-family: Impact; color: #777;">Time</td>
                         <td style="font-family: Impact; color: #777;">Status</td>
+                        <td style="font-family: Impact; color: #777;">Driver</td>
+                        <td style="font-family: Impact; color: #777;">Driver's phone</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="hist in hists">
                         <td>{{hist.date}}</td>
                         <td>{{hist.status}}</td>
+                        <td>{{hist.driver.name}}</td>
+                        <td>{{hist.driver.phone}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -59,7 +63,7 @@
         <div>
             <div class="card" id="user-profile-function">
                 <p class="card-heading">Miscellaneous</p>
-                <a href="/restaurant/changepassword">&bull; Change Password</a>                
+                <a href="/restaurant/changepassword">&bull; Change Password</a>
             </div>
         </div>
     </div>
@@ -67,16 +71,14 @@
 <script>
 var restaurant = getRestaurant();
 function histctrl($scope) {
-    var hists = restaurant.request_history;
+    var hists = getHistory();
     $scope.hists = [];
-    hists.reverse();
     angular.forEach(hists, function(value) {
         value.date = new Date(value.date).toString().substring(0, 25);
-        // value.date = new Date(value).toString().substring(0,25);
-        if (value.status === 0){
-            value.status = 'In Queue';
-        } else {
+        if (value.status === 9){
             value.status = 'Driver Sent';
+        } else {
+            value.status = 'In Queue';
         }
         $scope.hists.push(value);
     });
