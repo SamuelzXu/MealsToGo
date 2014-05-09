@@ -25,7 +25,7 @@
         <h1 class="visible-xs"><img class="brand-img" id="brand-xs" src="img/kraken-uzyqfr/logo-small.png"></h1>
     </header>
 
-    <nav class="slide nav" style="margin-right : 12px;">
+    <nav class="slide nav" id="nav-menu">
         <ul>
             <li><a href="/"><i class="fa fa-home">&nbsp;</i>HOME</a></li>
             <li><a href="/aboutus"><i class="fa fa-info-circle">&nbsp;</i>ABOUT US</a></li>
@@ -40,21 +40,20 @@
             <div class="col-md-12">
 
                 <div id="time">
-                <div style="width: 230px; margin-left: auto; margin-right: auto; padding-top: 50px">
+                <div id="counter" style="width: 230px; margin-left: auto; margin-right: auto; padding-top: 50px">
                     <div class="clock"></div>
                 </div>
-                    <!-- <p id="total">560</p> -->
                     <p id="delivery-text">deliveries completed to date</p>
                     <p id="time-text">Secure a delivery driver in 10 minutes or less.</p>
                 </div>
             </div>
             <div class="btn-area">
                 <button class="btn" id="signin" onclick="window.location='/signin';">SIGN IN</button>
-                <button class="btn" id="joinus" style="border-color: #336633; border-width: 2px; color: #336633;">JOIN US</button>
+                <button class="btn" id="joinus">JOIN US</button>
             </div>
         </div>
 
-        <div class="pick-section" style="text-align: center;">
+        <div class="pick-section">
             <div class="col-md-1"></div>
             <div class="tabbable col-md-10">
                 <p style="font-size: 200%;">Staff Picks</p>
@@ -190,7 +189,7 @@
             </div>
         </div>
 
-        <div class="hidden-xs" style="height: 400px;"></div>
+        <div class="hidden-sm" style="height: 400px;"></div>
         <div class="pad2">
             <div class="puzzle-pad" id="puzzle-pad1">
                 <div class="col-md-6 puzzle">
@@ -225,7 +224,6 @@
                 <div class="col-md-6 puzzle-xs visible-xs visible-sm">
                     <p style="font-size: 200%; text-align: center;">Gets the job done right every time</p>
                     <p class="puzzle-text-xs">We are so confident that you will be satisfied with our service, there is no fixed fee. With our flexible Pay-per-Order policy, you have nothing to lose, but everything to gain. Looking for a delivery driver is on your TO-DO list? With Pocketask, it is a check.</p>
-                    <!-- <button class="btn sign-up-btn-xs">Sign up</button> -->
                 </div>
                 <div class="col-md-6 puzzle hidden-sm hidden-xs">
                     <p style="font-size: 200%; text-align: center; margin-top: 70px;">Gets the job done right every time</p>
@@ -237,7 +235,7 @@
 
         <div id="footer">
             <div class="col-md-4 footer-text">
-                <p><a href="/privacypolicy" style="padding-right: 20px" target="_blank">Privacy</a> <a href="/termofuse" target="_blank">Term</a></p>
+                <p><a href="/privacypolicy" style="padding-right: 20px" target="_blank">Privacy Policy</a> <a href="/termofuse" target="_blank">Term of Use</a></p>
             </div>
             <div class="col-md-4 footer-text">
                 <p>&#169; 2014 Pocketask Inc. All Rights Reserved.</p>
@@ -259,11 +257,11 @@
             link_tag.setAttribute('href', href);
             head_node.appendChild(link_tag);
         }
-        includeCSSfile('css/reset.css');
+        // includeCSSfile('css/reset.css');
         includeCSSfile('css/trunk.css');
         includeCSSfile('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
         includeCSSfile('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
-        includeCSSfile('css/index.css');
+        includeCSSfile('css/style.css');
         includeCSSfile('css/flipclock.css');
     </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/labjs/2.0.3/LAB.min.js"></script>
@@ -278,11 +276,6 @@
                 clockFace: 'Counter',
                 autoStart: false
                 });
-            // setTimeout(function() {
-            //     setInterval(function() {
-            //         clock.increment();
-            //     }, 1000);
-            // });
             clock.setValue(600);
         })
         .script("js/map.js").wait(function(){
@@ -303,23 +296,5 @@
         ga('create', 'UA-47690619-1', 'pocketask.com');
         ga('send', 'pageview');
     </script>
-    <!-- <script>
-    $('.bottom-panel').on('shown.bs.collapse', function () {
-        document.getElementById("restaurants").scrollTop += 130;
-    });
-
-    function get_total(){
-        $.ajax({
-            type : 'GET',
-            dataType : 'json',
-            async : false,
-            url : '/total_requests',
-            success : function(data){
-                document.getElementById('total').innerHTML = data['total'];
-            }
-        });
-    }
-    window.onload = get_total();
-    </script> -->
 </body>
 </html>
