@@ -356,7 +356,7 @@ nav.closed {
 	padding-right: 0;
 	min-height: 500px;
 	height: 100%;
-	background-color: #ddd;
+	/*background-color: #ddd;*/
 	opacity: 1;
 }
 

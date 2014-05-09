@@ -15,7 +15,7 @@ body,html {
 .header-section{
     height: 585px;
     background-color: #66ccff;
-    margin-top: -5px;
+    margin-top: 5px;
 }
 
 .res-section{
@@ -25,7 +25,6 @@ body,html {
 }
 
 .pick-section{
-    height: 100%;
     background-color: white;
 }
 
@@ -260,7 +259,7 @@ html{
 
 /* our clients */
 
-.card{
+.clients-card{
     height: 300px;
     width: 100%;
     background-color: #ffffff;
@@ -278,9 +277,199 @@ html{
     overflow: auto;
 }
 
-.card-title{
+.clients-card-title{
     font-size: 200%;
     margin-top: 10px;
 }
 
 /* our clients end */
+
+/* admin */
+
+.container{
+    width: 100%;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-bottom: 10px;
+}
+
+header{
+    margin: 0;
+    width: auto;
+    margin-right: -35px;
+}
+
+/*.navbar{
+    border-radius: 0;
+    background-color: #ffffff;
+    border: none;
+    vertical-align: middle;
+}
+.nav-brand{
+    display: inline-block;
+}
+
+#brand-text {
+    margin-bottom: -5px;
+    font-size: 280%;
+    font-family: Impact,  fantasy;
+    color: #33aaee;
+}*/
+/*.nav-btn{
+    display: inline-block;
+    border: none;
+    background-color: #ffffff;
+    height: auto;
+    width: auto;
+    font-family: Impact, fantasy;
+    font-size: 200%;
+    color: #33aaee;
+    vertical-align: sub;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+*/
+.profile-box{
+    border-style: solid; 
+    border-width: 2px; 
+    border-color: #33aaee; 
+    background-color: #ffffff;
+    box-shadow: 5px 5px 5px gray;
+    margin-bottom: 10px;
+}
+.profile-footer{
+    height: 40px;
+}
+.profile-button{
+    height: 40px;
+    width: 100%;
+    border: none;
+    background-color: #dddddd;
+}
+.card{
+    height: 222px;
+    width: auto;
+    background-color: #ffffff;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d8d8d8;
+    border-bottom-width: 2px;
+    box-shadow: 3px 3px 3px gray;
+    margin-bottom: 4px;
+}
+.card-long{
+    height: 450px;
+    width: auto;
+    background-color: #ffffff;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d8d8d8;
+    border-bottom-width: 2px;
+    box-shadow: 3px 3px 3px gray;
+}
+
+#history-card{
+    overflow:auto;
+}
+
+.pad{
+    padding: 5px;
+}
+
+/*#s{
+    text-align: center;
+    font-size: 400%;
+    font-family: Impact, fantasy;
+    color: #33aaee;
+}*/
+
+.cot{
+    text-align: center;
+    background-color: #eeeeee;
+    height: 100%;
+    min-height: 575px;
+}
+
+.wrapper{
+    background-color: #eeeeee;
+    margin-top: -20px;
+    padding-left: 20px;
+    margin-bottom: -20px;
+    /*padding-bottom: 10px;*/
+    width: 100%;
+    padding-top: 20px;
+}
+#signin-button{
+    margin-top: 10px;
+    padding: 0;
+    width: 100%;
+    max-width: 17.9em;
+    height: 40px;
+    background-color: #33aaee;
+    -moz-border-radius: 0.25em;
+    -webkit-border-radius: 0.25em;
+    border-radius: 0.25em;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#signup-form{
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: #eeeeee;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.form-control{
+    max-width: 17.9em;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+#main-clear{
+    border: none;
+    color: #33aaee;
+    width: 100%;
+    height: 50px;
+}
+
+.card-heading{
+    font-family: Impact;
+    font-size: 20px;
+    font-weight: 300;
+    color: #777;    
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+
+.card-content{
+    text-align: center;
+    font-size: 200%;
+    font-family: Impact, fantasy;
+    color: #073956;
+}
+
+.profile-corner{
+    border-left: none;
+    border-width: 2px;
+    border-color: #eeeeee;
+    margin-left: 10px;
+}
+
+#history-cardd{
+    margin-bottom: 90px;
+}
+
+/*.assign-button{
+    border: none;
+    background-color: #ccc;
+    height: 100%;
+    width: 100%;
+}*/

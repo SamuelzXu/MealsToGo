@@ -21,7 +21,7 @@
 
 
     <!-- Add custom CSS here -->
-    <link href="../css/admin.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
     <link href="../css/jquery.keypad.css" rel="stylesheet">
     <!-- <link href="../css/signup.css" rel="stylesheet"> -->
 
@@ -34,8 +34,8 @@
             <li></li><li></li><li></li>
         </ul>
         <!-- <h1>Pocketask</h1> -->
-        <h1 class="hidden-xs"><img id="brand-img" src="../img/logo-big.png"></h1>
-        <h1 class="visible-xs"><img class="brand-img" src="../img/logo-small.png"></h1>
+        <h1 class="hidden-xs"><img class="brand-img" id="brand-lg" src="../img/logo-big.png"></h1>
+        <h1 class="visible-xs"><img class="brand-img" id="brand-xs" src="../img/logo-small.png"></h1>
     </header>
 
     <nav class="slide nav">
@@ -48,18 +48,8 @@
         </ul>
     </nav>
 
-    <div class="content slide">     <!--   Add "slideRight" class to items that move right when viewing Nav Drawer  -->
-        <ul class="responsive">
-<!--            <li class="header-section">
-                <p class="placefiller">HEADER</p>
-            </li> -->
-            <li class="body-section">
-                <div ng-view style="width: 100%; padding-bottom: 10px; margin-bottom: -10px;"></div>
-            </li>
-<!--            <li class="footer-section">
-                <p class="placefiller">FOOTER</p>
-            </li> -->
-        </ul>
+    <div class="content slide">
+        <div ng-view style="margin-left: 5px; margin-top: 10px; width: 100%; padding-bottom: 10px; margin-bottom: -10px;"></div>
     </div>
 </div>
     
