@@ -13,6 +13,7 @@ body,html {
 }
 
 .header-section{
+    text-align: center;
     height: 585px;
     background-color: #66ccff;
     margin-top: 5px;
@@ -50,7 +51,7 @@ body,html {
     text-align: center;
 }
 
-.btn{
+#signin{
     margin-top: 40px;
     height: 50px;
     width: 200px;
@@ -60,8 +61,24 @@ body,html {
     color: #660099;
 }
 
-.btn:hover,
-.btn:focus {
+#signin:hover,
+#signin:focus {
+    color: #660099;
+    text-decoration: none;
+}
+
+#joinus{
+    margin-top: 40px;
+    height: 50px;
+    width: 200px;
+    background: transparent;
+    border-color: #660099;
+    font-size: 150%;
+    color: #660099;
+}
+
+#joinus:hover,
+#joinus:focus {
     color: #660099;
     text-decoration: none;
 }
@@ -337,15 +354,18 @@ header{
     box-shadow: 5px 5px 5px gray;
     margin-bottom: 10px;
 }
+
 .profile-footer{
     height: 40px;
 }
+
 .profile-button{
     height: 40px;
     width: 100%;
     border: none;
     background-color: #dddddd;
 }
+
 .card{
     height: 222px;
     width: auto;
@@ -358,6 +378,7 @@ header{
     box-shadow: 3px 3px 3px gray;
     margin-bottom: 4px;
 }
+
 .card-long{
     height: 450px;
     width: auto;
@@ -401,6 +422,7 @@ header{
     width: 100%;
     padding-top: 20px;
 }
+
 #signin-button{
     margin-top: 10px;
     padding: 0;
@@ -432,6 +454,7 @@ header{
     margin-right: auto;
     margin-top: 10px;
 }
+
 #main-clear{
     border: none;
     color: #33aaee;
@@ -473,3 +496,202 @@ header{
     height: 100%;
     width: 100%;
 }*/
+
+/* restaurant */
+
+#brand-lg{
+    margin-top: -10px;
+}
+
+.rest-wrapper{
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    background-color: #eeeeee;
+    min-height: 500px;
+    height: 100%;
+    padding-top: 25px;
+}
+
+#rest-cot{
+    margin-top: 20px;
+    background-color: #eeeeee;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    padding-bottom: 154px;
+}
+
+.button-area{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    height: auto !important;
+    padding-bottom: 5px;
+}
+
+.card{
+    overflow: auto;
+    height: 222.5px;
+    width: 100%;
+    background-color: #ffffff;
+    text-align: center;
+    border: 1px solid #d8d8d8;
+    border-bottom-width: 2px;
+    box-shadow: 3px 3px 3px gray;
+    margin-bottom: 5px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+          border-radius: 3px;
+}
+
+.card-heading{
+    font-family: Impact;
+    font-size: 20px;
+    font-weight: 300;
+    color: #777;    
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+
+.card-heading-simple{
+    font-family: Impact;    
+    font-size: 25px;
+    font-weight: 300;
+    color: #777;    
+    margin-top: 0;
+    margin-bottom: -5px;
+}
+
+.card-long{
+    height: 450px;
+    width: 100%;
+    background-color: #ffffff;
+    text-align: center;
+    border: 1px solid #d8d8d8;
+    border-bottom-width: 2px;
+    box-shadow: 3px 3px 3px gray;
+    margin-bottom: 5px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+        border-radius: 3px;
+}
+
+#history-card{
+    overflow: auto;
+}
+
+.card-text {
+    font-family: Impact;
+    color: #777;
+}
+
+.card-lg-text{
+    font-size: 400%;
+    font-family: Impact;
+    color: #073956;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#time{
+    display: inline-block;
+    font-size: 40px;
+    font-family: Impact, fantasy;
+    text-align: center;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 19px;
+    color: #33aaee;
+}
+
+.card-lg-text-normal{
+    font-size: 400%;
+    font-family: Impact;
+    color: #073956;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.button1{
+    width: 100%;
+    height: 450px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 1px;
+    border-color: #eeeeee;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#driver-button{
+    background-image: url('../img/driver.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#user-profile-function{
+    height: 222.5px;
+    background-color: #ffffff;
+    text-align: center;
+    font-family: Impact;
+    font-size: 20px;    
+}
+
+.announcement{
+    margin-bottom: -5px;
+    font-size: 250%;
+    font-family: Impact;
+    color: #555;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.modal-dialog{
+    width: 60%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+}
+
+.modal-content{
+    text-align: center;
+}
+
+#result{
+    margin-left: 5px;
+    margin-right: 5px;
+    font-family: Impact; 
+    font-size: 140%;
+    color: #777;
+}
+
+.card-form-title{
+    font-family: Impact, fantasy; 
+    font-size: 180%; 
+    color: #073956;
+}
+
+.result-box{
+    display: none; 
+    width: 250px; 
+    border-style: solid; 
+    border-width: 1px; 
+    border-color: red; 
+    border-radius: 5px; 
+    background-color: #FFD6D6; 
+    text-align: center; 
+    margin-bottom: 10px; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+#abort{
+
+}
