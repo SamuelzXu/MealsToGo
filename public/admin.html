@@ -12,19 +12,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="HandheldFriendly" content="True">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-    <!-- Style Sheets -->
-    <link rel="stylesheet" type="text/css" media="all" href="../css/reset.css">
-    <link rel="stylesheet" type="text/css" media="all" href="../css/trunk.css">
-    <!-- <link rel="stylesheet" type="text/css" media="all" href="../css/style.css"> -->
-    <link rel="stylesheet" type="text/css" media="all" href="../css/bootstrap.css">
-
-
-    <!-- Add custom CSS here -->
-    <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/jquery.keypad.css" rel="stylesheet">
-    <!-- <link href="../css/signup.css" rel="stylesheet"> -->
-
 </head>
 
 <body>
@@ -61,22 +48,35 @@
     // ga('create', 'UA-47690619-1', 'pocketask.com');
     // ga('send', 'pageview');
     </script>
-    
-    <!-- Include all the js dependencies -->
 
-    <!-- minified js -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0rc3/angular-route.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
-
-    <!-- other js -->
-    <script src="../js/trunk.js"></script>
-    <script src="../js/admin.js"></script>
-    <script src="../js/admin-fun.js"></script>
-
-    <script src="../js/jquery.plugin.js"></script>
-    <script src="../js/jquery.keypad.js"></script>
+    <script>
+        function includeCSSfile(href) {
+            var head_node = document.getElementsByTagName('head')[0];
+            var link_tag = document.createElement('link');
+            link_tag.setAttribute('rel', 'stylesheet');
+            link_tag.setAttribute('type', 'text/css');
+            link_tag.setAttribute('href', href);
+            head_node.appendChild(link_tag);
+        }
+        includeCSSfile('css/trunk.css');
+        includeCSSfile('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
+        includeCSSfile('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
+        includeCSSfile('css/style.css');
+        includeCSSfile('css/jquery.keypad.css');
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/labjs/2.0.3/LAB.min.js"></script>
+    <script>
+        $LAB
+        .script("//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js").wait()
+        .script("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
+        .script("//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js")
+        .script("//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js")
+        .script("//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0rc3/angular-route.min.js")
+        .script("js/trunk.js")
+        .script("js/admin.js")
+        .script("js/admin-fun.js")
+        .script("js/jqueyr.plugin.js")
+        .script("js/jquery.keypad.js")
+    </script>
 </body>
 </html>
