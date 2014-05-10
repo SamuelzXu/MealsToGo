@@ -14,7 +14,8 @@ body,html {
 
 .header-section{
     text-align: center;
-    height: 585px;
+    min-height: 500px;
+    height: auto;
     background-color: #9bd6f5;
     margin-top: 5px;
 }
@@ -52,7 +53,8 @@ body,html {
 }
 
 #signin{
-    margin-top: 40px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     height: 50px;
     width: 200px;
     background: transparent;
@@ -68,7 +70,8 @@ body,html {
 }
 
 #joinus{
-    margin-top: 40px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     height: 50px;
     width: 200px;
     background: transparent;
@@ -239,6 +242,20 @@ body,html {
     border-top-left-radius: 0px;
 }
 
+.carousel-control .glyphicon-chevron-left{
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+    margin-left: -15px;
+    font-size: 30px;
+}
+.carousel-control .glyphicon-chevron-right{
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+    margin-left: -15px;
+    font-size: 30px;
+}
 /* index end */
 
 /* about us */
