@@ -15,12 +15,12 @@ body,html {
 .header-section{
     text-align: center;
     height: 585px;
-    background-color: #66ccff;
+    background-color: #9bd6f5;
     margin-top: 5px;
 }
 
 .res-section{
-    height: 500px;
+    height: 540px;
     text-align: center;
     background-color: #ffffff;
 }
@@ -141,13 +141,13 @@ body,html {
 }
 
 #footer{
+    color: #ffffff;
     display: block;
     text-align: center;
-    background-color: #eeeeee;
+    background-color: #252525;
     min-height: 70px;
     height: auto;
     padding-top: 10px;
-    border-top: 2px solid #dddddd;
 }
 
 .footer-text{
@@ -500,7 +500,7 @@ header{
 /* restaurant */
 
 #brand-lg{
-    margin-top: -10px;
+    margin-top: 0px;
 }
 
 .rest-wrapper{
