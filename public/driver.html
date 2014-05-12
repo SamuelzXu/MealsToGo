@@ -13,19 +13,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="HandheldFriendly" content="True">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">  
-
-    <!-- Style Sheets -->
-    <link rel="stylesheet" type="text/css" media="all" href="../css/reset.css">
-    <link rel="stylesheet" type="text/css" media="all" href="../css/trunk.css">
-    <link rel="stylesheet" type="text/css" media="all" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
-    <!-- Add custom CSS here -->
-    <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/jquery.keypad.css" rel="stylesheet">
-    <!-- <link href="../css/switchery.css" rel="stylesheet"> -->
 </head>
 
-<body onload="startTime()">
+<body>
     <header class="slide">
         <ul id="navToggle" class="burger slide">
             <li></li><li></li><li></li>
@@ -93,15 +83,28 @@
 		</div>
     </div>
 	
-    <!-- Include all the js dependencies -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
-    <script src="../js/driverdash.js"></script>
-
-    <script src="../js/trunk.js"></script>
-    <!-- <script src="../js/switchery.js"></script> -->
+    <script>
+    function includeCSSfile(href) {
+            var head_node = document.getElementsByTagName('head')[0];
+            var link_tag = document.createElement('link');
+            link_tag.setAttribute('rel', 'stylesheet');
+            link_tag.setAttribute('type', 'text/css');
+            link_tag.setAttribute('href', href);
+            head_node.appendChild(link_tag);
+        }
+        includeCSSfile('../css/trunk.css');
+        includeCSSfile('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
+        includeCSSfile('../css/style.css');
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/labjs/2.0.3/LAB.min.js"></script>
+    <script>
+        $LAB
+        .script("//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js").wait()
+        .script("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
+        .script("//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js")
+        .script("../js/trunk.js")
+        .script("../js/driverdash.js")
+    </script>
 	
 </body>
 </html>
