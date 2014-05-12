@@ -33,6 +33,7 @@ app.use('/partial', express.static(__dirname + '/public/partial'));
 require('./routes')(express, app, path);
 require('./routes/restaurant')(express, app, path);
 require('./routes/driver')(express, app, path);
+require('./routes/admin')(express, app, path);
 
 // Initialize http server on specified port
 http.globalAgent.maxSockets = 25;

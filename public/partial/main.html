@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="button-area col-md-6">
-        <button class="button1" id="driver-button" data-toggle="modal" 
+        <button class="button1" id="driver-button" data-toggle="modal"
             data-target="#confirm-modal">
         </button>
     </div>
@@ -25,7 +25,7 @@
                     </tr>
                 </thead>
                 <tbody id="history-table-body">
-                    <tr ng-repeat="hist in hists"> 
+                    <tr ng-repeat="hist in hists">
                         <td>{{hist.date}}</td>
                         <td>{{hist.status}}</td>
                     </tr>
@@ -37,8 +37,8 @@
 			<form method="GET" id="form" data-parsley-validate style="text-align: left;">
                 <label style="margin-left: 15px;">Step 1: Enter postal code or address</label>
                 <label style="margin-left: 15px;">Step 2: Press enter</label>
-                <input class="form-control" style="max-width: 250px;" name="address2_st" 
-                    id="address2_st" placeholder="Postal Code or Address with City" 
+                <input class="form-control" style="max-width: 250px;" name="address2_st"
+                    id="address2_st" placeholder="Postal Code or Address with City"
                     data-parsley-pattern="/^[A-Za-z0-9,\-\s]+$/" data-parsley-required />
     		</form>
             <p id="result"></p>
@@ -95,14 +95,14 @@ function dis() {
         data:{"from": address1, "to": address2},
         success: function(data) {
             if (data.apiStatus !== "OK") {
-                document.getElementById("result").innerHTML = 
+                document.getElementById("result").innerHTML =
                     "Something went wrong with the Google map, please try again later.";
             } else if (data.queryStatus !== "OK") {
-                document.getElementById("result").innerHTML = 
+                document.getElementById("result").innerHTML =
                     "We can not find the address, please check your spelling and try again.";
             } else {
-                document.getElementById("result").innerHTML = 
-                    "The distance between you and " + form.address2_st.value + 
+                document.getElementById("result").innerHTML =
+                    "The distance between you and " + form.address2_st.value +
                     " is " + data.distance.value + " " + data.distance.unit;
                 document.getElementById("address2_st").value = "";
             }
