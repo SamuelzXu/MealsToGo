@@ -20,9 +20,8 @@
     <link rel="stylesheet" type="text/css" media="all" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
     <!-- Add custom CSS here -->
-    <link href="../css/dashboard.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
     <link href="../css/jquery.keypad.css" rel="stylesheet">
-    <link href="../css/signup.css" rel="stylesheet">
     <!-- <link href="../css/switchery.css" rel="stylesheet"> -->
 </head>
 
@@ -33,13 +32,11 @@
         </ul>
         <h1 class="hidden-xs">
             <img class="brand-img" id="brand-lg" src="../img/logo-big.png">
-            <div name="time" id="time"></div>
         </h1>
         <h1 class="visible-xs">
             <img class="brand-img" src="../img/logo-small.png">
         </h1>
     </header>
-    <div class="hidden-md hidden-lg hidden-xl" style="height: 70px;"></div>
     <nav class="slide nav" style="margin-right: 12px;">
         <ul>
             <li><a href="" onclick="logout()" href="">LOG OUT</a></li>
@@ -47,7 +44,7 @@
     </nav>
 
     <div class="content slide">
-		<div class="wrapper">
+		<div class="wrapper" style="padding-top: 45px;">
 			
             <div class="button-area col-md-9">
                 <div class="card-long" ng-controller="driverctrl">
@@ -100,16 +97,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-    <script src="../js/angular.js"></script>
-    <script src="../js/angular-route.js"></script>
-    <script src="../js/dashboard.js"></script>
-
-    <script src="../js/jquery.plugin.js"></script>
-    <script src="../js/jquery.keypad.js"></script>
-    <script src="../js/parsley.min.js"></script>
-
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
-    <script src="../js/dashboard-fun.js"></script>
     <script src="../js/driverdash.js"></script>
 
     <script src="../js/trunk.js"></script>
