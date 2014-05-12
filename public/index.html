@@ -15,6 +15,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
+
 </head>
 
 <body>
@@ -93,10 +96,13 @@
 
         <div class="res-section" style="padding-top: 20px;">
             <div style="margin-left: 30px; margin-right: 30px;">
-                <!-- <div class="col-md-7 hidden-sm hidden-xs" id="map" style="height: 500px;"></div> -->
                 <div class="col-md-1"></div>
-                <iframe class="col-md-6 hidden-xs hidden-sm" height='500px' frameBorder='0' src='http://a.tiles.mapbox.com/v3/masiisso.i6kbj47j/attribution,zoompan,geocoder.html'></iframe>
-                <div id="carousel-example" class="col-md-4 carousel slide" data-ride="carousel" style="background-color: #e3f1f9;">
+                <div class="col-md-7 hidden-sm hidden-xs" style="padding-right: 20px;">
+                    <div id="map"></div>
+                </div>
+
+                <!-- <iframe class="col-md-6 hidden-xs hidden-sm" height='500px' frameBorder='0' src='http://a.tiles.mapbox.com/v3/masiisso.i6kbj47j/attribution,zoompan,geocoder.html'></iframe> -->
+                <div id="carousel-example" class="col-md-3 carousel slide" data-ride="carousel" style="background-color: #e3f1f9;">
 
                     <p style="font-size: 200%;">Our Clients</p>
                     <!-- Wrapper for slides -->
@@ -189,6 +195,10 @@
         ga('create', 'UA-47690619-1', 'pocketask.com');
         ga('send', 'pageview');
     </script>
+
+                <script>
+                var map = L.mapbox.map('map', 'masiisso.i6kbj47j').scrollWheelZoom.disable();
+                </script>
 
 </body>
 </html>

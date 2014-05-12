@@ -1,226 +1,194 @@
-
 <!DOCTYPE html>
+<html>
 <head>
-	<meta charset="utf-8" />
-	<title>New Apple-Style Flip Counter Demo</title>
-	<meta name="description" content="A more functional version of my Apple-Style Flip Counter." />
-	<meta name="keywords" content="HTML,CSS,JavaScript,counter,apple-style,flip,animate,digit,demo" />
-	<meta name="author" content="Chris Nanney" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<!-- My flip counter script, REQUIRED -->
-	<script type="text/javascript" src="js/flipcounter.js"></script>
-	<!-- Style sheet for the counter, REQUIRED -->
-	<link rel="stylesheet" type="text/css" href="css/counter.css" />
-	
+    <title>Pocketask - Delivery at a click</title>
+	<meta name="author" content="Pocketask Inc.">
+    <meta name="description" content="Pocketask is now in Waterloo & Kitchener region. With Pocketask, restaurants can secure a delivery driver in 10 minutes or less. Pocketask streamlines the food delivery process; restaurant owners can request a driver, and pre-screened drivers can accept the call.">
+    <meta name="keywords" content="pocketask, food delivery, restaurant, catering, local, waterloo, kitchener, takeout" >
 
-	<!-- NOT REQUIRED FOR COUNTER TO FUNCTION, JUST FOR DEMO PURPOSES -->
-	<!-- jQuery from Google CDN, NOT REQUIRED for the counter itself -->
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-	<!-- jQueryUI from Google CDN, used only for the fancy demo controls, NOT REQUIRED for the counter itself -->
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"></script>
-	<!-- Style sheet for the jQueryUI controls, NOT REQUIRED for the counter itself -->
-	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/vader/jquery-ui.css" />
-	<!-- Style sheet for the demo page, NOT REQUIRED for the counter itself -->
-	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
 
 </head>
-
 <body>
 
-	<div class="explain">
-		<p>This counter was initialized with the following code:</p>
-		<code>var myCounter = new flipCounter('flip-counter', {value:10000, inc:123, pace:600, auto:true});</code>
-		<p>Use the controls below to make changes to the counter using built-in methods.</p>
-		<p><a class="back" href="http://cnanney.com/journal/code/apple-style-counter-revisited/">http://cnanney.com/journal/code/apple-style-counter-revisited/</a></p>
-	</div>
+<header class="slide">
+        <ul id="navToggle" class="burger slide">
+            <li></li><li></li><li></li>
+        </ul>
+        <h1 class="hidden-xs"><img class="brand-img" id="brand-lg" src="img/kraken-uzyqfr/logo-big.png"></h1>
+        <h1 class="visible-xs"><img class="brand-img" id="brand-xs" src="img/kraken-uzyqfr/logo-small.png"></h1>
+    </header>
 
-	<div id="wrapper"><div id="flip-counter" class="flip-counter"></div></div>
+    <nav class="slide nav" id="nav-menu">
+        <ul>
+            <li><a href="/"><i class="fa fa-home">&nbsp;</i>HOME</a></li>
+            <li><a href="/aboutus"><i class="fa fa-info-circle">&nbsp;</i>ABOUT US</a></li>
+            <li><a href="/pubsignup" target="_blank"><i class="fa fa-pencil-square">&nbsp;</i>JOIN US</a></li>
+            <li><a href="/ourclients"><i class="fa fa-users">&nbsp;</i>OUR CLIENTS</a></li>
+            <li><a href="/signin" target="_blank"><i class="fa fa-sign-in">&nbsp;</i>SIGN IN</a></li>
+        </ul>
+    </nav>
 
-	<div class="clear"></div>
-	<ul id="demo_controls">
-		<li class="auto_on_controls">Increment: 
-			<span id="inc_value">123</span> <a href="#" class="expand">[?]</a><div id="inc_slider" class="demo_widget"></div>
-			<div class="explain toggle">
-				<p>This slider controls the counter increment by using the <b>setIncrement</b> method:</p>
-				<code>myCounter.setIncrement(value);</code>
-			</div>
-		</li>
-		<li class="auto_on_controls">Pace: 
-			<span id="pace_value">600</span>ms <a href="#" class="expand">[?]</a><div id="pace_slider" class="demo_widget"></div>
-			<div class="explain toggle">
-				<p>This slider controls the counter pace by using the <b>setPace</b> method:</p>
-				<code>myCounter.setPace(value);</code>
-			</div>
-		</li>
-		<li>Auto-Increment: <a href="#" class="expand">[?]</a>
-			<div id="auto_toggle" class="demo_button">
-				<input type="radio" id="auto1" name="auto" value="on" checked="checked" /><label for="auto1">On</label>
-				<input type="radio" id="auto2" name="auto" value="off" /><label for="auto2">Off</label>
-				<button id="counter_step">Step</button>
-			</div>
-			<div class="explain toggle">
-				<p>These buttons start and stop auto-incrementing the counter using the <b>setAuto</b> method:</p>
-				<code>myCounter.setAuto(false);</code>
-				<p>When auto-increment is off, you can use the third button to step through the animation one increment at a time using the <b>step</b> method:</p>
-				<code>myCounter.step();</code>
-			</div>
-		</li>
-		<li class="auto_off_controls">Addition / Subtraction: <a href="#" class="expand">[?]</a>
-			<div id="add_sub" class="demo_button">
-				<button id="add">Add 567</button>
-				<button id="sub">Subtract 567</button>
-			</div>
-			<div class="explain toggle">
-				<p>You can also add and subtract a value to/from the counter using the <b>add</b> and <b>subtract</b> methods:</p>
-				<code>myCounter.add(567);</code>
-				<code>myCounter.subtract(567);</code>
-			</div>
-		</li>
-		<li class="auto_off_controls">Set Value: <a href="#" class="expand">[?]</a>
-			<div class="demo_button">
-				<button id="set_val">Set value of counter to 12,345</button>
-			</div>
-			<div class="explain toggle">
-				<p>You can manually set the value of the counter at any time using the <b>setValue</b> method:</p>
-				<code>myCounter.setValue(12345);</code>
-			</div>
-		</li>
-		<li class="auto_off_controls">Increment To: <a href="#" class="expand">[?]</a>
-			<div class="demo_button">
-				<button id="inc_to">Increment counter to 12,345</button>
-			</div>
-			<div class="explain toggle">
-				<p>You can set the counter to increment to a value using the current <i>pace</i> and <i>inc</i> values by using the <b>incrementTo</b> method:</p>
-				<code>myCounter.incrementTo(12345);</code>
-			</div>
-		</li>
-		<li class="auto_off_controls">Smart Increment To: <a href="#" class="expand">[?]</a>
-			<div class="demo_button">
-				<button id="smart">Run smart increment example</button>
-			</div>
-			<div class="explain toggle">
-				<p>You can also let the counter figure out the best <i>pace</i> and <i>inc</i> values using a "smart" increment technique.</p>
-				<code>myCounter.incrementTo(12345, 10, 400);</code>
-				<p>The above code would tell the counter to increment to 12,345 over a period of 10 seconds. I've also set a desired pace of 400 for the animation, but that will change when neccessary to optimize the animation.</p>
-				<p>Click the "Run smart increment example" button to see a demo of this method in which the counter will increment to 4 different values, each with a duration of 10 seconds, dynamically adjusting <i>pace</i> and <i>inc</i> for optimal results.</p>
-			</div>
-		</li>
-	</ul>
+    <div class="content slide">
 
-	<script type="text/javascript">
-	//<![CDATA[
+        <div class="header-section">
+            <div class="col-md-12">
 
-	$(function(){
-		
-		// Initialize a new counter
-		var myCounter = new flipCounter('flip-counter', {value:10000, inc:123, pace:600, auto:true});
+                <div id="time">
+                <div id="counter" style="width: 230px; margin-left: auto; margin-right: auto; padding-top: 50px">
+                    <div class="clock"></div>
+                </div>
+                    <p id="delivery-text">deliveries completed to date</p>
+                    <p id="time-text">Secure a delivery driver in 10 minutes or less.</p>
+                </div>
+            </div>
+            <div class="btn-area">
+                <button class="btn" id="signin" onclick="window.location='/signin';">SIGN IN</button>
+                <button class="btn" id="joinus">JOIN US</button>
+            </div>
+        </div>
 
-		/**
-		 * Demo controls
-		 */
-		
-		var smartInc = 0;
-		
-		// Increment
-		$("#inc_slider").slider({
-			range: "max",
-			value: 123,
-			min: 1,
-			max: 1000,
-			slide: function( event, ui ) {
-				myCounter.setIncrement(ui.value);
-				$("#inc_value").text(ui.value);
-			}
-		});
-		
-		// Pace
-		$("#pace_slider").slider({
-			range: "max",
-			value: 600,
-			min: 100,
-			max: 2000,
-			step: 100,
-			slide: function( event, ui ) {
-				myCounter.setPace(ui.value);
-				$("#pace_value").text(ui.value);
-			}
-		});
-		
-		// Auto-increment
-		$("#auto_toggle").buttonset();
-		$("input[name=auto]").change(function(){
-			if ($("#auto1:checked").length == 1){
-				$("#counter_step").button({disabled: true});
-				$(".auto_off_controls").hide();
-				$(".auto_on_controls").show();
-				
-				myCounter.setPace($("#pace_slider").slider("value"));
-				myCounter.setIncrement($("#inc_slider").slider("value"));
-				myCounter.setAuto(true);
-			}
-			else{
-				$("#counter_step").button({disabled: false});
-				$(".auto_off_controls").show();
-				$(".auto_on_controls").hide();
-				$("#add_sub").buttonset();
-				$("#set_val, #inc_to, #smart").button();
-				myCounter.setAuto(false).stop();
-			}
-		});
-		$("#counter_step").button({disabled: true});
-		$("#counter_step").button().click(function(){
-			myCounter.step();
-			return false;
-		});
-		
-		// Addition/Subtraction
-		$("#add").click(function(){
-			myCounter.add(567);
-			return false;
-		});
-		$("#sub").click(function(){
-			myCounter.subtract(567);
-			return false;
-		});
-		
-		// Set value
-		$("#set_val").click(function(){
-			myCounter.setValue(12345);
-			return false;
-		});
-		
-		// Increment to
-		$("#inc_to").click(function(){
-			myCounter.incrementTo(12345);
-			return false;
-		});
-		
-		// Get value
-		$("#smart").click(function(){
-			var steps = [12345, 17, 4, 533];
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="padding-left: 10%; padding-right: 10%; background-color: #ffffff;">
+          <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active" style="background-color: #dddddd;"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1" style="background-color: #dddddd;"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2" style="background-color: #dddddd;"></li>
+            </ol>
 
-			if (smartInc < 4) runTest();
-			
-			function runTest(){
-				var newVal = myCounter.getValue() + steps[smartInc];
-				myCounter.incrementTo(newVal, 10, 600);
-				smartInc++;
-				if (smartInc < 4) setTimeout(runTest, 10000);
-			}
-			$(this).button("disable");
-			return false;
-		});
-		
-		// Expand help
-		$("a.expand").click(function(){
-			$(this).parent().children(".toggle").slideToggle(200);
-			return false;
-		});
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" style="background-color: #ffffff;">
+                <div class="item active">
+                    <img src="../img/body_ad_1.png" style="width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto;">
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="../img/body_ad_2.png" style="width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto;">
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="../img/body_ad_3.png" style="width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto;">
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+            </div>
 
-	});
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev" style="background-image: none; background-color: none; margin-left: 5%">
+                <span class="glyphicon glyphicon-chevron-left" style="color: #dddddd;"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next" style="background-image: none; background-color: none; margin-right: 5%;">
+                <span class="glyphicon glyphicon-chevron-right" style="color: #dddddd;"></span>
+            </a>
+        </div>
+<div id='map' class="col-md-6" style="height: 500px;"></div>
+<script>
+var map = L.mapbox.map('map', 'masiisso.i6kbj47j');
+</script>
+<div id="carousel-example" class="col-md-4 carousel slide" data-ride="carousel" style="background-color: #e3f1f9;">
 
-	//]]>
-	</script>
+                    <p style="font-size: 200%;">Our Clients</p>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" style="background-color: #e3f1f9;">
+                        <div class="item active">
+                            <img src="../img/shop_yes.png" style="height: 450px; margin-left: auto; margin-right: auto;">
+                        </div>
+                        <div class="item">
+                            <img src="../img/shop_williams.png" style="height: 450px; margin-left: auto; margin-right: auto;">
+                        </div>
+                        <div class="item">
+                            <img src="../img/shop_shawermaplus.png" style="height: 450px; margin-left: auto; margin-right: auto;">
+                        </div>
+                        <div class="item">
+                            <img src="../img/shop_esm.png" style="height: 450px; margin-left: auto; margin-right: auto;">
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control img-circle" href="#carousel-example" data-slide="prev" style="background-image: none; background-color: #ffffff; height: 50px; width: 50px; margin-left: 20px; margin-top: 200px;">
+                        <span class="glyphicon glyphicon-chevron-left" style="color: #dddddd;"></span>
+                    </a>
+                    <a class="right carousel-control img-circle" href="#carousel-example" data-slide="next" style="background-image: none; background-color: #ffffff; height: 50px; width: 50px; margin-right: 20px; margin-top: 200px;">
+                        <span class="glyphicon glyphicon-chevron-right" style="color: #dddddd; margin-right: -15px;"></span>
+                    </a>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div class="col-md-4 footer-text">
+                <p><a href="/privacypolicy" style="padding-right: 20px" target="_blank">Privacy Policy</a> <a href="/termofuse" target="_blank">Term of Use</a></p>
+            </div>
+            <div class="col-md-4 footer-text">
+                <p>&#169; 2014 Pocketask Inc. All Rights Reserved.</p>
+            </div>
+            <div class="col-md-4 footer-social">
+                <a id="facebook-icon" href="https://www.facebook.com/pocketask" target="_blank"><i class="fa fa-facebook-square fa-3x"></i></a>
+                <a id="twitter-icon" href="https://twitter.com/Pocketask" target="_blank"><i class="fa fa-twitter-square fa-3x"></i></a>
+                <a id="google-plus-icon" href="https://plus.google.com/b/104407058385138355470/" target="_blank"><i class="fa fa-google-plus-square fa-3x"></i></a>
+                <a id="linkedin-icon" href="http://www.linkedin.com/company/pocketask-inc?trk=company_name" target="_blank"><i class="fa fa-linkedin-square fa-3x"></i></a>
+            </div>
+        </div>
+
+    <script>
+        function includeCSSfile(href) {
+            var head_node = document.getElementsByTagName('head')[0];
+            var link_tag = document.createElement('link');
+            link_tag.setAttribute('rel', 'stylesheet');
+            link_tag.setAttribute('type', 'text/css');
+            link_tag.setAttribute('href', href);
+            head_node.appendChild(link_tag);
+        }
+        includeCSSfile('css/trunk.css');
+        includeCSSfile('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
+        includeCSSfile('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
+        includeCSSfile('css/style.css');
+        includeCSSfile('css/flipclock.css');
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/labjs/2.0.3/LAB.min.js"></script>
+    <script>
+        $LAB
+        .script("//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js").wait()
+        .script("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
+        .script("//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js")
+        .script("js/trunk.js")
+        .script("js/flipclock.min.js").wait(function(){
+            var clock = $('.clock').FlipClock(100, {
+                clockFace: 'Counter',
+                autoStart: false
+                });
+            clock.setValue(600);
+        })
+        .script("js/map.js").wait(function(){
+            function loadScript() {
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = 'https://maps.googleapis.com/maps/api/js?sensor=false&' + 'callback=initialize';
+                document.body.appendChild(script);
+            }
+            window.onload = loadScript;
+        });
+    </script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-47690619-1', 'pocketask.com');
+        ga('send', 'pageview');
+    </script>
+
 </body>
-
 </html>
