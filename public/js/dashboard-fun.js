@@ -61,7 +61,7 @@ function requestDriver() {
     $.ajax({
         type : "GET",
         crossDomain : true,
-        url : "/restaurant/request_driver",
+        url : "https://pocketask-api.herokuapp.com/requests/request_driver?id=53712dea99adb802004efe49",
         success : function(data) {
             newrest = data;
             document.getElementById("current").innerHTML = newrest.current_requests;
@@ -75,13 +75,12 @@ function requestDriver() {
 }
 
 function getRestaurant(){
-    // var name = getCookie('name');
     var result = null;
     $.ajax({
-        type: "GET",
+        type : "GET",
         dataType : 'json',
         async : false,
-        url: "/restaurant/get",
+        url : "https://pocketask-api.herokuapp.com/restaurants/get?id=53712dea99adb802004efe49",
         success : function(data) {
             result = data;
         }
@@ -104,4 +103,84 @@ function logout(){
             window.location = data.redirectUrl;
         }
     });
+}
+
+function getHistory(){
+    var result = null;
+    $.ajax({
+        type: "GET",
+        dataType : 'json',
+        async : false,
+        url : "https://pocketask-api.herokuapp.com/requests/restaurant_history?id=53712dea99adb802004efe49",
+        success : function(data) {
+            result = data;
+        }
+    });
+    return result;
+}
+
+function getMobilePhones() {
+    var result = null;
+    $.ajax({
+        type: "GET",
+        dataType : 'json',
+        async : false,
+        url: "https://pocketask-api.herokuapp.com/restaurants/mobile/get?id=53712dea99adb802004efe49",
+        success : function(data) {
+            result = data;
+        }
+    });
+    return result;
+}
+
+function mobilectrl($scope, $location, $http) {
+    // $scope.name = ($location.search()).name;
+    // var mobiles = getMobilePhones($scope.name);
+    var mobiles = getMobilePhones();
+    $scope.mobiles = [];
+    angular.forEach(mobiles, function(mobile) {
+        mobile.created_at = new Date(mobile.createdAt).toString().substring(0, 25);
+        $scope.mobiles.push(mobile);
+    });
+    $scope.del = function(number) {
+        $http({method :'GET', url :'https://pocketask-api.herokuapp.com/restaurants/mobile/delete?id=53712dea99adb802004efe49', 
+            params: {number : number}})
+        .success(function(data){
+            $scope.mobiles.splice(0,1);
+        })
+        .error(function(data){
+            alert('Cannot delete phone number, please try again.');
+        });
+    };
+}
+
+function addnumberctrl($scope, $http) {
+    $scope.displayMessage = function(msg) {
+        document.getElementById("message-box").style.display = 'block';
+        document.getElementById("message-box").innerHTML = msg;
+        setTimeout(function() {
+            document.getElementById("message-box").style.display = 'none';
+        }, 5000);
+    };
+    $scope.addNumber = function() {
+        $.ajax({
+            type : "GET",
+            // url : "/restaurant/add_mobile_phone?number=" + add_number_form.number.value,
+            url : "https://pocketask-api.herokuapp.com/restaurants/mobile/add?id=53712dea99adb802004efe49&number=" + add_number_form.number.value,
+            statusCode: {
+                400: function() {
+                    $scope.displayMessage('The phone number is invalid');
+                },
+                409: function() {
+                    $scope.displayMessage('The phone number was already added');
+                },
+                500: function() {
+                    $scope.displayMessage('Something went wrong, please try again');
+                },
+                200: function(res) {
+                    location.reload();
+                }
+            }
+        });
+    };
 }

@@ -48,23 +48,14 @@
 
 <script>
 var restaurant = getRestaurant();
-document.getElementById('current').innerHTML = restaurant.current_requests;
+document.getElementById('current').innerHTML = restaurant.currentRequests;
 function histctrl($scope) {
     var keepgoing = 1;
     var hists = getHistory(3);
-    // angular.forEach(hists, function(value) {
-    //     value.date = new Date(value.date).toString().substring(0, 25);
-    //     if (value.status === 0){
-    //         value.status = 'In Queue';
-    //     } else {
-    //         value.status = 'Driver Sent';
-    //     }
-    //     $scope.hists.push(value);
-    // });
     $scope.hists = [];
     angular.forEach(hists, function(value) {
         if (keepgoing <= 3) {
-            value.date = new Date(value.date).toString().substring(0,25);
+            value.date = new Date(value.requestedAt).toString().substring(0, 25);
             $scope.hists.push(value);
             keepgoing += 1;
         }
@@ -91,7 +82,7 @@ function dis() {
     $.ajax({
         type:"get",
         dataType:"json",
-        url:"/distance",
+        url:"https://pocketask-api.herokuapp.com/features/distance/" ,
         data:{"from": address1, "to": address2},
         success: function(data) {
             if (data.apiStatus !== "OK") {

@@ -14,8 +14,7 @@
     <div class="button-area col-md-3 hidden-lg hidden-md">
         <div class="card">
             <div id="user-profile">
-                <p class="card-text" id="fullname"> Welcome, fullname!</p>
-                <p class="card-text" id="username"></p>
+                <p class="card-text" id="fullname"></p>
                 <p class="card-text">Address: </p>
                 <p class="card-text" id="address"></p>
                 <p class="card-text" id="phone"></p>
@@ -53,8 +52,7 @@
     <div class="button-area col-md-3 visible-lg visible-md">
         <div class="card">
             <div id="user-profile">
-                <p class="card-text" id="fullname1"> Welcome, fullname!</p>
-                <p class="card-text" id="username1"></p>
+                <p class="card-text" id="fullname1"></p>
                 <p class="card-text"></p>
                 <p class="card-text" id="address1"></p>
                 <p class="card-text" id="phone1"></p>
@@ -63,7 +61,8 @@
         <div>
             <div class="card" id="user-profile-function">
                 <p class="card-heading">Miscellaneous</p>
-                <a href="/restaurant/changepassword">&bull; Change Password</a>
+                <!-- <a href="/restaurant/changepassword">&bull; Change Password</a> -->
+                <a href="">&bull; Change Password</a>
             </div>
         </div>
     </div>
@@ -74,7 +73,7 @@ function histctrl($scope) {
     var hists = getHistory();
     $scope.hists = [];
     angular.forEach(hists, function(value) {
-        value.date = new Date(value.date).toString().substring(0, 25);
+        value.date = new Date(value.requestedAt).toString().substring(0, 25);
         if (value.status === 9){
             value.status = 'Driver Sent';
         } else {
@@ -83,7 +82,7 @@ function histctrl($scope) {
         $scope.hists.push(value);
     });
 }
-var b = restaurant.account_balance;
+var b = restaurant.balance;
 if (b > 0){
     document.getElementById('balance').innerHTML = b;
     document.getElementById('balance').style.color = "red";
@@ -96,11 +95,9 @@ if (b > 0){
     document.getElementById('balance').innerHTML = b;
 }
 
-document.getElementById('total').innerHTML = restaurant.total_requests;
-document.getElementById('fullname').innerHTML = 'Welcome, ' + restaurant.fullname;
-document.getElementById('fullname1').innerHTML = 'Welcome, ' + restaurant.fullname;
-document.getElementById('username').innerHTML = "Username: " + restaurant.name;
-document.getElementById('username1').innerHTML = "Username: " + restaurant.name;
+document.getElementById('total').innerHTML = restaurant.totalRequests;
+document.getElementById('fullname').innerHTML = 'Username:  ' + restaurant.fullname;
+document.getElementById('fullname1').innerHTML = 'Username:  ' + restaurant.fullname;
 document.getElementById('address').innerHTML = 'Address: ' + restaurant.address;
 document.getElementById('address1').innerHTML = 'Address: ' + restaurant.address;
 document.getElementById('phone').innerHTML = "Phone Number: " + restaurant.phone;
