@@ -32,6 +32,7 @@ app.use('/partial', express.static(__dirname + '/public/partial'));
 // Routes to access static pages
 require('./routes')(express, app, path);
 require('./routes/restaurant')(express, app, path);
+require('./routes/driver')(express, app, path);
 
 // Initialize http server on specified port
 http.globalAgent.maxSockets = 25;
