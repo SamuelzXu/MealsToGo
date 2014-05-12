@@ -294,6 +294,89 @@ html{
     font-size: 20px;
 }
 
+/*.peole-card{
+  padding-top: 20px;
+  margin: 10px 0 20px 0;
+  background-color: #ffffff;
+  border: 1px solid #d8d8d8;
+  border-top-width: 0;
+  border-bottom-width: 2px;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}*/
+
+.people-card.hovercard {
+    position: relative;
+    width: 240px;
+    padding-top: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #d8d8d8;
+    border-top-width: 0;
+    -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+            border-radius: 3px;
+    -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+            box-shadow: none;
+    -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.people-card.hovercard img {
+    width: 240px;
+    height: 135px;
+}
+
+.people-card.hovercard .avatar {
+    position: relative;
+    top: -40px;
+    margin-bottom: -40px;
+}
+
+.people-card.hovercard .avatar img {
+    width: 80px;
+    height: 80px;
+    max-width: 80px;
+    max-height: 80px;
+    -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+            border-radius: 50%;
+}
+
+.people-card.hovercard .info {
+    padding: 4px 8px 10px;
+}
+
+.people-card.hovercard .info .title {
+    margin-bottom: 4px;
+    font-size: 24px;
+    line-height: 1;
+    color: #262626;
+    vertical-align: middle;
+}
+
+.people-card.hovercard .info .desc {
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 20px;
+    color: #737373;
+    text-overflow: ellipsis;
+}
+
+.people-card.hovercard .bottom {
+    padding: 0 20px;
+    margin-bottom: 17px;
+}
 /* about us end */
 
 /* our clients */
