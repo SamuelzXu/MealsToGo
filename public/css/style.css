@@ -278,15 +278,20 @@ html{
     padding-top: 15px;
     text-align: center;
     background-color: #eeeeee;
-    min-height: 500px;
+    min-height: 520px;
 }
 
 .contents{
     padding:15px;
     font-family: Corbel;
     font-size:20px;
-    margin-top: 40px;
+    margin-top: 80px;
     float: left;
+}
+
+.description{
+    font-family: Corbel;
+    font-size: 20px;
 }
 
 /* about us end */
