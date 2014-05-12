@@ -20,7 +20,6 @@
         <ul id="navToggle" class="burger slide">    <!--    Add "slideRight" class to items that move right when viewing Nav Drawer  -->
             <li></li><li></li><li></li>
         </ul>
-        <!-- <h1>Pocketask</h1> -->
         <h1 class="hidden-xs"><img class="brand-img" id="brand-lg" src="../img/logo-big.png"></h1>
         <h1 class="visible-xs"><img class="brand-img" id="brand-xs" src="../img/logo-small.png"></h1>
     </header>
@@ -58,11 +57,11 @@
             link_tag.setAttribute('href', href);
             head_node.appendChild(link_tag);
         }
-        includeCSSfile('css/trunk.css');
+        includeCSSfile('../css/trunk.css');
+        includeCSSfile('../css/style.css');
+        includeCSSfile('../css/jquery.keypad.css');
         includeCSSfile('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
         includeCSSfile('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
-        includeCSSfile('css/style.css');
-        includeCSSfile('css/jquery.keypad.css');
     </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/labjs/2.0.3/LAB.min.js"></script>
     <script>
@@ -72,11 +71,11 @@
         .script("//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js")
         .script("//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js")
         .script("//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0rc3/angular-route.min.js")
-        .script("js/trunk.js")
-        .script("js/admin.js")
-        .script("js/admin-fun.js")
-        .script("js/jqueyr.plugin.js")
-        .script("js/jquery.keypad.js")
+        .script("../js/trunk.js")
+        .script("../js/admin.js")
+        .script("../js/admin-fun.js")
+        .script("../js/jquery.plugin.js")
+        .script("../js/jquery.keypad.js")
     </script>
 </body>
 </html>
