@@ -1,0 +1,118 @@
+<div class="wrapper">
+    <div class="col-md-3">
+        <!-- <div class="card visible-xs" style="height: 60px; overflow: hidden;">
+            <p name="time" id="time-xs"></p>
+        </div> -->
+        <div class="card">
+            <p class="card-heading">Recent Number of Deliveries</p>
+            <p id="current" class="card-lg-text-normal"></p>
+        </div>
+        <div class="card visible-lg visible-md">
+            <h3 class="card-heading">Announcement</h3>
+            <p class="announcement">Welcome to Pocketask Inc.</p>
+        </div>
+    </div>
+    <div class="button-area col-md-6">
+        <button class="button1" id="driver-button" data-toggle="modal" 
+            data-target="#confirm-modal">
+        </button>
+    </div>
+    <div class="col-md-3">
+        <div class="card" ng-controller="histctrl">
+            <p class="card-heading-simple">Last Three Orders</p>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td style="font-family: Impact; color: #777;">Date & Time</td>
+                        <td style="font-family: Impact; color: #777;">status</td>
+                    </tr>
+                </thead>
+                <tbody id="history-table-body">
+                    <tr ng-repeat="hist in hists"> 
+                        <td>{{hist.date}}</td>
+                        <td>{{hist.status}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+		<div class="card hidden-xs">
+            <p class="card-heading">Distance Check</p>
+			<form method="GET" id="form" data-parsley-validate style="text-align: left;">
+                <label style="margin-left: 15px;">Step 1: Enter postal code or address</label>
+                <label style="margin-left: 15px;">Step 2: Press enter</label>
+                <input class="form-control" style="max-width: 250px;" name="address2_st" 
+                    id="address2_st" placeholder="Postal Code or Address with City" 
+                    data-parsley-pattern="/^[A-Za-z0-9,\-\s]+$/" data-parsley-required />
+    		</form>
+            <p id="result"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+var restaurant = getRestaurant();
+document.getElementById('current').innerHTML = restaurant.current_requests;
+function histctrl($scope) {
+    var keepgoing = 1;
+    var hists = getHistory(3);
+    // angular.forEach(hists, function(value) {
+    //     value.date = new Date(value.date).toString().substring(0, 25);
+    //     if (value.status === 0){
+    //         value.status = 'In Queue';
+    //     } else {
+    //         value.status = 'Driver Sent';
+    //     }
+    //     $scope.hists.push(value);
+    // });
+    $scope.hists = [];
+    angular.forEach(hists, function(value) {
+        if (keepgoing <= 3) {
+            value.date = new Date(value.date).toString().substring(0,25);
+            $scope.hists.push(value);
+            keepgoing += 1;
+        }
+        if (value.status === 9){
+            value.status = 'Driver Sent';
+        } else {
+            value.status = 'In Queue';
+        }
+    });
+}
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#form').parsley().subscribe('parsley:form:validate', function(formInstance) {
+        if (formInstance.isValid()) {
+            dis();
+        }
+    });
+});
+
+function dis() {
+    var address1 = restaurant.address;
+    var address2 = form.address2_st.value + ', Ontario';
+    $.ajax({
+        type:"get",
+        dataType:"json",
+        url:"/distance",
+        data:{"from": address1, "to": address2},
+        success: function(data) {
+            if (data.apiStatus !== "OK") {
+                document.getElementById("result").innerHTML = 
+                    "Something went wrong with the Google map, please try again later.";
+            } else if (data.queryStatus !== "OK") {
+                document.getElementById("result").innerHTML = 
+                    "We can not find the address, please check your spelling and try again.";
+            } else {
+                document.getElementById("result").innerHTML = 
+                    "The distance between you and " + form.address2_st.value + 
+                    " is " + data.distance.value + " " + data.distance.unit;
+                document.getElementById("address2_st").value = "";
+            }
+        },
+        error: function(data) {
+            alert("error occurs, please check your spelling");
+        }
+    });
+}
+</script>

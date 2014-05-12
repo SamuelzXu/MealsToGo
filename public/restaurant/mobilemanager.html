@@ -1,0 +1,44 @@
+<div class="wrapper">
+    <div class="col-md-9">
+        <div class="card-long" id="history-card" ng-controller="mobilectrl">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td style="font-family: Impact; color: #777;">Phone Number</td>
+                        <td style="font-family: Impact; color: #777;">Count</td>
+                        <td style="font-family: Impact; color: #777;">Added at</td>
+                        <td style="font-family: Impact; color: #777;">Added by</td>
+                        <td style="font-family: Impact; color: #777;">Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="mobile in mobiles">
+                        <td>{{mobile.number}}</td>
+                        <td>{{mobile.count}}</td>
+                        <td>{{mobile.created_at}}</td>
+                        <td>{{mobile.created_by}}</td>
+                        <td>
+                            <button ng-click="del(mobile.number)">delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="button-area col-md-3 visible-lg visible-md">
+        <div class="card-long">
+            <p class="card-form-title">Add a Number</p>
+            <div id="signup-form" ng-controller="addnumberctrl">
+                <div id="message-box" class="result-box">
+                    <p>Display error messages here if any.</p>
+                </div>
+                <form method="get" name="add_number_form">
+                    <input class="form-control" id="number" name="number" 
+                        placeholder="Mobile Phone Number" ng-model="number">
+                    <input id="signin-button" type="submit" ng-click="addNumber()" 
+                        value="Add" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
