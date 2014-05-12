@@ -31,9 +31,27 @@ app.use('/partial', express.static(__dirname + '/public/partial'));
 
 // Routes to access static pages
 require('./routes')(express, app, path);
-require('./routes/restaurant')(express, app, path);
+// require('./routes/restaurant')(express, app, path);
 require('./routes/driver')(express, app, path);
 require('./routes/admin')(express, app, path);
+
+
+
+	app.get('/restaurant/dashboard', function(req, res) {
+		res.sendfile('./public/dashboard.html');
+	});
+
+	app.get('/restaurant/history', function(req, res) {
+		res.sendfile('./public/dashboard.html');
+	});
+
+	app.get('/restaurant/changepassword', function(req, res) {
+		res.sendfile('./public/dashboard.html');
+	});
+
+	app.get('/restaurant/mobilemanager', function(req, res) {
+		res.sendfile('./public/dashboard.html');
+	});
 
 // Initialize http server on specified port
 http.globalAgent.maxSockets = 25;
