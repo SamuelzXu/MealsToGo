@@ -4,16 +4,15 @@
 <head>
     <title>Pocketask | Dashboard</title>
     <meta name="author" content="Pocketask Inc.">
-    <meta name="description" content="Pocketask is now in Waterloo & Kitchener region. 
-        With Pocketask, restaurants can secure a delivery driver in 10 minutes or less. 
-        Pocketask streamlines the food delivery process; 
+    <meta name="description" content="Pocketask is now in Waterloo & Kitchener region.
+        With Pocketask, restaurants can secure a delivery driver in 10 minutes or less.
+        Pocketask streamlines the food delivery process;
         restaurant owners can request a driver, and pre-screened drivers can accept the call.">
-    <meta name="keywords" content="pocketask, delivery, food, restaurant, catering, local, 
+    <meta name="keywords" content="pocketask, delivery, food, restaurant, catering, local,
         waterloo, kitchener, takeout, online" >
-
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
-    <meta name="viewport" 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="HandheldFriendly" content="True">
@@ -63,11 +62,11 @@
             link_tag.setAttribute('href', href);
             head_node.appendChild(link_tag);
         }
-        includeCSSfile('css/trunk.css');
+        includeCSSfile('../css/trunk.css');
         includeCSSfile('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
         includeCSSfile('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
-        includeCSSfile('css/style.css');
-        includeCSSfile('css/jquery.keypad.css');
+        includeCSSfile('../css/style.css');
+        includeCSSfile('../css/jquery.keypad.css');
     </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/labjs/2.0.3/LAB.min.js"></script>
     <script>
@@ -75,28 +74,28 @@
         .script("//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js").wait()
         .script("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
         .script("//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js")
-        .script("//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js")
-        .script("//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0rc3/angular-route.min.js")
-        .script("js/trunk.js")
-        .script("js/dashboard.js")
-        .script("js/dashboard-fun.js")
-        .script("js/jqueyr.plugin.js")
-        .script("js/jquery.keypad.js")
-        .script("js/parsley.min.js")
+        .script("//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js").wait()
+        .script("//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0rc3/angular-route.min.js").wait()
+        .script("../js/trunk.js")
+        .script("../js/dashboard.js")
+        .script("../js/dashboard-fun.js")
+        .script("../js/jquery.plugin.js")
+        .script("../js/jquery.keypad.js")
+        .script("../js/parsley.min.js");
     </script>
 
 
-    <div class="modal fade bs-example-modal-sm" tabindex="0" role="dialog" 
-        aria-labelledby="mySmallModalLabel" aria-hidden="true" id="confirm-modal" 
+    <div class="modal fade bs-example-modal-sm" tabindex="0" role="dialog"
+        aria-labelledby="mySmallModalLabel" aria-hidden="true" id="confirm-modal"
         data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <p>Are you sure?</p>   
-                    <p id="timeLeft">The request will be proceed in: 10 seconds</p> 
-                    <button type="button" class="btn btn-default" data-dismiss="modal" 
+                    <p>Are you sure?</p>
+                    <p id="timeLeft">The request will be proceed in: 10 seconds</p>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
                         id="abort" onclick="abort()">Abort now</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" 
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
                         onclick="proceed()">Yes, proceed</button>
                 </div>
             </div>
@@ -107,14 +106,14 @@
         var countdownNum = 10;
         $('#confirm-modal').on('show.bs.modal', function() {
             incTimer();
-            document.getElementById('timeLeft').innerHTML = 
+            document.getElementById('timeLeft').innerHTML =
                 'The request will be proceed in: 10 seconds';
             function incTimer() {
                 cancel = false;
                 setTimeout(function() {
                     if(countdownNum !== 0 && cancel === false) {
                         countdownNum--;
-                        document.getElementById('timeLeft').innerHTML = 
+                        document.getElementById('timeLeft').innerHTML =
                             'The request will be proceed in: ' + countdownNum + ' seconds';
                         incTimer();
                     } else if(countdownNum === 0 && cancel === false) {
