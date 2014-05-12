@@ -1,3 +1,6 @@
+if(process.env.NEW_RELIC_LICENSE_KEY){
+	require('newrelic');
+}
 var express    = require('express');
 var http       = require('http');
 var logger     = require('morgan');
