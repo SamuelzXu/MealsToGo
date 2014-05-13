@@ -1,28 +1,33 @@
-<div class="wrapper" style="min-height: 1200px; padding-top: 30px;">
+<div class="wrapper" style="min-height: 1200px;">
     <div class="col-md-12 " ng-controller="profilectrl">
         <div class="col-md-6" ng-repeat="profile in profiles">
             <div class="pad profile-outer ">
                 <div class="profile-box">
-                    <div class="profile-header" style="font-size: 150%; color: black; border-bottom: solid; border-width: 1px; border-color: #dddddd; padding: 5px;">
-                        <div class="pull-right profile-corner">Balance: {{profile.account_balance}}</div>
+                    <div class="profile-header" style="font-size: 150%; color: black; 
+                        border-bottom: solid; border-width: 1px; border-color: #dddddd; 
+                        padding: 5px;">
+                        <div class="pull-right profile-corner">
+                            Balance: {{profile.balance}}
+                        </div>
                         {{profile.fullname}}
                     </div>
-                    <div class="profile-body" style="color: black; border-bottom: solid; border-width: 1px; border-color: #dddddd; padding: 5px; ">
-                        <b>Username: </b> {{profile.name}}
-                    </br>
+                    <div class="profile-body" style="color: black; border-bottom: solid; 
+                        border-width: 1px; border-color: #dddddd; padding: 5px; ">
                         <b>Phone: </b> {{profile.phone}}
-                    </br>
+                        <br />
                         <b>Address: </b> {{profile.address}}
-                    </br>
-                        <b>Current Number of Requests: </b> {{profile.current_requests}}
-                    </br>
-                        <b>Total Number of Reqeusts: </b> {{profile.total_requests}}
-                    </br>
+                        <br />
+                        <b>Current Number of Requests: </b> {{profile.currentRequests}}
+                        <br />
+                        <b>Total Number of Requests: </b> {{profile.totalRequests}}
+                        <br />
                         <b>Rate: </b> {{profile.rate}}
-                    </br>
+                        <br />
                     </div>
                     <div class="profile-footer">
-                        <button class="profile-button" ng-click="viewhist(profile)">View Details</button>
+                        <button class="profile-button" ng-click="viewhist(profile)">
+                            View Details
+                        </button>
                     </div>
 
                 </div>
