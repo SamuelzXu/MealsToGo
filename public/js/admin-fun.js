@@ -18,7 +18,7 @@ function getRestaurant(id) {
         type : "GET",
         dataType : "json",
         async : false,
-        url: "http://pocketask-api.herokuapp.com/restaurants/get?id=" + id,
+        url: "https://pocketask-api.herokuapp.com/restaurants/get?id=" + id,
         success : function(data) {
             result = data;
         }
@@ -32,7 +32,7 @@ function getHistory(id) {
         type : "GET",
         dataType : "json",
         async : false,
-        url: "http://pocketask-api.herokuapp.com/requests/restaurant_history?id=" + id,
+        url: "https://pocketask-api.herokuapp.com/requests/restaurant_history?id=" + id,
         success : function(data) {
             result = data;
         }
