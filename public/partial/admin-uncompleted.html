@@ -1,4 +1,4 @@
-<div class="wrapper" style="min-height: 595px; padding-top: 30px;">
+<div class="wrapper" style="min-height: 595px;">
     <div class="col-md-7" id="outer-box">
         <div class="pad">
             <div class="card-long" id="history-cardd" ng-controller="unctrl">
@@ -8,15 +8,17 @@
                             <td>Action</td>
                             <td>Full-name</td>
                             <td>Date</td>
-                            <td class="hidden-xs">ID</td>
                 		</tr>
             		</thead>
             		<tbody>
                         <tr ng-repeat="un in uns">
-                            <td><button style="cursor: pointer;" ng-click="change(un.name, un.id)">change status</button></td>
-                            <td>{{un.fullname}}</td>
-                            <td>{{un.date}}</td>
-                            <td class="hidden-xs">{{un.id}}</td>
+                            <td>
+                                <button ng-click="assign(un._id)">
+                                    Assign Driver
+                                </button>
+                            </td>
+                            <td>{{un.requestedBy.fullname}}</td>
+                            <td>{{un.requestedAt}}</td>
                         </tr>
                 	</tbody>
                 </table>
@@ -27,7 +29,8 @@
         <div class="pad">
             <div class="card">
                 <p class="card-heading">Miscellaneous</p>
-                <button id="main-clear" style="cursor: pointer;" data-toggle="modal" data-target="#confirm-modal">Clear All Counters</button>
+                <button id="main-clear" style="cursor: pointer;" data-toggle="modal" 
+                    data-target="#confirm-modal">Clear All Counters</button>
             </div>
             <div class="card" ng-controller="datactrl">
                 <p class="card-heading">Data</p>
@@ -36,20 +39,25 @@
             </div>
         </div>
     </div>
-    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="confirm-modal" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" 
+        aria-labelledby="mySmallModalLabel" aria-hidden="true" id="confirm-modal" 
+        data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="cclose" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <button type="button" class="cclose" data-dismiss="modal" 
+                        aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
                     <p>Click "Yes" to continue clear all the counters.</p>
-                </br>
-                    <p>Clear all restaurants' counters will generate their balance at the same time. </p>
+                    <p>Clear all restaurants' counters will generate their balance at the 
+                    same time. </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" id="abort">No</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="clearcounter()">Yes, Clear All Counters</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" 
+                        id="abort">No</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" 
+                        onclick="clearcounter()">Yes, Clear All Counters</button>
                 </div>
             </div>
         </div>
@@ -58,7 +66,7 @@
 <script>
 function datactrl($scope, $http) {
     $scope.getcur = function(fun) {
-        $http({method : 'GET', url : '/admin/restaurant/current_requests'})
+        $http({method : 'GET', url : 'http://pocketask-api.herokuapp.com/requests/current'})
         .success(function(data) {
             callbackfun(data);
         })
@@ -70,7 +78,7 @@ function datactrl($scope, $http) {
         document.getElementById("cur").innerHTML = "Current Requests: " + data['total'];
     };
     $scope.gettotal = function(fun) {
-        $http({method : 'GET', url : '/admin/restaurant/total_requests'})
+        $http({method : 'GET', url : 'http://pocketask-api.herokuapp.com/requests/total'})
         .success(function(data) {
             callbackfunt(data);
         })
@@ -79,26 +87,20 @@ function datactrl($scope, $http) {
         });
     };
     function callbackfunt(data){
-        document.getElementById("total").innerHTML = "Total requests: " + data['total'];
+        document.getElementById("total").innerHTML = "Total requests: " + data['count'];
     };
     $scope.getcur(callbackfun);
     $scope.gettotal(callbackfunt);
 }
 function unctrl($scope, $http) {
-    var uns = getUn();
+    var uns = getUnassigned();
     $scope.uns = [];
     angular.forEach(uns, function(value) {
-        value.date = new Date(value.date).toString().substring(0, 25);
+        value.requestedAt = new Date(value.requestedAt).toString().substring(0, 25);
         $scope.uns.push(value);
     });
-    $scope.change = function(name, id) {
-        $http({method :'GET', url :'/admin/restaurant/change_status', params :{name : name, id : id}})
-        .success(function(data){
-            $scope.uns.splice(0,1);
-        })
-        .error(function(data){
-            alert(data + ' can not change stauts, please try again.');
-        });
-    };
+    $scope.assign = function(id) {
+        window.location=('/admin/assigndriver?id=' + id);
+    }
 }
 </script>

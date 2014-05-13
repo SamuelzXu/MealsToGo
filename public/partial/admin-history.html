@@ -1,4 +1,4 @@
-<div class="wrapper" style="padding-top: 30px;">
+<div class="wrapper">
     <div class="col-md-3">
         <div class="pad">
             <div class="card-long">
@@ -35,21 +35,31 @@
     <div class="col-md-3">
         <div class="pad">
             <div class="card-long">
-                <p style='font-family: Copperplate, "Copperplate Gothic Light", 
-             fantasy; font-size: 200%; color: #073956'>Change password</p>
+                <p class="card-form-title">Change Password</p>
                 <div id="signup-form" ng-controller="changectrl">
                     <form method="get" name="form">
-                        <input class="form-control" id="new" name="new" placeholder="New password" type="password" ng-model="newpassword">
-                        <input id="signin-button" type="button" ng-click="changepassword()" value="Make change" />
+                        <input class="form-control" id="new" name="new" 
+                            placeholder="New password" type="password" ng-model="newpassword">
+                        <input id="signin-button" type="button" ng-click="changepassword()" 
+                            value="Make change" />
                     </form> 
                 </div>
-                <p style='font-family: Copperplate, "Copperplate Gothic Light", 
-             fantasy; font-size: 200%; color: #073956'>Change Balance</p>
-                <div id="signup-form">
-                <div id="credit" ng-controller="balancectrl">
+
+                <p class="card-form-title">Change Balance</p>
+                <div id="signup-form" ng-controller="balancectrl">
                     <form method="get" name="credit_form">
-                        <input class="form-control" id="amount" name="amount" placeholder="Amount" ng-model="amount">
-                        <input id="signin-button" type="button" ng-click="balance()" value="Change Balance" />
+                        <input class="form-control" id="amount" name="amount" 
+                            placeholder="Amount" ng-model="amount">
+                        <input id="signin-button" type="button" ng-click="balance()" 
+                            value="Change Balance" />
+                    </form>
+                </div>
+                
+                <p class="card-form-title">Increment Counter</p>
+                <div id="signup-form" ng-controller="incrementctrl">
+                    <form method="get" name="increment_form">
+                        <input id="signin-button" type="button" ng-click="incrementcounter()" 
+                            value="Increment Counter" />
                     </form>
                 </div>
             </div>
