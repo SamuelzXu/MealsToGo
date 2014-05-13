@@ -66,7 +66,7 @@
 <script>
 function datactrl($scope, $http) {
     $scope.getcur = function(fun) {
-        $http({method : 'GET', url : 'http://pocketask-api.herokuapp.com/requests/current'})
+        $http({method : 'GET', url : 'https://pocketask-api.herokuapp.com/requests/current'})
         .success(function(data) {
             callbackfun(data);
         })
@@ -78,7 +78,7 @@ function datactrl($scope, $http) {
         document.getElementById("cur").innerHTML = "Current Requests: " + data['total'];
     };
     $scope.gettotal = function(fun) {
-        $http({method : 'GET', url : 'http://pocketask-api.herokuapp.com/requests/total'})
+        $http({method : 'GET', url : 'https://pocketask-api.herokuapp.com/requests/total'})
         .success(function(data) {
             callbackfunt(data);
         })

@@ -4,7 +4,7 @@ function getUnassigned() {
         type : "GET",
         dataType : 'json',
         async : false,
-        url: "http://pocketask-api.herokuapp.com/requests/uncompleted",
+        url: "https://pocketask-api.herokuapp.com/requests/uncompleted",
         success : function(data) {
             result = data;
         }
@@ -90,7 +90,7 @@ function profilectrl($scope, $http) {
         window.location=('/admin/admin_history?id=' + profile._id);
     };
     $scope.getProfile = function(callbackfun) {
-        $http({method : 'GET', url : 'http://pocketask-api.herokuapp.com/restaurants/list'})
+        $http({method : 'GET', url : 'https://pocketask-api.herokuapp.com/restaurants/list'})
             .success(function(data) {
                 callbackfun(data);
             }).error(function() {
@@ -195,7 +195,7 @@ function getDrivers() {
 		type : 'GET',
 		dataType : 'json',
 		async : false,
-		url : 'http://pocketask-api.herokuapp.com/drivers/available',
+		url : 'https://pocketask-api.herokuapp.com/drivers/available',
 		success : function(data) {
 			result = data;
 		}
@@ -238,7 +238,7 @@ function driverctrl($scope, $http) {
 	});
 
 	$scope.assign = function(driver) {
-		$http({method :'get', url :'http://pocketask-api.herokuapp.com/requests/assign', 
+		$http({method :'get', url :'https://pocketask-api.herokuapp.com/requests/assign', 
             params : {
                 id : getIdFromUrl(window.location.href), 
                 driver : driver._id
@@ -252,7 +252,7 @@ function driverctrl($scope, $http) {
     }
     
     $scope.change = function(driver) {
-		$http({method :'get', url :'http://pocketask-api.herokuapp.com/requests/give_order', 
+		$http({method :'get', url :'https://pocketask-api.herokuapp.com/requests/give_order', 
             params : {
                 id : getIdFromUrl(window.location.href), 
                 driver : driver._id
