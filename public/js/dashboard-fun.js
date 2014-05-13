@@ -24,16 +24,6 @@ function checkTime(i) {
     return i;
 }
 
-// function getCookie(cname) {
-//     var name = cname + "=";
-//     var ca = document.cookie.split(';');
-//     for (var i = 0; i < ca.length; i++) {
-//         var c = ca[i].trim();
-//         if (c.indexOf(name) === 0) return c.substring(name.length,c.length);
-//     }
-//     return "";
-// }
-
 function getCookie(cname) {
     if(localStorageIsExist()){
         return localStorage.getItem(cname);
@@ -42,14 +32,25 @@ function getCookie(cname) {
     }
 }
 
-function updateHistoryTable(restaurant) {
-    var history = restaurant.request_history.reverse();
+function updateHistoryTable() {
+    // var history = restaurant.request_history.reverse();
+    var history = null;
+    $.ajax({
+        type : "GET",
+        dataType : "json",
+        async : false,
+        url : "https://pocketask-api.herokuapp.com/requests/restaurant_history?id=53712dea99adb802004efe49",
+        success : function(data) {
+            history = data;
+        }
+    });
     var tbody = document.createElement('tbody');
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 3; i++) {
         var tr = document.createElement('tr');
         var td = document.createElement('td');
-        td.appendChild(document.createTextNode(new Date(history[i].date).toString().substring(0,25)));
+        td.appendChild(document.createTextNode(new Date(history[i].requestedAt).toString().substring(0,25)));
         tr.appendChild(td);
+        td.appendChild(document.createTextNode(history[i].status));
         tbody.appendChild(tr);
     }
     document.getElementById('history-table-body').innerHTML = tbody.innerHTML;
@@ -57,19 +58,19 @@ function updateHistoryTable(restaurant) {
 
 function requestDriver() {
     // var param = "?name=" + getCookie('name');
-    var newrest = null;
+    // var newrest = null;
     $.ajax({
         type : "GET",
         crossDomain : true,
         url : "https://pocketask-api.herokuapp.com/requests/request_driver?id=53712dea99adb802004efe49",
         success : function(data) {
             newrest = data;
-            document.getElementById("current").innerHTML = newrest.current_requests;
+            document.getElementById("current").innerHTML = newrest.currentRequests;
             document.getElementById("current").style.backgroundColor = "red";
             setTimeout(function() {
                 document.getElementById("current").style.backgroundColor = "white";
             }, 5000);
-            updateHistoryTable(newrest);
+            updateHistoryTable();
         }
     });
 }
@@ -146,7 +147,7 @@ function mobilectrl($scope, $location, $http) {
         $http({method :'GET', url :'https://pocketask-api.herokuapp.com/restaurants/mobile/delete?id=53712dea99adb802004efe49', 
             params: {number : number}})
         .success(function(data){
-            $scope.mobiles.splice(0,1);
+            $scope.mobiles.splice($scope.mobiles.indexOf(number) - 1, 1);
         })
         .error(function(data){
             alert('Cannot delete phone number, please try again.');

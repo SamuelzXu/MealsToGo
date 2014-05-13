@@ -122,19 +122,24 @@
     <script>
         var cancel = false;
         var countdownNum = 10;
+        // var time = new Date().getTime();
+        // var timevar = time;
+        var time;
         $('#confirm-modal').on('show.bs.modal', function() {
+            var time = new Date().getTime();
+            timevar = time;
             incTimer();
             document.getElementById('timeLeft').innerHTML =
                 'The request will be proceed in: 10 seconds';
             function incTimer() {
                 cancel = false;
                 setTimeout(function() {
-                    if(countdownNum !== 0 && cancel === false) {
+                    if(countdownNum !== 0 && cancel === false && timevar === time) {
                         countdownNum--;
                         document.getElementById('timeLeft').innerHTML =
                             'The request will be proceed in: ' + countdownNum + ' seconds';
                         incTimer();
-                    } else if(countdownNum === 0 && cancel === false) {
+                    } else if(countdownNum === 0 && cancel === false && timevar === time) {
                         cancel = false;
                         countdownNum = 10;
                         $('#confirm-modal').modal('hide');
@@ -143,13 +148,18 @@
                 },1000);
             }
         });
+        $('#confirm-modal').on('hidden.bs.modal', function() {
+            countdownNum = 10;
+            timevar = 0;
+        })
         function abort() {
             cancel = true;
-            countdownNum = 10;
+            timevar = 0;
+            // countdownNum = 10;
         }
         function proceed() {
             cancel = true;
-            countdownNum = 10;
+            // countdownNum = 10;
             requestDriver();
         }
     </script>
