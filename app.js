@@ -1,20 +1,24 @@
 if(process.env.NEW_RELIC_LICENSE_KEY){
     require('newrelic');
 }
-var express    = require('express');
-var app        = express();
+var express      = require('express');
+var app          = express();
 
-var http       = require('http');
-var logger     = require('morgan');
-var bodyParser = require('body-parser');
-var compress   = require('compression');
-var helmet     = require('helmet');
-var path       = require('path');
+var http         = require('http');
+var logger       = require('morgan');
+var session      = require('express-session');
+var cookieParser = require('cookie-parser');
+var bodyParser   = require('body-parser');
+var compress     = require('compression');
+var helmet       = require('helmet');
+var path         = require('path');
+var RedisStore   = require('connect-redis')(session);
 
 // Local Express JS Configuration
 app.set('port', process.env.PORT || 3000);
 app.enable('trust proxy');
 app.disable('x-powered-by');
+app.disable('etag');
 app.use(logger('dev'));
 app.use(bodyParser());
 app.use(compress());
@@ -25,6 +29,21 @@ app.use(helmet.hsts());
 app.use(helmet.iexss());
 app.use(helmet.contentTypeOptions());
 app.use(helmet.cacheControl());
+
+if(process.env.REDISCLOUD_URL){
+    app.use(cookieParser());
+    app.use(session({
+        key: 'sessionId',
+        secret: 'pocketask-dev@2014Apr3',
+        cookie: {
+            maxAge: 12*60*60*1000
+        },
+        store: new RedisStore({
+            url: process.env.REDISCLOUD_URL,
+            ttl: 12*60*60
+        })
+    }));
+}
 
 app.use('/js', express.static(__dirname + '/public/js'));
 app.use('/css', express.static(__dirname + '/public/css'));
