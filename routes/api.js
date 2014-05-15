@@ -23,7 +23,25 @@ module.exports = function(express, app){
                 res.json(400, error.message);
             }
             body = JSON.parse(body);
-            res.json(200, body);
+            req.session.regenerate(function(err){
+                if (err) {
+                    console.error('Unable to regenerate a new session.');
+                    res.json(400, 'Unable to regenerate a new session.');
+                }
+                req.session.login = true;
+                req.session.role = body.role;
+                res.json(200, {token: body.token});
+            });
+        });
+    });
+
+    router.get('/logout', function(req, res){
+        req.session.destroy(function(err){
+            if (err) {
+                console.error('Unable to destroy the session.');
+                res.json(400, 'Unable to destroy the session. Please try again.');
+            }
+            res.redirect('/signin');
         });
     });
 

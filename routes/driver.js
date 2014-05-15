@@ -5,5 +5,9 @@ module.exports = function(express, app, path){
         res.sendfile(path.dirname(__dirname) + '/public/driver.html');
     });
 
-    app.use('/driver', router);
+    app.use('/driver', function(req, res, next){
+        if (req.session.role !== "driver")
+            res.redirect('/signin');
+        next();
+    }, router);
 };

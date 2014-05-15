@@ -8,11 +8,11 @@ var http         = require('http');
 var logger       = require('morgan');
 var session      = require('express-session');
 var cookieParser = require('cookie-parser');
+var RedisStore   = require('connect-redis')(session);
 var bodyParser   = require('body-parser');
 var compress     = require('compression');
 var helmet       = require('helmet');
 var path         = require('path');
-var RedisStore   = require('connect-redis')(session);
 
 // Local Express JS Configuration
 app.set('port', process.env.PORT || 3000);
@@ -30,8 +30,8 @@ app.use(helmet.iexss());
 app.use(helmet.contentTypeOptions());
 app.use(helmet.cacheControl());
 
+app.use(cookieParser());
 if(process.env.REDISCLOUD_URL){
-    app.use(cookieParser());
     app.use(session({
         key: 'sessionId',
         secret: 'pocketask-dev@2014Apr3',
@@ -43,6 +43,14 @@ if(process.env.REDISCLOUD_URL){
             ttl: 12*60*60
         })
     }));
+} else {
+    app.use(session({
+        key: 'sessionId',
+        secret: 'pocketask-dev@2014Apr3',
+        cookie: {
+            maxAge: 12*60*60*1000
+        }
+    }));
 }
 
 app.use('/js', express.static(__dirname + '/public/js'));
@@ -52,10 +60,27 @@ app.use('/partial', express.static(__dirname + '/public/partial'));
 
 // Routes to access static pages
 require('./routes')(express, app, path);
+
+require('./routes/api')(express, app);
+
+app.use(function(req, res, next){
+    console.log(req.session);
+    if (!req.session.login) {
+        res.redirect('/signin');
+    }
+    next();
+});
+
+app.get('/dashboard', function(req, res){
+    if (!req.session.role) {
+        res.redirect('/signin');
+    }
+    res.redirect('/' + req.session.role +'/dashboard');
+});
+
 require('./routes/restaurant')(express, app, path);
 require('./routes/driver')(express, app, path);
 require('./routes/admin')(express, app, path);
-require('./routes/api')(express, app);
 
 // Initialize http server on specified port
 http.globalAgent.maxSockets = 25;
