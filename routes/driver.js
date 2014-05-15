@@ -6,4 +6,4 @@ module.exports = function(express, app, path){
     });
 
     app.use('/driver', router);
-}
+};

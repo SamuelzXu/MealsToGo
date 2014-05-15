@@ -1,12 +1,12 @@
 if(process.env.NEW_RELIC_LICENSE_KEY){
-	require('newrelic');
+    require('newrelic');
 }
 var express    = require('express');
 var app        = express();
 
 var http       = require('http');
 var logger     = require('morgan');
-var bodyparser = require('body-parser');
+var bodyParser = require('body-parser');
 var compress   = require('compression');
 var helmet     = require('helmet');
 var path       = require('path');
@@ -14,7 +14,9 @@ var path       = require('path');
 // Local Express JS Configuration
 app.set('port', process.env.PORT || 3000);
 app.enable('trust proxy');
+app.disable('x-powered-by');
 app.use(logger('dev'));
+app.use(bodyParser());
 app.use(compress());
 
 // app.use(helmet.csp());
@@ -34,10 +36,11 @@ require('./routes')(express, app, path);
 require('./routes/restaurant')(express, app, path);
 require('./routes/driver')(express, app, path);
 require('./routes/admin')(express, app, path);
+require('./routes/api')(express, app);
 
 // Initialize http server on specified port
 http.globalAgent.maxSockets = 25;
 http.createServer(app).listen(app.get('port'), function(){
-	console.log('App is listening on port ' + app.get('port'));
+    console.log('App is listening on port ' + app.get('port'));
     console.log('Max. no. of open sockets is ' + http.globalAgent.maxSockets);
 });
