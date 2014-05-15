@@ -10,9 +10,12 @@ function signin(){
     var password = form.password.value;
     $.ajax({
         type : "POST",
-        url : "/user/login",
-        data : {name:name, password:password},
+        url : "http://localhost:3000/api/signin",
+        data : {username:name, password:password},
         dataType: 'json',
+        header: {
+            token : localStorage.getItem("token")
+        },
         statusCode: {
             400: function() {
                     document.getElementById("message-box").style.display = 'block';
@@ -37,13 +40,14 @@ function signin(){
                 },
             200: function(res) {
                 if(localStorageIsExist()){
-                    // localStorage.setItem('access_token', res.access_token);
-                    localStorage.setItem('name', res.name);
+                    localStorage.setItem('token', res.token);
+                    localStorage.setItem('expire', new Date().getTime());
                 } else {
-                    // $.cookie('access_token', res.access_token);
-                    $.cookie('name', res.name);
+                    $.cookie('token', res.token);
+                    $.cookie('expire', new Date().getTime());
                 }
-                window.location = res.redirectUrl;
+                // window.location = res.redirectUrl;
+                window.location = "/dashboard";
             }
         }
     });

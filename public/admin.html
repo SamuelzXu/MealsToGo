@@ -13,8 +13,18 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 </head>
-
-<body>
+    <script>
+    function checkstorage(){
+        var now = new Date().getTime();
+        var expire = localStorage.getItem("expire");
+        if (now - 10000 > expire) {
+            localStorage.removeItem("expire");
+            localStorage.removeItem("token");
+            window.location = "/signin";
+        }
+    }
+    </script>
+<body onload="checkstorage()">
 <div class="container">
     <header class="slide">
         <ul id="navToggle" class="burger slide">
@@ -77,5 +87,6 @@
     <script src="/js/admin-fun.js"></script>
     <script src="/js/jquery.plugin.js"></script>
     <script src="/js/jquery.keypad.js"></script>
+
 </body>
 </html>

@@ -4,7 +4,10 @@ function getUnassigned() {
         type : "GET",
         dataType : 'json',
         async : false,
-        url: "https://pocketask-api.herokuapp.com/requests/uncompleted",
+        headers : {
+            token : localStorage.getItem("token")
+        },
+        url: "http://localhost:8080/requests/uncompleted",
         success : function(data) {
             result = data;
         }
