@@ -63,17 +63,17 @@ require('./routes')(express, app, path);
 
 require('./routes/api')(express, app);
 
-app.use(function(req, res, next){
-    console.log(req.session);
-    if (!req.session.login) {
-        res.redirect('/signin');
-    }
-    next();
-});
+// app.use(function(req, res, next){
+//     console.log(req.session);
+//     if (!req.session.login) {
+//         res.redirect('/signin');
+//     }
+//     next();
+// });
 
 app.get('/dashboard', function(req, res){
     if (!req.session.role) {
-        res.redirect('/signin');
+        return res.redirect('/signin');
     }
     res.redirect('/' + req.session.role +'/dashboard');
 });

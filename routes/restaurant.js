@@ -1,6 +1,13 @@
 module.exports = function(express, app, path){
     var router = express.Router();
 
+    router.use(function(req, res, next){
+        if (req.session.role != 'restaurant') {
+            res.redirect('/signin');
+        }
+        next();
+    });
+
     router.get('/dashboard', function(req, res) {
         res.sendfile('./public/dashboard.html');
     });
@@ -17,9 +24,5 @@ module.exports = function(express, app, path){
         res.sendfile('./public/dashboard.html');
     });
 
-    app.use('/restaurant', function(req, res, next){
-        if (req.session.role !== "restaurant")
-            res.redirect('/signin');
-        next();
-    }, router);
+    app.use('/restaurant', router);
 };

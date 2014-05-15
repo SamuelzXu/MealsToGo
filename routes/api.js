@@ -43,9 +43,9 @@ module.exports = function(express, app){
         req.session.destroy(function(err){
             if (err) {
                 console.error('Unable to destroy the session.');
-                res.json(400, 'Unable to destroy the session. Please try again.');
+                return res.json(400, 'Unable to destroy the session. Please try again.');
             }
-            res.redirect('/signin');
+            res.redirect(200, '/signin');
         });
     });
 

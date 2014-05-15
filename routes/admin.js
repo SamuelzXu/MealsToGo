@@ -1,6 +1,13 @@
 module.exports = function(express, app, path){
     var router = express.Router();
 
+    router.use(function(req, res, next){
+        if (req.session.role != 'admin') {
+            res.redirect('/signin');
+        }
+        next();
+    });
+
     router.get('/dashboard', function(req, res) {
         res.sendfile(path.dirname(__dirname) + '/public/admin.html');
     });
@@ -33,9 +40,5 @@ module.exports = function(express, app, path){
         res.sendfile(path.dirname(__dirname) + '/public/signup.html');
     });
 
-    app.use('/admin', function(req, res, next){
-        if (req.session.role !== "admin")
-            res.redirect('/signin');
-        next();
-    }, router);
+    app.use('/admin', router);
 };
