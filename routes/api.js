@@ -6,8 +6,7 @@ module.exports = function(express, app){
 
     router.post('/signin', function(req, res){
         if (!req.body.username || !req.body.password) {
-            res.json(400, 'At least one of the required query parameters is missing.');
-            throw new Error('At least one of the required query parameters is missing.');
+            return res.json(400, 'At least one of the required query parameters is missing.');
         }
         var requestUrl = {
             url: apiAddress,
@@ -49,5 +48,12 @@ module.exports = function(express, app){
         });
     });
 
-    app.use('/api', router);
+    router.get('/dashboard', function(req, res){
+        if (!req.session.role) {
+            return res.redirect('/signin');
+        }
+        res.redirect('/' + req.session.role +'/dashboard');
+    });
+
+    app.use('/', router);
 };
