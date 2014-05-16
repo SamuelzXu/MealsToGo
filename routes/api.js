@@ -39,7 +39,7 @@ module.exports = function(express, app){
         });
     });
 
-    router.get('/logout', function(req, res){
+    router.get('/signout', function(req, res){
         req.session.destroy(function(err){
             if (err) {
                 console.error('Unable to destroy the session.');
