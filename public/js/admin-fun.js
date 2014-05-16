@@ -192,8 +192,9 @@ function balancectrl($scope, $http) {
 function incrementctrl($scope, $http) {
     $scope.name = a;
     $scope.fun = function(name) {
-        $http({method : 'GET', url : host + 'admin/restaurant/increment_counter',
-            params : {name : name}})
+        $http({method : 'GET', url : host + 'requests/request_driver',
+            params : {id : a},
+            headers : {"token" : localStorage.getItem("token")}})
         .success(function(data) {
             location.reload();
         })

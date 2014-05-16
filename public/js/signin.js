@@ -10,7 +10,7 @@ function signin(){
     var password = form.password.value;
     $.ajax({
         type : "POST",
-        url : "http://localhost:3000/api/signin",
+        url : "http://localhost:3000/signin",
         data : {username:name, password:password},
         dataType: 'json',
         header: {
@@ -41,10 +41,12 @@ function signin(){
             200: function(res) {
                 if(localStorageIsExist()){
                     localStorage.setItem('token', res.token);
-                    localStorage.setItem('expire', new Date().getTime() + 12 * 60 * 60 * 1000);
+                    // localStorage.setItem('expire', new Date().getTime() + 12 * 60 * 60 * 1000);
+                    localStorage.setItem('expire', new Date().getTime() + 5000);
                 } else {
-                    $.cookie('token', res.token);
-                    $.cookie('expire', new Date().getTime() + 12 * 60 * 60 * 1000);
+                    var now = new Date();
+                    var expire = now.setHours(now.getHours() + 12);
+                    document.cookie = "token = res.token, expires = expire";
                 }
                 // window.location = res.redirectUrl;
                 window.location = "/dashboard";
