@@ -1,3 +1,4 @@
+var host = "http://localhost:8080/";
 function getUnassigned() {
     var result = null;
     $.ajax({
@@ -7,7 +8,7 @@ function getUnassigned() {
         headers : {
             token : localStorage.getItem("token")
         },
-        url: "http://localhost:8080/requests/uncompleted",
+        url: host + "requests/uncompleted",
         success : function(data) {
             result = data;
         }
@@ -21,7 +22,10 @@ function getRestaurant(id) {
         type : "GET",
         dataType : "json",
         async : false,
-        url: "https://pocketask-api.herokuapp.com/restaurants/get?id=" + id,
+        url: host + "restaurants/get?id=" + id,
+        headers : {
+            token : localStorage.getItem("token")
+        },
         success : function(data) {
             result = data;
         }
@@ -35,7 +39,10 @@ function getHistory(id) {
         type : "GET",
         dataType : "json",
         async : false,
-        url: "https://pocketask-api.herokuapp.com/requests/restaurant_history?id=" + id,
+        url: host + "requests/restaurant_history?id=" + id,
+        headers : {
+            token : localStorage.getItem("token")
+        },
         success : function(data) {
             result = data;
         }
@@ -68,7 +75,10 @@ function logout() {
         type: "GET",
         dataType : 'json',
         async : false,
-        url: "/user/logout",
+        url:  host + "user/logout",
+        headers : {
+            token : localStorage.getItem("token")
+        },
         success : function(data) {
             window.location = data.redirectUrl;
         }
@@ -78,7 +88,10 @@ function logout() {
 function clearcounter() {
     $.ajax({
         type : "GET",
-        url : "/admin/restaurant/clear_counter",
+        url : host + "requests/clear",
+        headers : {
+            token : localStorage.getItem("token")
+        },
         success : function(data) {
             alert(data);
         },
@@ -93,7 +106,7 @@ function profilectrl($scope, $http) {
         window.location=('/admin/admin_history?id=' + profile._id);
     };
     $scope.getProfile = function(callbackfun) {
-        $http({method : 'GET', url : 'https://pocketask-api.herokuapp.com/restaurants/list'})
+        $http({method : 'GET', url : host + 'restaurants/list', headers : {'token' : localStorage.getItem("token")}})
             .success(function(data) {
                 callbackfun(data);
             }).error(function() {
@@ -142,8 +155,9 @@ function changectrl($scope, $http) {
     $scope.name = a;
     $scope.newpassword = form.new.value;
     $scope.fun = function(name, newpassword) {
-        $http({method : 'GET', url : '/admin/user/changepassword', 
-            params : {name : name, newPassword : newpassword}})
+        $http({method : 'PUT', url : host + 'users/reset', 
+            data : {id : a, newpassword : newpassword},
+            headers : {"token" : localStorage.getItem("token")}})
         .success(function(data) {
             form.new.value = '';
             alert('password changed successfully.');
@@ -161,8 +175,8 @@ function balancectrl($scope, $http) {
     $scope.name = a;
     $scope.amount = credit_form.amount.value;
     $scope.fun = function(name, amount) {
-        $http({method : 'GET', url : '/admin/restaurant/credit?', 
-            params : {name : name, amount : amount}})
+        $http({method : 'GET', url : host + 'restaurants/credit', 
+            params : {id : a, amount : amount}, headers : {"token" : localStorage.getItem("token")}})
         .success(function(data) {
             location.reload();
         })
@@ -178,7 +192,7 @@ function balancectrl($scope, $http) {
 function incrementctrl($scope, $http) {
     $scope.name = a;
     $scope.fun = function(name) {
-        $http({method : 'GET', url : '/admin/restaurant/increment_counter?',
+        $http({method : 'GET', url : host + 'admin/restaurant/increment_counter',
             params : {name : name}})
         .success(function(data) {
             location.reload();
@@ -198,7 +212,10 @@ function getDrivers() {
 		type : 'GET',
 		dataType : 'json',
 		async : false,
-		url : 'https://pocketask-api.herokuapp.com/drivers/available',
+		url : host + 'drivers/available',
+        headers : {
+            token : localStorage.getItem("token")
+        },
 		success : function(data) {
 			result = data;
 		}
@@ -241,11 +258,11 @@ function driverctrl($scope, $http) {
 	});
 
 	$scope.assign = function(driver) {
-		$http({method :'get', url :'https://pocketask-api.herokuapp.com/requests/assign', 
+		$http({method :'get', url : host + 'requests/assign', 
             params : {
                 id : getIdFromUrl(window.location.href), 
                 driver : driver._id
-            }})
+            }, headers : {'token' : localStorage.getItem("token")}})
         .success(function(data){
             history.back();
         })
@@ -255,11 +272,11 @@ function driverctrl($scope, $http) {
     }
     
     $scope.change = function(driver) {
-		$http({method :'get', url :'https://pocketask-api.herokuapp.com/requests/give_order', 
+		$http({method :'get', url : host + 'requests/give_order', 
             params : {
                 id : getIdFromUrl(window.location.href), 
                 driver : driver._id
-            }})
+            }, headers : {'token' : localStorage.getItem("token")}})
         .success(function(data){
             history.back();
         })
@@ -267,4 +284,18 @@ function driverctrl($scope, $http) {
             alert(data + ' cannot change status, please try again.');
         });
     };
+}
+
+function checktoken(){
+    var now = new Date().getTime();
+    if (localStorageIsExist()){
+        var expire = localStorage.getItem("expire");
+        if (now > expire) {
+            localStorage.removeItem("expire");
+            localStorage.removeItem("token");
+            window.location = "/signin";
+        }
+    } else if (getCookie("token") === null) {
+        window.location = "/signin";
+    }
 }

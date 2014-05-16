@@ -1,3 +1,5 @@
+var host = "http://localhost:8080/";
+
 function localStorageIsExist(){
     if ('localStorage' in window && window.localStorage !== null){
         return true;
@@ -39,7 +41,10 @@ function updateHistoryTable() {
         type : "GET",
         dataType : "json",
         async : false,
-        url : "https://pocketask-api.herokuapp.com/requests/restaurant_history?id=53712dea99adb802004efe49",
+        url : host + "requests/restaurant_history?id=53712dea99adb802004efe49",
+        headers : {
+            token : localStorage.getItem("token")
+        },
         success : function(data) {
             history = data;
         }
@@ -62,7 +67,10 @@ function requestDriver() {
     $.ajax({
         type : "GET",
         crossDomain : true,
-        url : "https://pocketask-api.herokuapp.com/requests/request_driver?id=53712dea99adb802004efe49",
+        url : host + "requests/request_driver?id=53712dea99adb802004efe49",
+        headers : {
+            token : localStorage.getItem("token")
+        },
         success : function(data) {
             newrest = data;
             document.getElementById("current").innerHTML = newrest.currentRequests;
@@ -81,7 +89,10 @@ function getRestaurant(){
         type : "GET",
         dataType : 'json',
         async : false,
-        url : "https://pocketask-api.herokuapp.com/restaurants/get?id=53712dea99adb802004efe49",
+        url : host + "restaurants/get",
+        headers : {
+            token : localStorage.getItem("token")
+        },
         success : function(data) {
             result = data;
         }
@@ -112,7 +123,10 @@ function getHistory(){
         type: "GET",
         dataType : 'json',
         async : false,
-        url : "https://pocketask-api.herokuapp.com/requests/restaurant_history?id=53712dea99adb802004efe49",
+        url : host + "requests/restaurant_history?id=53712dea99adb802004efe49",
+        headers : {
+            token : localStorage.getItem("token")
+        },
         success : function(data) {
             result = data;
         }
@@ -126,7 +140,10 @@ function getMobilePhones() {
         type: "GET",
         dataType : 'json',
         async : false,
-        url: "https://pocketask-api.herokuapp.com/restaurants/mobile/get?id=53712dea99adb802004efe49",
+        url: host + "restaurants/mobile/get?id=53712dea99adb802004efe49",
+        headers : {
+            token : localStorage.getItem("token")
+        },
         success : function(data) {
             result = data;
         }
@@ -166,8 +183,10 @@ function addnumberctrl($scope, $http) {
     $scope.addNumber = function() {
         $.ajax({
             type : "GET",
-            // url : "/restaurant/add_mobile_phone?number=" + add_number_form.number.value,
-            url : "https://pocketask-api.herokuapp.com/restaurants/mobile/add?id=53712dea99adb802004efe49&number=" + add_number_form.number.value,
+            url : host + "restaurants/mobile/add?id=53712dea99adb802004efe49&number=" + add_number_form.number.value,
+            headers : {
+            token : localStorage.getItem("token")
+        },
             statusCode: {
                 400: function() {
                     $scope.displayMessage('The phone number is invalid');

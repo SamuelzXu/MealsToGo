@@ -1,4 +1,8 @@
-<div class="wrapper" style="min-height: 595px;">
+<script>
+checktoken("uncompleted-wrapper");
+</script>
+<div class="wrapper" style="min-height: 595px;" id="uncompleted-wrapper">
+
     <div class="col-md-7" id="outer-box">
         <div class="pad">
             <div class="card-long" id="history-cardd" ng-controller="unctrl">
@@ -44,7 +48,7 @@
         data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="height: 60px;">
                     <button type="button" class="cclose" data-dismiss="modal" 
                         aria-hidden="true">&times;</button>
                 </div>
@@ -66,31 +70,25 @@
 <script>
 function datactrl($scope, $http) {
     $scope.getcur = function(fun) {
-        $http({method : 'GET', url : 'https://pocketask-api.herokuapp.com/requests/current'})
+        $http({method : 'GET', url : 'http://localhost:8080/requests/current', headers : {'token' : localStorage.getItem("token")}})
         .success(function(data) {
-            callbackfun(data);
+            document.getElementById("cur").innerHTML = "Current Requests: " + data['currentRequests']['currentRequests'];
         })
         .error(function(data) {
             alert(data + ' can not get current number of requests.');
         });
     };
-    function callbackfun(data){
-        document.getElementById("cur").innerHTML = "Current Requests: " + data['total'];
-    };
     $scope.gettotal = function(fun) {
-        $http({method : 'GET', url : 'https://pocketask-api.herokuapp.com/requests/total'})
+        $http({method : 'GET', url : 'http://localhost:8080/requests/total', headers : {'token' : localStorage.getItem("token")}})
         .success(function(data) {
-            callbackfunt(data);
+            document.getElementById("total").innerHTML = "Current Requests: " + data['totalRequests'];
         })
         .error(function(data) {
             alert(data + ' can not get total number of requests.');
         });
     };
-    function callbackfunt(data){
-        document.getElementById("total").innerHTML = "Total requests: " + data['count'];
-    };
-    $scope.getcur(callbackfun);
-    $scope.gettotal(callbackfunt);
+    $scope.getcur();
+    $scope.gettotal();
 }
 function unctrl($scope, $http) {
     var uns = getUnassigned();

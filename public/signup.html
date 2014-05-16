@@ -13,7 +13,7 @@
 </head>
 <body>
     <div id="cot" class="wrapper">
-        <img id="logo-big" src="img/logo-big.png" >          
+        <img id="logo-big" src="../img/logo-big.png" >          
         <p class="intro">User Sign Up </p>
         <div id="signup-form">
             <div class="success-box" id="success-box">
@@ -42,7 +42,7 @@
                 </select>
                 <input class="form-control" id="phone" name="phone" placeholder="Phone number" parsley-type="phone" parsley-required="true">
                 <select name="role" class="form-control" parsley-required="true">
-                    <option value=0>Restaurant</option>
+                    <option value="restaurant">Restaurant</option>
                 </select>
                 <input class="form-control" id="value" name="rate" parsley-required="true" placeholder="Rate">
                 <input id="button2" type="button" class="btn btn-primary" onclick="sub_signin()" value="sign up">
@@ -53,12 +53,15 @@
     function generate(){
         $.ajax({
             type : "GET",
-            url : "/admin/restaurant/generate_name",
+            url : "http://localhost:8080/users/username/generate",
             data : {},
             dataType : 'json',
+            headers : {
+                token : localStorage.getItem("token")
+            },
             statusCode : {
                 200 : function(res){
-                    document.getElementById('name').value = res.name;
+                    document.getElementById('name').value = res.username;
                     
                 }
             }
@@ -74,15 +77,18 @@
         var rate = form.rate.value;
         $.ajax({
             type : "POST",
-            url : "/user/signup",
-            data : {name:name, password:password, role:role},
+            url : "/users/create",
+            data : {username:name, password:password, role:role},
             dataType : 'json',
+            headers : {
+                token : localStorage.getItem("token")
+            },
             statusCode : {
                 201: function(){
                     $.ajax({
                         type: "POST",
                         url: "/admin/restaurant/create",
-                        data: {name:name, fullname: fullname, address:address, phone:phone, rate:rate},
+                        data: {username:name, fullname: fullname, address:address, phone:phone, rate:rate},
                         dataType: 'json',
                         statusCode: {
                             201: function(){
@@ -127,14 +133,14 @@
             head_node.appendChild(link_tag);
         }
         includeCSSfile('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
-        includeCSSfile('css/signup.css');
+        includeCSSfile('../css/signup.css');
     </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/labjs/2.0.3/LAB.min.js"></script>
     <script>
         $LAB
         .script("//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js").wait()
         .script("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
-        .script("js/parsley.js")
+        .script("../js/parsley.js")
     </script>
 </body>
 </html>

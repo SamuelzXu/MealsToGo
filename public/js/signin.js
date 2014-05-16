@@ -41,10 +41,10 @@ function signin(){
             200: function(res) {
                 if(localStorageIsExist()){
                     localStorage.setItem('token', res.token);
-                    localStorage.setItem('expire', new Date().getTime());
+                    localStorage.setItem('expire', new Date().getTime() + 12 * 60 * 60 * 1000);
                 } else {
                     $.cookie('token', res.token);
-                    $.cookie('expire', new Date().getTime());
+                    $.cookie('expire', new Date().getTime() + 12 * 60 * 60 * 1000);
                 }
                 // window.location = res.redirectUrl;
                 window.location = "/dashboard";
