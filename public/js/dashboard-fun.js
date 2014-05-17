@@ -8,6 +8,22 @@ function localStorageIsExist() {
     return false;
 }
 
+function checktoken(){
+    var now = new Date().getTime();
+    if (localStorageIsExist()){
+        var expire = localStorage.getItem("expire");
+        if (now > expire) {
+            localStorage.removeItem("expire");
+            localStorage.removeItem("token");
+            window.location = "/signin";
+            throw('token expired');
+        }
+    } else if (getCookie("token") === null) {
+        window.location = "/signin";
+        throw('token expired');
+    }
+}
+
 function startTime() {
     var today = new Date();
     var h = today.getHours();
@@ -51,6 +67,7 @@ function updateHistoryTable() {
 }
 
 function requestDriver() {
+    checktoken();
     $.ajax({
         type : "GET",
         crossDomain : true,
@@ -71,6 +88,7 @@ function requestDriver() {
 }
 
 function getRestaurant() {
+    checktoken();
     var result = null;
     $.ajax({
         type : "GET",
@@ -88,6 +106,7 @@ function getRestaurant() {
 }
 
 function checkDistance() {
+    checktoken();
     var address1 = restaurant.address;
     var address2 = form.address2_st.value + ', Ontario';
     $.ajax({
@@ -116,23 +135,31 @@ function checkDistance() {
 }
 
 function logout() {
-    if(localStorageIsExist()) {
-        localStorage.removeItem('name');
-    } else {
-        $.removeCookie('name');
-    }
+    checktoken();
     $.ajax({
-        type : "GET",
+        type: "GET",
         dataType : 'json',
         async : false,
-        url : host + "users/logout",
-        success : function(data) {
-            window.location = data.redirectUrl;
+        url : "/signout",
+        headers : {
+            token : localStorage.getItem("token")
+        },
+        statusCode: {
+            200 : function(data) {
+                if(localStorageIsExist()) {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('expire');
+                } else {
+                    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+                }
+                window.location = data.redirect;
+            }
         }
     });
 }
 
 function getHistory(limit) {
+    checktoken();
     var result = null;
     $.ajax({
         type: "GET",
@@ -150,6 +177,7 @@ function getHistory(limit) {
 }
 
 function getMobilePhones() {
+    checktoken();
     var result = null;
     $.ajax({
         type: "GET",
@@ -189,6 +217,7 @@ function mobilectrl($scope, $location, $http) {
         $scope.mobiles.push(mobile);
     });
     $scope.del = function(mobile) {
+        checktoken();
         $.ajax({
             type : "GET",
             url : host + "restaurants/mobile/delete?number=" + mobile.number,
@@ -216,6 +245,7 @@ function addnumberctrl($scope, $http) {
         }, 5000);
     };
     $scope.addNumber = function() {
+        checktoken();
         $.ajax({
             type : "GET",
             url : host + "restaurants/mobile/add?number=" + add_number_form.number.value,

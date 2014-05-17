@@ -45,7 +45,7 @@
             <div class="col-md-12">
 
                 <div id="time">
-                <div id="counter" style="width: 230px; margin-left: auto; margin-right: auto; padding-top: 50px">
+                <div id="counter" style="width: 300px; margin-left: auto; margin-right: auto; padding-top: 50px">
                     <div class="clock"></div>
                 </div>
                     <p id="delivery-text">deliveries completed to date</p>
@@ -169,13 +169,23 @@
         .script("//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js").wait()
         .script("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
         .script("//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js")
-        .script("js/trunk.js")
+        .script("js/trunk.js")        
         .script("js/flipclock.min.js").wait(function(){
+            var total=1;
+            $.ajax({
+                type : "get",
+                dataType : "json",
+                async : false,
+                url : "https://pocketask-api.herokuapp.com/requests/total",
+                success : function(data) {
+                    total = data['totalRequests'];
+                }
+            })
             var clock = $('.clock').FlipClock(100, {
                 clockFace: 'Counter',
                 autoStart: false
                 });
-            clock.setValue(600);
+            clock.setValue(total);
         })
         .script("js/map.js").wait(function(){
             function loadScript() {

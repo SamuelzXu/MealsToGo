@@ -151,7 +151,6 @@ function histctrl($scope, $location) {
     $scope.id = ($location.search()).id;
     var restaurant = getRestaurant($scope.id);
     var fullname = restaurant.fullname;
-    var id = restaurant._id;
     var address = restaurant.address;
     var phone = restaurant.phone;
     var current = restaurant.currentRequests;
@@ -169,7 +168,6 @@ function histctrl($scope, $location) {
         }
         $scope.hists.push(value);
     });
-    document.getElementById("id").innerHTML = "ID: " + id;
     document.getElementById("fullname").innerHTML = "Full Name: " + fullname;
     document.getElementById("address").innerHTML = "Address: " + address;
     document.getElementById("phone").innerHTML = "Phone: " + phone;
