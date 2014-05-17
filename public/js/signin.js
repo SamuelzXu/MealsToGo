@@ -41,8 +41,9 @@ function signin(){
             200: function(res) {
                 if(localStorageIsExist()){
                     localStorage.setItem('token', res.token);
-                    // localStorage.setItem('expire', new Date().getTime() + 12 * 60 * 60 * 1000);
-                    localStorage.setItem('expire', new Date().getTime() + 5000);
+                    localStorage.setItem('expire', new Date().getTime() + 12 * 60 * 60 * 1000);
+                    // 5 second testing token
+                    // localStorage.setItem('expire', new Date().getTime() + 5000);
                 } else {
                     var now = new Date();
                     var expire = now.setHours(now.getHours() + 12);

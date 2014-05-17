@@ -86,21 +86,25 @@ function getCookie(cname) {
 }
 
 function logout() {
-    if(localStorageIsExist()) {
-        localStorage.removeItem('name');
-    } else {
-        $.removeCookie('name');
-    }
+    checktoken();
     $.ajax({
         type: "GET",
         dataType : 'json',
         async : false,
-        url:  host + "user/logout",
+        url : "http://localhost:3000/signout",
         headers : {
             token : localStorage.getItem("token")
         },
-        success : function(data) {
-            window.location = data.redirectUrl;
+        statusCode: {
+            200 : function(data) {
+                if(localStorageIsExist()) {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('expire');
+                } else {
+                    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+                }
+                window.location = data.redirect;
+            }
         }
     });
 }
