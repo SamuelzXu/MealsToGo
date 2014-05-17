@@ -10,7 +10,7 @@ function signin(){
     var password = form.password.value;
     $.ajax({
         type : "POST",
-        url : "http://localhost:3000/signin",
+        url : "/signin",
         data : {username:name, password:password},
         dataType: 'json',
         header: {
