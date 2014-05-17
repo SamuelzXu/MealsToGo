@@ -237,6 +237,52 @@ function incrementctrl($scope, $http) {
     };
 }
 
+function uncompletedctrl($scope, $http) {
+    var uns = getUnassigned();
+    $scope.uns = [];
+    angular.forEach(uns, function(value) {
+        value.requestedAt = new Date(value.requestedAt).toString().substring(0, 25);
+        $scope.uns.push(value);
+    });
+    $scope.assign = function(id) {
+        window.location=('/admin/assigndriver?id=' + id);
+    }
+}
+
+function datactrl($scope, $http) {
+    $scope.getcur = function(fun) {
+        $.ajax({
+            type : 'GET',
+            url : host + 'requests/current',
+            headers : {
+                token : localStorage.getItem("token")
+            },
+            success : function(data) {
+                document.getElementById("cur").innerHTML = "Current Requests: " +
+                    data['currentRequests'];
+            },
+            error : function(data) {
+                alert('Cannot get current number of requests.');
+            }
+        });
+    };
+    $scope.gettotal = function(fun) {
+        $.ajax({
+            type : 'GET',
+            url : host + 'requests/total',
+            success : function(data) {
+                document.getElementById("total").innerHTML = "Total Requests: " +
+                    data['totalRequests'];
+            },
+            error : function(data) {
+                alert('Cannot get current number of requests.');
+            }
+        });
+    };
+    $scope.getcur();
+    $scope.gettotal();
+}
+
 function getDrivers() {
     checktoken();
 	var result;
@@ -262,20 +308,6 @@ function getIdFromUrl(url) {
     });
     return vars["id"];
 }
-
-/* var print = function(o){
-    var str='';
-
-    for(var p in o){
-        if(typeof o[p] == 'String'||typeof o[p] == 'Boolean'||){
-            str+= p + ': ' + o[p]+'; </br>';
-        }else{
-            str+= p + ': { </br>' + print(o[p]) + '}';
-        }
-    }
-
-    return str;
-    } */
 
 function driverctrl($scope, $http) {
     checktoken();
