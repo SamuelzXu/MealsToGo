@@ -1,5 +1,23 @@
 var host = "http://localhost:8080/";
+
+function checktoken(){
+    var now = new Date().getTime();
+    if (localStorageIsExist()){
+        var expire = localStorage.getItem("expire");
+        if (now > expire) {
+            localStorage.removeItem("expire");
+            localStorage.removeItem("token");
+            window.location = "/signin";
+            throw('token expired');
+        }
+    } else if (getCookie("token") === null) {
+        window.location = "/signin";
+        throw('token expired');
+    }
+}
+
 function getUnassigned() {
+    checktoken();
     var result = null;
     $.ajax({
         type : "GET",
@@ -17,6 +35,7 @@ function getUnassigned() {
 }
 
 function getRestaurant(id) {
+    checktoken();
     var result = null;
     $.ajax({
         type : "GET",
@@ -34,6 +53,7 @@ function getRestaurant(id) {
 }
 
 function getHistory(id) {
+    checktoken();
     var result = null;
     $.ajax({
         type : "GET",
@@ -86,6 +106,7 @@ function logout() {
 }
 
 function clearcounter() {
+    checktoken();
     $.ajax({
         type : "GET",
         url : host + "requests/clear",
@@ -103,9 +124,11 @@ function clearcounter() {
 
 function profilectrl($scope, $http) {
     $scope.viewhist = function(profile) {
+        checktoken();
         window.location=('/admin/admin_history?id=' + profile._id);
     };
     $scope.getProfile = function(callbackfun) {
+        checktoken();
         $http({method : 'GET', url : host + 'restaurants/list', headers : {'token' : localStorage.getItem("token")}})
             .success(function(data) {
                 callbackfun(data);
@@ -155,6 +178,7 @@ function changectrl($scope, $http) {
     $scope.name = a;
     $scope.newpassword = form.new.value;
     $scope.fun = function(name, newpassword) {
+        checktoken();
         $http({method : 'PUT', url : host + 'users/reset', 
             data : {id : a, newpassword : newpassword},
             headers : {"token" : localStorage.getItem("token")}})
@@ -172,9 +196,11 @@ function changectrl($scope, $http) {
 }
 
 function balancectrl($scope, $http) {
+    checktoken();
     $scope.name = a;
     $scope.amount = credit_form.amount.value;
     $scope.fun = function(name, amount) {
+        checktoken();
         $http({method : 'GET', url : host + 'restaurants/credit', 
             params : {id : a, amount : amount}, headers : {"token" : localStorage.getItem("token")}})
         .success(function(data) {
@@ -190,8 +216,10 @@ function balancectrl($scope, $http) {
 }
 
 function incrementctrl($scope, $http) {
+    checktoken();
     $scope.name = a;
     $scope.fun = function(name) {
+        checktoken();
         $http({method : 'GET', url : host + 'requests/request_driver',
             params : {id : a},
             headers : {"token" : localStorage.getItem("token")}})
@@ -208,6 +236,7 @@ function incrementctrl($scope, $http) {
 }
 
 function getDrivers() {
+    checktoken();
 	var result;
 	$.ajax({
 		type : 'GET',
@@ -247,6 +276,7 @@ function getIdFromUrl(url) {
     } */
 
 function driverctrl($scope, $http) {
+    checktoken();
 	var drivers = getDrivers();
 	$scope.drivers = [];
 	angular.forEach(drivers, function(driver) {
@@ -259,6 +289,7 @@ function driverctrl($scope, $http) {
 	});
 
 	$scope.assign = function(driver) {
+        checktoken();
 		$http({method :'get', url : host + 'requests/assign', 
             params : {
                 id : getIdFromUrl(window.location.href), 
@@ -273,6 +304,7 @@ function driverctrl($scope, $http) {
     }
     
     $scope.change = function(driver) {
+        checktoken();
 		$http({method :'get', url : host + 'requests/give_order', 
             params : {
                 id : getIdFromUrl(window.location.href), 
@@ -285,18 +317,4 @@ function driverctrl($scope, $http) {
             alert(data + ' cannot change status, please try again.');
         });
     };
-}
-
-function checktoken(){
-    var now = new Date().getTime();
-    if (localStorageIsExist()){
-        var expire = localStorage.getItem("expire");
-        if (now > expire) {
-            localStorage.removeItem("expire");
-            localStorage.removeItem("token");
-            window.location = "/signin";
-        }
-    } else if (getCookie("token") === null) {
-        window.location = "/signin";
-    }
 }

@@ -1,6 +1,3 @@
-// <script>
-// checktoken("uncompleted-wrapper");
-// </script>
 <div class="wrapper" style="min-height: 595px;" id="uncompleted-wrapper">
 
     <div class="col-md-7" id="outer-box">
@@ -68,6 +65,17 @@
     </div>  
 </div>
 <script>
+function unctrl($scope, $http) {
+    var uns = getUnassigned();
+    $scope.uns = [];
+    angular.forEach(uns, function(value) {
+        value.requestedAt = new Date(value.requestedAt).toString().substring(0, 25);
+        $scope.uns.push(value);
+    });
+    $scope.assign = function(id) {
+        window.location=('/admin/assigndriver?id=' + id);
+    }
+}
 function datactrl($scope, $http) {
     $scope.getcur = function(fun) {
         $http({method : 'GET', url : 'http://localhost:8080/requests/current', headers : {'token' : localStorage.getItem("token")}})
@@ -89,16 +97,5 @@ function datactrl($scope, $http) {
     };
     $scope.getcur();
     $scope.gettotal();
-}
-function unctrl($scope, $http) {
-    var uns = getUnassigned();
-    $scope.uns = [];
-    angular.forEach(uns, function(value) {
-        value.requestedAt = new Date(value.requestedAt).toString().substring(0, 25);
-        $scope.uns.push(value);
-    });
-    $scope.assign = function(id) {
-        window.location=('/admin/assigndriver?id=' + id);
-    }
 }
 </script>
