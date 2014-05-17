@@ -19,8 +19,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <link rel="stylesheet" type="text/css" href="/css/trunk.css">
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" 
+        href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" 
+        href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/jquery.keypad.css">
     <link rel="stylesheet" type="text/css" href="/css/signup.css">
@@ -32,7 +34,8 @@
             <li></li><li></li><li></li>
         </ul>
         <h1 class="hidden-xs">
-            <img class="brand-img" id="brand-lg" src="/img/logo-big.png" style="margin-top: -14px;">
+            <img class="brand-img" id="brand-lg" src="/img/logo-big.png" 
+                style="margin-top: -14px;" />
             <div name="time" id="time"></div>
         </h1>
         <h1 class="visible-xs">
@@ -43,7 +46,7 @@
         <ul>
             <li><a href="/restaurant/dashboard">HOME</a></li>
             <li><a href="/restaurant/history">HISTORY</a></li>
-            <li><a href="/restaurant/mobilemanager">MANAGE MOBILE NUMBERS</a></li>
+            <li><a href="/restaurant/mobilemanager">MOBILE NUMBERS</a></li>
             <li><a href="" onclick="logout()">LOG OUT</a></li>
         </ul>
     </nav>
@@ -60,37 +63,6 @@
     ga('send', 'pageview');
     </script>
 
-<!--     <script>
-        function includeCSSfile(href) {
-            var head_node = document.getElementsByTagName('head')[0];
-            var link_tag = document.createElement('link');
-            link_tag.setAttribute('rel', 'stylesheet');
-            link_tag.setAttribute('type', 'text/css');
-            link_tag.setAttribute('href', href);
-            head_node.appendChild(link_tag);
-        }
-        includeCSSfile('../css/trunk.css');
-        includeCSSfile('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
-        includeCSSfile('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
-        includeCSSfile('../css/style.css');
-        includeCSSfile('../css/jquery.keypad.css');
-    </script> -->
-<!--     <script src="//cdnjs.cloudflare.com/ajax/libs/labjs/2.0.3/LAB.min.js"></script>
-    <script>
-        $LAB
-        .script("//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js").wait()
-        .script("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
-        .script("//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js")
-        .script("//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js").wait()
-        .script("//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0rc3/angular-route.min.js").wait()
-        .script("../js/trunk.js")
-        .script("../js/dashboard.js")
-        .script("../js/dashboard-fun.js")
-        .script("../js/jquery.plugin.js")
-        .script("../js/jquery.keypad.js")
-        .script("../js/parsley.min.js");
-    </script>
- -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js">
@@ -103,6 +75,7 @@
     <script src="/js/jquery.plugin.js"></script>
     <script src="/js/jquery.keypad.js"></script>
     <script src="/js/parsley.min.js"></script>
+
     <div class="modal fade bs-example-modal-sm" tabindex="0" role="dialog"
         aria-labelledby="mySmallModalLabel" aria-hidden="true" id="confirm-modal"
         data-backdrop="static" data-keyboard="false">
@@ -122,8 +95,6 @@
     <script>
         var cancel = false;
         var countdownNum = 10;
-        // var time = new Date().getTime();
-        // var timevar = time;
         var time;
         $('#confirm-modal').on('show.bs.modal', function() {
             var time = new Date().getTime();
@@ -155,11 +126,9 @@
         function abort() {
             cancel = true;
             timevar = 0;
-            // countdownNum = 10;
         }
         function proceed() {
             cancel = true;
-            // countdownNum = 10;
             requestDriver();
         }
     </script>

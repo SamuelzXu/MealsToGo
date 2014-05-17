@@ -1,7 +1,8 @@
 var host = "http://localhost:8080/";
+var historyScope;
 
-function localStorageIsExist(){
-    if ('localStorage' in window && window.localStorage !== null){
+function localStorageIsExist() {
+    if ('localStorage' in window && window.localStorage !== null) {
         return true;
     }
     return false;
@@ -16,7 +17,7 @@ function startTime() {
     m = checkTime(m);
     s = checkTime(s);
     document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
-    t = setTimeout(function(){startTime();},500);
+    t = setTimeout(function() {startTime();},500);
 }
 
 function checkTime(i) {
@@ -27,7 +28,7 @@ function checkTime(i) {
 }
 
 function getCookie(cname) {
-    if(localStorageIsExist()){
+    if(localStorageIsExist()) {
         return localStorage.getItem(cname);
     } else {
         return $.cookie(cname);
@@ -35,39 +36,25 @@ function getCookie(cname) {
 }
 
 function updateHistoryTable() {
-    // var history = restaurant.request_history.reverse();
-    var history = null;
-    $.ajax({
-        type : "GET",
-        dataType : "json",
-        async : false,
-        url : host + "requests/restaurant_history?id=53712dea99adb802004efe49",
-        headers : {
-            token : localStorage.getItem("token")
-        },
-        success : function(data) {
-            history = data;
+    var hists = getHistory(3);
+    historyScope.hists = [];
+    angular.forEach(hists, function(value) {
+        value.date = new Date(value.requestedAt).toString().substring(0, 25);
+        if (value.status === 9) {
+            value.status = 'Driver Sent';
+        } else {
+            value.status = 'In Queue';
         }
+        historyScope.hists.push(value);
     });
-    var tbody = document.createElement('tbody');
-    for (var i = 0; i < 3; i++) {
-        var tr = document.createElement('tr');
-        var td = document.createElement('td');
-        td.appendChild(document.createTextNode(new Date(history[i].requestedAt).toString().substring(0,25)));
-        tr.appendChild(td);
-        td.appendChild(document.createTextNode(history[i].status));
-        tbody.appendChild(tr);
-    }
-    document.getElementById('history-table-body').innerHTML = tbody.innerHTML;
+    historyScope.$apply();
 }
 
 function requestDriver() {
-    // var param = "?name=" + getCookie('name');
-    // var newrest = null;
     $.ajax({
         type : "GET",
         crossDomain : true,
-        url : host + "requests/request_driver?id=53712dea99adb802004efe49",
+        url : host + "requests/request_driver",
         headers : {
             token : localStorage.getItem("token")
         },
@@ -83,7 +70,7 @@ function requestDriver() {
     });
 }
 
-function getRestaurant(){
+function getRestaurant() {
     var result = null;
     $.ajax({
         type : "GET",
@@ -100,30 +87,58 @@ function getRestaurant(){
     return result;
 }
 
-function logout(){
-    if(localStorageIsExist()){
+function checkDistance() {
+    var address1 = restaurant.address;
+    var address2 = form.address2_st.value + ', Ontario';
+    $.ajax({
+        type : "get",
+        dataType : "json",
+        url : host + "features/distance/",
+        data : {"from": address1, "to": address2},
+        success : function(data) {
+            if (data.apiStatus !== "OK") {
+                document.getElementById("result").innerHTML =
+                    "Something went wrong with the Google map, please try again later.";
+            } else if (data.queryStatus !== "OK") {
+                document.getElementById("result").innerHTML =
+                    "We can not find the address, please check your spelling and try again.";
+            } else {
+                document.getElementById("result").innerHTML =
+                    "The distance between you and " + form.address2_st.value +
+                    " is " + data.distance.value + " " + data.distance.unit;
+                document.getElementById("address2_st").value = "";
+            }
+        },
+        error : function(data) {
+            alert("error occurs, please check your spelling");
+        }
+    });
+}
+
+function logout() {
+    if(localStorageIsExist()) {
         localStorage.removeItem('name');
     } else {
         $.removeCookie('name');
     }
     $.ajax({
-        type: "GET",
+        type : "GET",
         dataType : 'json',
         async : false,
-        url: "/user/logout",
+        url : host + "users/logout",
         success : function(data) {
             window.location = data.redirectUrl;
         }
     });
 }
 
-function getHistory(){
+function getHistory(limit) {
     var result = null;
     $.ajax({
         type: "GET",
         dataType : 'json',
         async : false,
-        url : host + "requests/restaurant_history?id=53712dea99adb802004efe49",
+        url : host + "requests/restaurant_history?limit=" + limit,
         headers : {
             token : localStorage.getItem("token")
         },
@@ -140,7 +155,7 @@ function getMobilePhones() {
         type: "GET",
         dataType : 'json',
         async : false,
-        url: host + "restaurants/mobile/get?id=53712dea99adb802004efe49",
+        url: host + "restaurants/mobile/get",
         headers : {
             token : localStorage.getItem("token")
         },
@@ -151,23 +166,43 @@ function getMobilePhones() {
     return result;
 }
 
+function histctrl($scope) {
+    var hists = getHistory(3);
+    $scope.hists = [];
+    angular.forEach(hists, function(value) {
+        value.date = new Date(value.requestedAt).toString().substring(0, 25);
+        if (value.status === 9) {
+            value.status = 'Driver Sent';
+        } else {
+            value.status = 'In Queue';
+        }
+        $scope.hists.push(value);
+    });
+    historyScope = $scope;
+}
+
 function mobilectrl($scope, $location, $http) {
-    // $scope.name = ($location.search()).name;
-    // var mobiles = getMobilePhones($scope.name);
     var mobiles = getMobilePhones();
     $scope.mobiles = [];
     angular.forEach(mobiles, function(mobile) {
-        mobile.created_at = new Date(mobile.createdAt).toString().substring(0, 25);
+        mobile.createdAt = new Date(mobile.createdAt).toString().substring(0, 25);
         $scope.mobiles.push(mobile);
     });
-    $scope.del = function(number) {
-        $http({method :'GET', url :'https://pocketask-api.herokuapp.com/restaurants/mobile/delete?id=53712dea99adb802004efe49', 
-            params: {number : number}})
-        .success(function(data){
-            $scope.mobiles.splice($scope.mobiles.indexOf(number) - 1, 1);
-        })
-        .error(function(data){
-            alert('Cannot delete phone number, please try again.');
+    $scope.del = function(mobile) {
+        $.ajax({
+            type : "GET",
+            url : host + "restaurants/mobile/delete?number=" + mobile.number,
+            headers : {
+                token : localStorage.getItem("token")
+            },
+            success : function(data) {
+                $scope.$apply(function() {
+                    $scope.mobiles.splice($scope.mobiles.indexOf(mobile), 1);
+                });
+            },
+            error : function(data) {
+                alert('Cannot delete phone number, please try again.');
+            }
         });
     };
 }
@@ -183,10 +218,10 @@ function addnumberctrl($scope, $http) {
     $scope.addNumber = function() {
         $.ajax({
             type : "GET",
-            url : host + "restaurants/mobile/add?id=53712dea99adb802004efe49&number=" + add_number_form.number.value,
+            url : host + "restaurants/mobile/add?number=" + add_number_form.number.value,
             headers : {
-            token : localStorage.getItem("token")
-        },
+                token : localStorage.getItem("token")
+            }, 
             statusCode: {
                 400: function() {
                     $scope.displayMessage('The phone number is invalid');
@@ -199,8 +234,8 @@ function addnumberctrl($scope, $http) {
                 },
                 200: function(res) {
                     location.reload();
-                }
             }
+        }
         });
     };
 }
