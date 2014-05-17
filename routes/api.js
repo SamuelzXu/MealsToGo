@@ -1,5 +1,5 @@
 var request    = require('request');
-var apiAddress = 'http://localhost:8080/users/authenticate';
+var apiAddress = "https://pocketask-api.herokuapp.com/users/authenticate";
 
 module.exports = function(express, app){
     var router = express.Router();
