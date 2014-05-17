@@ -194,19 +194,20 @@ function getMobilePhones() {
     return result;
 }
 
-function histctrl($scope) {
-    var hists = getHistory(3);
-    $scope.hists = [];
-    angular.forEach(hists, function(value) {
+
+
+function longhistctrl($scope) {
+    var lhists = getHistory();
+    $scope.lhists = [];
+    angular.forEach(lhists, function(value) {
         value.date = new Date(value.requestedAt).toString().substring(0, 25);
         if (value.status === 9) {
             value.status = 'Driver Sent';
         } else {
             value.status = 'In Queue';
         }
-        $scope.hists.push(value);
+        $scope.lhists.push(value);
     });
-    historyScope = $scope;
 }
 
 function mobilectrl($scope, $location, $http) {

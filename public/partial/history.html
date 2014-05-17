@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="col-md-6">
-        <div class="card-long" id="history-card" ng-controller="histctrl">
+        <div class="card-long" id="history-card" ng-controller="longhistctrl">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -39,11 +39,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="hist in hists">
-                        <td>{{hist.date}}</td>
-                        <td>{{hist.status}}</td>
-                        <td>{{hist.deliveredBy.fullname}}</td>
-                        <td>{{hist.deliveredBy.phone}}</td>
+                    <tr ng-repeat="lhist in lhists">
+                        <td>{{lhist.date}}</td>
+                        <td>{{lhist.status}}</td>
+                        <td>{{lhist.deliveredBy.fullname}}</td>
+                        <td>{{lhist.deliveredBy.phone}}</td>
                     </tr>
                 </tbody>
             </table>

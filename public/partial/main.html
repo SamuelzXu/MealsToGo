@@ -45,7 +45,21 @@
         </div>
     </div>
 </div>
-
+<script>
+function histctrl($scope) {
+    var hists = getHistory(3);
+    $scope.hists = [];
+    angular.forEach(hists, function(value) {
+        value.date = new Date(value.requestedAt).toString().substring(0, 25);
+        if (value.status === 9) {
+            value.status = 'Driver Sent';
+        } else {
+            value.status = 'In Queue';
+        }
+        $scope.hists.push(value);
+    });
+}
+</script>
 <script>
 var restaurant = getRestaurant();
 document.getElementById('current').innerHTML = restaurant.currentRequests;
