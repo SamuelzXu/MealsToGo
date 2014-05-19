@@ -15,11 +15,11 @@
             </thead>
             <tbody>
                 <tr ng-repeat="driver in drivers">
-                    <td>{{driver.name}}</td>
+                    <td>{{driver.fullname}}</td>
                     <td>{{driver.phone}}</td>
                     <td>{{driver.address}}</td>
-                    <td>{{driver.previous_delivery.time}}</td>
-                    <td>{{driver.previous_delivery.restaurant.fullname}}</td>
+                    <td>{{driver.lastDelivery.time}}</td>
+                    <td>{{driver.lastDelivery.requestedBy.fullname}}</td>
                     <td>
                         <button ng-click="assign(driver)">Assign</button>
                     </td>
