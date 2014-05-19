@@ -286,6 +286,7 @@ html{
     text-align: center;
     background-color: #eeeeee;
     min-height: 520px;
+    height: auto;
 }
 
 .contents{
@@ -720,6 +721,9 @@ header{
 .card-text {
     font-family: Impact;
     color: #777;
+    font-size: 160%;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .card-lg-text{

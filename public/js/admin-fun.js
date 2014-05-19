@@ -197,14 +197,15 @@ function changectrl($scope, $http) {
     };
 }
 
-function balancectrl($scope, $http) {
+function balancectrl($scope, $http, $location) {
     checktoken();
-    $scope.name = a;
+    $scope.name = ($location.search()).id;
     $scope.amount = credit_form.amount.value;
     $scope.fun = function(name, amount) {
         checktoken();
         $http({method : 'GET', url : host + 'restaurants/credit', 
-            params : {id : a, amount : amount}, headers : {"token" : localStorage.getItem("token")}})
+            params : {id : name, amount : amount}, 
+            headers : {"token" : localStorage.getItem("token")}})
         .success(function(data) {
             location.reload();
         })
@@ -217,13 +218,13 @@ function balancectrl($scope, $http) {
     };
 }
 
-function incrementctrl($scope, $http) {
+function incrementctrl($scope, $http, $location) {
     checktoken();
-    $scope.name = a;
+    $scope.name = ($location.search()).id;
     $scope.fun = function(name) {
         checktoken();
         $http({method : 'GET', url : host + 'requests/request_driver',
-            params : {id : a},
+            params : {id : name},
             headers : {"token" : localStorage.getItem("token")}})
         .success(function(data) {
             location.reload();
