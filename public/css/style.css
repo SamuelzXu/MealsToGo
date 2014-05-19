@@ -16,7 +16,8 @@ body,html {
     text-align: center;
     min-height: 500px;
     height: auto;
-    background-color: #9bd6f5;
+/*    background-color: #9bd6f5;*/
+    background-color: #3498db;
     margin-top: 5px;
 }
 
@@ -38,12 +39,14 @@ body,html {
 }
 
 #delivery-text{
-    color: #da4453;
+/*    color: #da4453;*/
+    color: #ecf0f1;
     text-align: center;
 }
 
 #time-text{
     text-align: center;
+    color: #ecf0f1;
     padding-top: 30px;
 }
 
@@ -57,15 +60,15 @@ body,html {
     margin-bottom: 15px;
     height: 50px;
     width: 200px;
-    background: transparent;
-    border-color: #660099;
+/*    background: transparent;*/
+    border-color: #3498db;
     font-size: 150%;
-    color: #660099;
+    color: #3498db;
 }
 
 #signin:hover,
 #signin:focus {
-    color: #660099;
+    color: #3498db;
     text-decoration: none;
 }
 
@@ -162,19 +165,23 @@ body,html {
 }
 
 #facebook-icon{
-    color: #3b5998;
+/*    color: #3b5998;*/
+    color: #7f8c8d;
 }
 
 #twitter-icon{
-    color: #00aced;
+/*    color: #00aced;*/
+    color: #7f8c8d;
 }
 
 #google-plus-icon{
-    color: #d34836;
+/*    color: #d34836;*/
+    color: #7f8c8d;
 }
 
 #linkedin-icon{
-    color: #007bb6;
+/*    color: #007bb6;*/
+    color: #7f8c8d;
 }
 
 .tabbable{
