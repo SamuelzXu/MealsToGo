@@ -834,3 +834,34 @@ header{
 #abort{
 
 }
+
+/* admin */
+.success-box{
+    display: none; 
+    height: auto; 
+    width: 250px; 
+    border-style: solid;
+    border-width: 1px; 
+    border-color: green; 
+    border-radius: 5px; 
+    background-color: #00FF66; 
+    text-align: center; 
+    margin-left: auto; 
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+.error-box{
+    display: none; 
+    height: auto; 
+    width: 250px; 
+    border-style: solid;
+    border-width: 1px;
+    border-color: red;
+    border-radius: 5px; 
+    background-color: #FFD6D6;
+    text-align: center; 
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+/* admin end */
