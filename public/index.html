@@ -17,7 +17,6 @@
 
     <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
-
 </head>
 
 <body>
@@ -35,17 +34,13 @@
             <li><a href="/aboutus"><i class="fa fa-info-circle">&nbsp;</i>ABOUT US</a></li>
             <!-- <li><a href="/pubsignup" target="_blank"><i class="fa fa-pencil-square">&nbsp;</i>JOIN US</a></li> -->
             <li><a href="/ourclients"><i class="fa fa-users">&nbsp;</i>OUR CLIENTS</a></li>
-            <li><a href="/signin" target="_blank"><i class="fa fa-sign-in">&nbsp;</i>SIGN IN</a></li>
+            <li><a href="/signin"><i class="fa fa-sign-in">&nbsp;</i>SIGN IN</a></li>
         </ul>
     </nav>
 
     <div class="content slide">
-
-            <div class="content slide">
-
         <div class="header-section">
             <div class="col-md-12">
-
                 <div id="time">
                 <div id="counter" style="width: 300px; margin-left: auto; margin-right: auto; padding-top: 50px">
                     <div class="clock"></div>
@@ -56,18 +51,30 @@
             </div>
             <div class="btn-area">
                 <button class="btn" id="signin" onclick="window.location='/signin';">SIGN IN</button>
-                <!-- <button class="btn" id="joinus">JOIN US</button> -->
             </div>
         </div>
-
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="padding-left: 10%; padding-right: 10%; background-color: #ffffff;">
+<!--         <div style="display: block; height: auto; min-height: 300px;">
+            <div class="col-md-4">
+                <img src="../img/body_ad_1.png" style="height: 300px; margin-left: auto; margin-right: auto;">
+            </div>
+            <div class="col-md-4">
+                <img src="../img/body_ad_2.png" style="height: 300px; margin-left: auto; margin-right: auto;">
+            </div>
+            <div class="col-md-4">
+                <img src="../img/body_ad_3.png" style="height: 300px; margin-left: auto; margin-right: auto;">
+            </div>
+        </div> -->
+        <div style="height: auto; min-height: 300px; position: relative;">
+            <img src="../img/test2.jpg" style="width: 100%; min-width: 1000px; height: auto; min-height: 200px; position: relative;">
+            <h2 style="position: absolute; top: 50px; left: 30px;">This is a test text</h2>
+        </div>
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="display: block; padding-left: 10%; padding-right: 10%; background-color: #ffffff;">
           <!-- Indicators -->
             <ol class="carousel-indicators">
                 <li data-target="#carousel-example-generic" data-slide-to="0" class="active" style="background-color: #dddddd;"></li>
                 <li data-target="#carousel-example-generic" data-slide-to="1" style="background-color: #dddddd;"></li>
                 <li data-target="#carousel-example-generic" data-slide-to="2" style="background-color: #dddddd;"></li>
             </ol>
-
             <!-- Wrapper for slides -->
             <div class="carousel-inner" style="background-color: #ffffff;">
                 <div class="item active">
@@ -86,7 +93,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Controls -->
             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev" style="background-image: none; background-color: none; margin-left: 5%">
                 <span class="glyphicon glyphicon-chevron-left" style="color: #dddddd;"></span>
@@ -95,17 +101,13 @@
                 <span class="glyphicon glyphicon-chevron-right" style="color: #dddddd;"></span>
             </a>
         </div>
-
         <div class="res-section" style="padding-top: 20px;">
             <div style="margin-left: 30px; margin-right: 30px;">
                 <div class="col-md-1"></div>
                 <div class="col-md-7 hidden-sm hidden-xs" style="padding-right: 20px;">
                     <div id="map"></div>
                 </div>
-
-                <!-- <iframe class="col-md-6 hidden-xs hidden-sm" height='500px' frameBorder='0' src='http://a.tiles.mapbox.com/v3/masiisso.i6kbj47j/attribution,zoompan,geocoder.html'></iframe> -->
                 <div id="carousel-example" class="col-md-3 carousel slide" data-ride="carousel" style="background-color: #e3f1f9;">
-
                     <p style="font-size: 200%;">Our Clients</p>
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" style="background-color: #e3f1f9;">
@@ -122,7 +124,6 @@
                             <img src="../img/shop_esm.png" style="height: 450px; margin-left: auto; margin-right: auto;">
                         </div>
                     </div>
-
                     <!-- Controls -->
                     <a class="left carousel-control img-circle" href="#carousel-example" data-slide="prev" style="background-image: none; background-color: #ffffff; height: 50px; width: 50px; margin-left: 20px; margin-top: 200px;">
                         <span class="glyphicon glyphicon-chevron-left" style="color: #dddddd;"></span>
@@ -134,7 +135,6 @@
                 <div class="col-md-1"></div>
             </div>
         </div>
-
         <div id="footer">
             <div class="col-md-4 footer-text">
                 <p><a href="/privacypolicy" style="padding-right: 20px" target="_blank">Privacy Policy</a> <a href="/termofuse" target="_blank">Term of Use</a></p>
