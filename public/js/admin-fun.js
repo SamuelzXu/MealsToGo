@@ -354,3 +354,42 @@ function driverctrl($scope, $http) {
         });
     };
 }
+
+function getRequests() {
+    checktoken();
+    var result;
+    $.ajax({
+        type : 'GET',
+        dataType : 'json',
+        async : false,
+        url : host + 'requests/recent',
+        headers : {
+            token : localStorage.getItem("token")
+        },
+        success : function(data) {
+            result = data;
+        }
+    });
+    return result;
+}
+
+function recentctrl($scope, $http) {
+    checktoken();
+    var requests = getRequests();
+    $scope.requests = [];
+    angular.forEach(requests, function(request) {
+        if (request.status === 9) {
+            request.status = 'Driver Sent';
+        } else if (request.status === 5) {
+            request.status = 'Waiting';
+        } else if (request.status === 2) {
+            request.status = 'Time Out';
+        } else if (request.status === 1) {
+            request.status = 'Rejected';
+        } else if (request.status === 0) {
+            request.status = 'Unassigned';
+        }
+        request.requestedAt = new Date(request.requestedAt).toString().substring(0, 25);
+        $scope.requests.push(request);
+    });
+}
