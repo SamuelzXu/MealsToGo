@@ -130,7 +130,7 @@ function clearcounter() {
 function profilectrl($scope, $http) {
     $scope.viewhist = function(profile) {
         checktoken();
-        window.location=('/admin/admin_history?id=' + profile._id);
+        window.location=('/admin/admin_history?id=' + profile._id._id);
     };
     $scope.getProfile = function(callbackfun) {
         checktoken();
@@ -177,13 +177,13 @@ function histctrl($scope, $location) {
     document.getElementById("balance").innerHTML = "Balance: " + balance;
 }
 
-function changectrl($scope, $http) {
-    $scope.name = a;
+function changectrl($scope, $http, $location) {
+    $scope.id = ($location.search()).id;
     $scope.newpassword = form.new.value;
     $scope.fun = function(name, newpassword) {
         checktoken();
-        $http({method : 'PUT', url : host + 'users/reset', 
-            data : {id : a, newpassword : newpassword},
+        $http({method : 'PUT', url : host + 'users/reset?id=' + $scope.id, 
+            data : {newpassword : newpassword},
             headers : {"token" : localStorage.getItem("token")}})
         .success(function(data) {
             form.new.value = '';
@@ -194,7 +194,7 @@ function changectrl($scope, $http) {
         });
     };
     $scope.changepassword = function() {
-        $scope.fun($scope.name, $scope.newpassword);
+        $scope.fun($scope.id, $scope.newpassword);
     };
 }
 
