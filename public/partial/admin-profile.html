@@ -13,16 +13,18 @@
                     </div>
                     <div class="profile-body" style="color: black; border-bottom: solid; 
                         border-width: 1px; border-color: #dddddd; padding: 5px; ">
+                        <b>Username: </b> {{profile._id.username}}
+                        <br>
                         <b>Phone: </b> {{profile.phone}}
-                        <br />
+                        <br>
                         <b>Address: </b> {{profile.address}}
-                        <br />
+                        <br>
                         <b>Current Number of Requests: </b> {{profile.currentRequests}}
-                        <br />
+                        <br>
                         <b>Total Number of Requests: </b> {{profile.totalRequests}}
-                        <br />
+                        <br>
                         <b>Rate: </b> {{profile.rate}}
-                        <br />
+                        <br>
                     </div>
                     <div class="profile-footer">
                         <button class="profile-button" ng-click="viewhist(profile)">

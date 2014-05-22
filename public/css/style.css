@@ -48,6 +48,7 @@ body,html {
     text-align: center;
     color: #ecf0f1;
     padding-top: 30px;
+    font-family: ;
 }
 
 .btn-area{
@@ -60,10 +61,10 @@ body,html {
     margin-bottom: 15px;
     height: 50px;
     width: 200px;
-/*    background: transparent;*/
     border-color: #3498db;
     font-size: 150%;
     color: #3498db;
+    background-color: #ecf0f1;
 }
 
 #signin:hover,

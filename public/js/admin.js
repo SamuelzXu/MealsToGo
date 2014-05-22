@@ -19,6 +19,9 @@ adminApp.config(['$routeProvider', '$locationProvider', function($routeProvider,
 		}).
 		when('/admin/assigndriver', {
 			templateUrl: '/partial/admin-assigndriver.html'
+		}).
+		when('/admin/recent', {
+			templateUrl: '/partial/admin-recent.html'
 		});
 	$locationProvider.html5Mode(true);
 }]);

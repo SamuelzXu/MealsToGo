@@ -1,4 +1,5 @@
 var host = "https://pocketask-api.herokuapp.com/";
+// var host = "http://localhost:8080/";
 
 function checktoken(){
     var now = new Date().getTime();
