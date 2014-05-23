@@ -206,6 +206,7 @@ function longhistctrl($scope) {
             value.status = 'Driver Sent';
         } else {
             value.status = 'In Queue';
+            value.deliveredBy = null;
         }
         $scope.lhists.push(value);
     });

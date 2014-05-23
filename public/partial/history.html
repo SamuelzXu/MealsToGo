@@ -42,7 +42,7 @@
                     <tr ng-repeat="lhist in lhists">
                         <td>{{lhist.date}}</td>
                         <td>{{lhist.status}}</td>
-                        <td>{{lhist.deliveredBy.fullname}}</td>
+                        <td>{{lhist.deliveredBy.name}}</td>
                         <td>{{lhist.deliveredBy.phone}}</td>
                     </tr>
                 </tbody>
@@ -68,19 +68,6 @@
 </div>
 <script>
 var restaurant = getRestaurant();
-function histctrl($scope) {
-    var hists = getHistory();
-    $scope.hists = [];
-    angular.forEach(hists, function(value) {
-        value.date = new Date(value.requestedAt).toString().substring(0, 25);
-        if (value.status === 9){
-            value.status = 'Driver Sent';
-        } else {
-            value.status = 'In Queue';
-        }
-        $scope.hists.push(value);
-    });
-}
 var b = restaurant.balance;
 if (b > 0){
     document.getElementById('balance').innerHTML = b;
