@@ -92,8 +92,8 @@ body,html {
 
 .pad2{
     margin-top: 0px;
-    padding-right: 30px;
-    padding-left: 30px;
+    padding-right: 5%;
+    padding-left: 5%;
     padding-top: 30px;
     background-color: #ffffff;
 }
