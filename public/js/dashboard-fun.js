@@ -150,10 +150,8 @@ function logout() {
                 if(localStorageIsExist()) {
                     localStorage.removeItem('token');
                     localStorage.removeItem('expire');
-                } else {
-                    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
                 }
-                window.location = data.redirect;
+                window.location = '/signin';
             }
         }
     });

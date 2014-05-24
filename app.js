@@ -1,25 +1,26 @@
 if(process.env.NEW_RELIC_LICENSE_KEY){
     require('newrelic');
 }
-var http         = require('http');
-var path         = require('path');
-var express      = require('express');
-var app          = express();
+var http       = require('http');
+var path       = require('path');
+var express    = require('express');
+var app        = express();
+var middleware = require('./middleware');
 
 // Local Express JS Configuration Setup
 require('./config')(express, app);
 
 // Routes Setup
 require('./routes')(express, app, path);
+
+app.get('/signout', function(req, res){
+    res.clearCookie('token');
+    res.json(200);
+});
+app.use(middleware.verifyToken);
+
 require('./routes/api')(express, app);
 
-app.use(function(req, res, next){
-    console.log(req.session);
-    if (!req.session.login) {
-        res.redirect('/signin');
-    }
-    next();
-});
 require('./routes/restaurant')(express, app, path);
 require('./routes/driver')(express, app, path);
 require('./routes/admin')(express, app, path);
