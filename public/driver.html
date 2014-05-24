@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app>
 
 <head>
-    <title>Pocketask | Dashboard for Driver</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Pocketask - Delivery at a click</title>
     <meta name="author" content="Pocketask Inc.">
     <meta name="description" content="Pocketask is now in Waterloo & Kitchener region. With Pocketask, restaurants can secure a delivery driver in 10 minutes or less. Pocketask streamlines the food delivery process; restaurant owners can request a driver, and pre-screened drivers can accept the call.">
-    <meta name="keywords" content="pocketask, delivery, food, restaurant, catering, local, waterloo, kitchener, takeout, online" >
+    <meta name="keywords" content="pocketask, food delivery, restaurant, catering, local, waterloo, kitchener, takeout" >
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="HandheldFriendly" content="True">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">  
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/trunk.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../css/bootstrap-switch.min.css">
 </head>
 
 <body>
@@ -20,91 +27,125 @@
         <ul id="navToggle" class="burger slide">
             <li></li><li></li><li></li>
         </ul>
-        <h1 class="hidden-xs">
-            <img class="brand-img" id="brand-lg" src="../img/logo-big.png">
-        </h1>
-        <h1 class="visible-xs">
-            <img class="brand-img" src="../img/logo-small.png">
-        </h1>
+        <h1 class="hidden-xs"><img class="brand-img" id="brand-lg" src="../img/kraken-uzyqfr/logo-big.png"></h1>
+        <h1 class="visible-xs"><img class="brand-img" id="brand-xs" src="../img/kraken-uzyqfr/logo-small.png"></h1>
     </header>
-    <nav class="slide nav" style="margin-right: 12px;">
+
+    <nav class="slide nav" id="nav-menu">
         <ul>
-            <li><a href="" onclick="logout()" href="">LOG OUT</a></li>
+            <li><a href="/">LOG OUT</a></li>
         </ul>
     </nav>
 
     <div class="content slide">
-		<div class="wrapper" style="padding-top: 45px;">
-			
-            <div class="button-area col-md-9">
-                <div class="card-long" ng-controller="driverctrl">
-                    <p class="card-heading-simple">Order History</p>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <td style="font-family: Impact; color: #777;">Restaurant</td>
-                                <td style="font-family: Impact; color: #777;">Date & Time</td>
-                            </tr>
-                        </thead>
-                        <tbody id="history-table-body">
-                            <tr ng-repeat="driver in drivers"> 
-                                <td>{{driver.restaurant}}</td>
-                                <td>{{driver.date}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-			<div class="button-area col-md-3">
-				<div class="card">
-					<div id="user-profile">
-                        <p></p><p></p><p></p>
-						<p class="card-text">ACCOUNT INFORMATION</p>
-						<p class="card-text" id="username"></p>
-						<p class="card-text"></p>
-                        <p class="card-text" id="phone"></p>
-						<p class="card-text" id="address"></p>
-					</div>
-				</div>
-                
-                <div class="card">
-                    <div id="user-profile">
-                        <p></p><p></p><p></p>
-                        <p class="card-text" id="available"></p>
-                        <tr>
-							<input id="button2" type="button" class="btn btn-primary" 
-                             onclick="change_status()" value="Change Availability">
-						</tr>
+        <div class="wrapper" style="min-height: 1000px; padding-top: 50px;" ng-controller="driverctrl">
+            <div class="col-md-4">
+                <div class="pad">
+                    <div class="card-long">
+                        <p> Please change your status here</p>
+                        <input type="checkbox" name="my-checkbox" checked id="switch" data-on-text="I AM AVAILABLE" data-off-text="NOT AVAILABLE" data-size="large">
+                        <p id="name"></p>
+                        <p id="address"></p>
+                        <p id="phone"></p>
                     </div>
                 </div>
-			</div>
-			
-		</div>
+            </div>
+            <div class="col-md-8">
+                <div class="pad" ng-controller="driverhistctrl">
+                    <div class="card-long" id="history-card">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <td style="font-family: Impact; color: #777;">Time</td>
+                                    <td style="font-family: Impact; color: #777;">Status</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="dhist in dhists">
+                                    <td>{{dhist.requestedAt}}</td>
+                                    <td>{{dhist.status}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="col-md-4 footer-text">
+                <p><a href="/privacypolicy" style="padding-right: 20px" target="_blank">Privacy Policy</a> <a href="/termofuse" target="_blank">Term of Use</a></p>
+            </div>
+            <div class="col-md-4 footer-text">
+                <p>&#169; 2014 Pocketask Inc. All Rights Reserved.</p>
+            </div>
+            <div class="col-md-4 footer-social">
+                <a id="facebook-icon" href="https://www.facebook.com/pocketask" target="_blank"><i class="fa fa-facebook-square fa-3x"></i></a>
+                <a id="twitter-icon" href="https://twitter.com/Pocketask" target="_blank"><i class="fa fa-twitter-square fa-3x"></i></a>
+                <a id="google-plus-icon" href="https://plus.google.com/b/104407058385138355470/" target="_blank"><i class="fa fa-google-plus-square fa-3x"></i></a>
+                <a id="linkedin-icon" href="http://www.linkedin.com/company/pocketask-inc?trk=company_name" target="_blank"><i class="fa fa-linkedin-square fa-3x"></i></a>
+            </div>
+        </div>
     </div>
-	
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="../js/trunk.js"></script>
+    <script src="../js/bootstrap-switch.min.js"></script>
+    <script src="/js/angular.min.js"></script>
+
     <script>
-    function includeCSSfile(href) {
-            var head_node = document.getElementsByTagName('head')[0];
-            var link_tag = document.createElement('link');
-            link_tag.setAttribute('rel', 'stylesheet');
-            link_tag.setAttribute('type', 'text/css');
-            link_tag.setAttribute('href', href);
-            head_node.appendChild(link_tag);
-        }
-        includeCSSfile('../css/trunk.css');
-        includeCSSfile('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
-        includeCSSfile('../css/style.css');
+    function getDriver(){
+        // checktoken();
+        var result = null;
+        $.ajax({
+            type : "GET",
+            dataType : 'json',
+            async : false,
+            url : "http://localhost:8080/drivers/get",
+            headers : {
+                token : localStorage.getItem("token")
+            },
+            success : function(data) {
+                result = data;
+            }
+        });
+        return result;
+    }
+    var driver = getDriver();
+    function driverctrl() {
+        document.getElementById("name").innerHTML = "Name: " + driver.fullname;
+        document.getElementById("phone").innerHTML = "Phone: " + driver.phone;
+        document.getElementById("address").innerHTML = "Address: " + driver.fullname;
+    }
+    function getDriverHistory(){
+        var result = null;
+        $.ajax({
+            type : "GET",
+            dataType : 'json',
+            async : false,
+            url : "http://localhost:8080/requests/driver_history",
+            headers : {
+                token : localStorage.getItem("token")
+            },
+            success : function(data) {
+                result = data;
+            }
+        });
+        return result;
+    }
+    var dhist = getDriverHistory();
+    function driverhistctrl($scope){
+        $scope.dhists = [];
+        angular.forEach(dhist, function(value) {
+            value.requestedAt = new Date(value.requestedAt).toString().substring(0, 25);
+            $scope.dhists.push(value)
+        });
+    }
     </script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/labjs/2.0.3/LAB.min.js"></script>
     <script>
-        $LAB
-        .script("//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js").wait()
-        .script("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
-        .script("//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js")
-        .script("../js/trunk.js")
-        .script("../js/driverdash.js")
+    $("#switch").bootstrapSwitch('state', driver.available);
+    $("#switch").on('switchChange.bootstrapSwitch', function(event, state) {
+            // alert("changed");
+        });
     </script>
-	
 </body>
 </html>
