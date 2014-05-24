@@ -155,6 +155,7 @@ body,html {
     min-height: 70px;
     height: auto;
     padding-top: 10px;
+    position: relative;
 }
 
 .footer-text{

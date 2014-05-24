@@ -38,12 +38,17 @@
     </nav>
 
     <div class="content slide">
-        <div class="wrapper" style="min-height: 1000px; padding-top: 50px;" ng-controller="driverctrl">
+        <div class="wrapper" style="min-height: 905px; padding-top: 50px; padding-bottom: 20px;" ng-controller="driverctrl">
             <div class="col-md-4">
                 <div class="pad">
-                    <div class="card-long">
-                        <p> Please change your status here</p>
-                        <input type="checkbox" name="my-checkbox" checked id="switch" data-on-text="I AM AVAILABLE" data-off-text="NOT AVAILABLE" data-size="large">
+                    <div class="card">
+                        <p class="card-heading">Please change your status here</p>
+                        <br>
+                        <br>
+                        <input type="checkbox" name="my-checkbox" checked id="switch" data-on-text="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AVAILABLE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" data-off-text="NOT AVAILABLE" data-size="large">
+                    </div>
+                    <div class="card">
+                        <p class="card-heading">Personal Information</p>
                         <p id="name"></p>
                         <p id="address"></p>
                         <p id="phone"></p>
@@ -57,6 +62,7 @@
                             <thead>
                                 <tr>
                                     <td style="font-family: Impact; color: #777;">Time</td>
+                                    <td style="font-family: Impact; color: #777;">Requested By</td>
                                     <td style="font-family: Impact; color: #777;">Status</td>
                                 </tr>
                             </thead>
