@@ -24,5 +24,9 @@ module.exports = function(express, app, path){
         res.sendfile('./public/dashboard.html');
     });
 
+    router.get('/invoice', function(req, res) {
+        res.sendfile('./public/partial/invoice.html');
+    });
+
     app.use('/restaurant', router);
 };

@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset='UTF-8'>
+	<title>Pocketask | Invoice</title>
+	<link rel='stylesheet' href='../css/invoice.css'>
+	<!-- <link rel='stylesheet' href='css/print.css' media="print"> -->
+	<!-- // <script src='js/jquery-1.3.2.min.js'></script> -->
+	<!-- // <script src='js/example.js'></script> -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="../js/dashboard-fun.js"></script>
+</head>
+<body>
+	<div id="page-wrap">
+		<p id="header">INVOICE</p>		
+		<div id="identity">		
+            <p id="address">Pocketask Inc.
+            <br>
+            162 Westcourt Place, Waterloo, ON
+            Phone: (647) 400 - 5526 </p>
+            <div id="logo">
+              	<img id="image" src="../img/logo-big.png" alt="logo" style="width: 400px;"/>
+            </div>		
+		</div>		
+		<div style="clear:both"></div>		
+		<div id="customer">
+            <p id="customer-title"></p>
+            <table id="meta">
+            	<tr>
+                    <td class="meta-head">Invoice #</td>
+                    <td><p id="invoicenumber"></p></td>
+                </tr>
+                <tr>
+                    <td class="meta-head">Date</td>
+                    <td><p id="date"></p></td>
+                </tr>
+                <tr>
+                    <td class="meta-head">Amount Due</td>
+                    <td><div class="due" id="due"></div></td>
+                </tr>
+            </table>		
+		</div>		
+		<table id="items">		
+		  	<tr>
+		      	<th>Item</th>
+		      	<th>Description</th>
+		      	<th>Unit Cost</th>
+		      	<th>Quantity</th>
+		      	<th>Price</th>
+		  	</tr>		  
+		  	<tr class="item-row">
+		      	<td class="item-name"><div class="delete-wpr"><p>Delivery Orders</p></div></td>
+		      	<td class="description"><p>The number of deliveries according to Pocketask system.</p></td>
+		      	<td><p class="cost" id="rate"></p></td>
+		      	<td><p class="qty" id="quantity"></p></td>
+		      	<td><span class="price" id="price"></span></td>
+		  	</tr>		  
+		  	<tr class="item-row">
+		      	<td class="item-name"><div class="delete-wpr"><p></p></div></td>
+		      	<td class="description"><p></p></td>
+		      	<td><p class="cost"></p></td>
+		      	<td><p class="qty"></p></td>
+		      	<td><span class="price"></span></td>
+		  	</tr>
+		  	<tr id="hiderow">
+		    	<td colspan="5"></td>
+		  	</tr>
+		  	<tr>
+		      	<td colspan="2" class="blank"> </td>
+		      	<td colspan="2" class="total-line">Subtotal</td>
+		      	<td class="total-value"><div id="subtotal"></div></td>
+		  	</tr>
+		  	<tr>
+		      	<td colspan="2" class="blank"> </td>
+		      	<td colspan="2" class="total-line">Tax (13%)</td>
+
+		      	<td class="total-value"><p id="tax"></p></td>
+		  	</tr>
+		  	<tr>
+		      	<td colspan="2" class="blank"> </td>
+		      	<td colspan="2" class="total-line balance">Balance Due</td>
+		      	<td class="total-value balance"><div id="duee"></div></td>
+		  	</tr>
+		</table>
+		<div id="terms">
+		  <h5>Terms</h5>
+		  <p> * This balance is due in 7 days.
+		  <br>
+		  * We recommend in printing this page for possible future references.</p>
+		</div>
+	</div>
+	<script>
+	var restaurant = getRestaurant();
+	document.getElementById('quantity').innerHTML = restaurant.currentRequests;
+	document.getElementById('rate').innerHTML = restaurant.rate;
+	var total = Math.round(restaurant.rate * restaurant.currentRequests *  100) / 100;
+	document.getElementById('price').innerHTML = total;
+	document.getElementById('subtotal').innerHTML = total;
+	document.getElementById('tax').innerHTML = total * 0.13;
+	document.getElementById('duee').innerHTML = restaurant.balance;
+	document.getElementById('due').innerHTML = restaurant.balance;
+	document.getElementById('customer-title').innerHTML = restaurant.fullname;
+	document.getElementById('date').innerHTML = new Date(restaurant.requestsResetDate).toString().substring(0, 25);
+	var reset = restaurant.requestsResetDate;
+	document.getElementById('invoicenumber').innerHTML = restaurant.name + reset.substring(0,4) + reset.substring(5,7) + reset.substring(8,10);
+	</script>
+</body>
+</html>
