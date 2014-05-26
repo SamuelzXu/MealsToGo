@@ -19,26 +19,9 @@ module.exports = function(express, app){
     app.disable('etag');
 
     app.use(logger('dev'));
+    app.use(cookieParser());
     app.use(bodyParser());
     app.use(compress());
-
-    app.use(cookieParser());
-    var sessionOpt = {
-        key: 'session',
-        secret: 'pocketask-dev@2014Apr3',
-        cookie: {
-            maxAge: 12*60*60*1000
-        }
-    };
-    if (process.env.REDISCLOUD_URL){
-        sessionOpt.store = new redisStore(
-            {
-                url: process.env.REDISCLOUD_URL,
-                ttl: 12*60*60
-            }
-        );
-    }
-    app.use(session(sessionOpt));
 
     // app.use(helmet.csp());
     app.use(helmet.xframe());
