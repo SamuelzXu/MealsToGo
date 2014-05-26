@@ -98,9 +98,10 @@
 	var total = Math.round(restaurant.rate * restaurant.currentRequests *  100) / 100;
 	document.getElementById('price').innerHTML = total;
 	document.getElementById('subtotal').innerHTML = total;
-	document.getElementById('tax').innerHTML = total * 0.13;
-	document.getElementById('duee').innerHTML = restaurant.balance;
-	document.getElementById('due').innerHTML = restaurant.balance;
+	document.getElementById('tax').innerHTML = Math.round(total * 0.13 * 100) / 100;
+	var due = Math.round(total * 1.13 * 100) / 100;
+	document.getElementById('duee').innerHTML = due;
+	document.getElementById('due').innerHTML = due;
 	document.getElementById('customer-title').innerHTML = restaurant.fullname;
 	document.getElementById('date').innerHTML = new Date(restaurant.requestsResetDate).toString().substring(0, 25);
 	var reset = restaurant.requestsResetDate;

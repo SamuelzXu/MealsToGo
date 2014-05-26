@@ -58,7 +58,7 @@ ul.parsley-error-list li {
 #password{
     margin-top: -10px;
 }
-#button2{
+#button2, #button1{
     width: 100%;
     max-width: 250px;
     background-color: #33aaee;
