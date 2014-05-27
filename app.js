@@ -1,6 +1,7 @@
 if(process.env.NEW_RELIC_LICENSE_KEY){
-    require('newrelic');
+    var newrelic = require('newrelic');
 }
+// var newrelic   = require('newrelic');
 var http       = require('http');
 var path       = require('path');
 var express    = require('express');
@@ -17,8 +18,8 @@ app.get('/signout', function(req, res){
     res.clearCookie('token');
     res.json(200);
 });
-app.use(middleware.verifyToken);
 
+app.use(middleware.verifyToken);
 require('./routes/api')(express, app);
 
 require('./routes/restaurant')(express, app, path);

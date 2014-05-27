@@ -1,8 +1,6 @@
 // Include all the necessary express js libraries
 var logger       = require('morgan');
-var session      = require('express-session');
 var cookieParser = require('cookie-parser');
-var redisStore   = require('connect-redis')(session);
 var bodyParser   = require('body-parser');
 var compress     = require('compression');
 var helmet       = require('helmet');

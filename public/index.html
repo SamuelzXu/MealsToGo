@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="indexApp">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -67,8 +67,8 @@
                 <p style="font-size: 200%; text-align: center; margin-top: 90px;">Local food delivery just got phoneless</p>
                 <p class="puzzle-text-xs description">Stop calling for delivery drivers, instead, click a button. It is more efficient, more accurate, also more elegant. Evolve your restaurant today with Pocketask, and never worry about delivery rush ever.</p>
             </div>
-        
-        
+
+
             <div class="col-md-6 puzzle hidden-sm hidden-xs">
                 <p style="font-size: 200%; text-align: center; margin-top: 50px;">Technology has not changed the way of delivery... Until now</p>
                 <p class="puzzle-text-xs description">Our pre-screened, professional drivers will make sure that your customer gets what they have paid for. At Pocketask, we believe customers over the phone are just as important as the ones that are dining in, so we make sure that they get the quality and the respect.</p>
@@ -80,8 +80,8 @@
                 <p style="font-size: 200%; text-align: center;">Technology has not changed the way of delivery... Until now</p>
                 <p class="puzzle-text-xs description">Our pre-screened, professional drivers will make sure that your customer gets what they have paid for. At Pocketask, we believe customers over the phone are just as important as the ones that are dining in, so we make sure that they get the quality and the respect.</p>
             </div>
-        
-        
+
+
             <div class="col-md-6 puzzle" style="padding-left: 0; padding-right: 0;">
                 <img class="puzzle-pic" src="img/3.jpg">
             </div>
@@ -168,7 +168,7 @@
         .script("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
         .script("//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js")
         .script("js/trunk.js")
-        .script("js/index.js")
+        // .script("js/index.js")
         .script("js/flipclock.min.js").wait(function(){
             var total=1;
             $.ajax({
@@ -179,22 +179,22 @@
                 success : function(data) {
                     total = data['totalRequests'];
                 }
-            })
+            });
             var clock = $('.clock').FlipClock(100, {
                 clockFace: 'Counter',
                 autoStart: false
                 });
             clock.setValue(total);
-        })
-        .script("js/map.js").wait(function(){
-            function loadScript() {
-                var script = document.createElement('script');
-                script.type = 'text/javascript';
-                script.src = 'https://maps.googleapis.com/maps/api/js?sensor=false&' + 'callback=initialize';
-                document.body.appendChild(script);
-            }
-            window.onload = loadScript;
         });
+        // .script("js/map.js").wait(function(){
+        //     function loadScript() {
+        //         var script = document.createElement('script');
+        //         script.type = 'text/javascript';
+        //         script.src = 'https://maps.googleapis.com/maps/api/js?sensor=false&' + 'callback=initialize';
+        //         document.body.appendChild(script);
+        //     }
+        //     window.onload = loadScript;
+        // });
     </script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
