@@ -158,7 +158,7 @@
         var fullname = form.driverfullname.value;
         $.ajax({
             type : "POST",
-            url : "http://localhost:8080/users/create",
+            url : "https://pocketask-api.herokuapp.com/users/create",
             data : {username:name, password:password, role:role},
             dataType : 'json',
             headers : {
@@ -168,7 +168,7 @@
                 200: function(data){
                     $.ajax({
                         type: "POST",
-                        url: "http://localhost:8080/drivers/create",
+                        url: "https://pocketask-api.herokuapp.com/drivers/create",
                         data: {fullname:fullname, address:address, phone:phone, id:data.id},
                         dataType: 'json',
                         headers : {
