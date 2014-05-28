@@ -418,17 +418,14 @@ html{
 
 /* admin */
 
-.container{
+.contain{
     width: 100%;
-    margin-left: -20px;
-    margin-right: -20px;
     padding-bottom: 10px;
 }
 
 header{
     margin: 0;
     width: auto;
-    margin-right: -35px;
 }
 
 /*.navbar{
