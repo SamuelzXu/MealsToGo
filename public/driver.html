@@ -47,9 +47,6 @@
                         <br>
                         <input type="checkbox" name="my-checkbox" checked id="switch" data-on-text="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AVAILABLE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" data-off-text="NOT AVAILABLE" data-size="large">
                         <br>
-                        <div class="success-box" id="success-box">
-                            <p style="margin-top: 5px;">Your status has been changed.</p>
-                        </div>
                         <div class="error-box" id="user-fail-box">
                             <p>Something wrong with change status, please try again.</p>
                         </div>
@@ -173,11 +170,11 @@
                 token : localStorage.getItem("token")
             },
             statusCode: {
-                200 : function(){
-                    document.getElementById("success-box").style.display = 'block';
-                    setTimeout(function(){document.getElementById("success-box").style.display = 'none';}, 5000);
+                404 : function(){
+                    document.getElementById("error-box").style.display = 'block';
+                    setTimeout(function(){document.getElementById("user-fail-box").style.display = 'none';}, 5000);
                 },
-                400 : function(){
+                500 : function(){
                     document.getElementById("error-box").style.display = 'block';
                     setTimeout(function(){document.getElementById("user-fail-box").style.display = 'none';}, 5000);
                 }
