@@ -98,6 +98,16 @@ body,html {
     background-color: #ffffff;
 }
 
+.pad2:after{
+    margin-top: 0px;
+    padding-right: 5%;
+    padding-left: 5%;
+    padding-top: 30px;
+    background-color: #ffffff;
+    content: " "; 
+    clear: both;
+}
+
 .rest-logo{
     height: 100px;
     border: 1px solid #dddddd;
@@ -354,10 +364,10 @@ html{
 }
 
 .people-card.hovercard .avatar img {
-    width: 80px;
-    height: 80px;
-    max-width: 80px;
-    max-height: 80px;
+    width: 150px;
+    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
     -webkit-border-radius: 50%;
         -moz-border-radius: 50%;
             border-radius: 50%;
