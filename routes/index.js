@@ -2,7 +2,8 @@ module.exports = function(express, app, path){
     var router = express.Router();
 
     router.get('/', function(req, res) {
-        res.sendfile(path.dirname(__dirname) + '/public/index.html');
+        // res.sendfile(path.dirname(__dirname) + '/public/index.html');
+        res.render('index')
     });
 
     router.get('/aboutus', function(req, res) {

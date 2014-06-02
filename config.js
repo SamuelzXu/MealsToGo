@@ -4,7 +4,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var compress     = require('compression');
 var helmet       = require('helmet');
-
+var swig         = require('swig');
 /**
  * [export description]
  * @param  {[type]} app [description]
@@ -15,6 +15,10 @@ module.exports = function(express, app){
     app.enable('trust proxy');
     app.disable('x-powered-by');
     app.disable('etag');
+
+    app.engine('html', swig.renderFile);
+    app.set('view engine', 'html');
+    app.set('views', __dirname + '/public');
 
     app.use(logger('dev'));
     app.use(cookieParser());
