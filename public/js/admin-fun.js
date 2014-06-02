@@ -117,7 +117,7 @@ function clearcounter() {
             token : localStorage.getItem("token")
         },
         success : function(data) {
-            alert(data);
+            alert("The counter has been cleard successfully!");
         },
         error : function(data) {
             alert('clear counter failed.' + data);
