@@ -53,9 +53,9 @@
                     </div>
                     <div class="card">
                         <p class="card-heading">Personal Information</p>
-                        <p id="name"></p>
-                        <p id="address"></p>
-                        <p id="phone"></p>
+                        <p id="name">name</p>
+                        <p id="address">address</p>
+                        <p id="phone">phone</p>
                     </div>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                             <tbody>
                                 <tr ng-repeat="dhist in dhists">
                                     <td>{{dhist.requestedAt}}</td>
-                                    <td>{{dhist.requestedBy}}</td>
+                                    <td>{{dhist.requestedBy.fullname}}</td>
                                     <td>{{dhist.status}}</td>
                                 </tr>
                             </tbody>
@@ -130,7 +130,6 @@
 
     <script>
     function getDriver(){
-        // checktoken();
         var result = null;
         $.ajax({
             type : "GET",
