@@ -38,7 +38,7 @@
     </nav>
 
     <div class="content slide">
-        <div class="wrapper" style="min-height: 905px; padding-top: 50px; padding-bottom: 20px;">
+        <div class="wrapper" style="min-height: 905px; padding-top: 50px; padding-bottom: 20px;" ng-controller="driverctrl">
             <div class="col-md-3">
                 <div class="pad">
                     <div class="card">
@@ -172,7 +172,12 @@
         $scope.dhists = [];
         angular.forEach(dhist, function(value) {
             value.requestedAt = new Date(value.requestedAt).toString().substring(0, 25);
-            $scope.dhists.push(value)
+            if (value.status === 9) {
+                value.status = "Completed";
+            } else {
+                value.status = "Ongoing";
+            }
+            $scope.dhists.push(value);
         });
     }
     function change(){
