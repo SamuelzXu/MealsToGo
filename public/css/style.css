@@ -14,15 +14,16 @@ body,html {
 
 .header-section{
     text-align: center;
-    min-height: 500px;
+    min-height: 700px;
     height: auto;
-/*    background-color: #9bd6f5;*/
-    background-color: #3498db;
+    background-image: url("../img/header.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
     margin-top: 5px;
 }
 
 .res-section{
-    height: 540px;
+    height: 500px;
     text-align: center;
     background-color: #ffffff;
 }
@@ -39,7 +40,6 @@ body,html {
 }
 
 #delivery-text{
-/*    color: #da4453;*/
     color: #ecf0f1;
     text-align: center;
 }
@@ -48,7 +48,6 @@ body,html {
     text-align: center;
     color: #ecf0f1;
     padding-top: 30px;
-    font-family: ;
 }
 
 .btn-area{
@@ -268,12 +267,34 @@ body,html {
     margin-left: -15px;
     font-size: 30px;
 }
+
 .carousel-control .glyphicon-chevron-right{
     width: 30px;
     height: 30px;
     margin-top: -15px;
     margin-left: -15px;
     font-size: 30px;
+}
+
+.text-back {
+    min-height: 300px; 
+    height: 100%;
+    width: 70%;
+    background: -webkit-linear-gradient(left, transparent, white); 
+    background: -o-linear-gradient(right, transparent, white); 
+    background: -moz-linear-gradient(right, transparent, white);
+    background: linear-gradient(to right, transparent, white); 
+    vertical-align: middle;
+}
+
+.text-backk {
+    min-height: 300px; 
+    height: 100%;
+    width: 70%;
+    background: -webkit-linear-gradient(left, white, transparent); 
+    background: -o-linear-gradient(right, white, transparent); 
+    background: -moz-linear-gradient(right, white, transparent);
+    background: linear-gradient(to right, white, transparent); 
 }
 /* index end */
 
