@@ -296,6 +296,61 @@ body,html {
     background: -moz-linear-gradient(right, white, transparent);
     background: linear-gradient(to right, white, transparent); 
 }
+
+.index-people-card.hovercard {
+    position: relative;
+    width: 340px;
+    padding-top: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+    border: none;
+    border-top-width: 0;
+    -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+            border-radius: 3px;
+    -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+            box-shadow: none;
+    -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.index-people-card.hovercard .avatar {
+    position: relative;
+}
+
+.index-people-card.hovercard .avatar img {
+    width: 150px;
+    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
+    -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+            border-radius: 50%;
+}
+
+.index-people-card.hovercard .info {
+    padding: 4px 0 10px 0;
+}
+
+.index-people-card.hovercard .info .title {
+    margin-bottom: 4px;
+    font-size: 14px;
+    line-height: 1;
+    color: #262626;
+    vertical-align: middle;
+}
+
+.index-people-card.hovercard .info .desc {
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 20px;
+    color: #737373;
+    text-overflow: ellipsis;
+}
+
 /* index end */
 
 /* about us */
@@ -303,6 +358,7 @@ html,body {
     background-color: #eeeeee;
     opacity: 5;
     min-height: 600px;
+    height: 100%;
 }
 
 html{
@@ -335,32 +391,14 @@ html{
     font-size: 20px;
 }
 
-/*.peole-card{
-  padding-top: 20px;
-  margin: 10px 0 20px 0;
-  background-color: #ffffff;
-  border: 1px solid #d8d8d8;
-  border-top-width: 0;
-  border-bottom-width: 2px;
-  -webkit-border-radius: 3px;
-     -moz-border-radius: 3px;
-          border-radius: 3px;
-  -webkit-box-shadow: none;
-     -moz-box-shadow: none;
-          box-shadow: none;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-}*/
-
 .people-card.hovercard {
     position: relative;
-    width: 240px;
+    width: 340px;
     padding-top: 0;
     overflow: hidden;
     text-align: center;
     background-color: #fff;
-    border: 1px solid #d8d8d8;
+    border: none;
     border-top-width: 0;
     -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
@@ -380,15 +418,13 @@ html{
 
 .people-card.hovercard .avatar {
     position: relative;
-    top: -40px;
-    margin-bottom: -40px;
 }
 
 .people-card.hovercard .avatar img {
-    width: 110px;
-    height: 110px;
-    max-width: 110px;
-    max-height: 110px;
+    width: 150px;
+    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
     -webkit-border-radius: 50%;
         -moz-border-radius: 50%;
             border-radius: 50%;
@@ -400,16 +436,18 @@ html{
 
 .people-card.hovercard .info .title {
     margin-bottom: 4px;
-    font-size: 24px;
+    margin-top: 5px;
+    font-size: 20px;
     line-height: 1;
     color: #262626;
     vertical-align: middle;
 }
 
 .people-card.hovercard .info .desc {
+    margin-top: 10px;
     overflow: hidden;
-    font-size: 12px;
-    line-height: 20px;
+    font-size: 16px;
+    line-height: 25px;
     color: #737373;
     text-overflow: ellipsis;
 }
