@@ -17,8 +17,9 @@ body,html {
     min-height: 700px;
     height: auto;
     background-image: url("../img/header.jpg");
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     margin-top: 5px;
 }
 
@@ -115,8 +116,8 @@ body,html {
 
 #map {
     height: 500px;
-    margin-top: auto;
-    margin-left: auto;
+    background: url("../img/map.png") no-repeat center center;
+    background-size: cover;
 }
 
 .puzzle-pad{
