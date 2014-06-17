@@ -3,7 +3,7 @@ module.exports = function(express, app, path){
 
     router.get('/', function(req, res) {
         // res.sendfile(path.dirname(__dirname) + '/public/index.html');
-        res.render('index')
+        res.render('index');
     });
 
     router.get('/aboutus', function(req, res) {
