@@ -394,7 +394,7 @@ html{
 
 .people-card.hovercard {
     position: relative;
-    width: 340px;
+    max-width: 300px;
     padding-top: 0;
     overflow: hidden;
     text-align: center;
