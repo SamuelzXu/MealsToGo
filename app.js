@@ -1,7 +1,8 @@
-// if(process.env.NEW_RELIC_LICENSE_KEY){
-//     var newrelic = require('newrelic');
-// }
-var newrelic   = require('newrelic');
+if (process.env.NEW_RELIC_LICENSE_KEY){
+    var newrelic = require('newrelic');
+}
+// var newrelic   = require('newrelic');
+// require('newrelic');
 var http       = require('http');
 var path       = require('path');
 var express    = require('express');
@@ -10,7 +11,9 @@ var middleware = require('./middleware');
 
 // Local Express JS Configuration Setup
 require('./config')(express, app);
-app.locals.newrelic = newrelic;
+if (process.env.NEW_RELIC_LICENSE_KEY) {
+    app.locals.newrelic = newrelic;
+}
 
 // Routes Setup
 require('./routes')(express, app, path);
