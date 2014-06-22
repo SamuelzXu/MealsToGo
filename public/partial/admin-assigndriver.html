@@ -17,7 +17,7 @@
                 <tr ng-repeat="driver in drivers">
                     <td>{{driver.fullname}}</td>
                     <td>{{driver.phone}}</td>
-                    <td>{{driver.address}}</td>
+                    <td>{{driver.address.full}}</td>
                     <td>{{driver.lastDelivery.time}}</td>
                     <td>{{driver.lastDelivery.requestedBy.fullname}}</td>
                     <td>

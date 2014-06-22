@@ -40,12 +40,16 @@
                     <input class="form-control" id="fullname" name="fullname" placeholder="Full Name" parsley-type="alphanum" parsley-required="true">
                     <input class="form-control" id="address" name="address" placeholder="Address" parsley-type="alphanum" parsley-required="true">
                     <select name="city" class="form-control" parsley-required="true">
-                        <option>WATERLOO</option>
-                        <option>KITCHENER</option>
+                        <option>Waterloo</option>
+                        <option>Kitchener</option>
                     </select>
                     <select name="province" class="form-control" parsley-required="true">
-                        <option>ON</option>
+                        <option>Ontario</option>
                     </select>
+                    <select name="country" class="form-control" parsley-required="true">
+                        <option>Canada</option>
+                    </select>
+                    <input class="form-control" id="postalcode" name="postalcode" placeholder="A9A 9A9" parsley-type="alphanum" parsley-required="true">
                     <input class="form-control" id="phone" name="phone" placeholder="Phone number" parsley-type="phone" parsley-required="true">
                     
                     <input class="form-control" id="value" name="rate" parsley-required="true" placeholder="Rate">
@@ -58,11 +62,15 @@
                     <input class="form-control" id="driverphone" name="driverphone" placeholder="Phone" parsley-type="phone">
                     <input class="form-control" id="driveraddress" name="driveraddress" placeholder="Address" parsley-type="alphanum">
                     <select name="drivercity" class="form-control" parsley-required="true">
-                        <option>WATERLOO</option>
-                        <option>KITCHENER</option>
+                        <option>Waterloo</option>
+                        <option>Kitchener</option>
                     </select>
                     <select name="driverprovince" class="form-control" parsley-required="true">
-                        <option>ON</option>
+                        <option>Ontario</option>
+                        </select>
+                    <select name="drivercountry" class="form-control" parsley-required="true">
+                        <option>Canada</option>
+                        <input class="form-control" id="driverpostalcode" name="driverpostalcode" placeholder="A8A 8A8" parsley-type="alphanum">
                     </select>
                     <input id="button1" type="button" class="btn btn-primary" onclick="sub_driver()" value="Sign Up">
                 </div>
@@ -103,7 +111,11 @@
         var name = form.name.value;
         var password = form.password.value;
         var role = form.role.value;
-        var address = form.address.value + ", " + form.city.value + ", " + form.province.value;
+        var street = form.address.value;
+        var city = form.city.value;
+        var province = form.province.value;
+        var country = form.country.value;
+        var postalcode = form.postalcode.value;
         var phone = form.phone.value;
         var fullname = form.fullname.value;
         var rate = form.rate.value;
@@ -120,7 +132,7 @@
                     $.ajax({
                         type: "POST",
                         url: "https://pocketask-api.herokuapp.com/restaurants/create",
-                        data: {fullname:fullname, address:address, phone:phone, rate:rate, id:data.id},
+                        data: {fullname:fullname, street:street, city:city, province:province, country:country, postalcode:postalcode, phone:phone, rate:rate, id:data.id},
                         dataType: 'json',
                         headers : {
                             token : localStorage.getItem("token")
@@ -132,6 +144,7 @@
                                 document.getElementById("name").value = "";
                                 document.getElementById("password").value = "";
                                 document.getElementById("address").value = "";
+                                document.getElementById("postalcode").value = "";
                                 document.getElementById("phone").value = "";
                                 document.getElementById("fullname").value = "";
                             },
@@ -153,7 +166,11 @@
         var name = form.drivername.value;
         var password = form.driverpassword.value;
         var role = form.role.value;
-        var address = form.driveraddress.value + ", " + form.drivercity.value + ", " + form.driverprovince.value;
+        var street = form.driveraddress.value;
+        var city = form.drivercity.value;
+        var province = form.driverprovince.value;
+        var country = form.drivercountry.value;
+        var postalcode = form.driverpostalcode.value;
         var phone = form.driverphone.value;
         var fullname = form.driverfullname.value;
         $.ajax({
@@ -169,7 +186,7 @@
                     $.ajax({
                         type: "POST",
                         url: "https://pocketask-api.herokuapp.com/drivers/create",
-                        data: {fullname:fullname, address:address, phone:phone, id:data.id},
+                        data: {fullname:fullname, street:street, city:city, province:province, country:country, postalcode:postalcode, phone:phone, id:data.id},
                         dataType: 'json',
                         headers : {
                             token : localStorage.getItem("token")
@@ -178,11 +195,15 @@
                             201: function(){
                                 document.getElementById("success-box").style.display = 'block';
                                 setTimeout(function(){document.getElementById("success-box").style.display = 'none';}, 5000);
-                                document.getElementById("name").value = "";
-                                document.getElementById("password").value = "";
-                                document.getElementById("address").value = "";
-                                document.getElementById("phone").value = "";
-                                document.getElementById("fullname").value = "";
+                                document.getElementById("drivername").value = "";
+                                document.getElementById("driverpassword").value = "";
+                                document.getElementById("driveraddress").value = "";
+                                document.getElementById("drivercity").value = "";
+                                document.getElementById("driverprovince").value = "";
+                                document.getElementById("drivercountry").value = "";
+                                document.getElementById("driverpostalcode").value = "";
+                                document.getElementById("driverphone").value = "";
+                                document.getElementById("driverfullname").value = "";
                             },
                             400: function(){
                                 document.getElementById("user-fail-box").style.display = 'block';
