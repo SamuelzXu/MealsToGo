@@ -168,7 +168,7 @@ function histctrl($scope, $location) {
         $scope.hists.push(value);
     });
     document.getElementById("fullname").innerHTML = "Full Name: " + fullname;
-    document.getElementById("address").innerHTML = "Address: " + address;
+    document.getElementById("address").innerHTML = "Address: " + address.full;
     document.getElementById("phone").innerHTML = "Phone: " + phone;
     document.getElementById("current").innerHTML = "Current Number of Requests: " + current;
     document.getElementById("total").innerHTML = "Total Number of Requests: " + total;
