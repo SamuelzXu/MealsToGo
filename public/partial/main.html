@@ -10,6 +10,10 @@
         </div>
     </div>
     <div class="button-area col-md-6">
+        <form method="GET" id="requestform" data-parsley-validate style="text-align: left;">
+            <label>Destination</label>
+            <input class="form-control" style="width: 100%; max-width: none;" placeholder="Destination" id="dest" name="dest" data-parsley-pattern="/^[A-Za-z0-9,\-\s]+$/">
+        </form>
         <button class="button1" id="driver-button" data-toggle="modal"
             data-target="#confirm-modal">
         </button>
