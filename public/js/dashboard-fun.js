@@ -108,7 +108,7 @@ function getRestaurant() {
 
 function checkDistance() {
     checktoken();
-    var address1 = restaurant.address;
+    var address1 = restaurant.address.full;
     var address2 = form.address2_st.value + ', Ontario';
     $.ajax({
         type : "get",
