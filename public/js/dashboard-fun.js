@@ -175,6 +175,42 @@ function getHistory(limit) {
     return result;
 }
 
+function getCateringHistory(limit) {
+    checktoken();
+    var result = null;
+    $.ajax({
+        type: "GET",
+        dataType : 'json',
+        async : false,
+        url : host + "caterings/restaurant_history?limit=" + limit,
+        headers : {
+            token : localStorage.getItem("token")
+        },
+        success : function(data) {
+            result = data;
+        }
+    });
+    return result;
+}
+
+function getCateringHistory(limit) {
+    checktoken();
+    var result = null;
+    $.ajax({
+        type: "GET",
+        dataType: 'json',
+        async: false,
+        url: host + "caterings/restaurant_history?limit=" + limit,
+        headers : {
+            token : localStorage.getItem("token")
+        },
+        success : function(data) {
+            result = data;
+        }
+    });
+    return result;
+}
+
 function getMobilePhones() {
     checktoken();
     var result = null;
@@ -197,6 +233,21 @@ function getMobilePhones() {
 
 function longhistctrl($scope) {
     var lhists = getHistory();
+    $scope.lhists = [];
+    angular.forEach(lhists, function(value) {
+        value.date = new Date(value.requestedAt).toString().substring(0, 25);
+        if (value.status === 9) {
+            value.status = 'Driver Sent';
+        } else {
+            value.status = 'In Queue';
+            value.deliveredBy = null;
+        }
+        $scope.lhists.push(value);
+    });
+}
+
+function longcateringhistctrl($scope) {
+    var lhists = getCateringHistory();
     $scope.lhists = [];
     angular.forEach(lhists, function(value) {
         value.date = new Date(value.requestedAt).toString().substring(0, 25);

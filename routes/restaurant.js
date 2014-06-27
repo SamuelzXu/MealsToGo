@@ -18,6 +18,10 @@ module.exports = function(express, app, path){
         res.sendfile('./public/dashboard.html');
     });
 
+    router.get('/cateringhistory', function(req, res){
+        res.sendfile('./public/dashoboard.html');
+    });
+
     router.get('/changepassword', function(req, res) {
         res.sendfile('./public/dashboard.html');
     });
