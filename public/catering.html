@@ -59,16 +59,43 @@
             <div class="col-md-8">
                 <div class="card-long" style="text-align: left;">
                     <form>
-                        <div class="col-md-6">
-                            <div ng-controller="DatepickerDemoCtrl" style="display:inline-block; min-height:290px;">
+                        <div class="col-md-5">
+                            <div ng-controller="DatepickerDemoCtrl" style="display:inline-block; min-height:290f6px;">
+                                <br><br><br>
                                 <label class="control-form">Date</label>
                                 <datepicker ng-model="dt" min-date="minDate" show-weeks="true" class="well"></datepicker>
                             </div>
                         </div>
                         
-                        <div class="col-md-6" ng-controller="TimepickerDemoCtrl">
-                            <label class="control-form">Time</label>
+                        <div class="col-md-7" ng-controller="TimepickerDemoCtrl">
+                            
+
+                            <form method="GET" id="requestform" data-parsley-validate style="text-align: left;">
+                                <br><br><br>
+                                <label>Destination</label>
+                                <input class="form-control" style="width: 100%; max-width: none;" placeholder="Destination" id="dest" name="dest" data-parsley-pattern="/^[A-Za-z0-9,\-\s]+$/">
+
+                                <label># of People</label>
+                                <select name="role" class="form-control" parsley-required="true" id="e11" onchange="changeform()" style="width: 100%; max-width: none;">
+                                    <option id="0" value="1">1 - 40</option>
+                                    <option id="1" value="2">41 - 80</option>
+                                    <option id="2" value="3">81 - 120</option>
+                                    <option id="0" value="4">121 - 160</option>
+                                    <option id="1" value="5">161 - 200</option>
+                                    <option id="2" value="6">200 +</option>
+                                </select>
+
+                                <label>HOT OR COLD </label>
+                                <select name="role" class="form-control" parsley-required="true" id="e11" onchange="changeform()"style="width: 100%; max-width: none;">
+                                    <option id="0" value="0">HOT</option>
+                                    <option id="1" value="1">COLD</option>
+                                </select>
+
+                            </form>
+                            <center>
+                            <label class="control-form">Time Of Food Pick Up</label>
                             <timepicker ng-model="mytime" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="false"></timepicker>
+                            </center>
                         </div>
                     </form>
                 </div>
