@@ -78,6 +78,7 @@
     <script src="/js/jquery.keypad.js"></script>
     <script src="/js/parsley.min.js"></script>
     <script src="/js/ui-bootstrap-tpls-0.11.0.min.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
 
 
     <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
@@ -137,45 +138,6 @@
             cancel = true;
             requestDriver();
         }
-
-
-
-
-        var TimepickerDemoCtrl = function ($scope) {
-  $scope.mytime = new Date();
-
-  $scope.hstep = 1;
-  $scope.mstep = 15;
-
-  $scope.options = {
-    hstep: [1, 2, 3],
-    mstep: [1, 5, 10, 15, 25, 30]
-  };
-
-  $scope.ismeridian = true;
-  $scope.toggleMode = function() {
-    $scope.ismeridian = ! $scope.ismeridian;
-  };
-
-  $scope.update = function() {
-    var d = new Date();
-    d.setHours( 14 );
-    d.setMinutes( 0 );
-    $scope.mytime = d;
-  };
-
-  $scope.changed = function () {
-    console.log('Time changed to: ' + $scope.mytime);
-  };
-
-  $scope.clear = function() {
-    $scope.mytime = null;
-  };
-};
-
-function catering(){
-    window.location = '/restaurant/catering';
-}
     </script>
 </body>
 </html>
