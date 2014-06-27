@@ -159,6 +159,26 @@ function logout() {
     });
 }
 
+function catering() {
+    checktoken();
+    $.ajax({
+        type: "GET",
+        dataType : 'json',
+        async : false,
+        url : "/restaurant/catering",
+        headers : {
+            token : localStorage.getItem("token")
+        },
+        statusCode: {
+            200 : function(data) {
+
+                window.location = '/restaurant/catering';
+            }
+        }
+    });
+}
+
+
 function getHistory(limit) {
     checktoken();
     var result = null;
