@@ -194,7 +194,6 @@ function histctrl($scope, $location) {
     document.getElementById("current").innerHTML = "Current Number of Requests: " + current;
     document.getElementById("total").innerHTML = "Total Number of Requests: " + total;
     document.getElementById("balance").innerHTML = "Balance: " + balance;
-    document.getElementById("cateringRate").innerHTML = "Catering Rate: " + cateringRate;
     document.getElementById("currentCars").innerHTML = "Current Cars: " + currentCars;
     document.getElementById("totalCars").innerHTML = "Total Cars: " + totalCars;
 }
