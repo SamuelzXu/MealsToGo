@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="dashboardApp">
+<html lang="en" ng-app>
 
 <head>
     <title>Pocketask | Dashboard</title>
@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="card-long" id="history-card" ng-controller="longhistctrl">
+                <div class="card-long" id="history-card" ng-controller="longcateringhistctrl">
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -123,7 +123,44 @@
                 </div>
             </div>
         </div>
-        <script>
+
+
+    </div>
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-47690619-1', 'pocketask.com');
+    ga('send', 'pageview');
+    </script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js">
+    </script>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/trunk.js"></script>
+    <script src="/js/dashboard-fun.js"></script>
+
+    <div class="modal fade bs-example-modal-sm" tabindex="0" role="dialog"
+        aria-labelledby="mySmallModalLabel" aria-hidden="true" id="confirm-modal"
+        data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Are you sure?</p>
+                    <p id="timeLeft">The request will be proceed in: 10 seconds</p>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                        id="abort" onclick="abort()">Abort now</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        onclick="proceed()">Yes, proceed</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
         var restaurant = getRestaurant();
         var b = restaurant.balance;
         if (b > 0){
@@ -145,51 +182,7 @@
         document.getElementById('address1').innerHTML = 'Address: ' + restaurant.address.full;
         document.getElementById('phone').innerHTML = "Phone Number: " + restaurant.phone;
         document.getElementById('phone1').innerHTML = "Phone Number: " + restaurant.phone;
-        </script>
-
-    </div>
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-47690619-1', 'pocketask.com');
-    ga('send', 'pageview');
     </script>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js">
-    </script>
-    <script src="/js/angular.min.js"></script>
-    <script src="/js/angular-route.min.js"></script>
-    <script src="/js/trunk.js"></script>
-    <script src="/js/dashboard.js"></script>
-    <script src="/js/dashboard-fun.js"></script>
-    <script src="/js/jquery.plugin.js"></script>
-    <script src="/js/jquery.keypad.js"></script>
-    <script src="/js/parsley.min.js"></script>
-    <script src="/js/ui-bootstrap-tpls-0.11.0.min.js"></script>
-
-
-    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
-
-    <div class="modal fade bs-example-modal-sm" tabindex="0" role="dialog"
-        aria-labelledby="mySmallModalLabel" aria-hidden="true" id="confirm-modal"
-        data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <p>Are you sure?</p>
-                    <p id="timeLeft">The request will be proceed in: 10 seconds</p>
-                    <button type="button" class="btn btn-default" data-dismiss="modal"
-                        id="abort" onclick="abort()">Abort now</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal"
-                        onclick="proceed()">Yes, proceed</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <script>
         var cancel = false;
         var countdownNum = 10;
