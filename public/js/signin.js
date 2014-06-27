@@ -11,6 +11,7 @@ function signin(){
     $.ajax({
         type : "POST",
         url : "https://pocketask-api.herokuapp.com/users/authenticate",
+        // url : "http://localhost:8080/users/authenticate",
         data : {
             username: name,
             password: password
