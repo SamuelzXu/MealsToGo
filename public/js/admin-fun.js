@@ -35,6 +35,24 @@ function getUnassigned() {
     return result;
 }
 
+function getCateringUnassigned() {
+    checktoken();
+    var result = null;
+    $.ajax({
+        type : "GET",
+        dataType : 'json',
+        async : false,
+        headers : {
+            token : localStorage.getItem("token")
+        },
+        url: host + "caterings/uncompleted",
+        success : function(data) {
+            result = data;
+        }
+    });
+    return result;
+}
+
 function getRestaurant(id) {
     checktoken();
     var result = null;
@@ -155,6 +173,9 @@ function histctrl($scope, $location) {
     var current = restaurant.currentRequests;
     var total = restaurant.totalRequests;
     var balance = restaurant.balance;
+    var cateringRate = restaurant.cateringRate;
+    var currentCars = restaurant.currentCars;
+    var totalCars = restaurant.totalCars;
     a = id;
     var hists = getHistory($scope.id);
     $scope.hists = [];
@@ -173,6 +194,9 @@ function histctrl($scope, $location) {
     document.getElementById("current").innerHTML = "Current Number of Requests: " + current;
     document.getElementById("total").innerHTML = "Total Number of Requests: " + total;
     document.getElementById("balance").innerHTML = "Balance: " + balance;
+    document.getElementById("cateringRate").innerHTML = "Catering Rate: " + cateringRate;
+    document.getElementById("currentCars").innerHTML = "Current Cars: " + currentCars;
+    document.getElementById("totalCars").innerHTML = "Total Cars: " + totalCars;
 }
 
 function changectrl($scope, $http, $location) {
@@ -239,6 +263,18 @@ function incrementctrl($scope, $http, $location) {
 
 function uncompletedctrl($scope, $http) {
     var uns = getUnassigned();
+    $scope.uns = [];
+    angular.forEach(uns, function(value) {
+        value.requestedAt = new Date(value.requestedAt).toString().substring(0, 25);
+        $scope.uns.push(value);
+    });
+    $scope.assign = function(id) {
+        window.location=('/admin/assigndriver?id=' + id);
+    }
+}
+
+function uncompletedcateringctrl($scope, $http) {
+    var uns = getCateringUnassigned();
     $scope.uns = [];
     angular.forEach(uns, function(value) {
         value.requestedAt = new Date(value.requestedAt).toString().substring(0, 25);
