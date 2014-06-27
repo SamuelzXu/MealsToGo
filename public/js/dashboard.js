@@ -13,9 +13,6 @@ dashboardApp.config(['$routeProvider', '$locationProvider', function($routeProvi
 		}).
 		when('/restaurant/mobilemanager', {
 			templateUrl: '/partial/mobilemanager.html',
-		}).
-		when('/restaurant/catering', {
-			templateUrl: '/partial/catering.html',
 		});
 	$locationProvider.html5Mode(true);
 }]);

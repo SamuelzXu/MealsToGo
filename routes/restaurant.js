@@ -31,7 +31,11 @@ module.exports = function(express, app, path){
     });
 
     router.get('/catering', function(req, res) {
-        res.sendfile('./public/dashboard.html');
+        res.sendfile('./public/catering.html');
+    });
+
+    router.get('/catering/history', function(req, res) {
+        res.sendfile('./public/cateringhistory.html');
     });
 
     app.use('/restaurant', router);

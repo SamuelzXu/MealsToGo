@@ -48,13 +48,105 @@
             <li><a href="/restaurant/dashboard">HOME</a></li>
             <li><a href="/restaurant/history">HISTORY</a></li>
             <li><a href="/restaurant/mobilemanager">MOBILE NUMBERS</a></li>
-            <li><a href="" onclick="catering()">CATERING</a></li>
+            <li><a href="/restaurant/catering">CATERING</a></li>
             <li><a href="" onclick="logout()">LOG OUT</a></li>
         </ul>
     </nav>
 
     <div class="content slide">
-        <div ng-view></div>
+        <div class="rest-wrapper">
+            <div class="col-md-3">
+                <div class="card">
+                    <p class="card-heading">Current Balance</p>
+                    <div id="balance" class="card-lg-text-normal"></div>
+                    <p id="balance-hint1" style="display: none;">The amount in red is unpaid balance</p>
+                    <p id="balance-hint2" style="display: none;">The amount in brackets is credit from your last payment</p>
+                </div>
+                <div class="card">
+                    <p class="card-heading">Total Number of Deliveries</p>
+                    <div id="total" class="card-lg-text-normal"></div>
+                </div>
+            </div>
+            <div class="button-area col-md-3 hidden-lg hidden-md">
+                <div class="card">
+                    <div id="user-profile">
+                        <p class="card-text" id="fullname"></p>
+                        <p class="card-text" id="address"></p>
+                        <p class="card-text" id="phone"></p>
+                    </div>
+                </div>
+                <div class="card" id="user-profile-function">
+                    <p class="card-heading">Miscellaneous</p>
+                    <a href="/restaurant/changepassword" target="_blank">&bull; Change Password</a>
+                    <br>
+                    <a href="/restaurant/invoice" target="_blank">&bull; View Invoice</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-long" id="history-card" ng-controller="longhistctrl">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td style="font-family: Impact; color: #777;">Time</td>
+                                <td style="font-family: Impact; color: #777;">Status</td>
+                                <td style="font-family: Impact; color: #777;">Driver</td>
+                                <td style="font-family: Impact; color: #777;">Driver's phone</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="lhist in lhists">
+                                <td>{{lhist.date}}</td>
+                                <td>{{lhist.status}}</td>
+                                <td>{{lhist.deliveredBy.fullname}}</td>
+                                <td>{{lhist.deliveredBy.phone}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="button-area col-md-3 visible-lg visible-md">
+                <div class="card">
+                    <div id="user-profile">
+                        <p class="card-text" id="fullname1"></p>
+                        <p class="card-text"></p>
+                        <p class="card-text" id="address1"></p>
+                        <p class="card-text" id="phone1"></p>
+                    </div>
+                </div>
+                <div>
+                    <div class="card" id="user-profile-function">
+                        <p class="card-heading">Miscellaneous</p>
+                        <a href="/restaurant/changepassword">&bull; Change Password</a>
+                        <br>
+                        <a href="/restaurant/invoice" target="_blank">&bull; View Invoice</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+        var restaurant = getRestaurant();
+        var b = restaurant.balance;
+        if (b > 0){
+            document.getElementById('balance').innerHTML = b;
+            document.getElementById('balance').style.color = "red";
+            document.getElementById('balance-hint1').style.display = 'block';
+        } else if (b < 0) {
+            b = '( ' + b*(-1) + ' )';
+            document.getElementById('balance').innerHTML = b;
+            document.getElementById('balance-hint2').style.display = 'block';
+        } else {
+            document.getElementById('balance').innerHTML = b;
+        }
+
+        document.getElementById('total').innerHTML = restaurant.totalRequests;
+        document.getElementById('fullname').innerHTML = 'Username:  ' + restaurant.fullname;
+        document.getElementById('fullname1').innerHTML = 'Username:  ' + restaurant.fullname;
+        document.getElementById('address').innerHTML = 'Address: ' + restaurant.address.full;
+        document.getElementById('address1').innerHTML = 'Address: ' + restaurant.address.full;
+        document.getElementById('phone').innerHTML = "Phone Number: " + restaurant.phone;
+        document.getElementById('phone1').innerHTML = "Phone Number: " + restaurant.phone;
+        </script>
+
     </div>
     <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -137,45 +229,6 @@
             cancel = true;
             requestDriver();
         }
-
-
-
-
-        var TimepickerDemoCtrl = function ($scope) {
-  $scope.mytime = new Date();
-
-  $scope.hstep = 1;
-  $scope.mstep = 15;
-
-  $scope.options = {
-    hstep: [1, 2, 3],
-    mstep: [1, 5, 10, 15, 25, 30]
-  };
-
-  $scope.ismeridian = true;
-  $scope.toggleMode = function() {
-    $scope.ismeridian = ! $scope.ismeridian;
-  };
-
-  $scope.update = function() {
-    var d = new Date();
-    d.setHours( 14 );
-    d.setMinutes( 0 );
-    $scope.mytime = d;
-  };
-
-  $scope.changed = function () {
-    console.log('Time changed to: ' + $scope.mytime);
-  };
-
-  $scope.clear = function() {
-    $scope.mytime = null;
-  };
-};
-
-function catering(){
-    window.location = '/restaurant/catering';
-}
     </script>
 </body>
 </html>
