@@ -57,13 +57,13 @@
             <div class="visible-sm visible-xs" style="height: 60px;"></div>
             <div class="col-md-9">
                 <div class="card-long" style="text-align: left;">
-                    <div class="visible-sm visible-xs">
+                    <div class="visible-xs">
                         <div class="col-sm-3 col-xs-3"></div>
                         <div class="col-sm-6 col-xs-6"><br><br><br><label> Please Use a Bigger Screen to Order for Catering</label></div>
                         <div class="col-sm-3 col-xs-3   "></div>
                     </div>
-                    <form class="hidden-sm hidden-xs" name="form">
-                        <div class="col-md-4 col-sm-3">
+                    <form class="hidden-xs" name="form">
+                        <div class="col-md-5 col-sm-3">
                             <div style="display:inline-block;">
                                 <br>
                                 <label class="control-form">Date</label>
@@ -75,8 +75,9 @@
                             <timepicker ng-model="mytime" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="false"></timepicker>
                             </center>
                         </div>
-                        <div class="col-md-1 hidden-sm"></div>
-                        <div class="col-md-7 col-sm-9">
+                        <div class="hidden-sm"></div>
+                        <div class="col-sm-2"></div>
+                        <div class="col-md-7 col-sm-7">
                             <br>
                             <label>Destination</label>
                             <input class="form-control" id="address" name="address" placeholder="Address" parsley-type="alphanum" parsley-required="true"style="width: 100%; max-width: none;">
