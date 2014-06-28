@@ -54,7 +54,7 @@
     </nav>
 
     <div class="content slide">
-        <div class="rest-wrapper">
+        <div class="rest-wrapper" ng-controller="CateringCtrl">
             <div class="visible-sm visible-xs" style="height: 60px;"></div>
             <div class="col-md-9">
                 <div class="card-long" style="text-align: left;">
@@ -65,7 +65,7 @@
                     </div>
                     <form class="hidden-sm hidden-xs">
                         <div class="col-md-4 col-sm-3">
-                            <div ng-controller="DatepickerDemoCtrl" style="display:inline-block;">
+                            <div style="display:inline-block;">
                                 <br>
                                 <label class="control-form">Date</label>
                                 <datepicker ng-model="dt" min-date="minDate" show-weeks="false" class="well" id="datepicker"></datepicker>
@@ -77,10 +77,10 @@
                             </center>
                         </div>
                         <div class="col-md-1 hidden-sm"></div>
-                        <div class="col-md-7 col-sm-9" ng-controller="TimepickerDemoCtrl">
+                        <div class="col-md-7 col-sm-9">
                             
 
-                            <form method="GET" id="cateringRequestForm" data-parsley-validate style="text-align: left;">
+                            <form method="GET" id="cateringRequestForm" data-parsley-validate style="text-align: left;" name="form">
                                 <br>
                                 <label>Destination</label>
                                 <input class="form-control" id="address" name="address" placeholder="Address" parsley-type="alphanum" parsley-required="true"style="width: 100%; max-width: none;">
@@ -114,7 +114,7 @@
 
                             </form>
                             <center><br>
-                            <input id="button1" type="button" class="btn btn-primary" onclick="requestCateringDriver()" value="Submit">
+                            <input id="button1" type="button" class="btn btn-primary" ng-click="submit()" value="Submit">
                             </center>
                         </div>
 
@@ -149,66 +149,25 @@
 
 <script>
 angular.module('dashboardApp', ['ui.bootstrap']);
-var TimepickerDemoCtrl = function ($scope) {
-  $scope.mytime = new Date(2014, 06, 27, 15, 00, 00, 00);
-};
+var CateringCtrl = function ($scope, $http) {
+    $scope.today = function() {
+        $scope.dt = new Date();
+    };
+    $scope.today();
 
-var DatepickerDemoCtrl = function ($scope) {
-  $scope.today = function() {
-    $scope.dt = new Date();
-  };
-  $scope.today();
+    $scope.toggleMin = function() {
+        $scope.minDate = $scope.minDate ? null : new Date();
+    };
+    $scope.toggleMin();
 
-  $scope.toggleMin = function() {
-    $scope.minDate = $scope.minDate ? null : new Date();
-  };
-  $scope.toggleMin();
-  $scope.arrivalTime = $scope.date;
-};
-
-var numOfCars = form.e11.value;
-var hoc = form.e12.value;
-var street = form.address.value;
-var city = form.city.value;
-var province = form.province.value;
-var country = form.country.value;
-var postalcode = form.postalcode.value;
-
-alert($scope.arrivalTime);
-var CateringCtrl = function ($scope) {
-    $scope.submit = funciton($http) {
-        $http({method: 'post', 
-            url: 'https://pocketask-api.herokuapp.com/caterings/create', 
-            data : {street:street, city:city, province:province, country:country, postalcode:postalcode, arrivalTime:$scope.arrivalTime, numOfCars:numOfCars, type:hoc}, headers : {token : localStorage.getItem("token")}})
-        .success(alert('aaaaa'));
-        };
+    $scope.mytime = new Date(2014, 06, 27, 15, 00, 00, 00);
+    $scope.submit = function() {
+        $http({method : 'POST', url : "http://localhost:8080/caterings/create", headers : {'token' : localStorage.getItem("token")}, data : {type : 'cold', street : '162 westcourt place', city : 'waterloo', province : 'on', country : 'canada', arrivalTime : new Date($scope.dt.getFullYear(), $scope.dt.getMonth(), $scope.dt.getDate(), $scope.mytime.getHours(), $scope.mytime.getMinutes(), 00, 00).toISOString(), postalcode : 'n2l2r7', numOfCars : 1}})
+        .success(function(data) {
+            alert('success!');
+        })
     }
 }
-// function sub_driver(){
-//     var numOfCars = form.e11.value;
-//     var hoc = form.e12.value;
-//     var dateOfDelivery = {{dt | date:'fullDate' }};
-//     var timeOfDelivery = timepicker.value;
-//     var street = form.address.value;
-//     var city = form.city.value;
-//     var province = form.province.value;
-//     var country = form.country.value;
-//     var postalcode = form.postalcode.value;
-//     $.ajax({
-//         type : "POST",
-//         url : "https://pocketask-api.herokuapp.com/caterings/create",
-//         data : {street:street, city:city, province:province, country:country, postalcode:postalcode, arrivalTime:arrivalTime, numOfCars:numOfCars, type:hoc},
-//         dataType : 'json',
-//         headers : {
-//             token : localStorage.getItem("token")
-//         },
-//         statusCode : {
-//             200: function(data){
-//                 alert(dateOfDelivery + timeOfDelivery);
-//             }
-//         }
-//     });
-// }
 </script>
 </body>
 </html>
