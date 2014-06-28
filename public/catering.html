@@ -64,10 +64,14 @@
                     </div>
                     <form class="hidden-xs" name="form">
                         <div class="col-md-5 col-sm-3">
+                            <div class="col-sm-3"></div>
                             <div style="display:inline-block;">
+                                
                                 <br>
+                                <div class="col-sm-6"></div>
                                 <label class="control-form">Date</label>
                                 <datepicker ng-model="dt" min-date="minDate" show-weeks="false" class="well" id="datepicker"></datepicker>
+
                             </div>
 
                             <center>
@@ -158,7 +162,7 @@ var CateringCtrl = function ($scope, $http) {
     $scope.submit = function() {
         $http({method : 'POST', url : "http://localhost:8080/caterings/create", headers : {'token' : localStorage.getItem("token")}, data : {type : form.hoc.value, street : form.address.value, city : form.city.value, province : form.province.value, country : form.country.value, arrivalTime : new Date($scope.dt.getFullYear(), $scope.dt.getMonth(), $scope.dt.getDate(), $scope.mytime.getHours(), $scope.mytime.getMinutes(), 00, 00).toISOString(), postalcode : form.postalcode.value, numOfCars : form.nop.value}})
         .success(function(data) {
-            alert(form.hoc.value + form.address.value + form.city.value + form.province.value + form.country.value + form.postalcode.value + form.nop.value);
+            alert("Request Has Been Submitted, thank you for Choosing Pocketask.");
         })
     }
 }
