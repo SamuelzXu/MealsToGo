@@ -24,7 +24,6 @@
     <link rel="stylesheet" type="text/css" 
         href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/css/jquery.keypad.css">
     <link rel="stylesheet" type="text/css" href="/css/signup.css">
     <link rel="shortcut icon" href="../img/favicon.ico">
 </head>
@@ -63,7 +62,7 @@
                         <div class="col-sm-6 col-xs-6"><br><br><br><label> Please Use a Bigger Screen to Order for Catering</label></div>
                         <div class="col-sm-3 col-xs-3   "></div>
                     </div>
-                    <form class="hidden-sm hidden-xs">
+                    <form class="hidden-sm hidden-xs" name="form">
                         <div class="col-md-4 col-sm-3">
                             <div style="display:inline-block;">
                                 <br>
@@ -78,47 +77,40 @@
                         </div>
                         <div class="col-md-1 hidden-sm"></div>
                         <div class="col-md-7 col-sm-9">
-                            
+                            <br>
+                            <label>Destination</label>
+                            <input class="form-control" id="address" name="address" placeholder="Address" parsley-type="alphanum" parsley-required="true"style="width: 100%; max-width: none;">
+                            <select name="city" class="form-control" parsley-required="true"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;">
+                                 <option>Waterloo</option>
+                                 <option>Kitchener</option>
+                            </select>
+                            <select name="province" class="form-control" parsley-required="true"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;">
+                                <option>Ontario</option>
+                            </select>
+                            <select name="country" class="form-control" parsley-required="true"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;">
+                                <option>Canada</option>
+                            </select>
+                            <input class="form-control" id="postalcode" name="postalcode" placeholder="A9A 9A9" parsley-type="alphanum" parsley-required="true"style="width: 100%; max-width: none;">
 
-                            <form method="GET" id="cateringRequestForm" data-parsley-validate style="text-align: left;" name="form">
-                                <br>
-                                <label>Destination</label>
-                                <input class="form-control" id="address" name="address" placeholder="Address" parsley-type="alphanum" parsley-required="true"style="width: 100%; max-width: none;">
-                                <select name="city" class="form-control" parsley-required="true"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;">
-                                     <option>Waterloo</option>
-                                     <option>Kitchener</option>
-                                </select>
-                                <select name="province" class="form-control" parsley-required="true"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;">
-                                    <option>Ontario</option>
-                                </select>
-                                <select name="country" class="form-control" parsley-required="true"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;">
-                                    <option>Canada</option>
-                                </select>
-                                <input class="form-control" id="postalcode" name="postalcode" placeholder="A9A 9A9" parsley-type="alphanum" parsley-required="true"style="width: 100%; max-width: none;">
+                            <label># of People Attending</label>
+                            <select name="nop" class="form-control" parsley-required="true" id="e11" style="width: 100%; max-width: none;">
+                                <option id="0" value="1">1 - 40</option>
+                                <option id="1" value="2">41 - 80</option>
+                                <option id="2" value="3">81 - 120</option>
+                                <option id="0" value="4">121 - 160</option>
+                                <option id="1" value="5">161 - 200</option>
+                                <option id="2" value="6">200 +</option>
+                            </select>
 
-                                <label># of People Attending</label>
-                                <select name="nop" class="form-control" parsley-required="true" id="e11" onchange="changeform()" style="width: 100%; max-width: none;">
-                                    <option id="0" value="1">1 - 40</option>
-                                    <option id="1" value="2">41 - 80</option>
-                                    <option id="2" value="3">81 - 120</option>
-                                    <option id="0" value="4">121 - 160</option>
-                                    <option id="1" value="5">161 - 200</option>
-                                    <option id="2" value="6">200 +</option>
-                                </select>
-
-                                <label>HOT OR COLD </label>
-                                <select name="hoc" class="form-control" parsley-required="true" id="e12" onchange="changeform()"style="width: 100%; max-width: none;">
-                                    <option id="0" value="HOT">HOT</option>
-                                    <option id="1" value="COLD">COLD</option>
-                                </select>
-
-                            </form>
+                            <label>HOT OR COLD </label>
+                            <select name="hoc" class="form-control" parsley-required="true" id="e12" style="width: 100%; max-width: none;">
+                                <option id="0" value="HOT">HOT</option>
+                                <option id="1" value="COLD">COLD</option>
+                            </select>
                             <center><br>
                             <input id="button1" type="button" class="btn btn-primary" ng-click="submit()" value="Submit">
                             </center>
                         </div>
-
-
                     </form>
                 </div>
             </div>
@@ -148,6 +140,7 @@
     <script src="/js/ui-bootstrap-tpls-0.11.0.min.js"></script>
 
 <script>
+var address = form.address.value;
 angular.module('dashboardApp', ['ui.bootstrap']);
 var CateringCtrl = function ($scope, $http) {
     $scope.today = function() {
@@ -162,7 +155,7 @@ var CateringCtrl = function ($scope, $http) {
 
     $scope.mytime = new Date(2014, 06, 27, 15, 00, 00, 00);
     $scope.submit = function() {
-        $http({method : 'POST', url : "https://pocketask-api.herokuapp.com/caterings/create", headers : {'token' : localStorage.getItem("token")}, data : {type : form.hoc.value, street : form.address.value, city : form.city.value, province : form.province.value, country : form.country.value, arrivalTime : new Date($scope.dt.getFullYear(), $scope.dt.getMonth(), $scope.dt.getDate(), $scope.mytime.getHours(), $scope.mytime.getMinutes(), 00, 00).toISOString(), postalcode : form.postalcode.value, numOfCars : form.nop.value}})
+        $http({method : 'POST', url : "http://localhost:8080/caterings/create", headers : {'token' : localStorage.getItem("token")}, data : {type : form.hoc.value, street : form.address.value, city : form.city.value, province : form.province.value, country : form.country.value, arrivalTime : new Date($scope.dt.getFullYear(), $scope.dt.getMonth(), $scope.dt.getDate(), $scope.mytime.getHours(), $scope.mytime.getMinutes(), 00, 00).toISOString(), postalcode : form.postalcode.value, numOfCars : form.nop.value}})
         .success(function(data) {
             alert(form.hoc.value + form.address.value + form.city.value + form.province.value + form.country.value + form.postalcode.value + form.nop.value);
         })
