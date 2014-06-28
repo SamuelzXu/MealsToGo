@@ -97,7 +97,7 @@
                                 <input class="form-control" id="postalcode" name="postalcode" placeholder="A9A 9A9" parsley-type="alphanum" parsley-required="true"style="width: 100%; max-width: none;">
 
                                 <label># of People Attending</label>
-                                <select name="role" class="form-control" parsley-required="true" id="e11" onchange="changeform()" style="width: 100%; max-width: none;">
+                                <select name="nop" class="form-control" parsley-required="true" id="e11" onchange="changeform()" style="width: 100%; max-width: none;">
                                     <option id="0" value="1">1 - 40</option>
                                     <option id="1" value="2">41 - 80</option>
                                     <option id="2" value="3">81 - 120</option>
@@ -107,7 +107,7 @@
                                 </select>
 
                                 <label>HOT OR COLD </label>
-                                <select name="role" class="form-control" parsley-required="true" id="e12" onchange="changeform()"style="width: 100%; max-width: none;">
+                                <select name="hoc" class="form-control" parsley-required="true" id="e12" onchange="changeform()"style="width: 100%; max-width: none;">
                                     <option id="0" value="HOT">HOT</option>
                                     <option id="1" value="COLD">COLD</option>
                                 </select>
@@ -162,9 +162,9 @@ var CateringCtrl = function ($scope, $http) {
 
     $scope.mytime = new Date(2014, 06, 27, 15, 00, 00, 00);
     $scope.submit = function() {
-        $http({method : 'POST', url : "http://localhost:8080/caterings/create", headers : {'token' : localStorage.getItem("token")}, data : {type : 'cold', street : '162 westcourt place', city : 'waterloo', province : 'on', country : 'canada', arrivalTime : new Date($scope.dt.getFullYear(), $scope.dt.getMonth(), $scope.dt.getDate(), $scope.mytime.getHours(), $scope.mytime.getMinutes(), 00, 00).toISOString(), postalcode : 'n2l2r7', numOfCars : 1}})
+        $http({method : 'POST', url : "https://pocketask-api.herokuapp.com/caterings/create", headers : {'token' : localStorage.getItem("token")}, data : {type : form.hoc.value, street : form.address.value, city : form.city.value, province : form.province.value, country : form.country.value, arrivalTime : new Date($scope.dt.getFullYear(), $scope.dt.getMonth(), $scope.dt.getDate(), $scope.mytime.getHours(), $scope.mytime.getMinutes(), 00, 00).toISOString(), postalcode : form.postalcode.value, numOfCars : form.nop.value}})
         .success(function(data) {
-            alert('success!');
+            alert(form.hoc.value + form.address.value + form.city.value + form.province.value + form.country.value + form.postalcode.value + form.nop.value);
         })
     }
 }
