@@ -26,6 +26,7 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/signup.css">
     <link rel="shortcut icon" href="../img/favicon.ico">
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
 </head>
 
 <body onload="startTime()">
@@ -63,7 +64,7 @@
                         <div class="col-sm-3 col-xs-3   "></div>
                     </div>
                     <form class="hidden-sm hidden-xs" name="form">
-                        <div class="col-md-4 col-sm-3">
+                        <div class="col-md-5 col-sm-3" style="text-align: center;">
                             <div style="display:inline-block;">
                                 <br>
                                 <label class="control-form">Date</label>
@@ -75,12 +76,40 @@
                             <timepicker ng-model="mytime" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="false"></timepicker>
                             </center>
                         </div>
-                        <div class="col-md-1 hidden-sm"></div>
+                        <div class="hidden-sm"></div>
                         <div class="col-md-7 col-sm-9">
                             <br>
                             <label>Destination</label>
-                            <input class="form-control" id="address" name="address" placeholder="Address" parsley-type="alphanum" parsley-required="true"style="width: 100%; max-width: none;">
-                            <select name="city" class="form-control" parsley-required="true"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;">
+                            <input class="form-control" id="autocomplete" onFocus="geolocate()" name="address" placeholder="Address" parsley-type="alphanum" parsley-required="true" style="width: 100%; max-width: none;">
+                            <table id="address" style="display: none;" name="address">
+                                <tr>
+                                    <td class="label">Street address</td>
+                                    <td class="slimField"><input class="field" id="street_number"
+                                        disabled="true"></input></td>
+                                    <td class="wideField" colspan="2"><input class="field" id="route"
+                                        disabled="true"></input></td>
+                                </tr>
+                                <tr>
+                                    <td class="label">City</td>
+                                    <td class="wideField" colspan="3"><input class="field" id="locality"
+                                        disabled="true"></input></td>
+                                </tr>
+                                <tr>
+                                    <td class="label">State</td>
+                                    <td class="slimField"><input class="field"
+                                        id="administrative_area_level_1" disabled="true"></input></td>
+                                    <td class="label">Zip code</td>
+                                    <td class="wideField"><input class="field" id="postal_code"
+                                        disabled="true"></input></td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Country</td>
+                                    <td class="wideField" colspan="3"><input class="field"
+                                        id="country" disabled="true"></input></td>
+                                </tr>
+                            </table>
+
+                            <!-- <select name="city" class="form-control" parsley-required="true"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;">
                                  <option>Waterloo</option>
                                  <option>Kitchener</option>
                             </select>
@@ -89,7 +118,7 @@
                             </select>
                             <select name="country" class="form-control" parsley-required="true"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;">
                                 <option>Canada</option>
-                            </select>
+                            </select> -->
                             <input class="form-control" id="postalcode" name="postalcode" placeholder="A9A 9A9" parsley-type="alphanum" parsley-required="true"style="width: 100%; max-width: none;">
 
                             <label># of People Attending</label>
@@ -140,7 +169,68 @@
     <script src="/js/ui-bootstrap-tpls-0.11.0.min.js"></script>
 
 <script>
-var address = form.address.value;
+
+
+var placeSearch, autocomplete;
+var componentForm = {
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
+};
+
+function initialize() {
+  // Create the autocomplete object, restricting the search
+  // to geographical location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
+      { types: ['geocode'] });
+  // When the user selects an address from the dropdown,
+  // populate the address fields in the form.
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    fillInAddress();
+  });
+}
+initialize();
+// [START region_fillform]
+function fillInAddress() {
+  // Get the place details from the autocomplete object.
+  var place = autocomplete.getPlace();
+
+  for (var component in componentForm) {
+    document.getElementById(component).value = '';
+    document.getElementById(component).disabled = false;
+  }
+
+  // Get each component of the address from the place details
+  // and fill the corresponding field on the form.
+  for (var i = 0; i < place.address_components.length; i++) {
+    var addressType = place.address_components[i].types[0];
+    if (componentForm[addressType]) {
+      var val = place.address_components[i][componentForm[addressType]];
+      document.getElementById(addressType).value = val;
+    }
+  }
+}
+// [END region_fillform]
+
+// [START region_geolocation]
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = new google.maps.LatLng(
+          position.coords.latitude, position.coords.longitude);
+      autocomplete.setBounds(new google.maps.LatLngBounds(geolocation,
+          geolocation));
+    });
+  }
+}
+
+// var address = form.address.value;
 angular.module('dashboardApp', ['ui.bootstrap']);
 var CateringCtrl = function ($scope, $http) {
     $scope.today = function() {
@@ -155,7 +245,8 @@ var CateringCtrl = function ($scope, $http) {
 
     $scope.mytime = new Date(2014, 06, 27, 15, 00, 00, 00);
     $scope.submit = function() {
-        $http({method : 'POST', url : "http://localhost:8080/caterings/create", headers : {'token' : localStorage.getItem("token")}, data : {type : form.hoc.value, street : form.address.value, city : form.city.value, province : form.province.value, country : form.country.value, arrivalTime : new Date($scope.dt.getFullYear(), $scope.dt.getMonth(), $scope.dt.getDate(), $scope.mytime.getHours(), $scope.mytime.getMinutes(), 00, 00).toISOString(), postalcode : form.postalcode.value, numOfCars : form.nop.value}})
+        var address = form.address.value.split(",");
+        $http({method : 'POST', url : "http://localhost:8080/caterings/create", headers : {'token' : localStorage.getItem("token")}, data : {type : form.hoc.value, street : address[0], city : address[1], province : address[2], country : address[3], arrivalTime : new Date($scope.dt.getFullYear(), $scope.dt.getMonth(), $scope.dt.getDate(), $scope.mytime.getHours(), $scope.mytime.getMinutes(), 00, 00).toISOString(), postalcode : form.postalcode.value, numOfCars : form.nop.value}})
         .success(function(data) {
             alert(form.hoc.value + form.address.value + form.city.value + form.province.value + form.country.value + form.postalcode.value + form.nop.value);
         })
