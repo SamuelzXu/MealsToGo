@@ -107,7 +107,7 @@
 	document.getElementById('due').innerHTML = due;
 	document.getElementById('customer-title').innerHTML = restaurant.fullname;
 	document.getElementById('date').innerHTML = new Date(restaurant.requestsResetDate).toString().substring(0, 25);
-	document.getElementById('invoicenumber').innerHTML = restaurant.name + reset.substring(0,4) + reset.substring(5,7) + reset.substring(8,10);
+	document.getElementById('invoicenumber').innerHTML = restaurant._id.substring(0,8) + reset.substring(0,4) + reset.substring(5,7) + reset.substring(8,10);
 	</script>
 </body>
 </html>

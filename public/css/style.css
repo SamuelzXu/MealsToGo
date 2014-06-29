@@ -20,7 +20,6 @@ body,html {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    margin-top: 5px;
 }
 
 .res-section{
@@ -480,7 +479,7 @@ html{
     display: none;
     text-align: center;
     color: #fff !important;
-    z-index: 2;
+    z-index: 0;
 }
 
 .veil-content {
@@ -528,7 +527,7 @@ html{
     border: 1px solid #dddddd;
     box-shadow: 2px 2px 2px gray;
     margin-top: calc(15% - 30px);
-    opacity: 0.8
+    opacity: 0.8;
 }
 
 /* our clients end */
@@ -538,11 +537,6 @@ html{
 .contain{
     width: 100%;
     padding-bottom: 10px;
-}
-
-header{
-    margin: 0;
-    width: auto;
 }
 
 /*.navbar{
@@ -640,13 +634,6 @@ header{
     padding: 5px;
 }
 
-/*#s{
-    text-align: center;
-    font-size: 400%;
-    font-family: Impact, fantasy;
-    color: #33aaee;
-}*/
-
 .cot{
     text-align: center;
     background-color: #eeeeee;
@@ -728,7 +715,7 @@ header{
 }
 
 #history-cardd{
-    margin-bottom: 90px;
+    margin-bottom: 5px;
 }
 
 .cclose {
@@ -741,13 +728,6 @@ header{
   opacity: 0.2;
   filter: alpha(opacity=20);
 }
-
-/*.assign-button{
-    border: none;
-    background-color: #ccc;
-    height: 100%;
-    width: 100%;
-}*/
 
 /* restaurant */
 
@@ -784,7 +764,7 @@ header{
 
 .card{
     overflow: auto;
-    height: 222.5px;
+    height: 261px;
     width: 100%;
     background-color: #ffffff;
     text-align: center;
@@ -817,14 +797,27 @@ header{
 }
 
 .card-long{
-    height: 450px;
+    height: 527px;
     width: 100%;
     background-color: #ffffff;
     text-align: center;
     border: 1px solid #d8d8d8;
     border-bottom-width: 2px;
     box-shadow: 3px 3px 3px gray;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+        border-radius: 3px;
+}
+.card-long2{
+    height: 260px;
+    width: 100%;
+    background-color: #ffffff;
+    text-align: center;
+    border: 1px solid #d8d8d8;
+    border-bottom-width: 2px;
+    box-shadow: 3px 3px 3px gray;
+    margin-bottom: 0px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
         border-radius: 3px;
@@ -887,11 +880,12 @@ header{
 #driver-button{
     background-image: url('../img/driver.jpg');
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: cover;
+    background-position: center;
 }
 
 #user-profile-function{
-    height: 222.5px;
+    height: 261px;
     background-color: #ffffff;
     text-align: center;
     font-family: Impact;
@@ -980,4 +974,9 @@ header{
     margin-right: auto;
     margin-bottom: 10px;
 }
+
+.timer-requests{
+    color: red;
+}
 /* admin end */
+

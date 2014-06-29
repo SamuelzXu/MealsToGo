@@ -68,11 +68,13 @@ function updateHistoryTable() {
 }
 
 function requestDriver() {
+    var rest = requestform.dest.value;
     checktoken();
     $.ajax({
         type : "GET",
         crossDomain : true,
         url : host + "requests/request_driver",
+        data : {dest : dest},
         headers : {
             token : localStorage.getItem("token")
         },
@@ -157,6 +159,26 @@ function logout() {
     });
 }
 
+function catering() {
+    checktoken();
+    $.ajax({
+        type: "GET",
+        dataType : 'json',
+        async : false,
+        url : "/restaurant/catering",
+        headers : {
+            token : localStorage.getItem("token")
+        },
+        statusCode: {
+            200 : function(data) {
+
+                window.location = '/restaurant/catering';
+            }
+        }
+    });
+}
+
+
 function getHistory(limit) {
     checktoken();
     var result = null;
@@ -175,13 +197,18 @@ function getHistory(limit) {
     return result;
 }
 
+<<<<<<< HEAD
 function getCateringHistory(limit) {
+=======
+function getCateringHistory() {
+>>>>>>> frontend
     checktoken();
     var result = null;
     $.ajax({
         type: "GET",
         dataType : 'json',
         async : false,
+<<<<<<< HEAD
         url : host + "caterings/restaurant_history?limit=" + limit,
         headers : {
             token : localStorage.getItem("token")
@@ -201,6 +228,9 @@ function getCateringHistory(limit) {
         dataType: 'json',
         async: false,
         url: host + "caterings/restaurant_history?limit=" + limit,
+=======
+        url : host + "caterings/restaurant_history",
+>>>>>>> frontend
         headers : {
             token : localStorage.getItem("token")
         },

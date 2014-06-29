@@ -34,5 +34,13 @@ module.exports = function(express, app, path){
         res.sendfile('./public/partial/invoice.html');
     });
 
+    router.get('/catering', function(req, res) {
+        res.sendfile('./public/catering.html');
+    });
+
+    router.get('/catering/history', function(req, res) {
+        res.sendfile('./public/cateringhistory.html');
+    });
+
     app.use('/restaurant', router);
 };
