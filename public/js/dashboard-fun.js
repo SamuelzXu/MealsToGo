@@ -197,18 +197,14 @@ function getHistory(limit) {
     return result;
 }
 
-<<<<<<< HEAD
-function getCateringHistory(limit) {
-=======
+
 function getCateringHistory() {
->>>>>>> frontend
     checktoken();
     var result = null;
     $.ajax({
         type: "GET",
         dataType : 'json',
         async : false,
-<<<<<<< HEAD
         url : host + "caterings/restaurant_history?limit=" + limit,
         headers : {
             token : localStorage.getItem("token")
@@ -227,10 +223,7 @@ function getCateringHistory(limit) {
         type: "GET",
         dataType: 'json',
         async: false,
-        url: host + "caterings/restaurant_history?limit=" + limit,
-=======
         url : host + "caterings/restaurant_history",
->>>>>>> frontend
         headers : {
             token : localStorage.getItem("token")
         },
