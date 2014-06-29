@@ -715,7 +715,7 @@ html{
 }
 
 #history-cardd{
-    margin-bottom: 90px;
+    margin-bottom: 5px;
 }
 
 .cclose {
@@ -797,14 +797,27 @@ html{
 }
 
 .card-long{
-    height: 528px;
+    height: 580px;
     width: 100%;
     background-color: #ffffff;
     text-align: center;
     border: 1px solid #d8d8d8;
     border-bottom-width: 2px;
     box-shadow: 3px 3px 3px gray;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+        border-radius: 3px;
+}
+.card-long2{
+    height: 260px;
+    width: 100%;
+    background-color: #ffffff;
+    text-align: center;
+    border: 1px solid #d8d8d8;
+    border-bottom-width: 2px;
+    box-shadow: 3px 3px 3px gray;
+    margin-bottom: 0px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
         border-radius: 3px;

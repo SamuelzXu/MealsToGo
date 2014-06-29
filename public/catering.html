@@ -232,8 +232,9 @@ var CateringCtrl = function ($scope, $http) {
 
     $scope.mytime = new Date(2014, 06, 27, 15, 00, 00, 00);
     $scope.submit = function() {
+
         var address = form.address.value.split(",");
-        $http({method : 'POST', url : "http://localhost:8080/caterings/create", headers : {'token' : localStorage.getItem("token")}, data : {type : form.hoc.value, street : address[0], city : address[1], province : address[2], country : address[3], arrivalTime : new Date($scope.dt.getFullYear(), $scope.dt.getMonth(), $scope.dt.getDate(), $scope.mytime.getHours(), $scope.mytime.getMinutes(), 00, 00).toISOString(), postalcode : form.postalcode.value, numOfCars : form.nop.value}})
+        $http({method : 'POST', url : "https://www.pocketask-api.herokuapp.com/caterings/create", headers : {'token' : localStorage.getItem("token")}, data : {type : form.hoc.value, street : address[0], city : address[1], province : address[2], country : address[3], arrivalTime : new Date($scope.dt.getFullYear(), $scope.dt.getMonth(), $scope.dt.getDate(), $scope.mytime.getHours(), $scope.mytime.getMinutes(), 00, 00).toISOString(), postalcode : form.postalcode.value, numOfCars : form.nop.value}})
         .success(function(data) {
             alert("Request Has Been Submitted, thank you for Choosing Pocketask.");
         })
@@ -245,8 +246,13 @@ var TimerCtrl = function ($scope, $http) {
     $scope.now = new Date();
     $scope.timersub = function() {
         $scope.realtime = new Date($scope.now.getFullYear(), $scope.now.getMonth(), $scope.now.getDate(), $scope.now.getHours() + $scope.time.getHours(), $scope.now.getMinutes() + $scope.time.getMinutes(), 00, 00).toISOString();
+<<<<<<< HEAD
         // $scope.timeraddress = document.getElementById('timeraddress').value;
         $http({method : 'get', url : "http://localhost:8080/requests/request_driver", params : {arrivalTime : $scope.realtime}, headers : {'token' : localStorage.getItem("token")}})
+=======
+        $scope.timeraddress = document.getElementById('timeraddress').value;
+        $http({method : 'get', url : "https://www.pocketask-api.herokuapp.com/requests/request_driver", params : {arrivalTime : $scope.realtime}, headers : {'token' : localStorage.getItem("token")}})
+>>>>>>> df7c4e38600e74df6003a5bc86adc874d8ad671d
         .success(function(data) {
             alert("success");
         })
