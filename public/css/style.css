@@ -974,4 +974,9 @@ html{
     margin-right: auto;
     margin-bottom: 10px;
 }
+
+.timer-requests{
+    color: red;
+}
 /* admin end */
+

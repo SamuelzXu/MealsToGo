@@ -13,7 +13,7 @@
                 		</tr>
             		</thead>
             		<tbody>
-                        <tr ng-repeat="un in uns" ng-style="mystyle">
+                        <tr ng-repeat="un in uns" ng-class="{'timer-requests': un.arrivalTime}">
                             <td>
                                 <button ng-click="assign(un._id)">
                                     Assign Driver

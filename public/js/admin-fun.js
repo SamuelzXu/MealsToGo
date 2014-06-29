@@ -269,10 +269,13 @@ function uncompletedctrl($scope, $http) {
         //     value.arrivalTime = new Date(value.arrivalTime).toString().substring(0, 25);
         //     value.arrivalTime.style.color = "red";
         // }
-        if (!value.arrivalTime) {
-            $scope.mystyle = {'color':'red'};
+        if (typeof(value.arrivalTime) !== "undefined") {
+            $scope.mystyle = {'color' : 'red'};
+        } else {
+            $scope.mystyle = {'color' : "black"};
         }
         $scope.uns.push(value);
+
     });
     $scope.assign = function(id) {
         window.location=('/admin/assigndriver?id=' + id);
