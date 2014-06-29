@@ -68,7 +68,7 @@ function updateHistoryTable() {
 }
 
 function requestDriver() {
-    var rest = requestform.dest.value;
+    // var rest = requestform.dest.value;
     checktoken();
     $.ajax({
         type : "GET",
