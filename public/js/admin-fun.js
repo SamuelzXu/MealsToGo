@@ -270,6 +270,7 @@ function uncompletedctrl($scope, $http) {
         //     value.arrivalTime.style.color = "red";
         // }
         if (typeof(value.arrivalTime) !== "undefined") {
+            value.arrivalTime = new Date(value.arrivalTime).toString().substring(0, 25);
             $scope.mystyle = {'color' : 'red'};
         } else {
             $scope.mystyle = {'color' : "black"};
