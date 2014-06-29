@@ -1,4 +1,4 @@
-<div class="wrapper" style="min-height: 595px; padding-top: 25px;" id="uncompleted-wrapper">
+<div class="wrapper" style="min-heifht: 595px; padding-top: 25px;" id="uncompleted-wrapper">
 
     <div class="col-md-9" id="outer-box">
         <div class="pad" >
@@ -42,11 +42,11 @@
                         <tr ng-repeat="un in uns">
                             <td>
                                 <button ng-click="assign(un._id)">
-                                    Assign Driver
+                                    Give Order
                                 </button>
                             </td>
                             <td>{{un.requestedBy.fullname}}</td>
-                            <td>{{un.requestedAt}}</td>
+                            <td>{{un.arrivalTime}}</td>
                             <td>{{un.numOfCars}}</td>
                             <td>{{un.destination.full}}</td>
                             <td>{{un.type}}</td>
