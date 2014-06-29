@@ -265,11 +265,18 @@ function uncompletedctrl($scope, $http) {
     $scope.uns = [];
     angular.forEach(uns, function(value) {
         value.requestedAt = new Date(value.requestedAt).toString().substring(0, 25);
+        // if(value.arrivalTime){
+        //     value.arrivalTime = new Date(value.arrivalTime).toString().substring(0, 25);
+        //     value.arrivalTime.style.color = "red";
+        // }
+        if (!value.arrivalTime) {
+            $scope.mystyle = {'color':'red'};
+        }
         $scope.uns.push(value);
     });
     $scope.assign = function(id) {
         window.location=('/admin/assigndriver?id=' + id);
-    }
+    };
 }
 
 function uncompletedcateringctrl($scope, $http) {
