@@ -74,7 +74,7 @@ function requestDriver() {
         type : "GET",
         crossDomain : true,
         url : host + "requests/request_driver",
-        data : {dest : dest},
+        // data : {dest : dest},
         headers : {
             token : localStorage.getItem("token")
         },
