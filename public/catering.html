@@ -48,20 +48,20 @@
             <li><a href="/restaurant/dashboard">HOME</a></li>
             <li><a href="/restaurant/history">HISTORY</a></li>
             <li><a href="/restaurant/mobilemanager">MOBILE NUMBERS</a></li>
-            <li><a href="/restaurant/catering">CATERING</a></li>
+            <li><a href="/restaurant/catering">CATERING & TIMER</a></li>
             <li><a href="" onclick="logout()">LOG OUT</a></li>
         </ul>
     </nav>
 
     <div class="content slide">
-        <div class="rest-wrapper" ng-controller="CateringCtrl">
+        <div class="rest-wrapper">
             <div class="visible-sm visible-xs" style="height: 60px;"></div>
-            <div class="col-md-9">
+            <div class="col-md-9" ng-controller="CateringCtrl">
                 <div class="card-long" style="text-align: left;">
                     <div class="visible-sm visible-xs">
                         <div class="col-sm-3 col-xs-3"></div>
                         <div class="col-sm-6 col-xs-6"><br><br><br><label> Please Use a Bigger Screen to Order for Catering</label></div>
-                        <div class="col-sm-3 col-xs-3   "></div>
+                        <div class="col-sm-3 col-xs-3"></div>
                     </div>
                     <form class="hidden-sm hidden-xs" name="form">
                         <div class="col-md-5 col-sm-3" style="text-align: center;">
@@ -81,44 +81,6 @@
                             <br>
                             <label>Destination</label>
                             <input class="form-control" id="autocomplete" onFocus="geolocate()" name="address" placeholder="Address" parsley-type="alphanum" parsley-required="true" style="width: 100%; max-width: none;">
-                            <table id="address" style="display: none;" name="address">
-                                <tr>
-                                    <td class="label">Street address</td>
-                                    <td class="slimField"><input class="field" id="street_number"
-                                        disabled="true"></input></td>
-                                    <td class="wideField" colspan="2"><input class="field" id="route"
-                                        disabled="true"></input></td>
-                                </tr>
-                                <tr>
-                                    <td class="label">City</td>
-                                    <td class="wideField" colspan="3"><input class="field" id="locality"
-                                        disabled="true"></input></td>
-                                </tr>
-                                <tr>
-                                    <td class="label">State</td>
-                                    <td class="slimField"><input class="field"
-                                        id="administrative_area_level_1" disabled="true"></input></td>
-                                    <td class="label">Zip code</td>
-                                    <td class="wideField"><input class="field" id="postal_code"
-                                        disabled="true"></input></td>
-                                </tr>
-                                <tr>
-                                    <td class="label">Country</td>
-                                    <td class="wideField" colspan="3"><input class="field"
-                                        id="country" disabled="true"></input></td>
-                                </tr>
-                            </table>
-
-                            <!-- <select name="city" class="form-control" parsley-required="true"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;">
-                                 <option>Waterloo</option>
-                                 <option>Kitchener</option>
-                            </select>
-                            <select name="province" class="form-control" parsley-required="true"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;">
-                                <option>Ontario</option>
-                            </select>
-                            <select name="country" class="form-control" parsley-required="true"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;">
-                                <option>Canada</option>
-                            </select> -->
                             <input class="form-control" id="postalcode" name="postalcode" placeholder="A9A 9A9" parsley-type="alphanum" parsley-required="true"style="width: 100%; max-width: none;">
 
                             <label># of People Attending</label>
@@ -144,9 +106,17 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card-long" style="font-family: Impact;text-align: center;font-size: 20px;">
+                <div class="card" style="font-family: Impact;text-align: center;font-size: 20px;">
                     <br>
                     <a href="catering/history">&bull; View Catering History</a>
+                </div>
+                <div class="card" style="font-family: Impact;text-align: center;font-size: 20px;" ng-controller="TimerCtrl">
+                    <h3 class="card-heading">Timer</h3>
+                    <center>
+                        <!-- <input class="form-control" id="timeraddress" onFocus="geolocate()" name="address" placeholder="Address" parsley-type="alphanum" parsley-required="true" style="width: 90%; max-width: none;"> -->
+                        <timepicker ng-model="time" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="false"></timepicker>
+                        <input id="button1" type="button" class="btn btn-primary" ng-click="timersub()" value="Submit">
+                    </center>
                 </div>
             </div>
         </div>
@@ -193,7 +163,20 @@ function initialize() {
     fillInAddress();
   });
 }
+function initialize2() {
+  // Create the autocomplete object, restricting the search
+  // to geographical location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      /** @type {HTMLInputElement} */(document.getElementById('timeraddress')),
+      { types: ['geocode'] });
+  // When the user selects an address from the dropdown,
+  // populate the address fields in the form.
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    fillInAddress();
+  });
+}
 initialize();
+initialize2();
 // [START region_fillform]
 function fillInAddress() {
   // Get the place details from the autocomplete object.
@@ -250,6 +233,20 @@ var CateringCtrl = function ($scope, $http) {
         .success(function(data) {
             alert(form.hoc.value + form.address.value + form.city.value + form.province.value + form.country.value + form.postalcode.value + form.nop.value);
         })
+    }
+}
+
+var TimerCtrl = function ($scope, $http) {
+    $scope.time = new Date(2014, 06, 28, 00, 00, 00);
+    $scope.now = new Date();
+    $scope.timersub = function() {
+        $scope.realtime = new Date($scope.now.getFullYear(), $scope.now.getMonth(), $scope.now.getDate(), $scope.now.getHours() + $scope.time.getHours(), $scope.now.getMinutes() + $scope.time.getMinutes(), 00, 00).toISOString();
+        $scope.timeraddress = document.getElementById('timeraddress').value;
+        $http({method : 'get', url : "http://localhost:8080/requests/request_driver", params : {arrivalTime : $scope.realtime}, headers : {'token' : localStorage.getItem("token")}})
+        .success(function(data) {
+            alert("success");
+        })
+        // alert($scope.timeraddress + $scope.realtime);
     }
 }
 </script>
