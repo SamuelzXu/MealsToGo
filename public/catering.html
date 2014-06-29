@@ -246,12 +246,13 @@ var TimerCtrl = function ($scope, $http) {
     $scope.now = new Date();
     $scope.timersub = function() {
         $scope.realtime = new Date($scope.now.getFullYear(), $scope.now.getMonth(), $scope.now.getDate(), $scope.now.getHours() + $scope.time.getHours(), $scope.now.getMinutes() + $scope.time.getMinutes(), 00, 00).toISOString();
+        // $scope.timeraddress = document.getElementById('timeraddress').value;
+        // $http({method : 'get', url : "http://localhost:8080/requests/request_driver", params : {arrivalTime : $scope.realtime}, headers : {'token' : localStorage.getItem("token")}})
         $scope.timeraddress = document.getElementById('timeraddress').value;
         $http({method : 'get', url : "https://www.pocketask-api.herokuapp.com/requests/request_driver", params : {arrivalTime : $scope.realtime}, headers : {'token' : localStorage.getItem("token")}})
         .success(function(data) {
             alert("success");
         })
-        // alert($scope.timeraddress + $scope.realtime);
     }
 }
 </script>
