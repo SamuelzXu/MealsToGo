@@ -34,6 +34,10 @@ module.exports = function(express, app, path){
         res.sendfile(path.dirname(__dirname) + '/public/admin.html');
     });
 
+    router.get('/assigncateringdriver', function(req, res) {
+        res.sendfile(path.dirname(__dirname) + '/public/admin.html');
+    });
+
     router.get('/driver', function(req, res) {
         res.sendfile(path.dirname(__dirname) + '/public/admindriver.html');
     });

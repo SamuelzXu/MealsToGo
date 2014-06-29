@@ -287,11 +287,11 @@ function uncompletedcateringctrl($scope, $http) {
     var uns = getCateringUnassigned();
     $scope.uns = [];
     angular.forEach(uns, function(value) {
-        value.requestedAt = new Date(value.requestedAt).toString().substring(0, 25);
+        value.arrivalTime = new Date(value.arrivalTime).toString().substring(0, 25);
         $scope.uns.push(value);
     });
     $scope.assign = function(id) {
-        window.location=('/admin/assigndriver?id=' + id);
+        window.location=('/admin/assigncateringdriver?id=' + id);
     }
 }
 
@@ -397,6 +397,37 @@ function driverctrl($scope, $http) {
             alert(data + ' cannot change status, please try again.');
         });
     };
+
+}
+
+function cateringdriverctrl($scope, $http) {
+    checktoken();
+    var drivers = getDrivers();
+    $scope.drivers = [];
+    angular.forEach(drivers, function(driver) {
+        if (driver.available === true) {
+            driver.available = 'Available';
+        } else {
+            driver.available = 'Not Available';
+        }
+        $scope.drivers.push(driver);
+    });
+    
+    $scope.change = function(driver) {
+        checktoken();
+        $http({method :'get', url : host + 'caterings/give_order', 
+            params : {
+                id : getIdFromUrl(window.location.href), 
+                driver : driver._id
+            }, headers : {'token' : localStorage.getItem("token")}})
+        .success(function(data){
+            history.back();
+        })
+        .error(function(data){
+            alert(data + ' cannot change status, please try again.');
+        });
+    };
+
 }
 
 function getRequests() {

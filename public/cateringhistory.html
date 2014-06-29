@@ -48,7 +48,7 @@
             <li><a href="/restaurant/dashboard">HOME</a></li>
             <li><a href="/restaurant/history">HISTORY</a></li>
             <li><a href="/restaurant/mobilemanager">MOBILE NUMBERS</a></li>
-            <li><a href="/restaurant/catering">CATERING</a></li>
+            <li><a href="/restaurant/catering">CATERING & TIMER</a></li>
             <li><a href="" onclick="logout()">LOG OUT</a></li>
         </ul>
     </nav>
@@ -74,7 +74,7 @@
                                 <td>{{lhist.status}}</td>
                                 <td>{{lhist.deliveredBy.fullname}}</td>
                                 <td>{{lhist.deliveredBy.phone}}</td>
-                                <td>{{lhist.destination}}</td>
+                                <td>{{lhist.destination.full}}</td>
                             </tr>
                         </tbody>
                     </table>
