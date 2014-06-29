@@ -24,9 +24,9 @@
     <link rel="stylesheet" type="text/css" 
         href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/css/jquery.keypad.css">
     <link rel="stylesheet" type="text/css" href="/css/signup.css">
     <link rel="shortcut icon" href="../img/favicon.ico">
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
 </head>
 
 <body onload="startTime()">
@@ -48,27 +48,30 @@
             <li><a href="/restaurant/dashboard">HOME</a></li>
             <li><a href="/restaurant/history">HISTORY</a></li>
             <li><a href="/restaurant/mobilemanager">MOBILE NUMBERS</a></li>
-            <li><a href="/restaurant/catering">CATERING</a></li>
+            <li><a href="/restaurant/catering">CATERING & TIMER</a></li>
             <li><a href="" onclick="logout()">LOG OUT</a></li>
         </ul>
     </nav>
 
     <div class="content slide">
-        <div class="rest-wrapper" ng-controller="CateringCtrl">
+        <div class="rest-wrapper">
             <div class="visible-sm visible-xs" style="height: 60px;"></div>
-            <div class="col-md-9">
+            <div class="col-md-9" ng-controller="CateringCtrl">
                 <div class="card-long" style="text-align: left;">
-                    <div class="visible-sm visible-xs">
+                    <div class="visible-xs">
                         <div class="col-sm-3 col-xs-3"></div>
                         <div class="col-sm-6 col-xs-6"><br><br><br><label> Please Use a Bigger Screen to Order for Catering</label></div>
-                        <div class="col-sm-3 col-xs-3   "></div>
+                        <div class="col-sm-3 col-xs-3"></div>
                     </div>
-                    <form class="hidden-sm hidden-xs">
-                        <div class="col-md-4 col-sm-3">
+                    <form class="hidden-sm hidden-xs" name="form">
+                        <div class="col-md-5 col-sm-3" style="text-align: center;">
                             <div style="display:inline-block;">
+                                
                                 <br>
+                                <div class="col-sm-6"></div>
                                 <label class="control-form">Date</label>
                                 <datepicker ng-model="dt" min-date="minDate" show-weeks="false" class="well" id="datepicker"></datepicker>
+
                             </div>
 
                             <center>
@@ -76,56 +79,48 @@
                             <timepicker ng-model="mytime" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="false"></timepicker>
                             </center>
                         </div>
-                        <div class="col-md-1 hidden-sm"></div>
+                        <div class="hidden-sm"></div>
                         <div class="col-md-7 col-sm-9">
-                            
+                        <div class="col-sm-2"></div>
+                            <br>
+                            <label>Destination</label>
+                            <input class="form-control" id="autocomplete" onFocus="geolocate()" name="address" placeholder="Address" parsley-type="alphanum" parsley-required="true" style="width: 100%; max-width: none;">
+                            <input class="form-control" id="postalcode" name="postalcode" placeholder="A9A 9A9" parsley-type="alphanum" parsley-required="true"style="width: 100%; max-width: none;">
 
-                            <form method="GET" id="cateringRequestForm" data-parsley-validate style="text-align: left;" name="form">
-                                <br>
-                                <label>Destination</label>
-                                <input class="form-control" id="address" name="address" placeholder="Address" parsley-type="alphanum" parsley-required="true"style="width: 100%; max-width: none;">
-                                <select name="city" class="form-control" parsley-required="true"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;">
-                                     <option>Waterloo</option>
-                                     <option>Kitchener</option>
-                                </select>
-                                <select name="province" class="form-control" parsley-required="true"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;">
-                                    <option>Ontario</option>
-                                </select>
-                                <select name="country" class="form-control" parsley-required="true"style="width: 100%; max-width: none;"style="width: 100%; max-width: none;">
-                                    <option>Canada</option>
-                                </select>
-                                <input class="form-control" id="postalcode" name="postalcode" placeholder="A9A 9A9" parsley-type="alphanum" parsley-required="true"style="width: 100%; max-width: none;">
+                            <label># of People Attending</label>
+                            <select name="nop" class="form-control" parsley-required="true" id="e11" style="width: 100%; max-width: none;">
+                                <option id="0" value="1">1 - 40</option>
+                                <option id="1" value="2">41 - 80</option>
+                                <option id="2" value="3">81 - 120</option>
+                                <option id="0" value="4">121 - 160</option>
+                                <option id="1" value="5">161 - 200</option>
+                                <option id="2" value="6">200 +</option>
+                            </select>
 
-                                <label># of People Attending</label>
-                                <select name="nop" class="form-control" parsley-required="true" id="e11" onchange="changeform()" style="width: 100%; max-width: none;">
-                                    <option id="0" value="1">1 - 40</option>
-                                    <option id="1" value="2">41 - 80</option>
-                                    <option id="2" value="3">81 - 120</option>
-                                    <option id="0" value="4">121 - 160</option>
-                                    <option id="1" value="5">161 - 200</option>
-                                    <option id="2" value="6">200 +</option>
-                                </select>
-
-                                <label>HOT OR COLD </label>
-                                <select name="hoc" class="form-control" parsley-required="true" id="e12" onchange="changeform()"style="width: 100%; max-width: none;">
-                                    <option id="0" value="HOT">HOT</option>
-                                    <option id="1" value="COLD">COLD</option>
-                                </select>
-
-                            </form>
+                            <label>HOT OR COLD </label>
+                            <select name="hoc" class="form-control" parsley-required="true" id="e12" style="width: 100%; max-width: none;">
+                                <option id="0" value="HOT">HOT</option>
+                                <option id="1" value="COLD">COLD</option>
+                            </select>
                             <center><br>
                             <input id="button1" type="button" class="btn btn-primary" ng-click="submit()" value="Submit">
                             </center>
                         </div>
-
-
                     </form>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card-long" style="font-family: Impact;text-align: center;font-size: 20px;">
+                <div class="card" style="font-family: Impact;text-align: center;font-size: 20px;">
                     <br>
                     <a href="catering/history">&bull; View Catering History</a>
+                </div>
+                <div class="card" style="font-family: Impact;text-align: center;font-size: 20px;" ng-controller="TimerCtrl">
+                    <h3 class="card-heading">Timer</h3>
+                    <center>
+                        <!-- <input class="form-control" id="timeraddress" onFocus="geolocate()" name="address" placeholder="Address" parsley-type="alphanum" parsley-required="true" style="width: 90%; max-width: none;"> -->
+                        <timepicker ng-model="time" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="false"></timepicker>
+                        <input id="button1" type="button" class="btn btn-primary" ng-click="timersub()" value="Submit">
+                    </center>
                 </div>
             </div>
         </div>
@@ -148,6 +143,81 @@
     <script src="/js/ui-bootstrap-tpls-0.11.0.min.js"></script>
 
 <script>
+
+
+var placeSearch, autocomplete;
+var componentForm = {
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
+};
+
+function initialize() {
+  // Create the autocomplete object, restricting the search
+  // to geographical location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
+      { types: ['geocode'] });
+  // When the user selects an address from the dropdown,
+  // populate the address fields in the form.
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    fillInAddress();
+  });
+}
+function initialize2() {
+  // Create the autocomplete object, restricting the search
+  // to geographical location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      /** @type {HTMLInputElement} */(document.getElementById('timeraddress')),
+      { types: ['geocode'] });
+  // When the user selects an address from the dropdown,
+  // populate the address fields in the form.
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    fillInAddress();
+  });
+}
+initialize();
+initialize2();
+// [START region_fillform]
+function fillInAddress() {
+  // Get the place details from the autocomplete object.
+  var place = autocomplete.getPlace();
+
+  for (var component in componentForm) {
+    document.getElementById(component).value = '';
+    document.getElementById(component).disabled = false;
+  }
+
+  // Get each component of the address from the place details
+  // and fill the corresponding field on the form.
+  for (var i = 0; i < place.address_components.length; i++) {
+    var addressType = place.address_components[i].types[0];
+    if (componentForm[addressType]) {
+      var val = place.address_components[i][componentForm[addressType]];
+      document.getElementById(addressType).value = val;
+    }
+  }
+}
+// [END region_fillform]
+
+// [START region_geolocation]
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = new google.maps.LatLng(
+          position.coords.latitude, position.coords.longitude);
+      autocomplete.setBounds(new google.maps.LatLngBounds(geolocation,
+          geolocation));
+    });
+  }
+}
+
+// var address = form.address.value;
 angular.module('dashboardApp', ['ui.bootstrap']);
 var CateringCtrl = function ($scope, $http) {
     $scope.today = function() {
@@ -162,10 +232,26 @@ var CateringCtrl = function ($scope, $http) {
 
     $scope.mytime = new Date(2014, 06, 27, 15, 00, 00, 00);
     $scope.submit = function() {
-        $http({method : 'POST', url : "http://localhost:8000/caterings/create", headers : {'token' : localStorage.getItem("token")}, data : {type : form.hoc.value, street : form.address.value, city : form.city.value, province : form.province.value, country : form.country.value, arrivalTime : new Date($scope.dt.getFullYear(), $scope.dt.getMonth(), $scope.dt.getDate(), $scope.mytime.getHours(), $scope.mytime.getMinutes(), 00, 00).toISOString(), postalcode : form.postalcode.value, numOfCars : form.nop.value}})
+
+        var address = form.address.value.split(",");
+        $http({method : 'POST', url : "https://www.pocketask-api.herokuapp.com/caterings/create", headers : {'token' : localStorage.getItem("token")}, data : {type : form.hoc.value, street : address[0], city : address[1], province : address[2], country : address[3], arrivalTime : new Date($scope.dt.getFullYear(), $scope.dt.getMonth(), $scope.dt.getDate(), $scope.mytime.getHours(), $scope.mytime.getMinutes(), 00, 00).toISOString(), postalcode : form.postalcode.value, numOfCars : form.nop.value}})
         .success(function(data) {
-            alert(form.hoc.value + form.address.value + form.city.value + form.province.value + form.country.value + form.postalcode.value + form.nop.value);
+            alert("Request Has Been Submitted, thank you for Choosing Pocketask.");
         })
+    }
+}
+
+var TimerCtrl = function ($scope, $http) {
+    $scope.time = new Date(2014, 06, 28, 00, 00, 00);
+    $scope.now = new Date();
+    $scope.timersub = function() {
+        $scope.realtime = new Date($scope.now.getFullYear(), $scope.now.getMonth(), $scope.now.getDate(), $scope.now.getHours() + $scope.time.getHours(), $scope.now.getMinutes() + $scope.time.getMinutes(), 00, 00).toISOString();
+        $scope.timeraddress = document.getElementById('timeraddress').value;
+        $http({method : 'get', url : "https://www.pocketask-api.herokuapp.com/requests/request_driver", params : {arrivalTime : $scope.realtime}, headers : {'token' : localStorage.getItem("token")}})
+        .success(function(data) {
+            alert("success");
+        })
+        // alert($scope.timeraddress + $scope.realtime);
     }
 }
 </script>
