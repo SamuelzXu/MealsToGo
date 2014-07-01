@@ -37,7 +37,7 @@
         <h1 class="hidden-xs">
             <img class="brand-img" id="brand-lg" src="/img/logo-big.png" 
                 style="margin-top: -14px;" />
-            <div name="time" id="time"></div>
+            <div class="hidden-sm hidden-xs hidden-md" name="time" id="time"></div>
         </h1>
         <h1 class="visible-xs">
             <img class="brand-img" src="/img/logo-small.png">
@@ -48,23 +48,23 @@
             <li><a href="/restaurant/dashboard">HOME</a></li>
             <li><a href="/restaurant/history">HISTORY</a></li>
             <li><a href="/restaurant/mobilemanager">MOBILE NUMBERS</a></li>
-            <li><a href="/restaurant/catering">CATERING & TIMER</a></li>
+            <li><a href="/restaurant/catering">CATERING & PRE-ORDER</a></li>
             <li><a href="" onclick="logout()">LOG OUT</a></li>
         </ul>
     </nav>
 
     <div class="content slide">
         <div class="rest-wrapper">
-            <div class="visible-sm visible-xs" style="height: 60px;"></div>
+            <div class="visible-xs" style="height: 60px;"></div>
             <div class="col-md-9" ng-controller="CateringCtrl">
-                <div class="card-long" style="text-align: left;">
+                <div class="card-long hidden-xs hidden-sm" style="text-align: left;">
                     <div class="visible-xs">
                         <div class="col-sm-3 col-xs-3"></div>
-                        <div class="col-sm-6 col-xs-6"><br><br><br><label> Please Use a Bigger Screen to Order for Catering</label></div>
+                        <div class="col-sm-6 col-xs-6" ng-controller="CateringCtrl"></div>
                         <div class="col-sm-3 col-xs-3"></div>
                     </div>
                     <form class="hidden-sm hidden-xs" name="form">
-                        <div class="col-md-5 col-sm-3" style="text-align: center;">
+                        <div class="col-md-5 col-sm-3 " style="text-align: center;">
                             <div style="display:inline-block;">
                                 
                                 <br>
@@ -110,13 +110,15 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card" style="font-family: Impact;text-align: center;font-size: 20px;">
+                <div class="card hidden-xs hidden-sm" style="font-family: Impact;text-align: center;font-size: 20px;">
                     <br>
                     <a href="catering/history">&bull; View Catering History</a>
                 </div>
-                <div class="card" style="font-family: Impact;text-align: center;font-size: 20px;" ng-controller="TimerCtrl">
-                    <h3 class="card-heading">Timer</h3>
+                <div class="col-sm-12 hidden-xs visible-sm hidden-md hidden-lg"><br><br></div>
+                <div class="card" style="font-family: Impact;text-align: center;" ng-controller="TimerCtrl">
+                    <h3 class="card-heading">PRE-ORDER</h3>
                     <center>
+                        <div style="font-family: Arial;">Ex. If 01:00 is selected then the driver will arrive after 1 hour.</div>
                         <!-- <input class="form-control" id="timeraddress" onFocus="geolocate()" name="address" placeholder="Address" parsley-type="alphanum" parsley-required="true" style="width: 90%; max-width: none;"> -->
                         <timepicker ng-model="time" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="false"></timepicker>
                         <input id="button1" type="button" class="btn btn-primary" ng-click="timersub()" value="Submit">
