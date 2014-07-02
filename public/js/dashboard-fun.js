@@ -1,6 +1,6 @@
 var host = "https://pocketask-api.herokuapp.com/";
 // var host = "http://localhost:8080/";
-var historyScope;
+var historyScope = {hists : []};
 
 function localStorageIsExist() {
     if ('localStorage' in window && window.localStorage !== null) {
@@ -30,13 +30,13 @@ function startTime() {
     var h = today.getHours();
     var m = today.getMinutes();
     var s = today.getSeconds();
-    // add a zero in front of numbers<10
     m = checkTime(m);
     s = checkTime(s);
     document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
     t = setTimeout(function() {startTime();},500);
 }
 
+// add a zero in front of numbers<10
 function checkTime(i) {
     if (i < 10) {
         i = "0" + i;
@@ -52,20 +52,24 @@ function getCookie(cname) {
     }
 }
 
-function updateHistoryTable() {
-    var hists = getHistory(3);
-    historyScope.hists = [];
-    angular.forEach(hists, function(value) {
-        value.date = new Date(value.requestedAt).toString().substring(0, 25);
-        if (value.status === 9) {
-            value.status = 'Driver Sent';
-        } else {
-            value.status = 'In Queue';
-        }
-        historyScope.hists.push(value);
-    });
-    historyScope.$apply();
-}
+
+// function updateHistoryTable($scope) {
+//     var hists = getHistory(3);
+//     // historyScope.hists = [];
+
+//     // angular.forEach(hists, function(value) {
+//     //     value.date = new Date(value.requestedAt).toString().substring(0, 25);
+//     //     if (value.status === 9) {
+//     //         value.status = 'Driver Sent';
+//     //     } else {
+//     //         value.status = 'In Queue';
+//     //     }
+//     //     historyScope.hists.push(value);
+//     // });
+//     $scope.$apply(function(){
+//         $scope.hist = ["a", "b"];
+//     });
+// }
 
 function requestDriver() {
     // var rest = requestform.dest.value;
@@ -216,7 +220,7 @@ function getCateringHistory() {
     return result;
 }
 
-function getCateringHistory(limit) {
+function getCateringHistory() {
     checktoken();
     var result = null;
     $.ajax({

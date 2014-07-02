@@ -1,4 +1,4 @@
-<div class="rest-wrapper">
+<div class="rest-wrapper" style="width: 100%">
     <div class="col-md-3">
         <div class="card">
             <p class="card-heading">Recent Number of Deliveries</p>
@@ -80,11 +80,12 @@
 
         // </script>
         <button class="button1" id="driver-button" data-toggle="modal"
-            data-target="#confirm-modal" style="height: 532px;">
+            data-target="#confirm-modal" style="height: 532px; width: 100%;">
+            <p style="font-size: 300%; color: white; margin-bottom: 200px;">Request For Driver</p>
         </button>
     </div>
     <div class="col-md-3">
-        <div class="card" ng-controller="histctrl">
+        <div class="card" ng-controller="histctrl" id="ctrl">
             <p class="card-heading-simple">Last Three Orders</p>
             <table class="table table-striped">
                 <thead>
@@ -114,6 +115,7 @@
         </div>
     </div>
 </div>
+
 <script>
 function histctrl($scope) {
     var hists = getHistory(3);
@@ -128,6 +130,23 @@ function histctrl($scope) {
         $scope.hists.push(value);
     });
 }
+
+function updateHistoryTable() {
+    var hists = getHistory(3);
+    var scope = angular.element($("#ctrl")).scope();
+    scope.$apply(function() {
+        scope.hists = [];
+        angular.forEach(hists, function(value) {
+            value.date = new Date(value.requestedAt).toString().substring(0, 25);
+            if (value.status === 9) {
+                value.status = 'Driver Sent';
+            } else {
+                value.status = 'In Queue';
+            }
+            scope.hists.push(value);
+        });
+    });
+}
 </script>
 <script>
 var restaurant = getRestaurant();
@@ -139,8 +158,4 @@ $(document).ready(function() {
         }
     });
 });
-
-
-
-
 </script>
