@@ -48,7 +48,8 @@
             <li><a href="/restaurant/dashboard">HOME</a></li>
             <li><a href="/restaurant/history">HISTORY</a></li>
             <li><a href="/restaurant/mobilemanager">MOBILE NUMBERS</a></li>
-            <li><a href="/restaurant/catering">CATERING & PRE-ORDER</a></li>
+            <li class="hidden-xs hidden-sm"><a href="" onclick="catering()">CATERING & PRE-ORDER</a></li>
+            <li class="visible-xs visible-sm"><a href="" onclick="catering()">PRE-ORDER</a></li>
             <li><a href="" onclick="logout()">LOG OUT</a></li>
         </ul>
     </nav>
@@ -118,7 +119,7 @@
                 <div class="card" style="font-family: Impact;text-align: center;" ng-controller="TimerCtrl">
                     <h3 class="card-heading">PRE-ORDER</h3>
                     <center>
-                        <div style="font-family: Arial;">Ex. If 01:00 is selected then the driver will arrive after 1 hour.</div>
+                        <div style="font-family: Arial;">(If 01:00 is selected then the food will be picked up after 1 hour)</div>
                         <!-- <input class="form-control" id="timeraddress" onFocus="geolocate()" name="address" placeholder="Address" parsley-type="alphanum" parsley-required="true" style="width: 90%; max-width: none;"> -->
                         <timepicker ng-model="time" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="false"></timepicker>
                         <input id="button1" type="button" class="btn btn-primary" ng-click="timersub()" value="Submit">
