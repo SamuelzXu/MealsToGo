@@ -156,6 +156,7 @@ function logout() {
                 if(localStorageIsExist()) {
                     localStorage.removeItem('token');
                     localStorage.removeItem('expire');
+                    localStorage.clear();
                 }
                 window.location = '/signin';
             }
