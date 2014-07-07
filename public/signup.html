@@ -122,6 +122,7 @@
         $.ajax({
             type : "POST",
             url : "https://pocketask-api.herokuapp.com/users/create",
+            // url : "http://localhost:8080/users/create",
             data : {username:name, password:password, role:role},
             dataType : 'json',
             headers : {
@@ -132,6 +133,7 @@
                     $.ajax({
                         type: "POST",
                         url: "https://pocketask-api.herokuapp.com/restaurants/create",
+                        // url: "http://localhost:8080/restaurants/create",
                         data: {fullname:fullname, street:street, city:city, province:province, country:country, postalcode:postalcode, phone:phone, rate:rate, id:data.id},
                         dataType: 'json',
                         headers : {

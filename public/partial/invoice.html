@@ -58,11 +58,11 @@
 		      	<td><span class="price" id="price"></span></td>
 		  	</tr>		  
 		  	<tr class="item-row">
-		      	<td class="item-name"><div class="delete-wpr"><p></p></div></td>
-		      	<td class="description"><p></p></td>
-		      	<td><p class="cost"></p></td>
-		      	<td><p class="qty"></p></td>
-		      	<td><span class="price"></span></td>
+		      	<td class="item-name"><div class="delete-wpr"><p>Catering Cars</p></div></td>
+		      	<td class="description"><p>The numbner of catering cars used according to Pocketask system.</p></td>
+		      	<td><p class="cost" id="catering-rate"></p></td>
+		      	<td><p class="qty" id="catering-quantity"></p></td>
+		      	<td><span class="price" id="catering-price"></span></td>
 		  	</tr>
 		  	<tr id="hiderow">
 		    	<td colspan="5"></td>
@@ -79,6 +79,10 @@
 		      	<td class="total-value"><p id="tax"></p></td>
 		  	</tr>
 		  	<tr>
+		  		<td colspan="2" class="blank"> </td>
+		  		<td colspan="2" class="total-line">Balance from previous</td>
+		  		<td class="total-value"><div id="previous-balance"></div></td>
+		  	<tr>
 		      	<td colspan="2" class="blank"> </td>
 		      	<td colspan="2" class="total-line balance">Balance Due</td>
 		      	<td class="total-value balance"><div id="duee"></div></td>
@@ -93,21 +97,29 @@
 	</div>
 	<script>
 	var restaurant = getRestaurant();
-	var due = restaurant.balance;
-	var price = Math.round(due * 100 / 1.13) / 100;
-	var quantity = Math.round(due / 1.13 / restaurant.rate);
-	var tax = Math.round((due - price) * 100) / 100;
+	var due = restaurant.lastPeriodBalance;
+	// var price = Math.round(due * 100 / 1.13) / 100;
+    var price = restaurant.rate * restaurant.lastPeriodRequests;
+	// var quantity = Math.round(due / 1.13 / restaurant.rate);
+	var quantity = restaurant.lastPeriodRequests;
 	var reset = restaurant.requestsResetDate;
+	var cateringPrice = restaurant.cateringRate * restaurant.lastPeriodCars;	
+	var tax = Math.round(((price + cateringPrice) * 0.13) * 100) / 100;
+	var previousBalance = Math.round((due - price - cateringPrice - tax) * 100) / 100;
 	document.getElementById('quantity').innerHTML = quantity;
 	document.getElementById('rate').innerHTML = restaurant.rate;
 	document.getElementById('price').innerHTML = price;
-	document.getElementById('subtotal').innerHTML = price;
+	document.getElementById('subtotal').innerHTML = price + cateringPrice;
 	document.getElementById('tax').innerHTML = tax;
 	document.getElementById('duee').innerHTML = due;
 	document.getElementById('due').innerHTML = due;
 	document.getElementById('customer-title').innerHTML = restaurant.fullname;
 	document.getElementById('date').innerHTML = new Date(restaurant.requestsResetDate).toString().substring(0, 25);
 	document.getElementById('invoicenumber').innerHTML = restaurant._id.substring(0,8) + reset.substring(0,4) + reset.substring(5,7) + reset.substring(8,10);
+	document.getElementById('catering-rate').innerHTML = restaurant.cateringRate;
+	document.getElementById('catering-quantity').innerHTML = restaurant.lastPeriodCars;
+	document.getElementById('catering-price').innerHTML = cateringPrice;
+	document.getElementById('previous-balance').innerHTML = previousBalance;
 	</script>
 </body>
 </html>
