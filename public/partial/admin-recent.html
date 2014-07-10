@@ -9,15 +9,17 @@
                     <td style="font-family: Impact; color: #777;">Address</td>
                     <td style="font-family: Impact; color: #777;">Phone</td>
                     <td style="font-family: Impact; color: #777;">Requested At</td>
+                    <td style="font-family: Impact; color: #777;">Destinatino</td>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="request in requests">
                     <td>{{request.status}}</td>
                     <td>{{request.requestedBy.fullname}}</td>
-                    <td>{{request.requestedBy.address.full}}</td>
+                    <td>{{request.requestedBy.address}}</td>
                     <td>{{request.requestedBy.phone}}</td>
                     <td>{{request.requestedAt}}</td>
+                    <td>{{request.destination}}</td>
                 </tr>
             </tbody>
         </table>

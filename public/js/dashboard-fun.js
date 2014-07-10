@@ -72,13 +72,13 @@ function getCookie(cname) {
 // }
 
 function requestDriver() {
-    // var rest = requestform.dest.value;
+    var dest = requestform.autocomplete.value;
     checktoken();
     $.ajax({
         type : "GET",
         crossDomain : true,
         url : host + "requests/request_driver",
-        // data : {dest : dest},
+        data : {"destination" : dest},
         headers : {
             token : localStorage.getItem("token")
         },
@@ -89,6 +89,7 @@ function requestDriver() {
             setTimeout(function() {
                 document.getElementById("current").style.backgroundColor = "white";
             }, 5000);
+            requestform.autocomplete.value = "";
             updateHistoryTable();
         }
     });
