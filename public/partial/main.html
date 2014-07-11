@@ -13,34 +13,61 @@
     <div class="button-area col-md-6">
         <!-- <form method="GET" id="requestform" data-parsley-validate style="text-align: left;">
             <label>Destination</label>
-            <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text" class="form-control" style="width: 100%; max-width: none;"></input>
+            <input id="autocomplete" placeholder="Enter your address" type="text" class="form-control" style="width: 100%; max-width: none;" data-parsley-type="alphanum" data-parsley-group="block1"></input>
         </form> -->
-         <script>
+        <form id="demo-form" data-parsley-validate>
+            <div style="height: 80px">
+                <input id="autocomplete" type="text" name="firstname" data-parsley-type="alphanum" data-parsley-group="block1" style="width: 100%; max-width: none;" placeholder="Enter your address" class="form-control" autofocus/>
+            </div>
+            <button class="button1 validate" id="driver-button" style="height: 440px; width: 100%;" type="submit">
+                <p style="font-size: 400%; color: white; margin-bottom: 50px; font-weight: 700;">Request For Driver</p>
+            </button>
+        </form>
+        <script>
+        $(document).ready(function () {
+            $('#demo-form').parsley().subscribe('parsley:form:validate', function (formInstance) {
+                if (formInstance.isValid('block1', true)) {
+                    $('.invalid-form-error-message').html('');
+                    $('#confirm-modal').modal('show');
+                    return;
+                }
+            // else stop form submission
+                formInstance.submitEvent.preventDefault();
 
-        // var placeSearch, autocomplete;
-        // var componentForm = {
-        //   street_number: 'short_name',
-        //   route: 'long_name',
-        //   locality: 'long_name',
-        //   administrative_area_level_1: 'short_name',
-        //   country: 'long_name',
-        //   postal_code: 'short_name'
-        // };
+            // and display a gentle message
+                $('.invalid-form-error-message')
+                    .html("You must correctly fill the fields of at least one of these two blocks!")
+                    .addClass("filled");
+                return;
+            });
+        });
+        </script>
+        <script>
 
-        // function initialize() {
-        //   // Create the autocomplete object, restricting the search
-        //   // to geographical location types.
-        //   autocomplete = new google.maps.places.Autocomplete(
-        //       /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
-        //       { types: ['geocode'] });
-        //   // When the user selects an address from the dropdown,
-        //   // populate the address fields in the form.
-        //   google.maps.event.addListener(autocomplete, 'place_changed', function() {
-        //     fillInAddress();
-        //   });
-        // }
+        var placeSearch, autocomplete;
+        var componentForm = {
+          street_number: 'short_name',
+          route: 'long_name',
+          locality: 'long_name',
+          administrative_area_level_1: 'short_name',
+          country: 'long_name',
+          postal_code: 'short_name'
+        };
 
-        // // [START region_fillform]
+        function initialize() {
+          // Create the autocomplete object, restricting the search
+          // to geographical location types.
+          autocomplete = new google.maps.places.Autocomplete(
+              /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
+              { types: ['geocode'] });
+          // When the user selects an address from the dropdown,
+          // populate the address fields in the form.
+          // google.maps.event.addListener(autocomplete, 'place_changed', function() {
+          //   fillInAddress();
+          // });
+        }
+
+        // [START region_fillform]
         // function fillInAddress() {
         //   // Get the place details from the autocomplete object.
         //   var place = autocomplete.getPlace();
@@ -60,30 +87,31 @@
         //     }
         //   }
         // }
-        // // [END region_fillform]
+        // [END region_fillform]
 
-        // // [START region_geolocation]
-        // // Bias the autocomplete object to the user's geographical location,
-        // // as supplied by the browser's 'navigator.geolocation' object.
-        // function geolocate() {
-        //   if (navigator.geolocation) {
-        //     navigator.geolocation.getCurrentPosition(function(position) {
-        //       var geolocation = new google.maps.LatLng(
-        //           position.coords.latitude, position.coords.longitude);
-        //       autocomplete.setBounds(new google.maps.LatLngBounds(geolocation,
-        //           geolocation));
-        //     });
-        //   }
-        // }
+        // [START region_geolocation]
+        // Bias the autocomplete object to the user's geographical location,
+        // as supplied by the browser's 'navigator.geolocation' object.
+        function geolocate() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+              var geolocation = new google.maps.LatLng(
+                  position.coords.latitude, position.coords.longitude);
+              autocomplete.setBounds(new google.maps.LatLngBounds(geolocation,
+                  geolocation));
+            });
+          }
+        }
 
-        // initialize();
-        // // [END region_geolocation]
+        initialize();
+        // [END region_geolocation]
 
         // </script>
-        <button class="button1" id="driver-button" data-toggle="modal"
+        <!-- <button class="button1" id="driver-button" data-toggle="modal"
             data-target="#confirm-modal" style="height: 532px; width: 100%;">
             <p style="font-size: 400%; color: white; margin-bottom: 0px; font-weight: 700;">Request For Driver</p>
-        </button>
+        </button> -->
+        
     </div>
     <div class="col-md-3">
         <div class="card" ng-controller="histctrl" id="ctrl">
@@ -158,5 +186,19 @@ $(document).ready(function() {
             checkDistance();
         }
     });
+    $('#requestform').keypress(function() {
+        $('#requestform').parsley("data-parsley-validate").subscribe('parsley:form:init', function(formInstance) {
+            if (formInstance.isValid()) {
+                alert("ok");
+            }
+        });
+    });
 });
+function val() {
+    $('#rform').parsley().subscribe('parsley:form:validate', function(formInstance) {
+        if (formInstance.isValid()) {
+            alert("ok");
+        }
+    });
+}
 </script>
