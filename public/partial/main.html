@@ -11,11 +11,7 @@
         </div>
     </br></br></div>
     <div class="button-area col-md-6">
-        <!-- <form method="GET" id="requestform" data-parsley-validate style="text-align: left;">
-            <label>Destination</label>
-            <input id="autocomplete" placeholder="Enter your address" type="text" class="form-control" style="width: 100%; max-width: none;" data-parsley-type="alphanum" data-parsley-group="block1"></input>
-        </form> -->
-        <form id="demo-form" data-parsley-validate>
+        <form id="requestform" data-parsley-validate>
             <div style="height: 80px">
                 <input id="autocomplete" type="text" name="firstname" data-parsley-type="alphanum" data-parsley-group="block1" style="width: 100%; max-width: none;" placeholder="Enter your address" class="form-control" autofocus/>
             </div>
@@ -25,7 +21,7 @@
         </form>
         <script>
         $(document).ready(function () {
-            $('#demo-form').parsley().subscribe('parsley:form:validate', function (formInstance) {
+            $('#requestform').parsley().subscribe('parsley:form:validate', function (formInstance) {
                 if (formInstance.isValid('block1', true)) {
                     $('.invalid-form-error-message').html('');
                     $('#confirm-modal').modal('show');

@@ -1,10 +1,11 @@
 var host = "https://pocketask-api.herokuapp.com/";
 // var host = "http://localhost:8080/";
+// var host = "https://pocketask-api-test.herokuapp.com/";
 
 function checktoken(){
     var now = new Date().getTime();
     if (localStorageIsExist()){
-        var expire = localStorage.getItem("expire");
+        var expire = localStorage.getItem("expire")
         if (now > expire) {
             localStorage.removeItem("expire");
             localStorage.removeItem("token");
