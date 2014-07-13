@@ -16,7 +16,7 @@
                 <tr ng-repeat="request in requests">
                     <td>{{request.status}}</td>
                     <td>{{request.requestedBy.fullname}}</td>
-                    <td>{{request.requestedBy.address}}</td>
+                    <td>{{request.requestedBy.address.full}}</td>
                     <td>{{request.requestedBy.phone}}</td>
                     <td>{{request.requestedAt}}</td>
                     <td>{{request.destination}}</td>
