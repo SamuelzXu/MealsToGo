@@ -20,9 +20,15 @@
             </button>
         </form>
         <script>
+        var requestform = document.getElementById("requestform");
         $(document).ready(function () {
             $('#requestform').parsley().subscribe('parsley:form:validate', function (formInstance) {
-                if (formInstance.isValid('block1', true)) {
+                // if no address input, still trigger modal;
+                if (requestform.autocomplete.value === "") {
+                    $('#confirm-modal').modal('show');
+                }
+                // if pass the validation, trigger modal;
+                else if (formInstance.isValid('block1', true)) {
                     $('.invalid-form-error-message').html('');
                     $('#confirm-modal').modal('show');
                     return;
