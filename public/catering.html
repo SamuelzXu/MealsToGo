@@ -36,8 +36,8 @@
         </ul>
         <h1 class="hidden-xs">
             <img class="brand-img" id="brand-lg" src="/img/logo-big.png" 
-                style="margin-top: -14px;" />
-            <div class="hidden-sm hidden-xs hidden-md" name="time" id="time"></div>
+                style="margin-top: -5px;" />
+            <div name="time" id="time" style="display: none;"></div>
         </h1>
         <h1 class="visible-xs">
             <img class="brand-img" src="/img/logo-small.png">
@@ -48,7 +48,7 @@
             <li><a href="/restaurant/dashboard">HOME</a></li>
             <li><a href="/restaurant/history">HISTORY</a></li>
             <li><a href="/restaurant/mobilemanager">MOBILE NUMBERS</a></li>
-            <li class="hidden-xs hidden-sm"><a href="" onclick="catering()">CATERING & PRE-ORDER</a></li>
+            <li class="hidden-xs hidden-sm"><a href="" onclick="catering()">CATERING&PRE-ORDER</a></li>
             <li class="visible-xs visible-sm"><a href="" onclick="catering()">PRE-ORDER</a></li>
             <li><a href="" onclick="logout()">LOG OUT</a></li>
         </ul>
@@ -57,60 +57,7 @@
     <div class="content slide">
         <div class="rest-wrapper">
             <div class="visible-xs" style="height: 60px;"></div>
-            <div class="col-md-9" ng-controller="CateringCtrl">
-                <div class="card-long hidden-xs hidden-sm" style="text-align: left;">
-                    <div class="visible-xs">
-                        <div class="col-sm-3 col-xs-3"></div>
-                        <div class="col-sm-6 col-xs-6" ng-controller="CateringCtrl"></div>
-                        <div class="col-sm-3 col-xs-3"></div>
-                    </div>
-                    <form class="hidden-sm hidden-xs" name="form">
-                        <div class="col-md-5 col-sm-3 " style="text-align: center;">
-                            <div style="display:inline-block;">
-                                
-                                <br>
-                                <div class="col-sm-6"></div>
-                                <label class="control-form">Date</label>
-                                <datepicker ng-model="dt" min-date="minDate" show-weeks="false" class="well" id="datepicker"></datepicker>
-
-                            </div>
-
-                            <center>
-                            <label class="control-form">Time Of Food Pick Up</label>
-                            <timepicker ng-model="mytime" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="false"></timepicker>
-                            </center>
-                        </div>
-                        <div class="hidden-sm"></div>
-                        <div class="col-md-7 col-sm-9">
-                        <div class="col-sm-2"></div>
-                            <br>
-                            <label>Destination</label>
-                            <input class="form-control" id="autocomplete" onFocus="geolocate()" name="address" placeholder="Address" parsley-type="alphanum" parsley-required="true" style="width: 100%; max-width: none;">
-                            <input class="form-control" id="postalcode" name="postalcode" placeholder="A9A 9A9" parsley-type="alphanum" parsley-required="true"style="width: 100%; max-width: none;">
-
-                            <label># of People Attending</label>
-                            <select name="nop" class="form-control" parsley-required="true" id="e11" style="width: 100%; max-width: none;">
-                                <option id="0" value="1">1 - 40</option>
-                                <option id="1" value="2">41 - 80</option>
-                                <option id="2" value="3">81 - 120</option>
-                                <option id="0" value="4">121 - 160</option>
-                                <option id="1" value="5">161 - 200</option>
-                                <option id="2" value="6">200 +</option>
-                            </select>
-
-                            <label>HOT OR COLD </label>
-                            <select name="hoc" class="form-control" parsley-required="true" id="e12" style="width: 100%; max-width: none;">
-                                <option id="0" value="HOT">HOT</option>
-                                <option id="1" value="COLD">COLD</option>
-                            </select>
-                            <center><br>
-                            <input id="button1" type="button" class="btn btn-primary" ng-click="submit()" value="Submit">
-                            </center>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-12">
                 <div class="card hidden-xs hidden-sm" style="font-family: Impact;text-align: center;font-size: 20px;">
                     <br>
                     <a href="catering/history">&bull; View Catering History</a>
@@ -122,8 +69,49 @@
                         <div style="font-family: Arial;">(If 01:00 is selected then the food will be picked up after 1 hour)</div>
                         <!-- <input class="form-control" id="timeraddress" onFocus="geolocate()" name="address" placeholder="Address" parsley-type="alphanum" parsley-required="true" style="width: 90%; max-width: none;"> -->
                         <timepicker ng-model="time" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="false"></timepicker>
-                        <input id="button1" type="button" class="btn btn-primary" ng-click="timersub()" value="Submit">
+                        <input id="button1" type="button" class="btn btn-primary" ng-click="timersub()" value="Submit" style="font-family: Arial;">
                     </center>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-12" ng-controller="CateringCtrl">
+                <div class="card-long" style="text-align: left;">
+                <h3 class="card-heading" style="text-align: center;">CATERING EVENT</h3>
+                    <form class="" name="form">
+                        <div class="col-md-6 col-sm-6" style="text-align: center; margin-top: -20px;">
+                            <div style="display:inline-block;">
+                                <br>
+                                <label class="control-form">Date</label>
+                                <datepicker ng-model="dt" min-date="minDate" show-weeks="false" class="well" id="datepicker"></datepicker>
+                            </div>
+                            <center>
+                            <label class="control-form">Time Of Food Pick Up</label>
+                            <timepicker ng-model="mytime" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="false"></timepicker>
+                            </center>
+                        </div>
+                        <div class="col-md-6 col-sm-6" style="text-align: center;">
+                            <br>
+                            <label>Destination</label>
+                            <input class="form-control" id="autocomplete" onFocus="geolocate()" name="address" placeholder="Destination" parsley-type="alphanum" parsley-required="true" style="width: 100%; max-width: none;">
+                            <input class="form-control" id="postalcode" name="postalcode" placeholder="Postalcode, for example: A9A 9A9" parsley-type="alphanum" parsley-required="true"style="width: 100%; max-width: none;">
+
+                            <label>Number of People Attending</label>
+                            <select name="nop" class="form-control" parsley-required="true" id="e11" style="width: 100%; max-width: none;">
+                                <option id="0" value="1">1 - 40</option>
+                                <option id="1" value="2">41 - 80</option>
+                                <option id="2" value="3">81 - 120</option>
+                                <option id="0" value="4">121 - 160</option>
+                                <option id="1" value="5">161 - 200</option>
+                                <option id="2" value="6">200 +</option>
+                            </select>
+
+                            <label>Hot or Cold </label>
+                            <select name="hoc" class="form-control" parsley-required="true" id="e12" style="width: 100%; max-width: none;">
+                                <option id="0" value="HOT">HOT</option>
+                                <option id="1" value="COLD">COLD</option>
+                            </select>
+                            <input id="button1" type="button" class="btn btn-primary" ng-click="submit()" value="Submit" style="margin-top: 20px; margin-bottom: 20px;">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
