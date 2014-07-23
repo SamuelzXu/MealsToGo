@@ -539,36 +539,6 @@ html{
     padding-bottom: 10px;
 }
 
-/*.navbar{
-    border-radius: 0;
-    background-color: #ffffff;
-    border: none;
-    vertical-align: middle;
-}
-.nav-brand{
-    display: inline-block;
-}
-
-#brand-text {
-    margin-bottom: -5px;
-    font-size: 280%;
-    font-family: Impact,  fantasy;
-    color: #33aaee;
-}*/
-/*.nav-btn{
-    display: inline-block;
-    border: none;
-    background-color: #ffffff;
-    height: auto;
-    width: auto;
-    font-family: Impact, fantasy;
-    font-size: 200%;
-    color: #33aaee;
-    vertical-align: sub;
-    margin-top: 20px;
-    margin-right: 10px;
-}
-*/
 .profile-box{
     border-style: solid; 
     border-width: 2px; 
@@ -646,7 +616,6 @@ html{
     margin-top: -20px;
     padding-left: 20px;
     margin-bottom: -20px;
-    /*padding-bottom: 10px;*/
     width: 100%;
     padding-top: 20px;
 }
@@ -729,11 +698,41 @@ html{
   filter: alpha(opacity=20);
 }
 
-/* restaurant */
-
-#brand-lg{
-    margin-top: 0px;
+.success-box{
+    display: none; 
+    height: auto; 
+    width: 250px; 
+    border-style: solid;
+    border-width: 1px; 
+    border-color: green; 
+    border-radius: 5px; 
+    background-color: #00FF66; 
+    text-align: center; 
+    margin-left: auto; 
+    margin-right: auto;
+    margin-bottom: 10px;
 }
+.error-box{
+    display: none; 
+    height: auto; 
+    width: 250px; 
+    border-style: solid;
+    border-width: 1px;
+    border-color: red;
+    border-radius: 5px; 
+    background-color: #FFD6D6;
+    text-align: center; 
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+.timer-requests{
+    color: red;
+}
+/* admin end */
+
+/* restaurant */
 
 .rest-wrapper{
     margin-top: 0;
@@ -797,7 +796,8 @@ html{
 }
 
 .card-long{
-    height: 527px;
+    min-height: 527px;
+    height: auto;
     width: 100%;
     background-color: #ffffff;
     text-align: center;
@@ -809,6 +809,7 @@ html{
     -moz-border-radius: 3px;
         border-radius: 3px;
 }
+
 .card-long2{
     height: 261px;
     width: 100%;
@@ -940,43 +941,3 @@ html{
     margin-left: auto; 
     margin-right: auto;
 }
-
-#abort{
-
-}
-
-/* admin */
-.success-box{
-    display: none; 
-    height: auto; 
-    width: 250px; 
-    border-style: solid;
-    border-width: 1px; 
-    border-color: green; 
-    border-radius: 5px; 
-    background-color: #00FF66; 
-    text-align: center; 
-    margin-left: auto; 
-    margin-right: auto;
-    margin-bottom: 10px;
-}
-.error-box{
-    display: none; 
-    height: auto; 
-    width: 250px; 
-    border-style: solid;
-    border-width: 1px;
-    border-color: red;
-    border-radius: 5px; 
-    background-color: #FFD6D6;
-    text-align: center; 
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 10px;
-}
-
-.timer-requests{
-    color: red;
-}
-/* admin end */
-
