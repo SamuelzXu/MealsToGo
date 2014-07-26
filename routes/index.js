@@ -30,5 +30,9 @@ module.exports = function(express, app, path){
         res.sendfile(path.dirname(__dirname) + '/public/termofuse.html');
     });
 
+    router.get('/restimg', function(req, res) {
+        res.sendfile(path.dirname(__dirname) + '/public/restimg.html');
+    });
+
     app.use('/', router);
 };
