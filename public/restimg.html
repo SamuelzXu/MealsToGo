@@ -13,8 +13,66 @@
     <script src="js/jquery-1.10.1.js"></script>
 </head>
 <body>
+	<header class="slide">
+        <ul id="navToggle" class="burger slide">
+            <li></li><li></li><li></li>
+        </ul>
+        <h1 class="hidden-xs"><img class="brand-img" src="img/logo-big.png" id="brand-lg"></h1>
+        <h1 class="visible-xs"><img class="brand-img" src="img/logo-small.png"></h1>
+	</header>
 
+    <nav class="slide nav" style="margin-right : 12px;">
+        <ul>
+            <li><a href="/"><i class="fa fa-home">&nbsp;</i>HOME</a></li>
+            <li><a href="/aboutus"><i class="fa fa-info-circle">&nbsp;</i>ABOUT US</a></li>
+            <li><a href="http://pocketask-blog.herokuapp.com/" target="_blank"><i class="fa fa-rss">&nbsp;</i>BLOG</a></li>
+            <!-- <li><a href="/pubsignup" target="_blank"><i class="fa fa-pencil-square">&nbsp;</i>JOIN US</a></li> -->
+            <li><a href="/ourclients"><i class="fa fa-users">&nbsp;</i>OUR RESTAURANTS</a></li>
+            <li><a href="/signin"><i class="fa fa-sign-in">&nbsp;</i>SIGN IN</a></li>
+        </ul>
+    </nav>
 
+    <div class="content slide" style="padding-top: 60px;">
+        <div class="visible-sm visible-xs"></div>
+        <div style="height: 450px; width: 100%; display: inline-block; margin-bottom: -10px; background-image: url('img/header.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+
+		<div form>
+			<select name="City">
+				<option value="kitchener">Kitchener</option>
+				<option value="waterloo">Waterloo</option>
+			</select>
+		</form>
+            <script>
+            $( document ).ready(function() {  
+             
+                $('.clipcard').hover(
+                    function(){
+                        $(this).find('.veil').slideDown(250);
+                    },
+                    function(){
+                        $(this).find('.veil').slideUp(250);
+                    }
+                ); 
+            });
+            </script>
+        </div>
+
+        <div id="footer">
+            <div class="col-md-4 footer-text">
+                <p><a href="/privacypolicy" style="padding-right: 20px" target="_blank">Privacy Policy</a> <a href="/termofuse" target="_blank">Term of Use</a></p>
+            </div>
+            <div class="col-md-4 footer-text">
+                <p>&#169; 2014 Pocketask Inc. All Rights Reserved.</p>
+            </div>
+            <div class="col-md-4 footer-social">
+                <a id="facebook-icon" href="https://www.facebook.com/pocketask" target="_blank"><i class="fa fa-facebook-square fa-3x"></i></a>
+                <a id="twitter-icon" href="https://twitter.com/Pocketask" target="_blank"><i class="fa fa-twitter-square fa-3x"></i></a>
+                <a id="google-plus-icon" href="https://plus.google.com/b/104407058385138355470/" target="_blank"><i class="fa fa-google-plus-square fa-3x"></i></a>
+                <a id="linkedin-icon" href="http://www.linkedin.com/company/pocketask-inc?trk=company_name" target="_blank"><i class="fa fa-linkedin-square fa-3x"></i></a>
+            </div>
+        </div>
+    </div>
+   
     <script>
         function includeCSSfile(href) {
             var head_node = document.getElementsByTagName('head')[0];
