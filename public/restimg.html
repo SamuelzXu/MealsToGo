@@ -24,42 +24,253 @@
     <nav class="slide nav" style="margin-right : 12px;">
         <ul>
             <li><a href="/"><i class="fa fa-home">&nbsp;</i>HOME</a></li>
-            <li><a href="/aboutus"><i class="fa fa-info-circle">&nbsp;</i>ABOUT US</a></li>
-            <li><a href="http://pocketask-blog.herokuapp.com/" target="_blank"><i class="fa fa-rss">&nbsp;</i>BLOG</a></li>
-            <!-- <li><a href="/pubsignup" target="_blank"><i class="fa fa-pencil-square">&nbsp;</i>JOIN US</a></li> -->
-            <li><a href="/ourclients"><i class="fa fa-users">&nbsp;</i>OUR RESTAURANTS</a></li>
             <li><a href="/signin"><i class="fa fa-sign-in">&nbsp;</i>SIGN IN</a></li>
         </ul>
     </nav>
 
     <div class="content slide" style="padding-top: 60px;">
         <div class="visible-sm visible-xs"></div>
-        <div style="height: 450px; width: 100%; display: inline-block; margin-bottom: -10px; background-image: url('img/header.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <div style="height: 919px; width: 100%; display: inline-block; margin-bottom: -10px; background-image: url('img/header.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
 
-		<div form>
-			<select name="City">
-				<option value="kitchener">Kitchener</option>
+		<form method="post" name="form">
+			<select name="city" class="form-control" id="city" onchange="changeform()">
+				<option value="select">-- Select --</option>
 				<option value="waterloo">Waterloo</option>
+				<option value="kitchener">Kitchener</option>
 			</select>
 		</form>
-            <script>
-            $( document ).ready(function() {  
-             
-                $('.clipcard').hover(
-                    function(){
-                        $(this).find('.veil').slideDown(250);
-                    },
-                    function(){
-                        $(this).find('.veil').slideUp(250);
-                    }
-                ); 
-            });
-            </script>
-        </div>
 
-        <div id="footer">
+		<br>	
+        <div class="card-long2" id="watform" style="overflow-y:auto; display:none; height:80%; width:70%;margin:0 auto;">
+		    <table class="table table-striped table-hover" ng-controller="uncompletedctrl" style="border:3px;">
+				<thead style="color: white; background-color: #33aaee;">
+		    		<tr>
+		                <td><b>Restaurant Name</b></td>
+		                <td><b>View?</b></td>
+		    		</tr>
+				</thead>
+				<tbody>
+		            <tr>
+						<td><b>Al Madina - JustNPita</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>Wings Up</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<<td><b>Noon Moment</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>Meet Point</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>Ye's Buffet</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>Tasty Home Kitchen</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>Johnny Fresco</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>Wild Wing - Laurelwood</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>Spice Tree</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>Star Wok</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>Popeyes Chicken - Waterloo</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>Masala Bay</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>Zoup - Uptown Waterloo</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>East Side Marios - King</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>O'yummy Sushi</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>Pita Factory - University Plaza</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>Sub Stop</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>Homestyle Diner</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>Classic Indian</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>Pita Factory - Alpine Plaza</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>Shawerma Plus</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>Kismet</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<td><b>China Legend</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		            <tr>
+						<<td><b>Williams Fresh Cafe</b></td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+
+
+		    	</tbody>
+		    </table>
+		</div>
+
+		<div class="card-long2" id="kitform" style="overflow-y:auto; display:none; height:80%; width:70%; margin:0 auto;">
+		    <table class="table table-striped table-hover" ng-controller="uncompletedctrl" style="border:3px;">
+				<thead style="color: white; background-color: #33aaee;">
+		    		<tr>
+		                <td><b>Restaurant Name</b></td>
+		                <td><b>View?</b></td>
+		    		</tr>
+				</thead>
+				<tbody>
+		            <tr>
+		                <td>{{un.requestedBy.fullname}}</td>
+		                <td>
+		                    <button ng-click="assign(un._id)">
+		                        View Restaurant Image
+		                    </button>
+		                </td>
+		            </tr>
+		    	</tbody>
+		    </table>
+		</div>		
+
+<!--         <div id="footer">
             <div class="col-md-4 footer-text">
-                <p><a href="/privacypolicy" style="padding-right: 20px" target="_blank">Privacy Policy</a> <a href="/termofuse" target="_blank">Term of Use</a></p>
             </div>
             <div class="col-md-4 footer-text">
                 <p>&#169; 2014 Pocketask Inc. All Rights Reserved.</p>
@@ -71,8 +282,25 @@
                 <a id="linkedin-icon" href="http://www.linkedin.com/company/pocketask-inc?trk=company_name" target="_blank"><i class="fa fa-linkedin-square fa-3x"></i></a>
             </div>
         </div>
-    </div>
+    </div> -->
    
+    <script>
+    function changeform(){
+        var city = form.city.value; 
+        if (city === "select"){
+        	document.getElementById("watform").style.display = "none";
+        	document.getElementById("kitform").style.display = "none";
+        }
+        else if (city === "waterloo") {
+            document.getElementById("kitform").style.display = "none";
+            document.getElementById("watform").style.display = "block";
+        } else if (city === "kitchener") {
+            document.getElementById("watform").style.display = "none";
+            document.getElementById("kitform").style.display = "block";
+        }
+    }
+    </script>
+
     <script>
         function includeCSSfile(href) {
             var head_node = document.getElementsByTagName('head')[0];
