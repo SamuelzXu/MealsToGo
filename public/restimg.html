@@ -32,7 +32,7 @@
         <div class="visible-sm visible-xs"></div>
         <div style="height: 919px; width: 100%; display: inline-block; margin-bottom: -10px; background-image: url('img/header.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
 
-		<form method="post" name="form">
+		<form>
 			<select name="city" class="form-control" id="city" onchange="changeform()">
 				<option value="select">-- Select --</option>
 				<option value="waterloo">Waterloo</option>
@@ -42,7 +42,7 @@
 
 		<br>	
         <div class="card-long2" id="watform" style="overflow-y:auto; display:none; height:80%; width:70%;margin:0 auto;">
-		    <table class="table table-striped table-hover" ng-controller="uncompletedctrl" style="border:3px;">
+		    <table class="table table-striped table-hover" style="border:3px;">
 				<thead style="color: white; background-color: #33aaee;">
 		    		<tr>
 		                <td><b>Restaurant Name</b></td>
@@ -247,7 +247,7 @@
 		</div>
 
 		<div class="card-long2" id="kitform" style="overflow-y:auto; display:none; height:80%; width:70%; margin:0 auto;">
-		    <table class="table table-striped table-hover" ng-controller="uncompletedctrl" style="border:3px;">
+		    <table class="table table-striped table-hover" style="border:3px;">
 				<thead style="color: white; background-color: #33aaee;">
 		    		<tr>
 		                <td><b>Restaurant Name</b></td>
