@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dashboardApp">
+
+<head>
+    <title>Pocketask | Catering</title>
+    <meta name="author" content="Pocketask Inc.">
+    <meta name="description" content="Pocketask is now in Waterloo & Kitchener region.
+        With Pocketask, restaurants can secure a delivery driver in 10 minutes or less.
+        Pocketask streamlines the food delivery process;
+        restaurant owners can request a driver, and pre-screened drivers can accept the call.">
+    <meta name="keywords" content="pocketask, delivery, food, restaurant, catering, local,
+        waterloo, kitchener, takeout, online" >
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" type="text/css" href="/css/trunk.css">
+    <link rel="stylesheet" type="text/css" 
+        href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" 
+        href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/signup.css">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+</head>
+
+<body onload="startTime()">
+    <header class="slide">
+        <ul id="navToggle" class="burger slide">
+            <li></li><li></li><li></li>
+        </ul>
+        <h1 class="hidden-xs">
+            <img class="brand-img" id="brand-lg" src="/img/logo-big.png" 
+                style="margin-top: -5px;" />
+            <div name="time" id="time" style="display: none;"></div>
+        </h1>
+        <h1 class="visible-xs">
+            <img class="brand-img" src="/img/logo-small.png">
+        </h1>
+    </header>
+    <nav class="slide nav" style="margin-right: 12px;">
+        <ul>
+            <li><a href="/restaurant/dashboard">HOME</a></li>
+            <li><a href="/restaurant/history">HISTORY</a></li>
+            <li><a href="/restaurant/mobilemanager">MOBILE NUMBERS</a></li>
+            <li><a href="" onclick="catering()">CATERING</a></li>
+            <li><a href="" onclick="preorder()">PRE-ORDER</a></li>
+            <li><a href="" onclick="logout()">LOG OUT</a></li>
+        </ul>
+    </nav>
+
+<div class="content slide">
+    <div class="rest-wrapper">
+        <div class="visible-xs visible-sm" style="height: 60px;"></div>
+        <div class="col-md-12 col-sm-12">
+            <div class="col-sm-12 hidden-xs visible-sm hidden-md hidden-lg"><br><br></div>
+            <div class="card-long" style="font-family: Impact;text-align: center;" ng-controller="TimerCtrl">
+                <h3 class="card-heading">PRE-ORDER</h3>
+                <form id="requestform" data-parsley-validate>
+	                <center>
+	                	<!-- <input class="form-control" id="autocomplete" onFocus="geolocate()" name="address" placeholder="Please Enter the Destination of the Order" parsley-type="alphanum" parsley-required="true" style="width: 50%; max-width: none;"> -->
+	                    <div style="font-family: Arial;">(If 01:00 is selected then the food will be picked up after 1 hour)</div>
+	                    <!-- <input class="form-control" id="timeraddress" onFocus="geolocate()" name="address" placeholder="Address" parsley-type="alphanum" parsley-required="true" style="width: 90%; max-width: none;"> -->
+	                    <timepicker ng-model="time" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="false"></timepicker>
+	                    <input id="button1" type="button" class="btn btn-primary" ng-click="timersub()" value="Submit" style="font-family: Arial;">
+	                </center>
+	            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-47690619-1', 'pocketask.com');
+    ga('send', 'pageview');
+</script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/trunk.js"></script>
+    <script src="/js/dashboard-fun.js"></script>
+    <script src="/js/parsley.min.js"></script>
+    <script src="/js/ui-bootstrap-tpls-0.11.0.min.js"></script>
+
+// <script>
+// var requestform = document.getElementById("requestform");
+// $(document).ready(function () {
+//     $('#requestform').parsley().subscribe('parsley:form:validate', function (formInstance) {
+//         // if no address input, still trigger modal;
+//         if (requestform.autocomplete.value === "") {
+//             $('#confirm-modal').modal('show');
+//         }
+//         // if pass the validation, trigger modal;
+//         else if (formInstance.isValid('block1', true)) {
+//             $('.invalid-form-error-message').html('');
+//             $('#confirm-modal').modal('show');
+//             return;
+//         }
+//     // else stop form submission
+//         formInstance.submitEvent.preventDefault();
+
+//     // and display a gentle message
+//         $('.invalid-form-error-message')
+//             .html("You must correctly fill the fields of at least one of these two blocks!")
+//             .addClass("filled");
+//         return;
+//     });
+// });
+// </script>
+
+<script>
+// var placeSearch, autocomplete;
+// var componentForm = {
+//   street_number: 'short_name',
+//   route: 'long_name',
+//   locality: 'long_name',
+//   administrative_area_level_1: 'short_name',
+//   country: 'long_name',
+//   postal_code: 'short_name'
+// };
+
+// function initialize() {
+//   // Create the autocomplete object, restricting the search
+//   // to geographical location types.
+//   autocomplete = new google.maps.places.Autocomplete(
+//       /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
+//       { types: ['geocode'] });
+//   // When the user selects an address from the dropdown,
+//   // populate the address fields in the form.
+//   google.maps.event.addListener(autocomplete, 'place_changed', function() {
+//     fillInAddress();
+//   });
+// }
+// function initialize2() {
+//   // Create the autocomplete object, restricting the search
+//   // to geographical location types.
+//   autocomplete = new google.maps.places.Autocomplete(
+//       /** @type {HTMLInputElement} */(document.getElementById('timeraddress')),
+//       { types: ['geocode'] });
+//   // When the user selects an address from the dropdown,
+//   // populate the address fields in the form.
+//   google.maps.event.addListener(autocomplete, 'place_changed', function() {
+//     fillInAddress();
+//   });
+// }
+// initialize();
+// initialize2();
+// // [START region_fillform]
+// function fillInAddress() {
+//   // Get the place details from the autocomplete object.
+//   var place = autocomplete.getPlace();
+
+//   for (var component in componentForm) {
+//     document.getElementById(component).value = '';
+//     document.getElementById(component).disabled = false;
+//   }
+
+//   // Get each component of the address from the place details
+//   // and fill the corresponding field on the form.
+//   for (var i = 0; i < place.address_components.length; i++) {
+//     var addressType = place.address_components[i].types[0];
+//     if (componentForm[addressType]) {
+//       var val = place.address_components[i][componentForm[addressType]];
+//       document.getElementById(addressType).value = val;
+//     }
+//   }
+// }
+// [END region_fillform]
+
+// [START region_geolocation]
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+// function geolocate() {
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(function(position) {
+//       var geolocation = new google.maps.LatLng(
+//           position.coords.latitude, position.coords.longitude);
+//       autocomplete.setBounds(new google.maps.LatLngBounds(geolocation,
+//           geolocation));
+//     });
+//   }
+// }
+
+// var address = form.address.value;
+angular.module('dashboardApp', ['ui.bootstrap']);
+var CateringCtrl = function ($scope, $http) {
+    $scope.today = function() {
+        $scope.dt = new Date();
+    };
+    $scope.today();
+
+    $scope.toggleMin = function() {
+        $scope.minDate = $scope.minDate ? null : new Date();
+    };
+    $scope.toggleMin();
+
+    $scope.mytime = new Date(2014, 06, 27, 15, 00, 00, 00);
+    $scope.submit = function() {
+
+        var address = form.address.value.split(",");
+        $http({method : 'POST', url : "https://pocketask-api.herokuapp.com/caterings/create", headers : {'token' : localStorage.getItem("token")}, data : {type : form.hoc.value, street : address[0], city : address[1], province : address[2], country : address[3], arrivalTime : new Date($scope.dt.getFullYear(), $scope.dt.getMonth(), $scope.dt.getDate(), $scope.mytime.getHours(), $scope.mytime.getMinutes(), 00, 00).toISOString(), postalcode : form.postalcode.value, numOfCars : form.nop.value}})
+        .success(function(data) {
+            alert("Request Has Been Submitted, thank you for Choosing Pocketask.");
+        })
+    }
+}
+
+var TimerCtrl = function ($scope, $http) {
+    $scope.time = new Date(2014, 06, 28, 00, 00, 00);
+    $scope.now = new Date();
+    $scope.timersub = function() {
+        $scope.realtime = new Date($scope.now.getFullYear(), $scope.now.getMonth(), $scope.now.getDate(), $scope.now.getHours() + $scope.time.getHours(), $scope.now.getMinutes() + $scope.time.getMinutes(), 00, 00).toISOString();
+        // $http({method : 'get', url : "http://localhost:8080/requests/request_driver", params : {arrivalTime : $scope.realtime}, headers : {'token' : localStorage.getItem("token")}})
+        // $scope.timeraddress = document.getElementById('timeraddress').value;
+        $http({method : 'GET', url : "https://pocketask-api.herokuapp.com/requests/request_driver", params : {arrivalTime : $scope.realtime}, headers : {'token' : localStorage.getItem("token")}})
+        .success(function(data) {
+            alert("Thank You For Choosing Pocketask, Your Driver Will Arrive Shortly.");
+        })
+    }
+}
+</script>
+</body>
+</html>

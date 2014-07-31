@@ -185,6 +185,24 @@ function catering() {
     });
 }
 
+function preorder() {
+    checktoken();
+    $.ajax({
+        type: "GET",
+        dataType : 'json',
+        async : false,
+        url : "/restaurant/preorder",
+        headers : {
+            token : localStorage.getItem("token")
+        },
+        statusCode: {
+            200 : function(data) {
+
+                window.location = '/restaurant/preorder';
+            }
+        }
+    });
+}
 
 function getHistory(limit) {
     checktoken();

@@ -38,6 +38,10 @@ module.exports = function(express, app, path){
         res.sendfile('./public/catering.html');
     });
 
+    router.get('/preorder', function(req, res) {
+        res.sendfile('./public/preorder.html');
+    });
+
     router.get('/catering/history', function(req, res) {
         res.sendfile('./public/cateringhistory.html');
     });
