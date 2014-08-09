@@ -18,15 +18,6 @@
         <img id="logo-big" src="../img/logo-big.png" >          
         <p class="intro">User Sign Up </p>
         <div id="signup-form">
-            <div class="success-box" id="success-box">
-                <p style="margin-top: 5px;">The user has been added.</p>
-            </div>
-            <div class="error-box" id="user-fail-box">
-                <p>Something wrong with user sign-up, please try again.</p>
-            </div>
-            <div class="error-box" id="rest-fail-box">
-                <p>Something wrong with restaurant sign-up, please try again.</p>
-            </div>
             <form method="post" name="form" parsley-validate parsley-validation-minlength="1" parsley-trigger="change focusout">
                 <select name="role" class="form-control" parsley-required="true" id="e11" onchange="changeform()">
                     <option id="0" value="restaurant">Restaurant</option>
@@ -76,6 +67,15 @@
                     <input id="button1" type="button" class="btn btn-primary" onclick="sub_driver()" value="Sign Up">
                 </div>
             </form>
+            <div class="success-box" id="success-box">
+                <p style="margin-top: 5px;">The user has been added.</p>
+            </div>
+            <div class="error-box" id="user-fail-box">
+                <p>Something wrong with USER sign-up, please try again.</p>
+            </div>
+            <div class="error-box" id="rest-fail-box">
+                <p>Something wrong with RESTAURANT sign-up, please try again.</p>
+            </div>
         </div>
     </div>
     <script>
