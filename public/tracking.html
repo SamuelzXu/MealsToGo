@@ -50,7 +50,7 @@ var map;
 var markers = [];
 
 transitFirebaseRef.on('value', function (snapshot) {
-    console.log(snapshot.val());
+    // console.log(snapshot.val());
     query = snapshot.val();
     updateMap();
 }, function (errorObject) {
@@ -74,7 +74,7 @@ function initializeMap() {
         marker = new google.maps.Marker({
             position : myLatlng,
             map : map,
-            title : fish.l[0] + ' ,' + fish.l[1]
+            title : fish
         });
         markers.push(marker);
     };
@@ -96,9 +96,10 @@ function updateMap() {
         var myLatlng = new google.maps.LatLng(fish.l[0], fish.l[1]);
         marker = new google.maps.Marker({
             position : myLatlng,
-            title : fish.l[0] + ' ,' + fish.l[1]
+            title : fish_key
         });
         markers.push(marker);
+        console.log(fish_key);
     };
     setAllMap(map);
 }
