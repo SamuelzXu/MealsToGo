@@ -99,7 +99,7 @@
 	var restaurant = getRestaurant();
 	var due = restaurant.lastPeriodBalance;
 	// var price = Math.round(due * 100 / 1.13) / 100;
-    var price = restaurant.rate * restaurant.lastPeriodRequests;
+    var price = Math.round(restaurant.rate * restaurant.lastPeriodRequests * 100) / 100;
 	// var quantity = Math.round(due / 1.13 / restaurant.rate);
 	var quantity = restaurant.lastPeriodRequests;
 	var reset = restaurant.requestsResetDate;
