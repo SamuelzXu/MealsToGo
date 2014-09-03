@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>GeoFire fish1 Example</title>
+    <script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js"></script>
+    <script src="js/rsvp.min.js"></script>
+    <script src="js/geofire.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+</head>
+
+<body>
+    <div style="height: 400px; width: auto;" id="map-canvas"></div>
+    <div id="fishControls">
+        <input id="getFishLocation" type="button" value="Get Location" />
+    </div>
+<script>
+// Global map variable
+
+
+// Set the center as Firebase HQ
+var locations = {
+  "FirebaseHQ": [43.4633494, -80.5409543],
+  "Caltrain": [37.7789, -122.3917]
+};
+var center = locations["FirebaseHQ"];
+
+// Query radius
+var radiusInKm = 1;
+
+// Get a reference to the Firebase public transit open data set
+var transitFirebaseRef = new Firebase("https://pocketask-test.firebaseio.com/")
+
+// Create a new GeoFire instance, pulling data from the public transit data
+var geoFire = new GeoFire(transitFirebaseRef);
+
+/*************/
+/*  GEOQUERY */
+/*************/
+// Keep track of all of the vehicles currently within the query
+var vehiclesInQuery = {};
+
+// Create a new GeoQuery instance
+var geoQuery = geoFire.query({
+    center: center,
+    radius: radiusInKm
+});
+
+var query = {};
+var map;
+var markers = [];
+
+transitFirebaseRef.on('value', function (snapshot) {
+    console.log(snapshot.val());
+    query = snapshot.val();
+    updateMap();
+}, function (errorObject) {
+    console.log('The read failed: ' + errorObject.code);
+});
+
+function initializeMap() {
+    // Get the location as a Google Maps latitude-longitude object
+    var loc = new google.maps.LatLng(center[0], center[1]);
+
+    // Create the Google Map
+    map = new google.maps.Map(document.getElementById("map-canvas"), {
+        center: loc,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    for (var i = 0; i < Object.keys(query).length; i++) {
+        var fish_key = Object.keys(query)[i];
+        var fish = query[fish_key];
+        var myLatlng = new google.maps.LatLng(fish.l[0], fish.l[1]);
+        marker = new google.maps.Marker({
+            position : myLatlng,
+            map : map,
+            title : fish.l[0] + ' ,' + fish.l[1]
+        });
+        markers.push(marker);
+    };
+};
+initializeMap();
+
+function setAllMap(map) {
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+    }
+}
+
+function updateMap() {
+    setAllMap(null);
+    markers = [];
+    for (var i = 0; i < Object.keys(query).length; i++) {
+        var fish_key = Object.keys(query)[i];
+        var fish = query[fish_key];
+        var myLatlng = new google.maps.LatLng(fish.l[0], fish.l[1]);
+        marker = new google.maps.Marker({
+            position : myLatlng,
+            title : fish.l[0] + ' ,' + fish.l[1]
+        });
+        markers.push(marker);
+    };
+    setAllMap(map);
+}
+
+function updatteMap() {
+    setAllMap(null);
+    markers = [];
+    for (var i = 0; i < Object.keys(query).length; i++) {
+        var fish_key = Object.keys(query)[i];
+        var fish = query[fish_key];
+        var myLatlng = new google.maps.LatLng(fish.l[0], fish.l[1]);
+        marker = new google.maps.Marker({
+            position : myLatlng,
+            map : map,
+            title : fish.l[0] + ' ,' + fish.l[1]
+        });
+        markers.push(marker);
+    };
+}
+document.getElementById("getFishLocation").addEventListener("click", function() {
+    updatteMap();
+});
+</script>
+</body>
+</html>
