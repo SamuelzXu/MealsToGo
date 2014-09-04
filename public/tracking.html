@@ -95,6 +95,7 @@ function updateMap() {
         var fish = query[fish_key];
         var myLatlng = new google.maps.LatLng(fish.l[0], fish.l[1]);
         var myPin = {
+            // url : "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + fish_key.substr(0,fish_key.indexOf(' ')) +"|33aaee|000000"
             url : "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + fish_key[0] +"|33aaee|000000"
         };
         marker = new google.maps.Marker({
@@ -116,6 +117,7 @@ function updatteMap() {
         var fish = query[fish_key];
         var myLatlng = new google.maps.LatLng(fish.l[0], fish.l[1]);
         var myPin = {
+            // url : "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + fish_key.substr(0,fish_key.indexOf(' ')) +"|33aaee|000000"
             url : "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + fish_key[0] +"|33aaee|000000"
         };
         marker = new google.maps.Marker({
