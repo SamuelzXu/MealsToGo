@@ -94,9 +94,13 @@ function updateMap() {
         var fish_key = Object.keys(query)[i];
         var fish = query[fish_key];
         var myLatlng = new google.maps.LatLng(fish.l[0], fish.l[1]);
+        var myPin = {
+            url : "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + fish_key[0] +"|33aaee|000000"
+        };
         marker = new google.maps.Marker({
             position : myLatlng,
-            title : fish_key
+            title : fish_key,
+            icon : myPin
         });
         markers.push(marker);
         console.log(fish_key);
@@ -111,10 +115,14 @@ function updatteMap() {
         var fish_key = Object.keys(query)[i];
         var fish = query[fish_key];
         var myLatlng = new google.maps.LatLng(fish.l[0], fish.l[1]);
+        var myPin = {
+            url : "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + fish_key[0] +"|33aaee|000000"
+        };
         marker = new google.maps.Marker({
             position : myLatlng,
             map : map,
-            title : fish.l[0] + ' ,' + fish.l[1]
+            title : fish.l[0] + ' ,' + fish.l[1],
+            icon : myPin
         });
         markers.push(marker);
     };
