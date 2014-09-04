@@ -9,9 +9,9 @@
 </head>
 
 <body>
-    <div style="height: 400px; width: auto;" id="map-canvas"></div>
+    <div style="height: 600px; width: auto;" id="map-canvas"></div>
     <div id="fishControls">
-        <input id="getFishLocation" type="button" value="Get Location" />
+        <input id="getFishLocation" type="button" value="Reload positions" />
     </div>
 <script>
 // Global map variable
@@ -67,17 +67,6 @@ function initializeMap() {
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
-    for (var i = 0; i < Object.keys(query).length; i++) {
-        var fish_key = Object.keys(query)[i];
-        var fish = query[fish_key];
-        var myLatlng = new google.maps.LatLng(fish.l[0], fish.l[1]);
-        marker = new google.maps.Marker({
-            position : myLatlng,
-            map : map,
-            title : fish
-        });
-        markers.push(marker);
-    };
 };
 initializeMap();
 
@@ -117,18 +106,20 @@ function updatteMap() {
     for (var i = 0; i < Object.keys(query).length; i++) {
         var fish_key = Object.keys(query)[i];
         var fish = query[fish_key];
-        var myLatlng = new google.maps.LatLng(fish.l[0], fish.l[1]);
-        var myPin = {
-            // url : "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + fish_key.substr(0,fish_key.indexOf(' ')) +"|33aaee|000000"
-            url : "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + fish_key[0] +"|33aaee|000000"
-        };
-        marker = new google.maps.Marker({
-            position : myLatlng,
-            map : map,
-            title : fish.l[0] + ' ,' + fish.l[1],
-            icon : myPin
-        });
-        markers.push(marker);
+        if (fish.available == 'true') {
+            var myLatlng = new google.maps.LatLng(fish.l[0], fish.l[1]);
+            var myPin = {
+                // url : "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + fish_key.substr(0,fish_key.indexOf(' ')) +"|33aaee|000000"
+                url : "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + fish_key[0] +"|33aaee|000000"
+            };
+            marker = new google.maps.Marker({
+                position : myLatlng,
+                map : map,
+                title : fish_key,
+                icon : myPin
+            });
+            markers.push(marker);
+        }
     };
 }
 document.getElementById("getFishLocation").addEventListener("click", function() {
