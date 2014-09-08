@@ -50,9 +50,8 @@ var map;
 var markers = [];
 
 transitFirebaseRef.on('value', function (snapshot) {
-    // console.log(snapshot.val());
     query = snapshot.val();
-    updateMap();
+    // updateMap();
 }, function (errorObject) {
     console.log('The read failed: ' + errorObject.code);
 });
@@ -75,32 +74,10 @@ function setAllMap(map) {
         markers[i].setMap(map);
     }
 }
+setTimeout(updateMap, 500);
+setInterval(updateMap, 30000);
 
 function updateMap() {
-    setAllMap(null);
-    markers = [];
-    for (var i = 0; i < Object.keys(query).length; i++) {
-        var fish_key = Object.keys(query)[i];
-        var fish = query[fish_key];
-        if (fish.available == 'true'){
-            var myLatlng = new google.maps.LatLng(fish.l[0], fish.l[1]);
-            var myPin = {
-                // url : "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + fish_key.substr(0,fish_key.indexOf(' ')) +"|33aaee|000000"
-                url : "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + fish_key[0] +"|33aaee|000000"
-            };
-            marker = new google.maps.Marker({
-                position : myLatlng,
-                title : fish_key,
-                icon : myPin
-            });
-            markers.push(marker);
-            console.log(fish_key);
-        }
-    };
-    setAllMap(map);
-}
-
-function updatteMap() {
     setAllMap(null);
     markers = [];
     for (var i = 0; i < Object.keys(query).length; i++) {
@@ -123,7 +100,7 @@ function updatteMap() {
     };
 }
 document.getElementById("getFishLocation").addEventListener("click", function() {
-    updatteMap();
+    updateMap();
 });
 </script>
 </body>
