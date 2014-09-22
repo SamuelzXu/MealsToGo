@@ -2,7 +2,7 @@
 <html lang="en" ng-app="dashboardApp">
 
 <head>
-    <title>Pocketask | Catering</title>
+    <title>Pocketask | Pre-order</title>
     <meta name="author" content="Pocketask Inc.">
     <meta name="description" content="Pocketask is now in Waterloo & Kitchener region.
         With Pocketask, restaurants can secure a delivery driver in 10 minutes or less.
@@ -62,12 +62,14 @@
             <div class="card-long" style="font-family: Impact;text-align: center;" ng-controller="TimerCtrl">
                 <h3 class="card-heading">PRE-ORDER</h3>
                 <form id="requestform" data-parsley-validate>
-	                <center>
-	                	<!-- <input class="form-control" id="autocomplete" onFocus="geolocate()" name="address" placeholder="Please Enter the Destination of the Order" parsley-type="alphanum" parsley-required="true" style="width: 50%; max-width: none;"> -->
+	                <center>	                	
 	                    <div style="font-family: Arial;">(If 01:00 is selected then the food will be picked up after 1 hour)</div>
-	                    <!-- <input class="form-control" id="timeraddress" onFocus="geolocate()" name="address" placeholder="Address" parsley-type="alphanum" parsley-required="true" style="width: 90%; max-width: none;"> -->
 	                    <timepicker ng-model="time" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="false"></timepicker>
-	                    <input id="button1" type="button" class="btn btn-primary" ng-click="timersub()" value="Submit" style="font-family: Arial;">
+	                    <input class="form-control" id="autocomplete" onFocus="geolocate()" name="address" placeholder="Please Enter the Destination of the Order" parsley-type="alphanum" style="width: 250px; max-width: none;">
+	                    <div class="message-box" id="req-fail-box" style="width: 400px">
+	                    	<p>Destination is required, please enter destination and try again.</p>
+	                    </div>
+	                    <button id="button1" class="btn btn-primary" ng-click="timersub()" style="font-family: Arial;">Submit</button>
 	                </center>
 	            </form>
             </div>
@@ -119,113 +121,89 @@
 // </script>
 
 <script>
-// var placeSearch, autocomplete;
-// var componentForm = {
-//   street_number: 'short_name',
-//   route: 'long_name',
-//   locality: 'long_name',
-//   administrative_area_level_1: 'short_name',
-//   country: 'long_name',
-//   postal_code: 'short_name'
-// };
+var placeSearch, autocomplete;
+var componentForm = {
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
+};
 
-// function initialize() {
-//   // Create the autocomplete object, restricting the search
-//   // to geographical location types.
-//   autocomplete = new google.maps.places.Autocomplete(
-//       /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
-//       { types: ['geocode'] });
-//   // When the user selects an address from the dropdown,
-//   // populate the address fields in the form.
-//   google.maps.event.addListener(autocomplete, 'place_changed', function() {
-//     fillInAddress();
-//   });
-// }
-// function initialize2() {
-//   // Create the autocomplete object, restricting the search
-//   // to geographical location types.
-//   autocomplete = new google.maps.places.Autocomplete(
-//       /** @type {HTMLInputElement} */(document.getElementById('timeraddress')),
-//       { types: ['geocode'] });
-//   // When the user selects an address from the dropdown,
-//   // populate the address fields in the form.
-//   google.maps.event.addListener(autocomplete, 'place_changed', function() {
-//     fillInAddress();
-//   });
-// }
-// initialize();
-// initialize2();
-// // [START region_fillform]
-// function fillInAddress() {
-//   // Get the place details from the autocomplete object.
-//   var place = autocomplete.getPlace();
+function initialize() {
+  // Create the autocomplete object, restricting the search
+  // to geographical location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
+      { types: ['geocode'] });
+  // When the user selects an address from the dropdown,
+  // populate the address fields in the form.
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    fillInAddress();
+  });
+}
+initialize();
+// [START region_fillform]
+function fillInAddress() {
+  // Get the place details from the autocomplete object.
+  var place = autocomplete.getPlace();
 
-//   for (var component in componentForm) {
-//     document.getElementById(component).value = '';
-//     document.getElementById(component).disabled = false;
-//   }
+  for (var component in componentForm) {
+    document.getElementById(component).value = '';
+    document.getElementById(component).disabled = false;
+  }
 
-//   // Get each component of the address from the place details
-//   // and fill the corresponding field on the form.
-//   for (var i = 0; i < place.address_components.length; i++) {
-//     var addressType = place.address_components[i].types[0];
-//     if (componentForm[addressType]) {
-//       var val = place.address_components[i][componentForm[addressType]];
-//       document.getElementById(addressType).value = val;
-//     }
-//   }
-// }
-// [END region_fillform]
+  // Get each component of the address from the place details
+  // and fill the corresponding field on the form.
+  for (var i = 0; i < place.address_components.length; i++) {
+    var addressType = place.address_components[i].types[0];
+    if (componentForm[addressType]) {
+      var val = place.address_components[i][componentForm[addressType]];
+      document.getElementById(addressType).value = val;
+    }
+  }
+}
 
-// [START region_geolocation]
-// Bias the autocomplete object to the user's geographical location,
-// as supplied by the browser's 'navigator.geolocation' object.
-// function geolocate() {
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(function(position) {
-//       var geolocation = new google.maps.LatLng(
-//           position.coords.latitude, position.coords.longitude);
-//       autocomplete.setBounds(new google.maps.LatLngBounds(geolocation,
-//           geolocation));
-//     });
-//   }
-// }
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = new google.maps.LatLng(
+          position.coords.latitude, position.coords.longitude);
+      autocomplete.setBounds(new google.maps.LatLngBounds(geolocation,
+          geolocation));
+    });
+  }
+}
 
 // var address = form.address.value;
 angular.module('dashboardApp', ['ui.bootstrap']);
-var CateringCtrl = function ($scope, $http) {
-    $scope.today = function() {
-        $scope.dt = new Date();
-    };
-    $scope.today();
-
-    $scope.toggleMin = function() {
-        $scope.minDate = $scope.minDate ? null : new Date();
-    };
-    $scope.toggleMin();
-
-    $scope.mytime = new Date(2014, 06, 27, 15, 00, 00, 00);
-    $scope.submit = function() {
-
-        var address = form.address.value.split(",");
-        $http({method : 'POST', url : "https://pocketask-api.herokuapp.com/caterings/create", headers : {'token' : localStorage.getItem("token")}, data : {type : form.hoc.value, street : address[0], city : address[1], province : address[2], country : address[3], arrivalTime : new Date($scope.dt.getFullYear(), $scope.dt.getMonth(), $scope.dt.getDate(), $scope.mytime.getHours(), $scope.mytime.getMinutes(), 00, 00).toISOString(), postalcode : form.postalcode.value, numOfCars : form.nop.value}})
-        .success(function(data) {
-            alert("Request Has Been Submitted, thank you for Choosing Pocketask.");
-        })
-    }
-}
 
 var TimerCtrl = function ($scope, $http) {
     $scope.time = new Date(2014, 06, 28, 00, 00, 00);
     $scope.now = new Date();
     $scope.timersub = function() {
-        $scope.realtime = new Date($scope.now.getFullYear(), $scope.now.getMonth(), $scope.now.getDate(), $scope.now.getHours() + $scope.time.getHours(), $scope.now.getMinutes() + $scope.time.getMinutes(), 00, 00).toISOString();
-        // $http({method : 'get', url : "http://localhost:8080/requests/request_driver", params : {arrivalTime : $scope.realtime}, headers : {'token' : localStorage.getItem("token")}})
-        // $scope.timeraddress = document.getElementById('timeraddress').value;
-        $http({method : 'GET', url : "https://pocketask-api.herokuapp.com/requests/request_driver", params : {arrivalTime : $scope.realtime}, headers : {'token' : localStorage.getItem("token")}})
-        .success(function(data) {
-            alert("Thank You For Choosing Pocketask, Your Driver Will Arrive Shortly.");
-        })
+    	var dest = requestform.address.value;
+    	if (dest == '') {
+    		document.getElementById('req-fail-box').style.display = 'block';
+    		setTimeout(function() {
+    			document.getElementById('req-fail-box').style.display = 'none';
+    		}, 6000);
+    	} else {
+	        $scope.realtime = new Date($scope.now.getFullYear(), $scope.now.getMonth(), $scope.now.getDate(), $scope.now.getHours() + $scope.time.getHours(), $scope.now.getMinutes() + $scope.time.getMinutes(), 00, 00).toISOString();
+	        $http({
+	        	method : 'GET', 
+	        	url : "https://pocketask-api.herokuapp.com/requests/request_driver", 
+	        	params : {
+	        		arrivalTime : $scope.realtime,
+	        		destination : dest
+	        	}, 
+	        	headers : {'token' : localStorage.getItem("token")}
+	        })
+	        .success(function(data) {
+	            alert("Thank You For Choosing Pocketask, Your Driver Will Arrive Shortly.");
+	        });
+	    }
     }
 }
 </script>

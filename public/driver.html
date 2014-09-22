@@ -67,6 +67,8 @@
                                 <tr>
                                     <td style="font-family: Impact; color: #777;">Time</td>
                                     <td style="font-family: Impact; color: #777;">Requested By</td>
+                                    <td style="font-family: Impact; color: #777;">
+                                    Destination</td>
                                     <td style="font-family: Impact; color: #777;">Status</td>
                                 </tr>
                             </thead>
@@ -74,6 +76,7 @@
                                 <tr ng-repeat="dhist in dhists">
                                     <td>{{dhist.requestedAt}}</td>
                                     <td>{{dhist.requestedBy.fullname}}</td>
+                                    <td>{{dhist.destination}}</td>
                                     <td>{{dhist.status}}</td>
                                 </tr>
                             </tbody>
