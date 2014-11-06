@@ -384,6 +384,22 @@ function driverctrl($scope, $http) {
         });
     }
     
+    $scope.push = function(driver) {
+        checktoken();
+        $http({method :'get', url : host + 'requests/assign', 
+            params : {
+                id : getIdFromUrl(window.location.href), 
+                driver : driver._id,
+                push : true
+            }, headers : {'token' : localStorage.getItem("token")}})
+        .success(function(data){
+            history.back();
+        })
+        .error(function(data){
+            alert('Driver has not been assigned.');
+        });
+    }
+
     $scope.change = function(driver) {
         checktoken();
 		$http({method :'get', url : host + 'requests/give_order', 

@@ -63,7 +63,7 @@ function initializeMap() {
     // Create the Google Map
     map = new google.maps.Map(document.getElementById("map-canvas"), {
         center: loc,
-        zoom: 15,
+        zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 };
@@ -78,16 +78,18 @@ setTimeout(updateMap, 500);
 setInterval(updateMap, 30000);
 
 function updateMap() {
+    console.log('updating');
     setAllMap(null);
     markers = [];
     for (var i = 0; i < Object.keys(query).length; i++) {
         var fish_key = Object.keys(query)[i];
         var fish = query[fish_key];
-        if (fish.available == 'true') {
+        if (fish.available == true) {
+            console.log(fish_key);
             var myLatlng = new google.maps.LatLng(fish.l[0], fish.l[1]);
             var myPin = {
-                // url : "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + fish_key.substr(0,fish_key.indexOf(' ')) +"|33aaee|000000"
-                url : "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + fish_key[0] +"|33aaee|000000"
+                url : "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + fish_key.substr(0,2) +"|33aaee|000000"
+                // url : "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + fish_key[0] +"|33aaee|000000"
             };
             marker = new google.maps.Marker({
                 position : myLatlng,
