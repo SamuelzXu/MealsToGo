@@ -3,8 +3,8 @@
 <head>
     <title>GeoFire fish1 Example</title>
     <script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js"></script>
-    <script src="js/rsvp.min.js"></script>
-    <script src="js/geofire.min.js"></script>
+    <script src="../js/rsvp.min.js"></script>
+    <script src="../js/geofire.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 </head>
 
@@ -14,8 +14,10 @@
         <input id="getFishLocation" type="button" value="Reload positions" />
     </div>
 <script>
+window.onbeforeunload = function(){
+    return "";
+}
 // Global map variable
-
 
 // Set the center as Firebase HQ
 var locations = {

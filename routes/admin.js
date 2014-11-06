@@ -49,5 +49,10 @@ module.exports = function(express, app, path){
     router.get('/recent', function(req, res) {
         res.sendfile(path.dirname(__dirname) + '/public/admin.html');
     });
+
+    router.get('/map', function(req, res) {
+        res.sendfile(path.dirname(__dirname) + '/public/tracking.html');
+    });
+
     app.use('/admin', router);
 };
