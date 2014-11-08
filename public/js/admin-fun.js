@@ -182,10 +182,20 @@ function histctrl($scope, $location) {
     $scope.hists = [];
     angular.forEach(hists, function(value) {
         value.date = new Date(value.requestedAt).toString().substring(0, 25);
-        if (value.status === 0) {
-            value.status = 'In Queue';
-        } else {
+        if (value.status === 9) {
             value.status = 'Driver Sent';
+        } else if (value.status === 10) {
+            value.status = 'Picked Up';
+        } else if (value.status === 255) {
+            value.status = 'Completed';
+        } else if (value.stauts === 1) {
+            value.status = 'Rejected';
+        } else if (value.status === 2) {
+            value.status = 'No respond';
+        } else if (value.status === 5) {
+            value.status = 'Waiting';
+        } else {
+            value.status = 'Unassigned';
         }
         $scope.hists.push(value);
     });
@@ -475,13 +485,20 @@ function recentctrl($scope, $http) {
         } else if (request.status === 5) {
             request.status = 'Waiting';
         } else if (request.status === 2) {
-            request.status = 'Time Out';
+            request.status = 'No respond';
         } else if (request.status === 1) {
             request.status = 'Rejected';
         } else if (request.status === 0) {
             request.status = 'Unassigned';
+        } else if (request.status === 10) {
+            request.status = 'Picked up';
+        } else if (request.status === 255) {
+            request.status = 'Completed';
+        } else {
+            request.status = 'undefined!';
         }
         request.requestedAt = new Date(request.requestedAt).toString().substring(0, 25);
         $scope.requests.push(request);
     });
+    $scope.requests.reverse();
 }

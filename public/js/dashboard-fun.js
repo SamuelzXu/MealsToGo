@@ -286,6 +286,10 @@ function longhistctrl($scope) {
         value.date = new Date(value.requestedAt).toString().substring(0, 25);
         if (value.status === 9) {
             value.status = 'Driver Sent';
+        } else if (value.status === 10) {
+            value.status = 'Picked Up';
+        } else if (value.status === 255) {
+            value.status = 'Completed';
         } else {
             value.status = 'In Queue';
             value.deliveredBy = null;
@@ -301,6 +305,10 @@ function longcateringhistctrl($scope) {
         value.date = new Date(value.requestedAt).toString().substring(0, 25);
         if (value.status === 9) {
             value.status = 'Driver Sent';
+        } else if (value.status === 10) {
+            value.status = 'Picked Up';
+        } else if (value.status === 255) {
+            value.status = 'Completed';
         } else {
             value.status = 'In Queue';
             value.deliveredBy = null;
