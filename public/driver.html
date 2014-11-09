@@ -177,10 +177,21 @@
         $scope.dhists = [];
         angular.forEach(dhist, function(value) {
             value.requestedAt = new Date(value.requestedAt).toString().substring(0, 25);
+            // if (value.status === 9) {
+            //     value.status = "Completed";
+            // } else {
+            //     value.status = "Ongoing";
+            // }
             if (value.status === 9) {
-                value.status = "Completed";
+                value.status = 'Accepted';
+            } else if (value.status === 10) {
+                value.status = 'Picked Up';
+            } else if (value.status === 5) {
+                value.status = 'Pending';
+            } else if (value.status === 255) {
+                value.status = 'Completed';
             } else {
-                value.status = "Ongoing";
+                value.status = 'Error';
             }
             $scope.dhists.push(value);
         });
