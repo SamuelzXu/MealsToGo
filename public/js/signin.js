@@ -6,7 +6,7 @@ function localStorageIsExist(){
 }
 
 function signin(){
-    var name = form.name.value;
+    var name = form.name.value.replace(/\s+/g, '');
     var password = form.password.value;
     $.ajax({
         type : "POST",

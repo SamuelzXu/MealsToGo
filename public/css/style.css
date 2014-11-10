@@ -7,6 +7,11 @@ body,html {
     min-height: 600px;
 }
 
+header {
+    /* add the following line to eliminate blink when scroll */
+    -webkit-transform: translate3d(0,0,0);
+}
+
 .brand-img {
     height: 53px;
     margin-left: 10px;
