@@ -371,11 +371,17 @@ function driverctrl($scope, $http) {
 	var drivers = getDrivers();
 	$scope.drivers = [];
 	angular.forEach(drivers, function(driver) {
-		if (driver.available === true) {
-			driver.available = 'Available';
-		} else {
-			driver.available = 'Not Available';
-		}
+        if(driver.lastDelivery === undefined) {
+            driver.lastDelivery = {
+                time: 'N/A',
+                requestedBy: {
+                    fullname : 'N/A'
+                }
+            };
+        } else {
+            driver.lastDelivery.time = new Date(driver.lastDelivery.time).toString().substring(0,25);
+        }
+
 		$scope.drivers.push(driver);
 	});
 

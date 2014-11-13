@@ -5,6 +5,7 @@ body,html {
     opacity: 1;
     height: 100%;
     min-height: 600px;
+    /*overflow: auto;*/
 }
 
 header {
@@ -15,6 +16,7 @@ header {
 .brand-img {
     height: 53px;
     margin-left: 10px;
+    margin-top: -5px;
 }
 
 .header-section{
@@ -541,7 +543,8 @@ html{
 
 .contain{
     width: 100%;
-    padding-bottom: 10px;
+    height: calc(100% - 60px);
+    /*padding-bottom: 10px;*/
 }
 
 .profile-box{
@@ -618,10 +621,11 @@ html{
 
 .wrapper{
     background-color: #eeeeee;
-    margin-top: -20px;
-    padding-left: 20px;
+    margin-top: -10px;
+    /*padding-left: 20px;*/
     margin-bottom: -20px;
     width: 100%;
+    min-height: 100%;
     padding-top: 20px;
 }
 
