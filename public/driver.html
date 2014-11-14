@@ -27,7 +27,7 @@
         <ul id="navToggle" class="burger slide">
             <li></li><li></li><li></li>
         </ul>
-        <h1 class="hidden-xs"><img class="brand-img" id="brand-lg" src="../img/kraken-uzyqfr/logo-big.png"></h1>
+        <h1 class="hidden-xs"><img class="brand-img" id="brand-lg" src="../img/kraken-uzyqfr/logo-big.png" style="height: 48px; margin-bottom: -8px;"></h1>
         <h1 class="visible-xs"><img class="brand-img" id="brand-xs" src="../img/kraken-uzyqfr/logo-small.png"></h1>
     </header>
 
@@ -38,8 +38,8 @@
     </nav>
 
     <div class="content slide">
-        <div class="visible-xs visible-sm" style="height: 40px;"></div>
-        <div class="wrapper" style="min-height: 750px; padding-top: 50px; padding-bottom: 20px;" ng-controller="driverctrl">
+        <!-- <div class="visible-xs visible-sm" style="height: 40px;"></div> -->
+        <div class="wrapper" style="min-height: 600px; padding-top: 70px; height: 100%;" ng-controller="driverctrl">
             <div class="col-md-3">
                 <div class="pad">
                     <div class="card">
@@ -60,9 +60,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" style="background-color: #eeeeee;">
                 <div class="pad" ng-controller="driverhistctrl">
-                    <div class="card-long" id="history-card">
+                    <div class="card-long" id="history-card" style="overflow-y: auto; height: 530px;">
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
@@ -85,7 +85,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3" style="background-color: #eeeeee;">
                 <div class="pad">
                     <div class="card">
                         <p class="card-heading">Change Password</p>
@@ -103,7 +103,6 @@
                             <div id="inlineKeypad"></div>
                             <input id="signin-button" type="button" onclick="change()" value="Make change" />
                         </form> 
-                </div>
                     </div>
                     <div class="card" id="user-profile-function">
                         <p class="card-heading">Gadgets</p>
