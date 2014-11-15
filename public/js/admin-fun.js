@@ -357,6 +357,24 @@ function getDrivers() {
 	});
 	return result;
 }
+
+function getAllDrivers () {
+    checktoken();
+    var result;
+    $.ajax({
+        type : 'GET',
+        dataType : 'json',
+        async : false,
+        url : host + 'drivers/all',
+        headers : {
+            token : localStorage.getItem('token')
+        },
+        success : function (data) {
+            result = data;
+        }
+    });
+    return result;
+}
 	
 function getIdFromUrl(url) {
     var vars = {};
@@ -371,7 +389,7 @@ function driverctrl($scope, $http) {
 	var drivers = getDrivers();
 	$scope.drivers = [];
 	angular.forEach(drivers, function(driver) {
-        if(driver.lastDelivery === undefined) {
+        if (driver.lastDelivery === undefined) {
             driver.lastDelivery = {
                 time: 'N/A',
                 requestedBy: {
@@ -431,6 +449,44 @@ function driverctrl($scope, $http) {
         });
     };
 
+}
+
+function alldriverctrl ($scope, $http) {
+    checktoken();
+    var drivers = getAllDrivers();
+    $scope.drivers = [];
+    angular.forEach(drivers, function (driver) {
+        if (driver.lastDelivery === undefined) {
+            driver.lastDelivery = {
+                time: 'N/A',
+                requestedBy: {
+                    fullname : 'N/A'
+                }
+            };
+        } else {
+            driver.lastDelivery.time = new Date(driver.lastDelivery.time).toString().substring(0,25);
+        }
+        console.log(driver);
+        $scope.drivers.push(driver);
+    });
+
+    $scope.changestatus = function (driver) {
+        checktoken();
+        $http({method : 'GET', url : host + 'drivers/set_availability',
+            params : {
+                id : driver.id,
+                available : !driver.available
+            }, headers : {
+                'token' : localStorage.getItem('token')
+            }
+        })
+        .success(function (data) {
+            document.location.reload();
+        })
+        .error(function (data) {
+            alert(data + ' can not change status, please try again.');
+        });
+    };
 }
 
 function cateringdriverctrl($scope, $http) {

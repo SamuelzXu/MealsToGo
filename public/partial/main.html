@@ -223,3 +223,28 @@ function val() {
     });
 }
 </script>
+<script>
+function loadtxt (url) {
+	var xmlhttp;
+	var txt;
+	var announ = "";
+	xmlhttp = new XMLHttpRequest();
+	xmlhttp.open('GET', url, false);
+	xmlhttp.onreadystatechange = function () {
+		if(xmlhttp.readyState === 4) {
+			if (xmlhttp.status === 200 || xmlhttp.status === 0) {
+				txt = xmlhttp.responseText;
+				txt = txt.split('\n');
+				for (i = 0; i < txt.length; i++) {
+					var p = document.createElement('p');
+					p.innerHTML = txt[i];
+					p.setAttribute('class', 'card-text');
+					document.getElementById('announcement').appendChild(p);
+				}
+			}
+		}
+	}
+	xmlhttp.send(null);
+}
+loadtxt('../partial/data/main.txt');
+</script>
