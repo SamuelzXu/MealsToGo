@@ -79,7 +79,7 @@ function getHistory(id) {
         type : "GET",
         dataType : "json",
         async : false,
-        url: host + "requests/restaurant_history?id=" + id,
+        url: host + "requests/restaurant_history?limit=9999&id=" + id,
         headers : {
             token : localStorage.getItem("token")
         },

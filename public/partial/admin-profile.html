@@ -1,6 +1,6 @@
 <div class="wrapper" style="min-height: 1200px;">
     <div class="col-md-12 " ng-controller="profilectrl">
-        <div class="form-inline visible-md visible-lg" style="padding-left: 20px;">
+        <div class="form-inline" style="padding-left: 20px;">
             <input class="form-control" ng-model="searchRest" placeholder="Search Text" style="">
         </div>
         <div class="col-md-6" ng-repeat="profile in profiles | filter:searchRest">
