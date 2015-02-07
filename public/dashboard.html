@@ -97,7 +97,7 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal"
                         id="abort" onclick="abort()">Abort now</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal"
-                        onclick="proceed()">Yes, proceed</button>
+                        onclick="proceed()" id="proceedBtn">Yes, proceed</button>
                 </div>
             </div>
         </div>
@@ -108,6 +108,7 @@
         var time;
         var distance;
         $('#confirm-modal').on('show.bs.modal', function() {
+            cancel = false;
             // get distance
             distance = checkDistance().distance;
             price = checkDistance().price;
@@ -121,7 +122,7 @@
             document.getElementById('timeLeft').innerHTML =
                 'The request will be proceed in: 10 seconds';
             function incTimer() {
-                cancel = false;
+                // cancel = false;
                 setTimeout(function() {
                     if(countdownNum !== 0 && cancel === false && timevar === time) {
                         countdownNum--;
@@ -129,7 +130,7 @@
                             'The request will be proceed in: ' + countdownNum + ' seconds';
                         incTimer();
                     } else if(countdownNum === 0 && cancel === false && timevar === time) {
-                        cancel = false;
+                        cancel = true;
                         countdownNum = 10;
                         $('#confirm-modal').modal('hide');
                         requestDriver(distance);
@@ -138,6 +139,8 @@
             }
         });
         $('#confirm-modal').on('hidden.bs.modal', function() {
+            document.getElementById('proceedBtn').disabled = false;
+            document.getElementById('timeLeft').style.display = "";
             countdownNum = 10;
             timevar = 0;
         });
@@ -178,6 +181,9 @@
                         }
                         else {
                             price = 'PockeTask Inc. do not take this order generally, please contact our dispatcher for further information.';
+                            document.getElementById('proceedBtn').disabled = true;
+                            document.getElementById('timeLeft').style.display = 'none';
+                            cancel = true;
                         }
                         return distance = {
                             distance: data.distance.value + data.distance.unit,
