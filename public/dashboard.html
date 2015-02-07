@@ -29,7 +29,8 @@
     <link rel="shortcut icon" href="../img/favicon.ico">
 </head>
 
-<body onload="startTime()">
+<body onload="startTime(); ">
+<!-- $('#policy-modal').modal('show'); -->
     <header class="slide">
         <ul id="navToggle" class="burger slide">
             <li></li><li></li><li></li>
@@ -89,7 +90,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <p>Are you sure?</p>
+                    <p id="distance-hint" style="font-size: 150%;"></p>
+                    <p id="price-hint" style="font-size: 150%"></p>
+                    <p>Do you want to continue?</p>
                     <p id="timeLeft">The request will be proceed in: 10 seconds</p>
                     <button type="button" class="btn btn-default" data-dismiss="modal"
                         id="abort" onclick="abort()">Abort now</button>
@@ -103,7 +106,15 @@
         var cancel = false;
         var countdownNum = 10;
         var time;
+        var distance;
         $('#confirm-modal').on('show.bs.modal', function() {
+            // get distance
+            distance = checkDistance().distance;
+            price = checkDistance().price;
+            console.log(distance);
+            document.getElementById('distance-hint').innerHTML = 'The distance of this delivery is ' + distance;
+            document.getElementById('price-hint').innerHTML = price;
+            // Timer count down
             var time = new Date().getTime();
             timevar = time;
             incTimer();
@@ -121,7 +132,7 @@
                         cancel = false;
                         countdownNum = 10;
                         $('#confirm-modal').modal('hide');
-                        requestDriver();
+                        requestDriver(distance);
                     }
                 },1000);
             }
@@ -129,15 +140,85 @@
         $('#confirm-modal').on('hidden.bs.modal', function() {
             countdownNum = 10;
             timevar = 0;
-        })
+        });
         function abort() {
             cancel = true;
             timevar = 0;
-        }
+        };
         function proceed() {
             cancel = true;
-            requestDriver();
-        }
+            console.log(distance);
+            requestDriver(distance);
+        };
+        function checkDistance() {
+            checktoken();
+            var address1 = restaurant.address.full;
+            var address2 = requestform.autocomplete.value + ', Ontario';
+            var distance = 'unknown';
+            var price;
+            $.ajax({
+                type : "get",
+                dataType : "json",
+                url : host + "features/distance/",
+                data : {"from": address1, "to": address2},
+                async: false,
+                success : function(data) {
+                    if (data.apiStatus !== "OK") {
+                        document.getElementById("result").innerHTML =
+                            "Something went wrong with the Google map, please try again later.";
+                    } else if (data.queryStatus !== "OK") {
+                        document.getElementById("result").innerHTML =
+                            "We can not find the address, please check your spelling and try again.";
+                    } else {
+                        if (data.distance.value < 7) {
+                            price = 'Price for this order is: 4.5 + HST = $7';
+                        }
+                        else if (data.distance.value < 14) {
+                            price = 'Price for this order is: 6.5 + HST = $9';
+                        }
+                        else {
+                            price = 'PockeTask Inc. do not take this order generally, please contact our dispatcher for further information.';
+                        }
+                        return distance = {
+                            distance: data.distance.value + data.distance.unit,
+                            price: price
+                        };
+                    }
+                },
+                error : function(data) {
+                    alert("error occurs, please check your spelling");
+                }
+            });
+            return distance;
+        };
     </script>
+
+    <!-- new policy modal -->
+    <div class="modal fade" role="dialog" aria-hidden="true" id="policy-modal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" style="margin-top: 50px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">Changes To PockeTask Inc.</h3>
+                    <p style="color: red;"> - Effective as of Mar. 01, 2015</p>
+                </div>
+                <div class="modal-body" style="text-align: left;">
+                    <h4>New Price:</h4>
+                    <p>4.5 + 2.5(HST included) = $7/ delivery ( under 7 kms )</p>
+                    <p>6.5 + 2.5(HST included) = $9/delivery ( 7-14 kms )</p>
+                    <b>For faster services for everyone, PockeTask will not be accepting orders that is over 14 kms. We do apologize for any inconvenience.</b>
+                    <br><br>
+                    <h4>Another Major Change: </h4>
+                    <p>Driver will be taking all of the delivery fee up front so pay the driver $7 or $9 depending on the delivery distance. PockeTask Inc. will <b>NOT</b> be collecting the fee at the end of the month.</p>
+                    <br><br>
+                    <p>Thank you for your cooperation!</p>
+                    <p>PockeTask Inc. Team</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="aggree" onclick="$('#policy-modal').modal('hide');">I agree</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

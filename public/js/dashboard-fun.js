@@ -1,5 +1,5 @@
-var host = "https://pocketask-api.herokuapp.com/";
-// var host = "http://localhost:8080/";
+// var host = "https://pocketask-api.herokuapp.com/";
+var host = "http://localhost:8080/";
 // var host = "https://pocketask-api-test.herokuapp.com/";
 var historyScope = {hists : []};
 
@@ -72,14 +72,17 @@ function getCookie(cname) {
 //     });
 // }
 
-function requestDriver() {
+function requestDriver(distance) {
     var dest = requestform.autocomplete.value;
     checktoken();
     $.ajax({
         type : "GET",
         crossDomain : true,
         url : host + "requests/request_driver",
-        data : {"destination" : dest},
+        data : {
+            destination: dest,
+            distance: distance
+        },
         headers : {
             token : localStorage.getItem("token")
         },
@@ -112,36 +115,7 @@ function getRestaurant() {
         }
     });
     return result;
-}
-
-function checkDistance() {
-    checktoken();
-    var address1 = restaurant.address.full;
-    var address2 = form.address2_st.value + ', Ontario';
-    $.ajax({
-        type : "get",
-        dataType : "json",
-        url : host + "features/distance/",
-        data : {"from": address1, "to": address2},
-        success : function(data) {
-            if (data.apiStatus !== "OK") {
-                document.getElementById("result").innerHTML =
-                    "Something went wrong with the Google map, please try again later.";
-            } else if (data.queryStatus !== "OK") {
-                document.getElementById("result").innerHTML =
-                    "We can not find the address, please check your spelling and try again.";
-            } else {
-                document.getElementById("result").innerHTML =
-                    "The distance between you and " + form.address2_st.value +
-                    " is " + data.distance.value + " " + data.distance.unit;
-                document.getElementById("address2_st").value = "";
-            }
-        },
-        error : function(data) {
-            alert("error occurs, please check your spelling");
-        }
-    });
-}
+};
 
 function logout() {
     checktoken();

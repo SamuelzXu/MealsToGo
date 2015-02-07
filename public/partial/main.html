@@ -6,12 +6,8 @@
             <p id="current" class="card-lg-text-normal"></p>
         </div>
         <div class="card visible-lg visible-md">
-            <h3 class="card-heading" style="color: red">HOLIDAY HOUR</h3>
-            <p class="card-text">Dec 24 : 10:30am - 6:00pm</p>
-            <p class="card-text">Dec 25 : CLOSE</p>
-            <p class="card-text">Dec 31 : 10:30am - 6:00pm</p>
-            <p class="card-text">Jan 1 : 4:00pm - 10:30pm</p>
-            <p class="card-text">dispatcher : (226)-929 9957</p>
+            <h3 class="card-heading">Announcement</h3>
+            <p class="card-text">contact our dispatcher : (226)-929 9957</p>
             <!-- <p class="card-text">Expected System Delay Due To Weather Condition.</p> -->
         </div>
     </br></br></div>
@@ -77,7 +73,7 @@
           // google.maps.event.addListener(autocomplete, 'place_changed', function() {
           //   fillInAddress();
           // });
-        }
+        };
 
         // [START region_fillform]
         // function fillInAddress() {
@@ -127,12 +123,8 @@
     </div>
     <div class="col-md-3">
         <div class="card visible-sm visible-xs">
-            <h3 class="card-heading" style="color: red">HOLIDAY HOUR</h3>
-            <p class="card-text">Dec 24 : 10:30am - 6:00pm</p>
-            <p class="card-text">Dec 25 : CLOSE</p>
-            <p class="card-text">Dec 31 : 10:30am - 6:00pm</p>
-            <p class="card-text">Jan 1 : 4:00pm - 10:30pm</p>
-            <p class="card-text">dispatcher : (226)-929 9957</p>
+            <h3 class="card-heading">Announcement</h3>
+            <p class="card-text">contact our dispatcher : (226)-929 9957</p>
         </div>
         <div class="card" ng-controller="histctrl" id="ctrl">
             <p class="card-heading-simple">Last Three Orders</p>
@@ -151,7 +143,7 @@
                 </tbody>
             </table>
         </div>
-		<div class="card hidden-xs">
+<!-- 		<div class="card hidden-xs">
             <p class="card-heading">Distance Check</p>
 			<form method="GET" id="form" data-parsley-validate style="text-align: left;">
                 <label style="margin-left: 15px;">Step 1: Enter postal code or address</label>
@@ -161,7 +153,7 @@
                     data-parsley-pattern="/^[A-Za-z0-9,\-\s]+$/" data-parsley-required />
     		</form>
             <p id="result"></p>
-        </div>
+        </div> -->
     </div>
 </div>
 
@@ -182,7 +174,7 @@ function histctrl($scope) {
         }
         $scope.hists.push(value);
     });
-}
+};
 
 function updateHistoryTable() {
     var hists = getHistory(3);
@@ -203,21 +195,22 @@ function updateHistoryTable() {
             scope.hists.push(value);
         });
     });
-}
+};
 </script>
 <script>
 var restaurant = getRestaurant();
 document.getElementById('current').innerHTML = restaurant.currentRequests;
 $(document).ready(function() {
-    $('#form').parsley().subscribe('parsley:form:validate', function(formInstance) {
-        if (formInstance.isValid()) {
-            checkDistance();
-        }
-    });
+    // $('#form').parsley().subscribe('parsley:form:validate', function(formInstance) {
+    //     if (formInstance.isValid()) {
+    //         checkDistance();
+    //     }
+    // });
     $('#requestform').keypress(function() {
         $('#requestform').parsley("data-parsley-validate").subscribe('parsley:form:init', function(formInstance) {
             if (formInstance.isValid()) {
                 alert("ok");
+                // checkDistance();
             }
         });
     });
@@ -228,30 +221,30 @@ function val() {
             alert("ok");
         }
     });
-}
+};
 </script>
 <script>
-function loadtxt (url) {
-	var xmlhttp;
-	var txt;
-	var announ = "";
-	xmlhttp = new XMLHttpRequest();
-	xmlhttp.open('GET', url, false);
-	xmlhttp.onreadystatechange = function () {
-		if(xmlhttp.readyState === 4) {
-			if (xmlhttp.status === 200 || xmlhttp.status === 0) {
-				txt = xmlhttp.responseText;
-				txt = txt.split('\n');
-				for (i = 0; i < txt.length; i++) {
-					var p = document.createElement('p');
-					p.innerHTML = txt[i];
-					p.setAttribute('class', 'card-text');
-					document.getElementById('announcement').appendChild(p);
-				}
-			}
-		}
-	}
-	xmlhttp.send(null);
-}
-loadtxt('../partial/data/main.txt');
+// function loadtxt (url) {
+// 	var xmlhttp;
+// 	var txt;
+// 	var announ = "";
+// 	xmlhttp = new XMLHttpRequest();
+// 	xmlhttp.open('GET', url, false);
+// 	xmlhttp.onreadystatechange = function () {
+// 		if(xmlhttp.readyState === 4) {
+// 			if (xmlhttp.status === 200 || xmlhttp.status === 0) {
+// 				txt = xmlhttp.responseText;
+// 				txt = txt.split('\n');
+// 				for (i = 0; i < txt.length; i++) {
+// 					var p = document.createElement('p');
+// 					p.innerHTML = txt[i];
+// 					p.setAttribute('class', 'card-text');
+// 					document.getElementById('announcement').appendChild(p);
+// 				}
+// 			}
+// 		}
+// 	}
+// 	xmlhttp.send(null);
+// }
+// loadtxt('../partial/data/main.txt');
 </script>
