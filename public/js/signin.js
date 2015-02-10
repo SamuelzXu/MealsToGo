@@ -10,9 +10,7 @@ function signin(){
     var password = form.password.value;
     $.ajax({
         type : "POST",
-        // url : "https://pocketask-api.herokuapp.com/users/authenticate",
-        url : "http://localhost:8080/users/authenticate",
-        // url : "https://pocketask-api-test.herokuapp.com/users/authenticate",
+        url : host + "users/authenticate",
         data : {
             username: name,
             password: password
