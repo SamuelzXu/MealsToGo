@@ -1,12 +1,12 @@
 <div class="rest-wrapper">
     <!-- <div class="visible-xs visible-sm" style="height: 60px;"></div> -->
     <div class="col-md-3">
-        <div class="card">
+<!--         <div class="card">
             <p class="card-heading">Current Balance</p>
             <div id="balance" class="card-lg-text-normal"></div>
             <p id="balance-hint1" style="display: none;">The amount in red is unpaid balance</p>
             <p id="balance-hint2" style="display: none;">The amount in brackets is credit from your last payment</p>
-        </div>
+        </div> -->
         <div class="card">
             <p class="card-heading">Total Number of Deliveries</p>
             <div id="total" class="card-lg-text-normal"></div>
@@ -24,7 +24,7 @@
             <p class="card-heading">Miscellaneous</p>
             <a href="/restaurant/changepassword" target="_blank">&bull; Change Password</a>
             <br>
-            <a href="/restaurant/invoice" target="_blank">&bull; View Invoice</a>
+            <!-- <a href="/restaurant/invoice" target="_blank">&bull; View Invoice</a> -->
         </div>
     </div>
     <div class="col-md-6">
@@ -37,6 +37,7 @@
                         <td style="font-family: Impact; color: #777;">Driver</td>
                         <td style="font-family: Impact; color: #777;">Driver's phone</td>
                         <td style="font-family: Impact; color: #777;">Destination</td>
+                        <td style="font-family: Impact; color: #777;">Distance</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,6 +47,7 @@
                         <td>{{lhist.deliveredBy.fullname}}</td>
                         <td>{{lhist.deliveredBy.phone}}</td>
                         <td>{{lhist.destination}}</td>
+                        <td>{{lhist.distance}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -65,7 +67,7 @@
                 <p class="card-heading">Miscellaneous</p>
                 <a href="/restaurant/changepassword">&bull; Change Password</a>
                 <br>
-                <a href="/restaurant/invoice" target="_blank">&bull; View Invoice</a>
+                <!-- <a href="/restaurant/invoice" target="_blank">&bull; View Invoice</a> -->
             </div>
         </div>
     </div>
@@ -73,17 +75,17 @@
 <script>
 var restaurant = getRestaurant();
 var b = restaurant.balance;
-if (b > 0){
-    document.getElementById('balance').innerHTML = b;
-    document.getElementById('balance').style.color = "red";
-    document.getElementById('balance-hint1').style.display = 'block';
-} else if (b < 0) {
-    b = '( ' + b*(-1) + ' )';
-    document.getElementById('balance').innerHTML = b;
-    document.getElementById('balance-hint2').style.display = 'block';
-} else {
-    document.getElementById('balance').innerHTML = b;
-}
+// if (b > 0){
+//     document.getElementById('balance').innerHTML = b;
+//     document.getElementById('balance').style.color = "red";
+//     document.getElementById('balance-hint1').style.display = 'block';
+// } else if (b < 0) {
+//     b = '( ' + b*(-1) + ' )';
+//     document.getElementById('balance').innerHTML = b;
+//     document.getElementById('balance-hint2').style.display = 'block';
+// } else {
+//     document.getElementById('balance').innerHTML = b;
+// }
 
 document.getElementById('total').innerHTML = restaurant.totalRequests;
 document.getElementById('fullname').innerHTML = 'Username:  ' + restaurant.fullname;

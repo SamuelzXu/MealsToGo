@@ -126,8 +126,8 @@
             <h3 class="card-heading">Announcement</h3>
             <p class="card-text">contact our dispatcher : (226)-929 9957</p>
         </div>
-        <div class="card" ng-controller="histctrl" id="ctrl">
-            <p class="card-heading-simple">Last Three Orders</p>
+        <div class="card" ng-controller="histctrl" id="ctrl" style="height: 527px;">
+            <p class="card-heading-simple">Last Seven Orders</p>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -159,7 +159,7 @@
 
 <script>
 function histctrl($scope) {
-    var hists = getHistory(3);
+    var hists = getHistory(7);
     $scope.hists = [];
     angular.forEach(hists, function(value) {
         value.date = new Date(value.requestedAt).toString().substring(0, 25);
@@ -177,7 +177,7 @@ function histctrl($scope) {
 };
 
 function updateHistoryTable() {
-    var hists = getHistory(3);
+    var hists = getHistory(7);
     var scope = angular.element($("#ctrl")).scope();
     scope.$apply(function() {
         scope.hists = [];
