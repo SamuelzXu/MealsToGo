@@ -126,7 +126,7 @@
             <h3 class="card-heading">Announcement</h3>
             <p class="card-text">contact our dispatcher : (226)-929 9957</p>
         </div>
-        <div class="card" ng-controller="histctrl" id="ctrl" style="height: 527px;">
+        <div class="card" ng-controller="histctrl" id="ctrl">
             <p class="card-heading-simple">Last Seven Orders</p>
             <table class="table table-striped">
                 <thead>
@@ -143,7 +143,7 @@
                 </tbody>
             </table>
         </div>
-<!-- 		<div class="card hidden-xs">
+		<div class="card hidden-xs">
             <p class="card-heading">Distance Check</p>
 			<form method="GET" id="form" data-parsley-validate style="text-align: left;">
                 <label style="margin-left: 15px;">Step 1: Enter postal code or address</label>
@@ -153,13 +153,13 @@
                     data-parsley-pattern="/^[A-Za-z0-9,\-\s]+$/" data-parsley-required />
     		</form>
             <p id="result"></p>
-        </div> -->
+        </div>
     </div>
 </div>
 
 <script>
 function histctrl($scope) {
-    var hists = getHistory(7);
+    var hists = getHistory(3);
     $scope.hists = [];
     angular.forEach(hists, function(value) {
         value.date = new Date(value.requestedAt).toString().substring(0, 25);
@@ -177,7 +177,7 @@ function histctrl($scope) {
 };
 
 function updateHistoryTable() {
-    var hists = getHistory(7);
+    var hists = getHistory(3);
     var scope = angular.element($("#ctrl")).scope();
     scope.$apply(function() {
         scope.hists = [];
@@ -201,27 +201,27 @@ function updateHistoryTable() {
 var restaurant = getRestaurant();
 document.getElementById('current').innerHTML = restaurant.currentRequests;
 $(document).ready(function() {
-    // $('#form').parsley().subscribe('parsley:form:validate', function(formInstance) {
-    //     if (formInstance.isValid()) {
-    //         checkDistance();
-    //     }
-    // });
+    $('#form').parsley().subscribe('parsley:form:validate', function(formInstance) {
+        if (formInstance.isValid()) {
+            checkDistance();
+        }
+    });
     $('#requestform').keypress(function() {
         $('#requestform').parsley("data-parsley-validate").subscribe('parsley:form:init', function(formInstance) {
             if (formInstance.isValid()) {
                 alert("ok");
-                // checkDistance();
+                checkDistance();
             }
         });
     });
 });
-function val() {
-    $('#rform').parsley().subscribe('parsley:form:validate', function(formInstance) {
-        if (formInstance.isValid()) {
-            alert("ok");
-        }
-    });
-};
+// function val() {
+//     $('#rform').parsley().subscribe('parsley:form:validate', function(formInstance) {
+//         if (formInstance.isValid()) {
+//             alert("ok");
+//         }
+//     });
+// };
 </script>
 <script>
 // function loadtxt (url) {

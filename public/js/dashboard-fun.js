@@ -67,7 +67,7 @@ function getCookie(cname) {
 //     });
 // }
 
-function requestDriver(distance) {
+function requestDriver() {
     var dest = requestform.autocomplete.value;
     checktoken();
     $.ajax({
@@ -75,8 +75,7 @@ function requestDriver(distance) {
         crossDomain : true,
         url : host + "requests/request_driver",
         data : {
-            destination: dest,
-            distance: distance
+            destination: dest
         },
         headers : {
             token : localStorage.getItem("token")
@@ -345,4 +344,33 @@ function addnumberctrl($scope, $http) {
         }
         });
     };
+}
+
+function checkDistance() {     
+    checktoken();      
+    var address1 = restaurant.address.full;        
+    var address2 = form.address2_st.value + ', Ontario';       
+    $.ajax({       
+        type : "get",      
+        dataType : "json",     
+        url : host + "features/distance/",     
+        data : {"from": address1, "to": address2},     
+        success : function(data) {     
+            if (data.apiStatus !== "OK") {     
+                document.getElementById("result").innerHTML =      
+                    "Something went wrong with the Google map, please try again later.";       
+            } else if (data.queryStatus !== "OK") {        
+                document.getElementById("result").innerHTML =      
+                    "We can not find the address, please check your spelling and try again.";      
+            } else {       
+                document.getElementById("result").innerHTML =      
+                    "The distance between you and " + form.address2_st.value +     
+                    " is " + data.distance.value + " " + data.distance.unit;       
+                document.getElementById("address2_st").value = "";     
+            }      
+        },     
+        error : function(data) {       
+            alert("error occurs, please check your spelling");     
+        }      
+    });        
 }
