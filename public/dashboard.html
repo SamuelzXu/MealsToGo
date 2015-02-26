@@ -93,7 +93,7 @@
                     <p id="distance-hint" style="font-size: 150%;"></p>
                     <p id="price-hint" style="font-size: 150%"></p>
                     <p>Do you want to continue?</p>
-                    <!-- <p id="timeLeft">The request will be proceed in: 10 seconds</p> -->
+                    <p id="timeLeft">The request will be proceed in: 10 seconds</p>
                     <button type="button" class="btn btn-default" data-dismiss="modal"
                         id="abort" onclick="abort()">Abort now</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal"
@@ -110,32 +110,32 @@
         $('#confirm-modal').on('show.bs.modal', function() {
             cancel = false;
             // get distance
-            distance = checkDistance().distance;
-            price = checkDistance().price;
-            document.getElementById('distance-hint').innerHTML = 'The distance of this delivery is ' + distance;
-            document.getElementById('price-hint').innerHTML = price;
+            // distance = checkDistance().distance;
+            // price = checkDistance().price;
+            // document.getElementById('distance-hint').innerHTML = 'The distance of this delivery is ' + distance;
+            // document.getElementById('price-hint').innerHTML = price;
             // Timer count down
-            // var time = new Date().getTime();
-            // timevar = time;
-            // incTimer();
-            // document.getElementById('timeLeft').innerHTML =
-            //     'The request will be proceed in: 10 seconds';
-            // function incTimer() {
-            //     // cancel = false;
-            //     setTimeout(function() {
-            //         if(countdownNum !== 0 && cancel === false && timevar === time) {
-            //             countdownNum--;
-            //             document.getElementById('timeLeft').innerHTML =
-            //                 'The request will be proceed in: ' + countdownNum + ' seconds';
-            //             incTimer();
-            //         } else if(countdownNum === 0 && cancel === false && timevar === time) {
-            //             cancel = true;
-            //             countdownNum = 10;
-            //             $('#confirm-modal').modal('hide');
-            //             requestDriver(distance);
-            //         }
-            //     },1000);
-            // }
+            var time = new Date().getTime();
+            timevar = time;
+            incTimer();
+            document.getElementById('timeLeft').innerHTML =
+                'The request will be proceed in: 10 seconds';
+            function incTimer() {
+                // cancel = false;
+                setTimeout(function() {
+                    if(countdownNum !== 0 && cancel === false && timevar === time) {
+                        countdownNum--;
+                        document.getElementById('timeLeft').innerHTML =
+                            'The request will be proceed in: ' + countdownNum + ' seconds';
+                        incTimer();
+                    } else if(countdownNum === 0 && cancel === false && timevar === time) {
+                        cancel = true;
+                        countdownNum = 10;
+                        $('#confirm-modal').modal('hide');
+                        requestDriver(distance);
+                    }
+                },1000);
+            }
         });
         $('#confirm-modal').on('hidden.bs.modal', function() {
             document.getElementById('proceedBtn').disabled = false;
