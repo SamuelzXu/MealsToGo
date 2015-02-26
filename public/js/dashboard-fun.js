@@ -67,7 +67,7 @@ function getCookie(cname) {
 //     });
 // }
 
-function requestDriver() {
+function requestDriver(distance, card) {
     var dest = requestform.autocomplete.value;
     checktoken();
     $.ajax({
@@ -75,7 +75,9 @@ function requestDriver() {
         crossDomain : true,
         url : host + "requests/request_driver",
         data : {
-            destination: dest
+            destination: dest,
+            distance: distance,
+            card: card
         },
         headers : {
             token : localStorage.getItem("token")

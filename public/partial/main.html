@@ -126,40 +126,31 @@
             <h3 class="card-heading">Announcement</h3>
             <p class="card-text">contact our dispatcher : (226)-929 9957</p>
         </div>
-        <div class="card" ng-controller="histctrl" id="ctrl">
+        <div class="card" ng-controller="histctrl" id="ctrl" style="height: 527px;">
             <p class="card-heading-simple">Last Seven Orders</p>
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <td style="font-family: Impact; color: #777;">Date & Time</td>
                         <td style="font-family: Impact; color: #777;">status</td>
+                        <td style="font-family: Impact; color: #777;">Distance</td>
                     </tr>
                 </thead>
                 <tbody id="history-table-body">
                     <tr ng-repeat="hist in hists">
                         <td>{{hist.date}}</td>
                         <td>{{hist.status}}</td>
+                        <td>{{hist.distance}}</td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-		<div class="card hidden-xs">
-            <p class="card-heading">Distance Check</p>
-			<form method="GET" id="form" data-parsley-validate style="text-align: left;">
-                <label style="margin-left: 15px;">Step 1: Enter postal code or address</label>
-                <label style="margin-left: 15px;">Step 2: Press enter</label>
-                <input class="form-control" style="max-width: 250px;" name="address2_st"
-                    id="address2_st" placeholder="Postal Code or Address with City"
-                    data-parsley-pattern="/^[A-Za-z0-9,\-\s]+$/" data-parsley-required />
-    		</form>
-            <p id="result"></p>
         </div>
     </div>
 </div>
 
 <script>
 function histctrl($scope) {
-    var hists = getHistory(3);
+    var hists = getHistory(7);
     $scope.hists = [];
     angular.forEach(hists, function(value) {
         value.date = new Date(value.requestedAt).toString().substring(0, 25);
@@ -177,7 +168,7 @@ function histctrl($scope) {
 };
 
 function updateHistoryTable() {
-    var hists = getHistory(3);
+    var hists = getHistory(7);
     var scope = angular.element($("#ctrl")).scope();
     scope.$apply(function() {
         scope.hists = [];
@@ -199,13 +190,14 @@ function updateHistoryTable() {
 </script>
 <script>
 var restaurant = getRestaurant();
+var newRate = restaurant.newRate;
 document.getElementById('current').innerHTML = restaurant.currentRequests;
 $(document).ready(function() {
-    $('#form').parsley().subscribe('parsley:form:validate', function(formInstance) {
-        if (formInstance.isValid()) {
-            checkDistance();
-        }
-    });
+    // $('#form').parsley().subscribe('parsley:form:validate', function(formInstance) {
+    //     if (formInstance.isValid()) {
+    //         checkDistance();
+    //     }
+    // });
     $('#requestform').keypress(function() {
         $('#requestform').parsley("data-parsley-validate").subscribe('parsley:form:init', function(formInstance) {
             if (formInstance.isValid()) {
@@ -215,13 +207,6 @@ $(document).ready(function() {
         });
     });
 });
-// function val() {
-//     $('#rform').parsley().subscribe('parsley:form:validate', function(formInstance) {
-//         if (formInstance.isValid()) {
-//             alert("ok");
-//         }
-//     });
-// };
 </script>
 <script>
 // function loadtxt (url) {
