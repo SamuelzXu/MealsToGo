@@ -48,25 +48,6 @@ function getCookie(cname) {
     }
 }
 
-
-// function updateHistoryTable($scope) {
-//     var hists = getHistory(3);
-//     // historyScope.hists = [];
-
-//     // angular.forEach(hists, function(value) {
-//     //     value.date = new Date(value.requestedAt).toString().substring(0, 25);
-//     //     if (value.status === 9) {
-//     //         value.status = 'Driver Sent';
-//     //     } else {
-//     //         value.status = 'In Queue';
-//     //     }
-//     //     historyScope.hists.push(value);
-//     // });
-//     $scope.$apply(function(){
-//         $scope.hist = ["a", "b"];
-//     });
-// }
-
 function requestDriver(distance, card) {
     var dest = requestform.autocomplete.value;
     checktoken();
@@ -82,16 +63,20 @@ function requestDriver(distance, card) {
         headers : {
             token : localStorage.getItem("token")
         },
-        success : function(data) {
-            newrest = data;
-            document.getElementById("current").innerHTML = newrest.currentRequests;
-            document.getElementById("current").style.backgroundColor = "red";
-            setTimeout(function() {
-                document.getElementById("current").style.backgroundColor = "white";
-            }, 5000);
-            requestform.autocomplete.value = "";
-            updateHistoryTable();
-        }
+        statusCode: {
+            200: function(data) {
+                newrest = data;
+                document.getElementById("current").innerHTML = newrest.currentRequests;
+                document.getElementById("current").style.backgroundColor = "red";
+                setTimeout(function() {
+                    document.getElementById("current").style.backgroundColor = "white";
+                }, 5000);
+                requestform.autocomplete.value = "";
+                updateHistoryTable();
+            },
+            403: alert('PockeTask Inc. is open from 10:30 am to 10:30 pm, we do not take any delivery orders rigth now.'),
+            500: alert('Error! Please refresh and try AGAIN.');
+        } : 
     });
 }
 

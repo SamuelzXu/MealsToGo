@@ -1,5 +1,4 @@
 <div class="rest-wrapper" style="width: 100%">
-    <!-- <div class="visible-sm visible-xs" style="height: 60px;"></div> -->
     <div class="col-md-3">
         <div class="card">
             <p class="card-heading">Recent Number of Deliveries</p>
@@ -75,28 +74,6 @@
           // });
         };
 
-        // [START region_fillform]
-        // function fillInAddress() {
-        //   // Get the place details from the autocomplete object.
-        //   var place = autocomplete.getPlace();
-
-        //   for (var component in componentForm) {
-        //     document.getElementById(component).value = '';
-        //     document.getElementById(component).disabled = false;
-        //   }
-
-        //   // Get each component of the address from the place details
-        //   // and fill the corresponding field on the form.
-        //   for (var i = 0; i < place.address_components.length; i++) {
-        //     var addressType = place.address_components[i].types[0];
-        //     if (componentForm[addressType]) {
-        //       var val = place.address_components[i][componentForm[addressType]];
-        //       document.getElementById(addressType).value = val;
-        //     }
-        //   }
-        // }
-        // [END region_fillform]
-
         // [START region_geolocation]
         // Bias the autocomplete object to the user's geographical location,
         // as supplied by the browser's 'navigator.geolocation' object.
@@ -114,11 +91,7 @@
         initialize();
         // [END region_geolocation]
 
-        // </script>
-        <!-- <button class="button1" id="driver-button" data-toggle="modal"
-            data-target="#confirm-modal" style="height: 532px; width: 100%;">
-            <p style="font-size: 400%; color: white; margin-bottom: 0px; font-weight: 700;">Request For Driver</p>
-        </button> -->
+        </script>
         
     </div>
     <div class="col-md-3">
@@ -193,11 +166,6 @@ var restaurant = getRestaurant();
 var newRate = restaurant.newRate;
 document.getElementById('current').innerHTML = restaurant.currentRequests;
 $(document).ready(function() {
-    // $('#form').parsley().subscribe('parsley:form:validate', function(formInstance) {
-    //     if (formInstance.isValid()) {
-    //         checkDistance();
-    //     }
-    // });
     $('#requestform').keypress(function() {
         $('#requestform').parsley("data-parsley-validate").subscribe('parsley:form:init', function(formInstance) {
             if (formInstance.isValid()) {
@@ -207,29 +175,4 @@ $(document).ready(function() {
         });
     });
 });
-</script>
-<script>
-// function loadtxt (url) {
-// 	var xmlhttp;
-// 	var txt;
-// 	var announ = "";
-// 	xmlhttp = new XMLHttpRequest();
-// 	xmlhttp.open('GET', url, false);
-// 	xmlhttp.onreadystatechange = function () {
-// 		if(xmlhttp.readyState === 4) {
-// 			if (xmlhttp.status === 200 || xmlhttp.status === 0) {
-// 				txt = xmlhttp.responseText;
-// 				txt = txt.split('\n');
-// 				for (i = 0; i < txt.length; i++) {
-// 					var p = document.createElement('p');
-// 					p.innerHTML = txt[i];
-// 					p.setAttribute('class', 'card-text');
-// 					document.getElementById('announcement').appendChild(p);
-// 				}
-// 			}
-// 		}
-// 	}
-// 	xmlhttp.send(null);
-// }
-// loadtxt('../partial/data/main.txt');
 </script>

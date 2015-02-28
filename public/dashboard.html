@@ -152,11 +152,14 @@
                         document.getElementById("result").innerHTML =
                             "We can not find the address, please check your spelling and try again.";
                     } else {
-                        if (data.distance.value < 7) {
+                        if (data.distance.value <= 7) {
                             price = 'Price for this order is: 4.5 + ' + newRate + ' = $' + (newRate + 4.5);
                         }
-                        else if (data.distance.value < 14) {
+                        else if (data.distance.value <= 14) {
                             price = 'Price for this order is: 6.5 + ' + newRate + ' = $' + (newRate + 6.5);
+                        }
+                        else if (data.distance.value <= 18) {
+                            price = 'Price for this order is: 9.5 + ' + newRate + ' = $' + (newRate + 9.5);
                         }
                         else {
                             price = 'PockeTask Inc. do not take this order generally, please contact our dispatcher for further information.';
@@ -190,12 +193,13 @@
                 </div>
                 <div class="modal-body" style="text-align: left;">
                     <h4>Promotional Price:</h4>
-                    <p>4.5 + 2.5(HST included) = $7/ delivery ( under 7 kms )</p>
+                    <p>4.5 + 2.5(HST included) = $7/delivery ( under 7 kms )</p>
                     <p>6.5 + 2.5(HST included) = $9/delivery ( 7-14 kms )</p>
-                    <b>For faster services for everyone, PockeTask will not be accepting orders that is over 14 kms. We do apologize for any inconvenience.</b>
+                    <p>9.5 + 2.5(HST included) = $12/delivery ( 14-18 kms )</p>
+                    <b>For faster services for everyone, PockeTask will not be accepting orders that is over 18 kms. We do apologize for any inconvenience.</b>
                     <br><br>
                     <h4>Another Major Change: </h4>
-                    <p>Drivers will be taking all of the delivery fee up front so pay the driver $7 or $9 depending on the delivery distance. PockeTask Inc. will <b>NOT</b> be collecting the fee at the end of the month.</p>
+                    <p>Drivers will be taking all of the delivery fee up front so pay the driver $7, $9 or $12 depending on the delivery distance. PockeTask Inc. will <b>NOT</b> be collecting the fee at the end of the month.</p>
                     <br><br>
                     <p>Thank you for your cooperation!</p>
                     <p>PockeTask Inc. Team</p>
