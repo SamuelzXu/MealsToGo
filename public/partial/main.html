@@ -6,6 +6,7 @@
         </div>
         <div class="card visible-lg visible-md">
             <h3 class="card-heading">Announcement</h3>
+            <p class="card-text" id="new-rate"></p>
             <p class="card-text">contact our dispatcher : (226)-929 9957</p>
             <!-- <p class="card-text">Expected System Delay Due To Weather Condition.</p> -->
         </div>
@@ -165,6 +166,7 @@ function updateHistoryTable() {
 var restaurant = getRestaurant();
 var newRate = restaurant.newRate;
 document.getElementById('current').innerHTML = restaurant.currentRequests;
+document.getElementById('new-rate').innerHTML = 'Your rate: $' + restaurant.newRate +  ' + delivery fee';
 $(document).ready(function() {
     $('#requestform').keypress(function() {
         $('#requestform').parsley("data-parsley-validate").subscribe('parsley:form:init', function(formInstance) {
