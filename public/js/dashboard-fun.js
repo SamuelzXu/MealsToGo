@@ -75,8 +75,7 @@ function requestDriver(distance, card) {
                 updateHistoryTable();
             },
             403: alert('PockeTask Inc. is open from 10:30 am to 10:30 pm, we do not take any delivery orders rigth now.'),
-            500: alert('Error! Please refresh and try AGAIN.');
-        } : 
+        }
     });
 }
 
