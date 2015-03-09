@@ -94,12 +94,12 @@
                     <p id="price-hint" style="font-size: 150%"></p>
                     <p>Do you want to continue?</p>
                     <!-- <p id="timeLeft">The request will be proceed in: 10 seconds</p> -->                    
-                    <button type="button" class="btn btn-primary" data-dismiss="modal"
-                        onclick="proceed(true)" id="machineBtn">Debit Machine</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal"
-                        onclick="proceed(false)" id="noMachineBtn">No Debit Machine</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"
-                        id="abort" onclick="abort()">Abort now</button>
+                    <button type="button" class="btn btn-primary confirm-modal-btn" data-dismiss="modal"
+                        onclick="proceed(true)" id="machineBtn">Debit Machine <br> (we don't provide machine)</button>
+                    <button type="button" class="btn btn-primary confirm-modal-btn" data-dismiss="modal"
+                        onclick="proceed(false)" id="noMachineBtn">Cash / Prepaid</button>
+                    <button type="button" class="btn btn-danger confirm-modal-btn" data-dismiss="modal"
+                        id="abort" onclick="abort()">Cancel</button>
                 </div>
             </div>
         </div>
