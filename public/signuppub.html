@@ -21,48 +21,80 @@
 <body>
     <div id="cot" class="wrapper">
         <img id="logo-big" src="img/logo-big.png" >          
-        <p class="intro">Contact Us</p>
+        <p class="intro">Sign Up With PockeTask</p>
         <div id="signup-form">
             <div class="success-box" id="success-box">
-                <p style="margin-top: 5px;">Information successfully sent.</p>
+                <p style="margin-top: 5px;">Applicatoin has been filed, we will get back to you as soon as possible.</p>
             </div>
             <div class="error-box" id="user-fail-box">
-                <p>Something wrong with information input, please try again.</p>
+                <p>Something wrong with information input, please check and try again.</p>
             </div>
             <div class="error-box" id="rest-fail-box">
-                <p>Something wrong with information input, please try again.</p>
+                <p>Something wrong with information input, please check and try again.</p>
             </div>
-            <form method="post" name="form" parsley-validate parsley-validation-minlength="1" parsley-trigger="change focusout">
+            <form method="post" name="form" parsley-validate parsley-validation-minlength="1" parsley-trigger="change focusout" id="form">
                 <input class="form-control" id="email" name="email" placeholder="Email" parsley-type="email" parsley-required="true">
 				<input class="form-control" id="name" name="name" placeholder="Name" parsley-type="alphanum" parsley-required="true"> 
                 <input class="form-control" id="address" name="address" placeholder="Address" parsley-type="alphanum" parsley-required="true">
+                <input class="form-control" id="postalCode" name="postalCode" placeholder="Postal Code" parslety-type="alphanum" parsley-required="true">
                 <select name="city" class="form-control" parsley-required="true">
                     <option>Waterloo</option>
                     <option>Kitchener</option>
+                    <option>Cambridge</option>
+                    <option>Hamilton</option>
 					<option>Others</option>
+                </select>
+                <select name="province" class="form-control" parsley-required="true">
+                    <option>Ontario</option>
                 </select>
                 <input class="form-control" id="phone" name="phone" placeholder="Phone number" parsley-type="phone" parsley-required="true">
                 <select name="role" class="form-control">
-                    <option value = 0>Driver</option>
-					<option value = 1>Restaurant</option>
+                    <option value="driver">Driver</option>
+					<option value="restaurant">Restaurant</option>
                 </select>
-				<textarea class="form-control" rows="3" id="info" name="info" placeholder="Comment"></textarea>
-                <input id="button2" type="button" class="btn btn-primary" onclick="sub_signin()" value="Submit">
+                <input class="form-control" id="heard" name="heard" placeholder="Where did you hear about us?" parsley-type="alphanum">
+                <input class="form-control" id="refer" name="refer" placeholder="Referred By? (if applicable)" parsley-type="alphanum">
+                <input id="button2" type="button" class="btn btn-primary" onclick="sub_signup()" value="Submit">
             </form>
         </div>
     </div>
+
+    <script src="js/jquery-1.10.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/parsley.js" type="text/javascript"></script> 
+
     <script type="text/javascript">
-    function sub_signin(){
+    function sub_signup() {
+        
+        if ( !$('#form').parsley().validate()) {
+            console.log('no');
+            return;
+        }
         var email = form.email.value;
 		var name = form.name.value;
-        var address = form.address.value + ", " + form.city.value;
+        var address = form.address.value;
+        var city = form.city.value;
+        var province = form.province.value;
         var phone = form.phone.value;
 		var role = form.role.value;
-        var info = form.info.value;
+        var referredBy = form.refer.value;
+        var heardFrom = form.heard.value;
+        var postalCode = form.postalCode.value;
         $.ajax({
-            type : "POST",
-            url : "/subcontact",
-            data : {email:email, name:name, address:address, phone:phone, role:role, info:info},
+            type : "PUT",
+            url : "https://pocketask-api.herokuapp.com/public/create",
+            data : {
+                email: email, 
+                name: name, 
+                address: address, 
+                city: city,
+                province: province,
+                phone: phone, 
+                role: role,
+                referredBy: referredBy,
+                heardFrom: heardFrom,
+                postalcode: postalCode
+            },
             dataType : 'json',
             statusCode : {
                 201: function(){
@@ -78,8 +110,10 @@
     }
     </script>
 
-    <script src="js/jquery-1.10.1.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/parsley.js" type="text/javascript"></script> 
+    <script>
+        $( "#form" ).parsley(); 
+// when the user clicks on the submit button or enters "Enter" in a field
+
+</script>
 </body>
 </html>

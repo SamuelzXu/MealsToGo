@@ -560,3 +560,20 @@ function recentctrl($scope, $http) {
     });
     $scope.requests.reverse();
 }
+
+function publicsignupctrl($scope, $http) {
+    checktoken();
+    var promise = $http({
+        method: 'GET',
+        url: host + 'public/list',
+        headers: {
+            token: localStorage.getItem("token")
+        }
+    });
+    promise.success(function(data) {
+        $scope.list = data.reverse();
+    });
+    promise.error(function(data) {
+        alert(data + ' cannot get list of public signups.');
+    });
+}

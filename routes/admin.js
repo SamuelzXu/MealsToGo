@@ -54,5 +54,9 @@ module.exports = function(express, app, path){
         res.sendfile(path.dirname(__dirname) + '/public/tracking.html');
     });
 
+    router.get('/public_signup', function(req, res) {
+        res.sendfile(path.dirname(__dirname) + '/public/admin.html');
+    });
+
     app.use('/admin', router);
 };
