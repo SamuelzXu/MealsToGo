@@ -5,6 +5,9 @@ var tokenLife = 12 * 60 * 60; // token expiry time in seconds
 exports.verifyToken = function(req, res, next) {
     var token = req.cookies.token;
     var cert = fs.readFileSync(__dirname + '/pub-key.pem');
+    if (!token) {
+        return res.redirect('/signin');
+    }
     jwt.verify(token, cert, function(err, decoded) {
         var currentTime = new Date().getTime() / 1000;
         if (err) {
