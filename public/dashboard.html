@@ -29,7 +29,7 @@
     <link rel="shortcut icon" href="../img/favicon.ico">
 </head>
 
-<body onload="startTime(); $('#policy-modal').modal('show');">
+<body onload="startTime();">
     <header class="slide">
         <ul id="navToggle" class="burger slide">
             <li></li><li></li><li></li>
@@ -181,34 +181,5 @@
             return distance;
         };
     </script>
-
-    <!-- new policy modal -->
-    <div class="modal fade" role="dialog" aria-hidden="true" id="policy-modal" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog" style="margin-top: 50px;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h3 class="modal-title">Changes To PockeTask Inc.</h3>
-                    <p style="color: red;"> - Effective as of Mar. 01, 2015</p>
-                </div>
-                <div class="modal-body" style="text-align: left;">
-                    <h4>Promotional Price:</h4>
-                    <p>4.5 + 2.5(HST included) = $7/delivery ( under 7 kms )</p>
-                    <p>6.5 + 2.5(HST included) = $9/delivery ( 7-14 kms )</p>
-                    <p>12 + 2.5(HST included) = $14.5/delivery ( 14-18 kms )</p>
-                    <b>For faster services for everyone, PockeTask will not be accepting orders that is over 18 kms. We do apologize for any inconvenience.</b>
-                    <br><br>
-                    <h4>Another Major Change: </h4>
-                    <p>Drivers will be taking all of the delivery fee up front so pay the driver $7, $9 or $14.5 depending on the delivery distance. PockeTask Inc. will <b>NOT</b> be collecting the fee at the end of the month.</p>
-                    <br><br>
-                    <p>Thank you for your cooperation!</p>
-                    <p>PockeTask Inc. Team</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" id="aggree" onclick="$('#policy-modal').modal('hide');">I agree</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
