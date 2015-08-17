@@ -152,10 +152,10 @@
                         document.getElementById("result").innerHTML =
                             "We can not find the address, please check your spelling and try again.";
                     } else {
-                        if (data.distance.value <= 7) {
+                        if (data.distance.value < 7) {
                             price = 'Price for this order is: 4.5 + ' + newRate + ' = $' + (newRate + 4.5);
                         }
-                        else if (data.distance.value <= 14) {
+                        else if (data.distance.value < 14) {
                             price = 'Price for this order is: 6.5 + ' + newRate + ' = $' + (newRate + 6.5);
                         }
                         else if (data.distance.value <= 18) {
