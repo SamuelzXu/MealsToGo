@@ -21,12 +21,29 @@ header {
 
 .header-section{
     text-align: center;
-    min-height: 700px;
+    min-height: 800px;
     height: auto;
     background-image: url("../img/header.jpg");
+    background-repeat: repeat;
+    background-size: auto;
+    background-position: center;
+}
+
+.header-logo{
+    display: block;
+    padding-top: 50px;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.counter-section{
+    font: impact;
+    text-align: center;
+    min-height: 500px;
+    height: auto;
+    background-image: url("../img/counter-bg.png");
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
 }
 
 .res-section{
@@ -47,14 +64,16 @@ header {
 }
 
 #delivery-text{
-    color: #ecf0f1;
+    color: #ffffff;
     text-align: center;
 }
 
 #time-text{
     text-align: center;
-    color: #ecf0f1;
+    color: #2a4d9e;
     padding-top: 30px;
+    font-size: 150%;
+    font: impact;
 }
 
 .btn-area{
@@ -67,15 +86,15 @@ header {
     margin-bottom: 15px;
     height: 50px;
     width: 200px;
-    border-color: #3498db;
+    border-color: ##2a4d9e;
     font-size: 150%;
-    color: #3498db;
+    color: #2a4d9e;
     background-color: #ecf0f1;
 }
 
 #signin:hover,
 #signin:focus {
-    color: #3498db;
+    color: #2a4d9e;
     text-decoration: none;
 }
 

@@ -51,7 +51,8 @@ body,html {
     margin-bottom: -15px;
 }
 #delivery-text{
-    color: #da4453;
+    color: #2a4d9e;
+    padding-top: 30px;
     text-align: center;
     /*padding-top: -30px;*/
 }

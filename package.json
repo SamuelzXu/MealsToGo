@@ -2,19 +2,11 @@
   "name": "pocketask-beta-dev",
   "description": "This is frontend part of the webapp",
   "version": "0.1.0",
-  "author": "Pocketask, Inc.",
+  "author": "Arcrum Web Design",
   "contributors": [
     {
-      "name": "Joshua P. Cheng",
-      "email": "josh@pocketask.com"
-    },
-    {
-      "name": "Bo Liu",
-      "email": "bo@pocketask.com"
-    },
-    {
-      "name": "Dong Zhang",
-      "email": "dong@pocketask.com"
+      "name": "Samuel Xu",
+      "email": "samuelzxu@gmail.com"
     }
   ],
   "private": true,
