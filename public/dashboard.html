@@ -95,7 +95,7 @@
                     <p>Do you want to continue?</p>
                     <!-- <p id="timeLeft">The request will be proceed in: 10 seconds</p> -->                    
                     <button type="button" class="btn btn-primary confirm-modal-btn" data-dismiss="modal"
-                        onclick="proceed(true)" id="machineBtn">Debit Machine <br> (We now provide Debit Machine!)</button>
+                        onclick="proceed(true)" id="machineBtn">Debit Machine <br> ($1.50 fee)</button>
                     <button type="button" class="btn btn-primary confirm-modal-btn" data-dismiss="modal"
                         onclick="proceed(false)" id="noMachineBtn">Cash / Prepaid</button>
                     <button type="button" class="btn btn-danger confirm-modal-btn" data-dismiss="modal"
@@ -112,9 +112,7 @@
         $('#confirm-modal').on('show.bs.modal', function() {
             cancel = false;
             // get distance
-            distance = checkDistance().distance;
-            price = checkDistance().price;
-            document.getElementById('distance-hint').innerHTML = 'The distance of this delivery is ' + distance;
+            price = checkPrice();
             document.getElementById('price-hint').innerHTML = price;
         });
         $('#confirm-modal').on('hidden.bs.modal', function() {
@@ -131,7 +129,43 @@
         function proceed(card) {
             cancel = true;
             requestDriver(distance, card);
+
         };
+
+        function checkPrice() {
+            checktoken();
+            var address1 = restaurant.address.full;
+            var address2 = requestform.autocomplete.value + ', Ontario';
+            var distance = 'unknown';
+            var price;
+            if (address1.search("Waterloo")!=-1){
+                if (address2.search("Waterloo")!=-1){
+                    price = 'Waterloo to Waterloo. Price for this order is $7.50'
+                }
+                else if(address2.search("Kitchener")!=-1){
+                    price = 'Waterloo to Kitchener. Price for this order is $9.50'
+                }
+                else {
+                    price = 'Price for this order is $9.50'
+                }
+            }
+            else if (address1.search("Kitchener")!=-1){
+                if (address2.search("Waterloo")!=-1){
+                    price = 'Kitchener to Waterloo. Price for this order is $9.50'
+                }
+                else if(address2.search("Kitchener")!=-1){
+                    price = 'Kitchener to Kitchener. Price for this order is $7.50'
+                }
+                else {
+                    price = 'Price for this order is $9.50'
+                }
+            }
+            else {
+                price = 'Price for this order is $9.50'
+            }
+            return price
+        };
+
         function checkDistance() {
             checktoken();
             var address1 = restaurant.address.full;
