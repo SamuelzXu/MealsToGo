@@ -13,6 +13,13 @@ header {
     -webkit-transform: translate3d(0,0,0);
 }
 
+
+.header-text {
+    font: impact;
+    font-size: 200%;
+    margin-bottom: -15px;
+}
+
 .brand-img {
     height: 53px;
     margin-left: 10px;
@@ -60,7 +67,7 @@ header {
 #time{
     font: impact;
     font-size: 200%;
-    color: #ffffff;
+    color: #2a4d9e;
     margin-bottom: -15px;
 }
 
