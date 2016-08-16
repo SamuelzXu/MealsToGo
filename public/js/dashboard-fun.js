@@ -1,4 +1,4 @@
-function localStorageIsExist() {
+dfunction localStorageIsExist() {
     if ('localStorage' in window && window.localStorage !== null) {
         return true;
     }
@@ -53,7 +53,6 @@ function requestDriver(distance, card) {
     checktoken();
     $.ajax({
         type : "GET",
-        crossDomain : true,
         url : host + "requests/request_driver",
         data : {
             destination: dest,
